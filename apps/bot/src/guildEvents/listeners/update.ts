@@ -5,6 +5,7 @@ import {
 	PartialGuildScheduledEvent,
 } from "discord.js";
 import { GuildScheduledEventUpdateHandler } from "discord.js-extensions";
+import config from "~/config";
 
 export const listener = async (
 	oldGuildScheduledEvent:
@@ -13,7 +14,7 @@ export const listener = async (
 		| null,
 	newGuildScheduledEvent: GuildScheduledEvent<GuildScheduledEventStatus>
 ) => {
-	if (newGuildScheduledEvent.creatorId !== process.env.CLIENT_ID) {
+	if (newGuildScheduledEvent.creatorId !== config.CLIENT_ID) {
 		return;
 	}
 

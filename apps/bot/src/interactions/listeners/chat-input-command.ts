@@ -1,4 +1,5 @@
 import { CacheType, Interaction, MessageFlags } from "discord.js";
+import config from "~/config";
 import { checkAccountExists } from "~/services/potluck-quest";
 
 export const listener = async (interaction: Interaction<CacheType>) => {
@@ -16,8 +17,8 @@ export const listener = async (interaction: Interaction<CacheType>) => {
 	const hasPotluckAccount = await checkAccountExists(interaction.user.id);
 
 	if (!hasPotluckAccount) {
-		const signupUrl = process.env.POTLUCK_QUEST_BASE_URL!.concat(
-			process.env.POTLUCK_QUEST_AUTH_SETUP_ROUTE!
+		const signupUrl = config.POTLUCK_QUEST_BASE_URL.concat(
+			config.POTLUCK_QUEST_AUTH_SETUP_ROUTE
 		);
 
 		await interaction.reply({

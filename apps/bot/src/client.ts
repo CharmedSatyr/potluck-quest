@@ -1,5 +1,6 @@
 import { Client, GatewayIntentBits, Partials, Events } from "discord.js";
 import "dotenv/config";
+import config from "~/config";
 import { listener as eventDeleteListener } from "~/guildEvents/listeners/delete";
 import { listener as eventUpdateListener } from "~/guildEvents/listeners/update";
 import { listener as eventUserAddListener } from "~/guildEvents/listeners/user-add";
@@ -34,6 +35,6 @@ client.on(Events.GuildScheduledEventUserRemove, eventUserRemoveListener);
 client.on(Events.GuildScheduledEventUpdate, eventUpdateListener);
 client.on(Events.GuildScheduledEventDelete, eventDeleteListener);
 
-client.login(process.env.BOT_TOKEN);
+client.login(config.BOT_TOKEN);
 
 export default client;
