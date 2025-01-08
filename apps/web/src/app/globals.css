@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	input[type="number"] {
+		-moz-appearance: textfield;
+	}
+
+	/* Convert to tailwind classes */
+	.slide-in {
+		transform: translateY(8%);
+		opacity: 0;
+		transition:
+			transform 0.3s ease-out,
+			opacity 0.3s ease-out;
+	}
+
+	.slide-in.visible {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}

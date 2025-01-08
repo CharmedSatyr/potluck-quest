@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1736140596940,
+      "tag": "0000_cloudy_roland_deschain",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1736140930353,
+      "tag": "0001_late_legion",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1736267586615,
+      "tag": "0002_wide_zarda",
+      "breakpoints": true
+    }
+  ]
+}
