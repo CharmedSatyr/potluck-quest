@@ -1,13 +1,14 @@
-import { listener as eventDeleteListener } from "./guildEvents/listeners/delete";
-import { listener as eventUpdateListener } from "./guildEvents/listeners/update";
-import { listener as eventUserAddListener } from "./guildEvents/listeners/user-add";
-import { listener as eventUserRemoveListener } from "./guildEvents/listeners/user-remove";
-import { listener as buttonClickListener } from "./interactions/listeners/button-click";
-import { listener as chatInputCommandListener } from "./interactions/listeners/chat-input-command";
-import { listener as modalSubmitListener } from "./interactions/listeners/modal-submit";
-import collectHandlers from "./utilities/collect-handlers";
 import { Client, GatewayIntentBits, Partials, Events } from "discord.js";
+import "dotenv/config";
+import { listener as eventDeleteListener } from "~/guildEvents/listeners/delete";
+import { listener as eventUpdateListener } from "~/guildEvents/listeners/update";
+import { listener as eventUserAddListener } from "~/guildEvents/listeners/user-add";
+import { listener as eventUserRemoveListener } from "~/guildEvents/listeners/user-remove";
+import { listener as buttonClickListener } from "~/interactions/listeners/button-click";
+import { listener as chatInputCommandListener } from "~/interactions/listeners/chat-input-command";
+import { listener as modalSubmitListener } from "~/interactions/listeners/modal-submit";
 import collectCommands from "~/utilities/collect-commands";
+import collectHandlers from "~/utilities/collect-handlers";
 
 const client = new Client({
 	partials: [Partials.GuildScheduledEvent],

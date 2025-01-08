@@ -1,6 +1,6 @@
-import "./client";
 import "dotenv/config";
 import express from "express";
+import "~/client";
 
 const app = express();
 

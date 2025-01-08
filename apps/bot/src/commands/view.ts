@@ -19,9 +19,15 @@ export const data = new SlashCommandBuilder()
 export const execute = async (interaction: ChatInputCommandInteraction) => {
 	const events = await interaction.guild?.scheduledEvents.fetch();
 
-	if (!events || events.size === 0 || !interaction.guild) {
+	const pqEvents = events?.filter(
+		(event) =>
+			(event.creatorId === process.env.CLIENT_ID && event.isScheduled()) ||
+			event.isActive()
+	);
+
+	if (!pqEvents || pqEvents.size === 0 || !interaction.guild) {
 		await interaction.reply({
-			content: "❌ No Potluck Quest events found.",
+			content: "No Potluck Quest events found. Type `/plan` to get started!",
 			flags: MessageFlags.Ephemeral,
 		});
 		return;
@@ -30,38 +36,29 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 	const timezone = await getUserTimezone(interaction.user.id);
 	const { offsetNameLong, offsetNameShort } = getTimezoneOffsetName(timezone);
 
-	const fields = events
-		.filter(
-			(event) =>
-				event.creatorId === process.env.CLIENT_ID &&
-				(event.isScheduled() || event.isActive())
-		)
-		.map((event) => {
-			const { code } = removeBlurbAndGetCode(event.description);
+	const fields = pqEvents.map((event) => {
+		const { code } = removeBlurbAndGetCode(event.description);
 
-			return [
-				{
-					name: "\u200B",
-					value: `${event.name}`,
-					inline: true,
-				},
-				{
-					name: "\u200B",
-					value: formatTimestampForView(
-						event.scheduledStartTimestamp,
-						timezone
-					),
-					inline: true,
-				},
-				{
-					name: "\u200B",
-					value: code
-						? `[${code}](https://www.potluck.quest/event/${code})`
-						: "\u200B",
-					inline: true,
-				},
-			];
-		});
+		return [
+			{
+				name: "\u200B",
+				value: `${event.name}`,
+				inline: true,
+			},
+			{
+				name: "\u200B",
+				value: formatTimestampForView(event.scheduledStartTimestamp, timezone),
+				inline: true,
+			},
+			{
+				name: "\u200B",
+				value: code
+					? `[${code}](https://www.potluck.quest/event/${code})`
+					: "\u200B",
+				inline: true,
+			},
+		];
+	});
 
 	// Add headings above the first row of fields.
 	fields[0][0].name = "Name";

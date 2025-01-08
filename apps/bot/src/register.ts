@@ -1,6 +1,6 @@
-import collectCommands from "./utilities/collect-commands";
 import { REST, Routes } from "discord.js";
 import "dotenv/config";
+import collectCommands from "~/utilities/collect-commands";
 
 const commands = collectCommands().map((command) => command.data.toJSON());
 
