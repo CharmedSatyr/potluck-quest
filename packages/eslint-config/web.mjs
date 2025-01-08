@@ -1,4 +1,4 @@
-import baseConfig from "@repo/eslint-config/base";
+import baseConfig from "./base.mjs"
 import nextCoreWebVitals from "eslint-config-next/core-web-vitals.js";
 import pluginDrizzle from "eslint-plugin-drizzle";
 
