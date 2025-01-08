@@ -5,6 +5,7 @@ import {
 	SlashCommandBuilder,
 } from "discord.js";
 import config from "~/config";
+import routes from "~/routes";
 import { getUserTimezone } from "~/services/potluck-quest";
 import {
 	formatTimestampForView,
@@ -70,7 +71,7 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 
 	if (flattened.length > 25) {
 		await interaction.reply({
-			content: `Too many events to view using this command. Visit [Potluck Quest](${config.POTLUCK_QUEST_BASE_URL}) for more options.`,
+			content: `Too many events to view using this command. Visit [Potluck Quest](${routes.BASE}) for more options.`,
 			ephemeral: true,
 		});
 		return;

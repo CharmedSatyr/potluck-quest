@@ -1,5 +1,5 @@
-import config from "~/config";
 import { DEFAULT_TIMEZONE } from "~/constants";
+import routes from "~/routes";
 import { slotsCache } from "~/utilities/cache";
 
 // TODO: zod
@@ -14,7 +14,7 @@ type EventData = {
 
 export const createEvent = async (data: EventData): Promise<string | null> => {
 	try {
-		const result = await fetch(config.POTLUCK_EVENT_API_URL, {
+		const result = await fetch(routes.EVENT, {
 			method: "POST",
 			body: JSON.stringify(data),
 		});
@@ -50,7 +50,7 @@ export type UpdateEventData = {
 
 export const updateEvent = async (data: UpdateEventData): Promise<boolean> => {
 	try {
-		const result = await fetch(config.POTLUCK_EVENT_API_URL, {
+		const result = await fetch(routes.EVENT, {
 			method: "PUT",
 			body: JSON.stringify(data),
 		});
@@ -73,7 +73,7 @@ export type DeleteEventData = {
 
 export const deleteEvent = async (data: DeleteEventData): Promise<boolean> => {
 	try {
-		const result = await fetch(config.POTLUCK_EVENT_API_URL, {
+		const result = await fetch(routes.EVENT, {
 			method: "DELETE",
 			body: JSON.stringify(data),
 		});
@@ -96,9 +96,7 @@ export const getSlots = async (code: string): Promise<Slot[] | null> => {
 
 		const params = new URLSearchParams({ code });
 
-		const result = await fetch(
-			config.POTLUCK_SLOTS_API_URL + "?" + params.toString()
-		);
+		const result = await fetch(routes.SLOTS + "?" + params.toString());
 
 		if (!result.ok) {
 			return null;
@@ -125,7 +123,7 @@ type SlotData = {
 
 export const createCommitment = async (data: SlotData) => {
 	try {
-		const result = await fetch(config.POTLUCK_COMMITMENT_API_URL, {
+		const result = await fetch(routes.COMMITMENT, {
 			method: "POST",
 			body: JSON.stringify(data),
 		});
@@ -145,7 +143,7 @@ export const checkAccountExists = async (
 		const params = new URLSearchParams({ providerAccountId: discordUserId });
 
 		const result = await fetch(
-			config.POTLUCK_CHECK_ACCOUNT_EXISTS_API_URL + "?" + params.toString()
+			routes.AUTH_CHECK_ACCOUNT_EXISTS + "?" + params.toString()
 		);
 
 		if (!result.ok) {
@@ -175,7 +173,7 @@ type RsvpData = {
 
 export const upsertRsvp = async (data: RsvpData) => {
 	try {
-		const result = await fetch(config.POTLUCK_RSVP_API_URL, {
+		const result = await fetch(routes.RSVP, {
 			method: "POST",
 			body: JSON.stringify(data),
 		});
@@ -195,9 +193,7 @@ export const getUserTimezone = async (
 		const params = new URLSearchParams({ discordUserId });
 
 		const result = await fetch(
-			config.POTLUCK_QUEST_BASE_URL.concat(
-				config.POTLUCK_TIMEZONE_API_ROUTE + "?" + params.toString()
-			)
+			routes.BASE.concat(routes.TIMEZONE + "?" + params.toString())
 		);
 
 		if (!result.ok) {

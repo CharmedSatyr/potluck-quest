@@ -1,16 +1,5 @@
-import "dotenv/config";
+import getEnvVar from "~/utilities/get-env-var";
 
-const getEnvVar = (key: string): string => {
-	const value = process.env[key];
-
-	if (!value) {
-		throw new Error(`Environment variable ${key} is not defined.`);
-	}
-
-	return value;
-};
-
-// Resolve and export environment variables
 export default {
 	// Config
 	BOT_TOKEN: getEnvVar("BOT_TOKEN"),
@@ -18,7 +7,7 @@ export default {
 	PORT: getEnvVar("PORT"),
 	PUBLIC_KEY: getEnvVar("PUBLIC_KEY"),
 	// Routes
-	POTLUCK_QUEST_BASE_URL: getEnvVar("POTLUCK_QUEST_BASE_URL"),
+	PQ_BASE_URL: getEnvVar("POTLUCK_QUEST_BASE_URL"),
 	POTLUCK_QUEST_AUTH_PLAN_FOOD_ROUTE: getEnvVar(
 		"POTLUCK_QUEST_AUTH_PLAN_FOOD_ROUTE"
 	),

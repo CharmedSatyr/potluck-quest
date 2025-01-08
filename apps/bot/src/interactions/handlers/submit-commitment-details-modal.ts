@@ -1,6 +1,6 @@
 import { MessageFlags, ModalSubmitInteraction } from "discord.js";
-import config from "~/config";
 import { CustomId, DELIMITER } from "~/constants";
+import routes from "~/routes";
 import { createCommitment } from "~/services/potluck-quest";
 import { slotsCache } from "~/utilities/cache";
 
@@ -85,8 +85,6 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 			`<@${interaction.user.id}> signed up to bring **${quantity}** of **${item}**`
 				.concat(description ? `: *${description}*.` : ".")
 				.concat(" ")
-				.concat(
-					`See more details at [${code}](${config.POTLUCK_QUEST_BASE_URL}/event/${code}).`
-				),
+				.concat(`See more details at [${code}](${routes.BASE}/event/${code}).`),
 	});
 };
