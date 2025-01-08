@@ -13,6 +13,7 @@ const compat = new FlatCompat({
   allConfig: js.configs.all,
 });
 
+/** @type {import("eslint").Linter.Config[]} */
 export default [
   ...compat.extends("plugin:prettier/recommended"),
   {
@@ -21,8 +22,7 @@ export default [
       turbo: turboPlugin,
     },
     rules: {
-      ...tsPlugin.configs.recommended.rules,
-      "turbo/no-undeclared-env-vars": "warn",
+     ...tsPlugin.configs.recommended.rules,
     },
   },
 ];

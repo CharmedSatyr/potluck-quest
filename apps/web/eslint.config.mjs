@@ -1,16 +1,18 @@
-import { FlatCompat } from "@eslint/eslintrc";
-import js from "@eslint/js";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
+import baseConfig from "@repo/eslint-config/base";
+import nextConfig from "eslint-config-next/core-web-vitals.js";
+import pluginDrizzle from "eslint-plugin-drizzle";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-	baseDirectory: __dirname,
-	recommendedConfig: js.configs.recommended,
-	allConfig: js.configs.all,
-});
-
+/** @type {import("eslint").Linter.Config[]} */
 export default [
-	...compat.extends("next/core-web-vitals", "plugin:prettier/recommended"),
+	...baseConfig,
+	{
+		plugins: nextConfig.extends.plugins,
+		rules: nextConfig.extends.rules,
+		overrides: nextConfig.extends.overrides,
+	},
+	{
+		plugins: {
+			drizzle: pluginDrizzle,
+		},
+	},
 ];
