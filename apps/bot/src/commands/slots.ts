@@ -7,8 +7,8 @@ import {
 	MessageFlags,
 	SlashCommandBuilder,
 } from "discord.js";
+import config from "~/config";
 import { DELIMITER, CustomId } from "~/constants";
-import routes from "~/routes";
 import { getSlots } from "~/services/potluck-quest";
 
 // TODO: Add cooldowns https://discordjs.guide/additional-features/cooldowns.html#resulting-code
@@ -49,7 +49,7 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 
 	if (slots.length === 0) {
 		await interaction.reply({
-			content: `No slots have been created for [${input}](${routes.BASE}/event/${input}). Ask the host to create some!`,
+			content: `No slots have been created for [${input}](${config.POTLUCK_QUEST_BASE_URL}/event/${input}). Ask the host to create some!`,
 			flags: MessageFlags.Ephemeral,
 		});
 		return;

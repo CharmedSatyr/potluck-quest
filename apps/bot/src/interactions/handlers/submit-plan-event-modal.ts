@@ -5,8 +5,9 @@ import {
 	MessageFlags,
 	ModalSubmitInteraction,
 } from "discord.js";
+import api from "~/api";
+import config from "~/config";
 import { CustomId } from "~/constants";
-import routes from "~/routes";
 import { createEvent as createDiscordEvent } from "~/services/discord";
 import {
 	createEvent as createPotluckQuestEvent,
@@ -61,7 +62,7 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 
 	if (!code) {
 		await interaction.reply({
-			content: `<@${interaction.user.id}> We failed to create event **${title}**. Make sure you have an account on [Potluck Quest](${routes.BASE}) and try again.`,
+			content: `<@${interaction.user.id}> We failed to create event **${title}**. Make sure you have an account on [Potluck Quest](${config.POTLUCK_QUEST_BASE_URL}) and try again.`,
 			flags: MessageFlags.Ephemeral,
 		});
 		return;
@@ -89,7 +90,7 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 		return;
 	}
 
-	const link = `[**${title}**](${routes.BASE}/event/${code})`;
+	const link = `[**${title}**](${config.POTLUCK_QUEST_BASE_URL}/event/${code})`;
 
 	// Prevent errors with both DEV and PROD servers running.
 	if (!interaction.replied) {
@@ -110,11 +111,7 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 	const button = new ButtonBuilder()
 		.setLabel("Add Signup Slots")
 		.setStyle(ButtonStyle.Link)
-		.setURL(
-			routes.BASE.concat(routes.AUTH_PLAN_FOOD)
-				.concat("?")
-				.concat(params.toString())
-		);
+		.setURL(api.AUTH_PLAN_FOOD.concat("?").concat(params.toString()));
 
 	const createSlotsPrompt = new ActionRowBuilder<ButtonBuilder>().addComponents(
 		button

@@ -1,5 +1,5 @@
 import { CacheType, Interaction, MessageFlags } from "discord.js";
-import routes from "~/routes";
+import api from "~/api";
 import { checkAccountExists } from "~/services/potluck-quest";
 
 export const listener = async (interaction: Interaction<CacheType>) => {
@@ -17,7 +17,7 @@ export const listener = async (interaction: Interaction<CacheType>) => {
 	const hasPotluckAccount = await checkAccountExists(interaction.user.id);
 
 	if (!hasPotluckAccount) {
-		const signupUrl = routes.BASE.concat(routes.AUTH_SETUP);
+		const signupUrl = api.AUTH_SETUP;
 
 		await interaction.reply({
 			content: `<@${interaction.user.id}>, your journey awaits! [Sign in to Potluck Quest](${signupUrl}) to continue.`,

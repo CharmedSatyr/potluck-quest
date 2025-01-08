@@ -1,5 +1,5 @@
+import api from "~/api";
 import { DEFAULT_TIMEZONE } from "~/constants";
-import routes from "~/routes";
 import { slotsCache } from "~/utilities/cache";
 
 // TODO: zod
@@ -14,7 +14,7 @@ type EventData = {
 
 export const createEvent = async (data: EventData): Promise<string | null> => {
 	try {
-		const result = await fetch(routes.EVENT, {
+		const result = await fetch(api.EVENT, {
 			method: "POST",
 			body: JSON.stringify(data),
 		});
@@ -50,7 +50,7 @@ export type UpdateEventData = {
 
 export const updateEvent = async (data: UpdateEventData): Promise<boolean> => {
 	try {
-		const result = await fetch(routes.EVENT, {
+		const result = await fetch(api.EVENT, {
 			method: "PUT",
 			body: JSON.stringify(data),
 		});
@@ -73,7 +73,7 @@ export type DeleteEventData = {
 
 export const deleteEvent = async (data: DeleteEventData): Promise<boolean> => {
 	try {
-		const result = await fetch(routes.EVENT, {
+		const result = await fetch(api.EVENT, {
 			method: "DELETE",
 			body: JSON.stringify(data),
 		});
@@ -96,7 +96,7 @@ export const getSlots = async (code: string): Promise<Slot[] | null> => {
 
 		const params = new URLSearchParams({ code });
 
-		const result = await fetch(routes.SLOTS + "?" + params.toString());
+		const result = await fetch(api.SLOTS + "?" + params.toString());
 
 		if (!result.ok) {
 			return null;
@@ -123,7 +123,7 @@ type SlotData = {
 
 export const createCommitment = async (data: SlotData) => {
 	try {
-		const result = await fetch(routes.COMMITMENT, {
+		const result = await fetch(api.COMMITMENT, {
 			method: "POST",
 			body: JSON.stringify(data),
 		});
@@ -143,7 +143,7 @@ export const checkAccountExists = async (
 		const params = new URLSearchParams({ providerAccountId: discordUserId });
 
 		const result = await fetch(
-			routes.AUTH_CHECK_ACCOUNT_EXISTS + "?" + params.toString()
+			api.AUTH_CHECK_ACCOUNT_EXISTS + "?" + params.toString()
 		);
 
 		if (!result.ok) {
@@ -173,7 +173,7 @@ type RsvpData = {
 
 export const upsertRsvp = async (data: RsvpData) => {
 	try {
-		const result = await fetch(routes.RSVP, {
+		const result = await fetch(api.RSVP, {
 			method: "POST",
 			body: JSON.stringify(data),
 		});
@@ -192,9 +192,7 @@ export const getUserTimezone = async (
 	try {
 		const params = new URLSearchParams({ discordUserId });
 
-		const result = await fetch(
-			routes.BASE.concat(routes.TIMEZONE + "?" + params.toString())
-		);
+		const result = await fetch(api.TIMEZONE + "?" + params.toString());
 
 		if (!result.ok) {
 			console.warn("Failed to get user timezone:", result.status);
