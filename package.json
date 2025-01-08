@@ -5,6 +5,7 @@
   "license": "GPL-3.0",
   "packageManager": "pnpm@9.15.3",
   "scripts": {
+    "start:bot": "node apps/bot/dist/server.js",
     "build": "turbo run build",
     "dev": "turbo run dev",
     "test": "turbo run test",
