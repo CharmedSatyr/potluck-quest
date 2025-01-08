@@ -1,18 +1,3 @@
-import baseConfig from "@potluck/eslint-config/base";
-import nextCoreWebVitals from "eslint-config-next/core-web-vitals.js";
-import pluginDrizzle from "eslint-plugin-drizzle";
+import config from "@repo/eslint-config/web";
 
-/** @type {import("eslint").Linter.Config[]} */
-export default [
-	...baseConfig,
-	{
-		plugins: nextCoreWebVitals.extends.plugins,
-		rules: nextCoreWebVitals.extends.rules,
-		overrides: nextCoreWebVitals.extends.overrides,
-	},
-	{
-		plugins: {
-			drizzle: pluginDrizzle,
-		},
-	},
-];
+export default config;
