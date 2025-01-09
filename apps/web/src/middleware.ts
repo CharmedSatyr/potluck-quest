@@ -1,7 +1,14 @@
+import { headers } from "next/headers";
 import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import type { MiddlewareConfig, NextRequest } from "next/server";
 import findEventCreatedBy from "~/actions/event/find-event-created-by";
 import { auth } from "~/auth";
+
+const hasValidApiKey = async () => {
+	const headersMap = await headers();
+
+	return process.env.PQ_BOT_TO_WEB_API_KEY === headersMap.get("x-api-key");
+};
 
 const isAuthenticated = async () => {
 	const session = await auth();
@@ -29,6 +36,20 @@ const isCreator = async (pathname: string) => {
 export const middleware = async (request: NextRequest) => {
 	const { origin, pathname } = request.nextUrl;
 
+	// Bot routes
+	if (pathname.startsWith("/api/bot/")) {
+		// Auth path doesn't require API key
+		if (pathname.startsWith("/api/bot/auth/")) {
+			return NextResponse.next();
+		}
+
+		if (await hasValidApiKey()) {
+			return NextResponse.next();
+		}
+
+		return NextResponse.json(null, { status: 401 });
+	}
+
 	// Protected routes
 	if (!(await isAuthenticated())) {
 		return NextResponse.redirect(origin.concat("/oauth"));
@@ -45,7 +66,7 @@ export const middleware = async (request: NextRequest) => {
 	return NextResponse.next();
 };
 
-export const config = {
+export const config: MiddlewareConfig = {
 	matcher: [
 		// Protected routes
 		"/dashboard",
@@ -54,5 +75,7 @@ export const config = {
 		// Creator-only routes
 		"/event/:code/edit",
 		"/event/:code/edit/confirm",
+		// Bot routes
+		"/api/bot/:path*",
 	],
 };

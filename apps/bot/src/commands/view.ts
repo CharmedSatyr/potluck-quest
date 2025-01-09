@@ -70,8 +70,8 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 
 	if (flattened.length > 25) {
 		await interaction.reply({
-			content: `Too many events to view using this command. Visit [Potluck Quest](${config.POTLUCK_QUEST_BASE_URL}) for more options.`,
-			ephemeral: true,
+			content: `Too many events to view using this command. Visit [Potluck Quest](${config.PQ_BASE_URL}) for more options.`,
+			flags: MessageFlags.Ephemeral,
 		});
 		return;
 	}
@@ -94,6 +94,6 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 
 	await interaction.reply({
 		embeds: [embed],
-		ephemeral: true,
+		flags: MessageFlags.Ephemeral,
 	});
 };

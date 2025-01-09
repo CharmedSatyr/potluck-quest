@@ -86,7 +86,7 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 				.concat(description ? `: *${description}*.` : ".")
 				.concat(" ")
 				.concat(
-					`See more details at [${code}](${config.POTLUCK_QUEST_BASE_URL}/event/${code}).`
+					`See more details at [${code}](${config.PQ_BASE_URL}/event/${code}).`
 				),
 	});
 };
