@@ -36,13 +36,13 @@
 		"zod": "^3.24.1"
 	},
 	"devDependencies": {
+		"@potluck/prettier-config": "workspace:*",
 		"@repo/eslint-config": "workspace:*",
 		"@tailwindcss/typography": "^0.5.16",
 		"@testing-library/dom": "^10.4.0",
 		"@testing-library/jest-dom": "^6.6.3",
 		"@testing-library/react": "^16.1.0",
 		"@testing-library/user-event": "^14.5.2",
-		"@trivago/prettier-plugin-sort-imports": "^5.2.1",
 		"@types/jest": "^29.5.14",
 		"@types/node": "^22.10.5",
 		"@types/react": "^19.0.3",
@@ -53,8 +53,6 @@
 		"jest-environment-jsdom": "^29.7.0",
 		"lint-staged": "^15.3.0",
 		"postcss": "^8.4.49",
-		"prettier": "^3.4.2",
-		"prettier-plugin-tailwindcss": "^0.6.9",
 		"tailwindcss": "^3.4.17",
 		"ts-node": "^10.9.2",
 		"typescript": "^5.7.2"
