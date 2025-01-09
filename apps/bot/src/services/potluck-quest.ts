@@ -1,4 +1,5 @@
 import api from "~/api";
+import config from "~/config";
 import { DEFAULT_TIMEZONE } from "~/constants";
 import { slotsCache } from "~/utilities/cache";
 
@@ -12,9 +13,12 @@ type EventData = {
 	title: string;
 };
 
+const headers = new Headers({ "x-api-key": config.PQ_BOT_TO_WEB_API_KEY });
+
 export const createEvent = async (data: EventData): Promise<string | null> => {
 	try {
 		const result = await fetch(api.EVENT, {
+			headers,
 			method: "POST",
 			body: JSON.stringify(data),
 		});
@@ -51,6 +55,7 @@ export type UpdateEventData = {
 export const updateEvent = async (data: UpdateEventData): Promise<boolean> => {
 	try {
 		const result = await fetch(api.EVENT, {
+			headers,
 			method: "PUT",
 			body: JSON.stringify(data),
 		});
@@ -74,6 +79,7 @@ export type DeleteEventData = {
 export const deleteEvent = async (data: DeleteEventData): Promise<boolean> => {
 	try {
 		const result = await fetch(api.EVENT, {
+			headers,
 			method: "DELETE",
 			body: JSON.stringify(data),
 		});
@@ -96,7 +102,9 @@ export const getSlots = async (code: string): Promise<Slot[] | null> => {
 
 		const params = new URLSearchParams({ code });
 
-		const result = await fetch(api.SLOTS + "?" + params.toString());
+		const result = await fetch(api.SLOTS + "?" + params.toString(), {
+			headers,
+		});
 
 		if (!result.ok) {
 			return null;
@@ -108,7 +116,7 @@ export const getSlots = async (code: string): Promise<Slot[] | null> => {
 
 		return slots;
 	} catch (err) {
-		console.error(`Error fetching Potluck Quest slots for code ${code}:`, err);
+		console.error(`Error getting Potluck Quest slots for code ${code}:`, err);
 
 		return null;
 	}
@@ -124,13 +132,14 @@ type SlotData = {
 export const createCommitment = async (data: SlotData) => {
 	try {
 		const result = await fetch(api.COMMITMENT, {
+			headers,
 			method: "POST",
 			body: JSON.stringify(data),
 		});
 
 		return result.ok;
 	} catch (err) {
-		console.error("Failed to create commitment", JSON.stringify(err, null, 2));
+		console.error("Error creating commitment", JSON.stringify(err, null, 2));
 
 		return false;
 	}
@@ -143,7 +152,8 @@ export const checkAccountExists = async (
 		const params = new URLSearchParams({ providerAccountId: discordUserId });
 
 		const result = await fetch(
-			api.AUTH_CHECK_ACCOUNT_EXISTS + "?" + params.toString()
+			api.AUTH_CHECK_ACCOUNT_EXISTS + "?" + params.toString(),
+			{ headers }
 		);
 
 		if (!result.ok) {
@@ -174,6 +184,7 @@ type RsvpData = {
 export const upsertRsvp = async (data: RsvpData) => {
 	try {
 		const result = await fetch(api.RSVP, {
+			headers,
 			method: "POST",
 			body: JSON.stringify(data),
 		});
@@ -192,7 +203,9 @@ export const getUserTimezone = async (
 	try {
 		const params = new URLSearchParams({ discordUserId });
 
-		const result = await fetch(api.TIMEZONE + "?" + params.toString());
+		const result = await fetch(api.TIMEZONE + "?" + params.toString(), {
+			headers,
+		});
 
 		if (!result.ok) {
 			console.warn("Failed to get user timezone:", result.status);

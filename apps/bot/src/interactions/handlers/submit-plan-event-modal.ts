@@ -62,7 +62,7 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 
 	if (!code) {
 		await interaction.reply({
-			content: `<@${interaction.user.id}> We failed to create event **${title}**. Make sure you have an account on [Potluck Quest](${config.POTLUCK_QUEST_BASE_URL}) and try again.`,
+			content: `<@${interaction.user.id}> We failed to create event **${title}**. Make sure you have an account on [Potluck Quest](${config.PQ_BASE_URL}) and try again.`,
 			flags: MessageFlags.Ephemeral,
 		});
 		return;
@@ -90,7 +90,7 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 		return;
 	}
 
-	const link = `[**${title}**](${config.POTLUCK_QUEST_BASE_URL}/event/${code})`;
+	const link = `[**${title}**](${config.PQ_BASE_URL}/event/${code})`;
 
 	// Prevent errors with both DEV and PROD servers running.
 	if (!interaction.replied) {

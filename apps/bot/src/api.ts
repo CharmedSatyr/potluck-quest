@@ -14,6 +14,6 @@ const pqApi = {
 export default Object.fromEntries(
 	Object.entries(pqApi).map(([key, path]) => [
 		key,
-		config.POTLUCK_QUEST_BASE_URL.concat(path),
+		config.PQ_BASE_URL.concat(path),
 	])
 );
