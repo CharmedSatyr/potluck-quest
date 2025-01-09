@@ -3,7 +3,7 @@
 	"extends": "@potluck/typescript-config/base",
 	"compilerOptions": {
 		"module": "NodeNext",
-        "moduleResolution": "nodenext",
+		"moduleResolution": "nodenext",
 		"outDir": "./dist",
 		"paths": {
 			"~/*": ["./src/*"]
@@ -11,8 +11,6 @@
 		"rootDir": "./",
 		"typeRoots": ["./node_modules/@types", "./src/@types"]
 	},
-	"include": [
-		"**/*.ts"
-	],
+	"include": ["**/*.ts"],
 	"exclude": ["node_modules"]
 }

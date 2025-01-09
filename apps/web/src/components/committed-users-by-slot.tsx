@@ -1,9 +1,9 @@
 "use server";
 
 import Image from "next/image";
-import findCommitments from "~/actions/db/find-commitments";
-import findSlots from "~/actions/db/find-slots";
-import findUsers from "~/actions/db/find-users";
+import findCommitments from "~/actions/commitment/find-commitments";
+import findSlots from "~/actions/slot/find-slots";
+import findUsers from "~/actions/user/find-users";
 
 type UserWithCount = Pick<User, "id" | "image" | "name"> & { count: number };
 

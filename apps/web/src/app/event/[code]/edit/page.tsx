@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { Suspense } from "react";
-import findSlots from "~/actions/db/find-slots";
+import findSlots from "~/actions/slot/find-slots";
 import { auth } from "~/auth";
 import committedUsersBySlot from "~/components/committed-users-by-slot";
 import ErrorBoundary from "~/components/error-boundary";

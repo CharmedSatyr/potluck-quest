@@ -1,6 +1,6 @@
 import { revalidatePath } from "next/cache";
-import createCommitment from "~/actions/db/create-commitment";
-import deleteCommitment from "~/actions/db/delete-commitment";
+import createCommitment from "~/actions/commitment/create-commitment";
+import deleteCommitment from "~/actions/commitment/delete-commitment";
 import { auth } from "~/auth";
 import {
 	createCommitmentAction,
@@ -13,8 +13,8 @@ import {
 } from "~/components/slot-manager/submit-actions.schema";
 
 jest.mock("~/auth", () => ({ auth: jest.fn() }));
-jest.mock("~/actions/db/create-commitment", () => jest.fn());
-jest.mock("~/actions/db/delete-commitment", () => jest.fn());
+jest.mock("~/actions/commitment/create-commitment", () => jest.fn());
+jest.mock("~/actions/commitment/delete-commitment", () => jest.fn());
 jest.mock("next/cache", () => ({ revalidatePath: jest.fn() }));
 
 describe("createCommitmentAction", () => {

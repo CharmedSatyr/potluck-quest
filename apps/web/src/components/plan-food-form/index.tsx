@@ -2,7 +2,7 @@
 
 import Form from "next/form";
 import { use, useCallback, useEffect, useMemo, useState } from "react";
-import deleteSlot from "~/actions/db/delete-slot";
+import deleteSlot from "~/actions/slot/delete-slot";
 import SlotInput from "~/components/plan-food-form/slot-input";
 import { MAX_SLOTS } from "~/constants/max-slots";
 import { schema as slotSchema } from "~/validation/slot.schema";

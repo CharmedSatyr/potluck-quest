@@ -1,8 +1,8 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import findEvent from "~/actions/db/find-event";
-import { schema } from "~/actions/db/find-event.schema";
+import findEvent from "~/actions/event/find-event";
+import { schema } from "~/actions/event/find-event.schema";
 import { GotoEventFormState } from "~/components/goto-event-form";
 
 const findEventExistsRedirect = async (

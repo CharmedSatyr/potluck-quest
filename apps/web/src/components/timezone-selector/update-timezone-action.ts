@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import upsertTimezone from "~/actions/db/upsert-timezone";
+import upsertTimezone from "~/actions/settings/upsert-timezone";
 import { auth } from "~/auth";
 import { timezone } from "~/validation/timezone.schema";
 

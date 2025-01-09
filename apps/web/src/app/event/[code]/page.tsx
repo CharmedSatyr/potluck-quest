@@ -2,8 +2,8 @@ import EditLink from "./edit-link";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PropsWithChildren, Suspense } from "react";
-import findEvent from "~/actions/db/find-event";
-import findUserEventRsvp from "~/actions/db/find-user-event-rsvp";
+import findEvent from "~/actions/event/find-event";
+import findUserEventRsvp from "~/actions/rsvp/find-user-event-rsvp";
 import { auth } from "~/auth";
 import CommitmentsTable, {
 	CommitmentsTableFallback,

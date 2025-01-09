@@ -1,4 +1,4 @@
-import { schema } from "~/actions/db/upsert-rsvp.schema";
+import { schema } from "~/actions/rsvp/upsert-rsvp.schema";
 
 const formSchema = schema.strip();
 

@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
-import updateEvent from "~/actions/db/update-event";
-import upsertSlots from "~/actions/db/upsert-slots";
+import updateEvent from "~/actions/event/update-event";
+import upsertSlots from "~/actions/slot/upsert-slots";
 import genPageMetadata from "~/seo";
 import {
 	buildEventInputFromParams,

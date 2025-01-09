@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import createCommitment from "~/actions/db/create-commitment";
-import { schema as createCommitmentSchema } from "~/actions/db/create-commitment.schema";
-import findUserIdByProviderAccountId from "~/actions/db/find-user-id-by-provider-account-id";
+import createCommitment from "~/actions/commitment/create-commitment";
+import { schema as createCommitmentSchema } from "~/actions/commitment/create-commitment.schema";
+import findUserIdByProviderAccountId from "~/actions/user/find-user-id-by-provider-account-id";
 
 export const POST = async (request: NextRequest) => {
 	const data = await request.json();

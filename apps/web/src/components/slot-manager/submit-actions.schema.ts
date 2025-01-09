@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { schema } from "~/actions/db/create-commitment.schema";
+import { schema } from "~/actions/commitment/create-commitment.schema";
 
 export const createCommitmentFormSchema = schema
 	.omit({ createdBy: true, slotId: true })

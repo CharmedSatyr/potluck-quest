@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import findEventCreatedBy from "~/actions/db/find-event-created-by";
+import findEventCreatedBy from "~/actions/event/find-event-created-by";
 import { auth } from "~/auth";
 
 const isAuthenticated = async () => {

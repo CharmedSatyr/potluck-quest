@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Suspense } from "react";
-import findEventsByUser from "~/actions/db/find-events-by-user";
-import findEventsByUserWithRsvp from "~/actions/db/find-events-by-user-with-rsvp";
+import findEventsByUser from "~/actions/event/find-events-by-user";
+import findEventsByUserWithRsvp from "~/actions/event/find-events-by-user-with-rsvp";
 import DateCellContents from "~/app/dashboard/date-cell-contents";
 import { TableFallback } from "~/app/dashboard/table-fallback";
 import { auth } from "~/auth";

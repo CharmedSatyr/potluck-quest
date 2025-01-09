@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import findUserIdByProviderAccountId from "~/actions/db/find-user-id-by-provider-account-id";
+import findUserIdByProviderAccountId from "~/actions/user/find-user-id-by-provider-account-id";
 
 export const GET = async (request: NextRequest) => {
 	const { searchParams } = request.nextUrl;

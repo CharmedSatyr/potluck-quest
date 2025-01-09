@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import createEvent from "~/actions/db/create-event";
-import { schema as createEventSchema } from "~/actions/db/create-event.schema";
-import deleteEvent from "~/actions/db/delete-event";
-import { schema as deleteEventSchema } from "~/actions/db/delete-event.schema";
-import findEvent from "~/actions/db/find-event";
-import findUserIdByProviderAccountId from "~/actions/db/find-user-id-by-provider-account-id";
-import updateEvent from "~/actions/db/update-event";
-import { schema as updateEventSchema } from "~/actions/db/update-event.schema";
+import createEvent from "~/actions/event/create-event";
+import { schema as createEventSchema } from "~/actions/event/create-event.schema";
+import deleteEvent from "~/actions/event/delete-event";
+import { schema as deleteEventSchema } from "~/actions/event/delete-event.schema";
+import findEvent from "~/actions/event/find-event";
+import updateEvent from "~/actions/event/update-event";
+import { schema as updateEventSchema } from "~/actions/event/update-event.schema";
+import findUserIdByProviderAccountId from "~/actions/user/find-user-id-by-provider-account-id";
 
 export const POST = async (request: NextRequest) => {
 	const data = await request.json();

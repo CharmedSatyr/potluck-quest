@@ -1,8 +1,8 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import createCommitment from "~/actions/db/create-commitment";
-import deleteCommitment from "~/actions/db/delete-commitment";
+import createCommitment from "~/actions/commitment/create-commitment";
+import deleteCommitment from "~/actions/commitment/delete-commitment";
 import { auth } from "~/auth";
 import {
 	CreateCommitmentFormState,

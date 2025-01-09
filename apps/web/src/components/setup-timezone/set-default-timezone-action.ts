@@ -1,6 +1,6 @@
 "use server";
 
-import upsertTimezone from "~/actions/db/upsert-timezone";
+import upsertTimezone from "~/actions/settings/upsert-timezone";
 import { auth } from "~/auth";
 
 const setDefaultTimezoneAction = async (timezone: SupportedTimezone) => {

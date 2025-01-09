@@ -2,8 +2,8 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import deleteEvent from "~/actions/db/delete-event";
-import findEventCreatedBy from "~/actions/db/find-event-created-by";
+import deleteEvent from "~/actions/event/delete-event";
+import findEventCreatedBy from "~/actions/event/find-event-created-by";
 import { auth } from "~/auth";
 import { DeleteEventState } from "~/components/delete-event-button/delete-event-action.types";
 

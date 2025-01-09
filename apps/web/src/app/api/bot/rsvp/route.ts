@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import findUserIdByProviderAccountId from "~/actions/db/find-user-id-by-provider-account-id";
-import upsertRsvp from "~/actions/db/upsert-rsvp";
-import { schema as upsertRsvpSchema } from "~/actions/db/upsert-rsvp.schema";
+import upsertRsvp from "~/actions/rsvp/upsert-rsvp";
+import { schema as upsertRsvpSchema } from "~/actions/rsvp/upsert-rsvp.schema";
+import findUserIdByProviderAccountId from "~/actions/user/find-user-id-by-provider-account-id";
 
 export const POST = async (request: NextRequest) => {
 	const data = await request.json();

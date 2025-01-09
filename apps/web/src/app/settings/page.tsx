@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import findTimezone from "~/actions/db/find-timezone";
+import findTimezone from "~/actions/settings/find-timezone";
 import { auth } from "~/auth";
 import SetupTimezone from "~/components/setup-timezone";
 import TimezoneSelector from "~/components/timezone-selector";

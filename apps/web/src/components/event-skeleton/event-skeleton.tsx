@@ -1,7 +1,7 @@
 import { MapPinIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
-import findEvent from "~/actions/db/find-event";
-import findUserByEventCode from "~/actions/db/find-user-by-event-code";
+import findEvent from "~/actions/event/find-event";
+import findUserByEventCode from "~/actions/user/find-user-by-event-code";
 import CopyLinkButton from "~/components/copy-link-button";
 import DateTimeBlock from "~/components/event-skeleton/date-time-block";
 import WarningAlert from "~/components/warning-alert";

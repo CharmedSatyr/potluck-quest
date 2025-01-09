@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import findSlotsWithNeeded from "~/actions/db/find-slots-with-needed";
+import findSlotsWithNeeded from "~/actions/slot/find-slots-with-needed";
 
 export const GET = async (request: NextRequest) => {
 	const { searchParams } = request.nextUrl;

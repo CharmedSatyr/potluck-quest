@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
-import createEvent from "~/actions/db/create-event";
-import createSlots from "~/actions/db/create-slots";
+import createEvent from "~/actions/event/create-event";
+import createSlots from "~/actions/slot/create-slots";
 import { auth } from "~/auth";
 import genPageMetadata from "~/seo";
 import {

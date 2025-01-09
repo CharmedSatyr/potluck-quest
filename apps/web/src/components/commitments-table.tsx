@@ -1,5 +1,5 @@
 import Image from "next/image";
-import findCommitmentsWithDetails from "~/actions/db/find-commitments-with-details";
+import findCommitmentsWithDetails from "~/actions/commitment/find-commitments-with-details";
 
 type Props = {
 	code: string;

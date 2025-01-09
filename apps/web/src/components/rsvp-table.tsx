@@ -1,7 +1,7 @@
 import { CheckBadgeIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
-import findRsvpsWithDetails from "~/actions/db/find-rsvps-with-details";
-import findUserByEventCode from "~/actions/db/find-user-by-event-code";
+import findRsvpsWithDetails from "~/actions/rsvp/find-rsvps-with-details";
+import findUserByEventCode from "~/actions/user/find-user-by-event-code";
 
 type Props = {
 	code: string;

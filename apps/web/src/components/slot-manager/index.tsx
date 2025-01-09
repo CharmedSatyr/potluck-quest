@@ -1,6 +1,6 @@
 import { Suspense } from "react";
-import findCommitmentsWithDetails from "~/actions/db/find-commitments-with-details";
-import findSlotContainerDetails from "~/actions/db/find-slot-container-details";
+import findCommitmentsWithDetails from "~/actions/commitment/find-commitments-with-details";
+import findSlotContainerDetails from "~/actions/slot/find-slot-container-details";
 import CommitmentsBySlotTable, {
 	CommitmentsBySlotTableFallback,
 } from "~/components/commitments-by-slot-table";

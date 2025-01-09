@@ -1,11 +1,11 @@
 import { redirect } from "next/navigation";
-import findEvent from "~/actions/db/find-event";
+import findEvent from "~/actions/event/find-event";
 import findEventExistsRedirect from "~/components/goto-event-form/find-event-exists-redirect";
 
 jest.mock("next/navigation", () => ({
 	redirect: jest.fn(),
 }));
-jest.mock("~/actions/db/find-event");
+jest.mock("~/actions/event/find-event");
 
 describe("findEventExistsRedirect", () => {
 	afterEach(() => {

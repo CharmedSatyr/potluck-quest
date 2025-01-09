@@ -1,8 +1,8 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import deleteUserEventCommitments from "~/actions/db/delete-user-event-commitments";
-import upsertRsvp from "~/actions/db/upsert-rsvp";
+import deleteUserEventCommitments from "~/actions/commitment/delete-user-event-commitments";
+import upsertRsvp from "~/actions/rsvp/upsert-rsvp";
 import { auth } from "~/auth";
 import formSchema from "~/components/rsvp-form/submit-actions.schema";
 
