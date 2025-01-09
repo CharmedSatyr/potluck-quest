@@ -37,7 +37,12 @@ export const middleware = async (request: NextRequest) => {
 	const { origin, pathname } = request.nextUrl;
 
 	// Bot routes
-	if (pathname.startsWith("/api/bot")) {
+	if (pathname.startsWith("/api/bot/")) {
+		// Auth path doesn't require API key
+		if (pathname.startsWith("/api/bot/auth/")) {
+			return NextResponse.next();
+		}
+
 		if (await hasValidApiKey()) {
 			return NextResponse.next();
 		}

@@ -151,10 +151,7 @@ export const checkAccountExists = async (
 	try {
 		const params = new URLSearchParams({ providerAccountId: discordUserId });
 
-		const result = await fetch(
-			api.AUTH_CHECK_ACCOUNT_EXISTS + "?" + params.toString(),
-			{ headers }
-		);
+		const result = await fetch(api.USER + "?" + params.toString(), { headers });
 
 		if (!result.ok) {
 			console.error("Failed account exists check", result.status);
