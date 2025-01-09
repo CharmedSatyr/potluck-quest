@@ -1,8 +1,8 @@
 import config from "~/config";
 
 const pqApi = {
-	AUTH_PLAN_FOOD: "/api/auth/plan-food",
-	AUTH_SETUP: "/api/auth/setup",
+	AUTH_PLAN_FOOD: "/api/bot/auth/plan-food",
+	AUTH_SETUP: "/api/bot/auth/setup",
 	COMMITMENT: "/api/bot/commitment",
 	EVENT: "/api/bot/event",
 	RSVP: "/api/bot/rsvp",
