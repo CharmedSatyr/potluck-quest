@@ -27,7 +27,7 @@
 	}
 
 	.text-primary-gradient {
-		@apply bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent outline-8 outline-offset-2 outline-accent;
+		@apply bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent outline-8 outline-offset-2 outline-accent !important;
 	}
 
 	.pulsing-gradient {
