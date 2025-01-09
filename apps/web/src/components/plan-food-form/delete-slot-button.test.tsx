@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import DeleteSlotButton from "~/components/plan-food-form/delete-slot-button";
 
 describe("DeleteSlotButton", () => {

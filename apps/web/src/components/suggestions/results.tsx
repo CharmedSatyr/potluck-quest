@@ -62,7 +62,7 @@ const Results = ({
 							</tr>
 						</thead>
 						<tbody>
-							{suggestions.slots.map((slot, i) => (
+							{suggestions.slots.map((slot) => (
 								<tr key={slot.item}>
 									<th>{slot.order}</th>
 									<td>{slot.item}</td>

@@ -5,7 +5,7 @@ import { signIn } from "~/auth";
 export const loginAction = async (
 	prevState: { path: string },
 	formData: FormData
-): Promise<any> => {
+): Promise<{ path: string }> => {
 	const params = new URLSearchParams();
 	for (const [key, val] of formData) {
 		params.append(key, String(val));

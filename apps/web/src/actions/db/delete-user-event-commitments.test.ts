@@ -106,7 +106,10 @@ describe("deleteUserEventCommitments", () => {
 	});
 
 	it("rejects invalid input", async () => {
-		const invalidInput = { code: 123, createdBy: null } as any;
+		const invalidInput = { code: 123, createdBy: null } as unknown as {
+			code: string;
+			createdBy: string;
+		};
 
 		const result = await deleteUserEventCommitments(invalidInput);
 

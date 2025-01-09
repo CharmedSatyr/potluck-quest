@@ -1,4 +1,5 @@
-import { ZodError } from "zod";
+import { schema } from "./upsert-slots.schema";
+import { z, ZodError } from "zod";
 import findEvent from "~/actions/db/find-event";
 import upsertSlots from "~/actions/db/upsert-slots";
 import db from "~/db/connection";
@@ -24,7 +25,7 @@ describe("upsertSlots", () => {
 
 	const id = "8059740a-d6ba-4215-807d-ea5502441bf1";
 
-	const validData: any = {
+	const validData: z.infer<typeof schema> = {
 		code: "CODE1",
 		slots: [
 			{ count: 5, item: "Apple", id, order: 1 },
@@ -32,10 +33,10 @@ describe("upsertSlots", () => {
 		],
 	};
 
-	const invalidData: any = {
+	const invalidData = {
 		code: "CODE1",
 		slots: [{ count: 0, item: "", order: "apple" }],
-	};
+	} as unknown as z.infer<typeof schema>;
 
 	it("should insert slots into the database and return the created ids on success", async () => {
 		(findEvent as jest.Mock).mockResolvedValueOnce([{ id: "123" }]);

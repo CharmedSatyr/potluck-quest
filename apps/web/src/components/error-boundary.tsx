@@ -2,14 +2,17 @@
 
 import React, { Component, PropsWithChildren } from "react";
 
-class ErrorBoundary extends Component<PropsWithChildren, any, any> {
+class ErrorBoundary extends Component<
+	PropsWithChildren,
+	{ hasError: boolean }
+> {
 	constructor(props: PropsWithChildren) {
 		super(props);
 
 		// Define a state variable to track whether is an error or not
 		this.state = { hasError: false };
 	}
-	static getDerivedStateFromError(error: unknown) {
+	static getDerivedStateFromError() {
 		// Update state so the next render will show the fallback UI
 
 		return { hasError: true };

@@ -1,5 +1,6 @@
-import { ZodError } from "zod";
+import { z, ZodError } from "zod";
 import createSlots from "~/actions/db/create-slots";
+import { schema } from "~/actions/db/create-slots.schema";
 import findEvent from "~/actions/db/find-event";
 import db from "~/db/connection";
 import { slot } from "~/db/schema/slot";
@@ -22,7 +23,7 @@ describe("createSlots", () => {
 		jest.clearAllMocks();
 	});
 
-	const validData: any = {
+	const validData: z.infer<typeof schema> = {
 		code: "CODE1",
 		slots: [
 			{ count: 5, item: "Banana", order: 1 },
@@ -30,10 +31,10 @@ describe("createSlots", () => {
 		],
 	};
 
-	const invalidData: any = {
+	const invalidData = {
 		code: "CODE1",
 		slots: [{ count: 5, item: 123, order: "apple" }],
-	};
+	} as unknown as z.infer<typeof schema>;
 
 	it("should insert slots into the database and return the created ids on success", async () => {
 		(findEvent as jest.Mock).mockResolvedValueOnce([{ id: 1 }]);

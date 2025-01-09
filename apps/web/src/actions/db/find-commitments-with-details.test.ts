@@ -1,3 +1,5 @@
+import { schema } from "./find-commitments-with-details.schema";
+import { z } from "zod";
 import findCommitmentsWithDetails from "~/actions/db/find-commitments-with-details";
 import findEvent from "~/actions/db/find-event";
 import db from "~/db/connection";
@@ -78,7 +80,9 @@ describe("findCommitmentsWithDetails", () => {
 		const invalidData = { invalidKey: "1" };
 
 		await expect(
-			findCommitmentsWithDetails(invalidData as any)
+			findCommitmentsWithDetails(
+				invalidData as unknown as z.infer<typeof schema>
+			)
 		).resolves.toEqual([]);
 	});
 

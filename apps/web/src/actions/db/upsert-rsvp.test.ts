@@ -1,4 +1,5 @@
-import { ZodError } from "zod";
+import { schema } from "./upsert-rsvp.schema";
+import { z, ZodError } from "zod";
 import findEvent from "~/actions/db/find-event";
 import upsertRsvp from "~/actions/db/upsert-rsvp";
 import db from "~/db/connection";
@@ -24,17 +25,17 @@ describe("upsertRsvp", () => {
 
 	const id = "8059740a-d6ba-4215-807d-ea5502441bf1";
 
-	const validData: any = {
+	const validData: z.infer<typeof schema> = {
 		code: "CODE1",
 		createdBy: id,
 		message: "I will be late.",
 		response: "yes",
 	};
 
-	const invalidData: any = {
+	const invalidData = {
 		code: "CODE1",
 		slots: [{ count: 0, item: "" }],
-	};
+	} as unknown as z.infer<typeof schema>;
 
 	it("should insert an RSVP into the database and return a success object on success", async () => {
 		(findEvent as jest.Mock).mockResolvedValueOnce([{ id: "123" }]);

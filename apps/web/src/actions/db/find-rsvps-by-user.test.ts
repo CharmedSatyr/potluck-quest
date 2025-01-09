@@ -25,7 +25,7 @@ describe("findSlots", () => {
 	const id = "605428d7-e305-40c2-8e30-68ead5d7e85b";
 
 	const validData = { id };
-	const invalidData: any = { eventCode: "BAD" };
+	const invalidData = { eventCode: "BAD" } as unknown as { id: string };
 
 	it("should return RSVPs for a valid user id", async () => {
 		const rsvps = [

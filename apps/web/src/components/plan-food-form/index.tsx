@@ -98,15 +98,7 @@ const PlanFoodForm = ({
 		[slots]
 	);
 
-	const {
-		title,
-		startTime,
-		startDate,
-		location,
-		hosts,
-		description,
-		timezone,
-	} = eventInput;
+	const { title, startTime, startDate, location } = eventInput;
 
 	const noEvent = !title || !startTime || !startDate || !location;
 
@@ -169,7 +161,7 @@ const PlanFoodForm = ({
 			</div>
 
 			{Object.entries(eventInput)
-				.filter(([_key, value]) => value !== "")
+				.filter(([, value]) => value !== "")
 				.map(([key, value]) => (
 					<input
 						key={key}

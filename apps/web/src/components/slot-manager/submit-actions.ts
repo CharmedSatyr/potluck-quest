@@ -70,8 +70,7 @@ export const createCommitmentAction = async (
 };
 
 export const deleteCommitmentAction = async (
-	prevState: DeleteCommitmentFormState,
-	_: FormData
+	prevState: DeleteCommitmentFormState
 ): Promise<DeleteCommitmentFormState> => {
 	if (!prevState.commitmentId) {
 		return {

@@ -8,8 +8,7 @@ import { auth } from "~/auth";
 import { DeleteEventState } from "~/components/delete-event-button/delete-event-action.types";
 
 const deleteEventAction = async (
-	prevState: DeleteEventState,
-	_: FormData
+	prevState: DeleteEventState
 ): Promise<DeleteEventState> => {
 	const session = await auth();
 	const [createdBy] = await findEventCreatedBy({ code: prevState.code });

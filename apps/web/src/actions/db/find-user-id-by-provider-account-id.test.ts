@@ -35,7 +35,7 @@ describe("findUserIdByProviderAccountId", () => {
 			from: jest.fn().mockReturnValueOnce({
 				where: jest.fn().mockResolvedValueOnce([]),
 			}),
-		} as any);
+		});
 
 		const result = await findUserIdByProviderAccountId(validInput);
 
