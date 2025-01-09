@@ -13,7 +13,6 @@
 		-moz-appearance: textfield;
 	}
 
-	/* Convert to tailwind classes */
 	.slide-in {
 		transform: translateY(8%);
 		opacity: 0;
@@ -25,5 +24,9 @@
 	.slide-in.visible {
 		transform: translateX(0);
 		opacity: 1;
+	}
+
+	.pulsing-gradient {
+		@apply animate-[pulse_10s_ease-in-out_infinite] rounded-[30%_70%_70%_30%_/30%_30%_70%_70%] bg-gradient-to-r from-primary via-secondary to-accent opacity-30 blur-[calc(750px/5)] filter;
 	}
 }

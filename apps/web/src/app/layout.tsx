@@ -31,7 +31,7 @@ const RootLayout = async ({
 	return (
 		<html lang="en">
 			<body
-				className={`${inter.className} prose flex max-w-none flex-col items-center`}
+				className={`${inter.className} prose flex h-screen max-w-none flex-col items-center`}
 			>
 				<div className="fixed z-50 w-full">
 					<NavBar />
@@ -39,6 +39,7 @@ const RootLayout = async ({
 				<div className="2xl:7/12 container flex w-full justify-center px-4 py-24 md:px-10 lg:w-9/12 xl:w-8/12">
 					{children}
 				</div>
+				<div className="pulsing-gradient fixed bottom-1/4 z-[-1] h-1/4 w-3/4"></div>
 			</body>
 		</html>
 	);
