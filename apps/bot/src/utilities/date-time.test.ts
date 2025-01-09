@@ -1,4 +1,4 @@
-import { parseDateTimeInputForServices } from "~/utilities/date-time";
+import { parseDateTimeInputForServices } from "./date-time";
 
 describe("date-time", () => {
 	const timezone = "America/Los_Angeles";
