@@ -36,8 +36,8 @@
 		"zod": "^3.24.1"
 	},
 	"devDependencies": {
-		"@potluck/prettier-config": "workspace:*",
 		"@potluck/eslint-config": "workspace:*",
+		"@potluck/prettier-config": "workspace:*",
 		"@potluck/typescript-config": "workspace:*",
 		"@tailwindcss/typography": "^0.5.16",
 		"@testing-library/dom": "^10.4.0",
@@ -55,7 +55,6 @@
 		"lint-staged": "^15.3.0",
 		"postcss": "^8.4.49",
 		"tailwindcss": "^3.4.17",
-		"ts-node": "^10.9.2",
 		"typescript": "^5.7.2"
 	},
 	"lint-staged": {
