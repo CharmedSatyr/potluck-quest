@@ -3,8 +3,7 @@
  * For a detailed explanation regarding each configuration property, visit:
  * https://jestjs.io/docs/configuration
  */
-Object.defineProperty(exports, "__esModule", { value: true });
-const config = {
+export default {
 	// All imported modules in your tests should be mocked automatically
 	// automock: false,
 	// Stop running tests after `n` failures
@@ -142,4 +141,3 @@ const config = {
 	// Whether to use watchman for file crawling
 	// watchman: true,
 };
-exports.default = config;
