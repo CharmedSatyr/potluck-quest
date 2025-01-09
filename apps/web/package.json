@@ -37,7 +37,7 @@
 	},
 	"devDependencies": {
 		"@potluck/prettier-config": "workspace:*",
-		"@repo/eslint-config": "workspace:*",
+		"@potluck/eslint-config": "workspace:*",
 		"@tailwindcss/typography": "^0.5.16",
 		"@testing-library/dom": "^10.4.0",
 		"@testing-library/jest-dom": "^6.6.3",
