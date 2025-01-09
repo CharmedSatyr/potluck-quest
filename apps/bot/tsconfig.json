@@ -4,13 +4,15 @@
 	"compilerOptions": {
 		"module": "NodeNext",
 		"moduleResolution": "nodenext",
+		"noEmit": false,
 		"outDir": "./dist",
 		"paths": {
-			"~/*": ["./src/*"]
+			"~/*": ["*"]
 		},
-		"rootDir": "./",
+		"baseUrl": "./src",
+		"rootDir": "./src",
 		"typeRoots": ["./node_modules/@types", "./src/@types"]
 	},
-	"include": ["**/*.ts"],
+	"include": ["src/**/*.ts"],
 	"exclude": ["node_modules"]
 }
