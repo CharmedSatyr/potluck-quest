@@ -132,7 +132,7 @@ const AttendingTable = async () => {
 const DashboardPage = async () => {
 	return (
 		<main className="w-full">
-			<h1 className="text-primary">Dashboard</h1>
+			<h1 className="text-primary-gradient">Dashboard</h1>
 
 			<SlideIn>
 				<h2>Hosting</h2>

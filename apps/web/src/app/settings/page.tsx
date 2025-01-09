@@ -25,7 +25,7 @@ const SettingsPage = async ({ searchParams }: Props) => {
 
 	return (
 		<section className="w-full">
-			<h1 className="text-primary">Settings</h1>
+			<h1 className="text-primary-gradient">Settings</h1>
 			{setup && <h2>Initial setup Complete! You may return to Discord.</h2>}
 
 			{!result && <SetupTimezone />}

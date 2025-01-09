@@ -55,11 +55,11 @@ const PlanEventForm = ({ code, eventInput, loggedIn, mode }: Props) => {
 			name="create-event-form"
 		>
 			{mode === "create" && (
-				<h1 className="mb-4 text-primary">Create an Event</h1>
+				<h1 className="text-primary-gradient mb-4">Create an Event</h1>
 			)}
 
 			{mode === "edit" && (
-				<h1 className="mb-4 flex items-center text-primary">
+				<h1 className="text-primary-gradient mb-4 flex items-center">
 					Now Editing
 					<Link
 						href={`/event/${code}`}

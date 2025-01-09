@@ -48,8 +48,10 @@ const Home = () => {
 						</h1>
 
 						<p className="mb-0">
-							<span className="text-primary">{siteMetadata.title}</span> makes
-							it easier to plan events when everyone&apos;s invited to
+							<span className="text-primary-gradient">
+								{siteMetadata.title}
+							</span>{" "}
+							makes it easier to plan events when everyone&apos;s invited to
 							contribute a dish—from birthdays to holidays to game nights.{" "}
 							<span className="text-info">In active development</span> by
 							tabletop gamers who enjoy cooking and eating with their friends.
