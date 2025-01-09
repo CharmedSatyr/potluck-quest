@@ -5,22 +5,22 @@ import path from "path";
 
 const handlersDirs = ["../interactions/handlers", "../guildEvents/handlers"];
 
-const collectHandlers = () => {
+const collectHandlers = async () => {
 	const handlers = new Collection<string, Handler>();
 
-	handlersDirs.forEach((dir: string) => {
+	for (const dir of handlersDirs) {
 		const handlersPath = path.resolve(__dirname, dir);
 		const handlerFiles = fs.readdirSync(handlersPath);
 
 		for (const file of handlerFiles) {
 			const filePath = path.join(handlersPath, file);
-			const handler = require(filePath);
+			const handler = await import(filePath);
 
 			if (!("data" in handler && "execute" in handler)) {
 				console.warn(
 					`[WARNING] The handler at ${filePath} is missing a required "data" or "execute" property.`
 				);
-				return;
+				continue;
 			}
 
 			if (handler.data.customId) {
@@ -31,7 +31,7 @@ const collectHandlers = () => {
 				handlers.set(handler.data.eventName, handler);
 			}
 		}
-	});
+	}
 
 	return handlers;
 };

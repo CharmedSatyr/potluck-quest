@@ -16,13 +16,13 @@ const client = new Client({
 	intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildScheduledEvents],
 });
 
-client.once(Events.ClientReady, (readyClient) => {
+client.once(Events.ClientReady, async (readyClient) => {
 	console.log(`Logged in as ${readyClient.user.tag}!`);
 	console.log(`Connected to ${readyClient.guilds.cache.size} guilds.`);
 
-	client.commands = collectCommands();
+	client.commands = await collectCommands();
 	console.log(`Collected ${client.commands.size} commands`);
-	client.handlers = collectHandlers();
+	client.handlers = await collectHandlers();
 	console.log(`Collected ${client.handlers.size} handlers`);
 });
 

@@ -3,7 +3,7 @@ import { Command } from "discord.js-extensions";
 import fs from "fs";
 import path from "path";
 
-const collectCommands = () => {
+const collectCommands = async () => {
 	const commands = new Collection<string, Command>();
 
 	const commandsPath = path.resolve(__dirname, "../commands");
@@ -11,7 +11,7 @@ const collectCommands = () => {
 
 	for (const file of commandFiles) {
 		const filePath = path.join(commandsPath, file);
-		const command: Command = require(filePath);
+		const command: Command = await import(filePath);
 
 		if ("data" in command && "execute" in command) {
 			commands.set(command.data.name, command);
