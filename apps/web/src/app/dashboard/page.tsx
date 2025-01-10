@@ -42,7 +42,7 @@ const HostingTable = async () => {
 	}
 
 	return (
-		<div className="overflow-x-auto rounded-xl bg-base-300 opacity-80">
+		<div className="overflow-x-auto rounded-xl bg-base-300 opacity-80 shadow">
 			<table className="table table-pin-rows table-sm">
 				<thead>
 					<tr className="bg-base-300">
@@ -100,7 +100,7 @@ const AttendingTable = async () => {
 	}
 
 	return (
-		<div className="overflow-x-auto rounded-xl bg-base-300 opacity-80">
+		<div className="overflow-x-auto rounded-xl bg-base-300 opacity-80 shadow">
 			<table className="table table-pin-rows table-sm">
 				<thead>
 					<tr className="bg-base-300">

@@ -30,7 +30,7 @@ const SettingsPage = async ({ searchParams }: Props) => {
 
 			{!result && <SetupTimezone />}
 
-			<div>
+			<div className="-m-4 rounded-xl bg-base-300 p-4 shadow">
 				<Suspense fallback="Loading...">
 					Your <span className="font-bold">preferred timezone</span> is{" "}
 					<TimezoneSelector
