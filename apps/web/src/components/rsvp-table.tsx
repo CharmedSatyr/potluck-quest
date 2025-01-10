@@ -96,7 +96,7 @@ export const RsvpTableFallback = () => {
 				<div className="skeleton h-10 w-1/3" />
 				<div className="skeleton h-10 w-1/3" />
 			</div>
-			<div className="justify-around flex gap-2">
+			<div className="flex justify-around gap-2">
 				<div className="skeleton h-10 w-1/3" />
 				<div className="skeleton h-10 w-1/3" />
 				<div className="skeleton h-10 w-1/3" />

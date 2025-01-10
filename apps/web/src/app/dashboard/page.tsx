@@ -1,3 +1,4 @@
+import Loading from "./loading";
 import Link from "next/link";
 import { Suspense } from "react";
 import findEventsByUser from "~/actions/event/find-events-by-user";
@@ -9,7 +10,6 @@ import DeleteEventForm from "~/components/delete-event-button";
 import SlideIn from "~/components/slide-in";
 import genPageMetadata from "~/seo";
 import eventIsPassed from "~/utilities/event-is-passed";
-import Loading from "./loading";
 
 export const metadata = genPageMetadata({ title: "Dashboard" });
 
