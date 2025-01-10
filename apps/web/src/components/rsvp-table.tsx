@@ -20,7 +20,7 @@ const RsvpTable = async ({ code }: Props) => {
 		(rsvp) => rsvp.user.id === creator.id
 	);
 
-	if (hostIdx >= 0) {
+	if (hostIdx > 0) {
 		const [host] = rsvpsWithDetails.splice(hostIdx, 1);
 
 		host.message = (
