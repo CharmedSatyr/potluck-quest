@@ -8,6 +8,7 @@ import { DiscordIcon } from "~/components/icons/discord";
 import LoadingIndicator from "~/components/loading-indicator";
 import { Step } from "~/components/manage-event-wizard";
 import { loginAction } from "~/components/plan-event-form/login-action";
+import { DESCRIPTION_LENGTH } from "~/constants/description-length";
 import useTimezone from "~/hooks/use-timezone";
 import { oneYearFromToday, today } from "~/utilities/date";
 import enterToNextRef from "~/utilities/enter-to-next-ref";
@@ -190,7 +191,7 @@ const PlanEventForm = ({ code, eventInput, loggedIn, mode }: Props) => {
 						defaultValue={eventInput.description}
 						enterKeyHint="next"
 						id="description-input"
-						maxLength={256}
+						maxLength={DESCRIPTION_LENGTH}
 						name="description"
 						placeholder="Additional info or vibe text"
 						ref={descriptionRef}

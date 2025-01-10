@@ -69,7 +69,7 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 		.setCustomId(CustomId.PLAN_EVENT_DESCRIPTION)
 		.setLabel("Description")
 		.setMinLength(1)
-		.setMaxLength(256)
+		.setMaxLength(500)
 		.setPlaceholder("Additional info or vibe text")
 		.setRequired(false)
 		.setStyle(TextInputStyle.Paragraph);
