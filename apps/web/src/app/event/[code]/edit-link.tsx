@@ -27,7 +27,7 @@ const EditLink = ({ code, eventData }: Props) => {
 
 	return (
 		<Link
-			className="btn btn-accent btn-sm mb-2 w-full md:w-24"
+			className="btn btn-accent btn-sm mb-2 w-full md:w-20"
 			href={{
 				pathname: `/event/${code}/edit`,
 				query,

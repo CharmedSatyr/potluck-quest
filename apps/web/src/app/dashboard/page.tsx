@@ -41,10 +41,10 @@ const HostingTable = async () => {
 	}
 
 	return (
-		<div className="overflow-x-auto">
-			<table className="table table-pin-rows table-sm md:table-lg">
+		<div className="overflow-x-auto rounded-xl bg-base-300 opacity-80">
+			<table className="table table-pin-rows table-sm">
 				<thead>
-					<tr>
+					<tr className="bg-base-300">
 						<th>Code</th>
 						<th>Name</th>
 						<th>Date</th>
@@ -57,7 +57,10 @@ const HostingTable = async () => {
 						const passed = eventIsPassed(event.startUtcMs);
 
 						return (
-							<tr key={event.id} className={passed ? "bg-base-300" : ""}>
+							<tr
+								key={event.id}
+								className={passed ? "bg-base-300" : "bg-base-100"}
+							>
 								<td>
 									<EventCodeButton code={event.code} passed={passed} />
 								</td>
@@ -96,10 +99,10 @@ const AttendingTable = async () => {
 	}
 
 	return (
-		<div className="overflow-x-auto">
-			<table className="table table-pin-rows table-sm md:table-lg">
+		<div className="overflow-x-auto rounded-xl bg-base-300 opacity-80">
+			<table className="table table-pin-rows table-sm">
 				<thead>
-					<tr>
+					<tr className="bg-base-300">
 						<th>Code</th>
 						<th>Name</th>
 						<th>Date</th>
@@ -111,7 +114,10 @@ const AttendingTable = async () => {
 						const passed = eventIsPassed(event.startUtcMs);
 
 						return (
-							<tr key={event.code} className={passed ? "bg-base-300" : ""}>
+							<tr
+								key={event.code}
+								className={passed ? "bg-base-300" : "bg-base-100"}
+							>
 								<td>
 									<EventCodeButton code={event.code} passed={passed} />
 								</td>

@@ -96,7 +96,7 @@ const ManageEventSection = ({
 					<EditLink code={code} eventData={eventData} />
 				</SlideIn>
 				<SlideIn>
-					<DeleteEventForm code={code} redirect={true} />
+					<DeleteEventForm code={code} redirect={true} className="md:w-20" />
 				</SlideIn>
 			</Suspense>
 		</section>
