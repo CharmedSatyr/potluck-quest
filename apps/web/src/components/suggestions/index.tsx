@@ -65,7 +65,7 @@ const SuggestionsContainer = ({
 	}
 
 	return (
-		<div className="rounded-xl bg-base-300 shadow-xl md:p-4">
+		<div className="rounded-xl bg-base-300 shadow-xl md:p-2">
 			<div
 				className="transition-all duration-300 ease-in-out"
 				style={{
