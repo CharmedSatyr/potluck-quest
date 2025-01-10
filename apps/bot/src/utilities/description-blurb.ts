@@ -1,9 +1,11 @@
+import { DESCRIPTION_LENGTH } from "~/constants";
+
 export const buildDescriptionBlurb = (code: string) =>
 	`See details at [${code} | Potluck Quest](https://potluck.quest/event/${code})`;
 
 export default buildDescriptionBlurb;
 
-export const removeBlurbAndGetCode = (description: string | null) => {
+export const removeBlurbTruncateAndGetCode = (description: string | null) => {
 	if (!description) {
 		return { code: null, description };
 	}
@@ -23,8 +25,13 @@ export const removeBlurbAndGetCode = (description: string | null) => {
 
 	const cleanedDescription = description.slice(0, blurbIndex).trim();
 
+	const truncatedCleanedDescription =
+		cleanedDescription.length > DESCRIPTION_LENGTH
+			? cleanedDescription.slice(0, DESCRIPTION_LENGTH - 3).concat("...")
+			: cleanedDescription;
+
 	return {
 		code,
-		description: cleanedDescription,
+		description: truncatedCleanedDescription,
 	};
 };

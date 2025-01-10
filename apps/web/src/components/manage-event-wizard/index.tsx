@@ -96,7 +96,7 @@ const ManageEventWizard = ({
 					className="carousel-item flex w-full flex-col items-center justify-center"
 					id={Step.PLAN_FOOD}
 				>
-					<h1 className="text-primary">Plan the Food</h1>
+					<h1 className="text-primary-gradient">Plan the Food</h1>
 
 					<Suspense>
 						{loggedIn && title && startDate && startTime && location ? (

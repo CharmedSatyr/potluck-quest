@@ -36,7 +36,9 @@ export const generateMetadata = async ({
 type Props = { params: Promise<{ code: string }> };
 
 const Container = ({ children }: PropsWithChildren) => (
-	<main className="container flex h-full w-full flex-wrap">{children}</main>
+	<main className="container -m-6 flex h-full w-full flex-wrap rounded-xl bg-base-300 px-6 pb-20 pt-6 opacity-80">
+		{children}
+	</main>
 );
 
 const EventTitleSection = ({ code }: { code: string }) => (
@@ -51,7 +53,7 @@ const EventTitleSection = ({ code }: { code: string }) => (
 );
 
 const EventSection = ({ code }: { code: string }) => (
-	<section className="min-h-72 w-full md:w-2/3">
+	<section className="min-h-72 w-full md:w-10/12">
 		<Suspense fallback={<EventSkeletonFallback />}>
 			<EventSkeleton code={code} />
 		</Suspense>
@@ -88,13 +90,13 @@ const ManageEventSection = ({
 	eventData: EventDataWithCtx;
 }) => {
 	return (
-		<section className="my my-4 flex w-full flex-col gap-2 md:my-0 md:w-1/3 md:items-end md:justify-start">
+		<section className="my-4 flex w-full flex-col md:my-0 md:w-2/12 md:items-end md:justify-start">
 			<Suspense fallback={<RsvpFormFallback />}>
 				<SlideIn>
 					<EditLink code={code} eventData={eventData} />
 				</SlideIn>
 				<SlideIn>
-					<DeleteEventForm code={code} redirect={true} />
+					<DeleteEventForm code={code} redirect={true} className="md:w-20" />
 				</SlideIn>
 			</Suspense>
 		</section>

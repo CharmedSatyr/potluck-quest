@@ -10,7 +10,7 @@ import {
 	formatTimestampForView,
 	getTimezoneOffsetName,
 } from "~/utilities/date-time";
-import { removeBlurbAndGetCode } from "~/utilities/description-blurb";
+import { removeBlurbTruncateAndGetCode } from "~/utilities/description-blurb";
 
 // TODO: Add cooldowns https://discordjs.guide/additional-features/cooldowns.html#resulting-code
 export const data = new SlashCommandBuilder()
@@ -38,7 +38,7 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 	const { offsetNameLong, offsetNameShort } = getTimezoneOffsetName(timezone);
 
 	const fields = pqEvents.map((event) => {
-		const { code } = removeBlurbAndGetCode(event.description);
+		const { code } = removeBlurbTruncateAndGetCode(event.description);
 
 		return [
 			{

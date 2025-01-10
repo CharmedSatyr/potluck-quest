@@ -2,7 +2,7 @@
 import * as dotenv from "dotenv";
 import { Settings } from "luxon";
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Sen } from "next/font/google";
 import "~/app/globals.css";
 import NavBar from "~/components/nav-bar";
 import siteMetadata from "~/data/site-metadata";
@@ -14,7 +14,7 @@ export const viewport: Viewport = {
 	themeColor: "#212121",
 };
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Sen({ subsets: ["latin"], weight: "variable" });
 
 export const metadata: Metadata = {
 	description: siteMetadata.description,
@@ -31,8 +31,13 @@ const RootLayout = async ({
 	return (
 		<html lang="en">
 			<body
-				className={`${inter.className} prose flex max-w-none flex-col items-center`}
+				className={`${inter.className} prose flex h-screen w-screen max-w-none flex-col items-center`}
 			>
+				<div className="bg-pattern fixed z-[-3] h-screen w-screen" />
+				<div className="bg-noise fixed z-[-2] h-screen w-screen animate-spin blur" />
+
+				<div className="bg-pulsing-gradient fixed bottom-1/3 z-[-1] h-1/4 w-3/4" />
+
 				<div className="fixed z-50 w-full">
 					<NavBar />
 				</div>

@@ -22,6 +22,20 @@
       "when": 1736267586615,
       "tag": "0002_wide_zarda",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1736537468412,
+      "tag": "0003_aberrant_luke_cage",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1736540170436,
+      "tag": "0004_secret_warlock",
+      "breakpoints": true
     }
   ]
 }

@@ -6,7 +6,7 @@ import {
 	User,
 } from "discord.js";
 import { upsertRsvp } from "~/services/potluck-quest";
-import { removeBlurbAndGetCode } from "~/utilities/description-blurb";
+import { removeBlurbTruncateAndGetCode } from "~/utilities/description-blurb";
 
 export const data = { eventName: Events.GuildScheduledEventUserRemove };
 
@@ -21,7 +21,7 @@ export const execute = async (
 		return;
 	}
 
-	const { code } = removeBlurbAndGetCode(event.description);
+	const { code } = removeBlurbTruncateAndGetCode(event.description);
 
 	if (!code) {
 		console.error("Failed to retrieve code from description on event user add");

@@ -132,33 +132,16 @@ const PlanFoodForm = ({
 						remove={removeSlot}
 					/>
 					{committedUsersBySlot.has(slot.id ?? "") && (
-						<div className="mt-4 flex w-full items-center justify-center">
+						<div className="flex w-full items-center justify-center">
 							<span className="text-sm font-light">Existing Commitments:</span>
 							<span className="mx-2">
 								{committedUsersBySlot.get(slot.id ?? "")}
 							</span>
 						</div>
 					)}
-					<div className="divider mt-6" />
+					<div className="divider" />
 				</div>
 			))}
-
-			<div className="mb-4 flex justify-between">
-				<button
-					className="btn btn-secondary w-1/3"
-					disabled={noEvent || slots.length >= MAX_SLOTS}
-					onClick={addSlot}
-					type="button"
-				>
-					Add Slot
-				</button>
-				<button
-					className={`btn btn-accent w-1/3 ${noEvent ? "btn-disabled pointer-events-none" : ""}`}
-					formNoValidate={true}
-				>
-					Skip for Now
-				</button>
-			</div>
 
 			{Object.entries(eventInput)
 				.filter(([, value]) => value !== "")
@@ -173,13 +156,33 @@ const PlanFoodForm = ({
 					/>
 				))}
 
-			<button
-				className="btn btn-primary w-full"
-				disabled={noEvent || !slotsValid}
-				type="submit"
-			>
-				Save and Continue
-			</button>
+			<div className="flex w-full flex-wrap justify-between gap-2">
+				<div className="flex flex-grow justify-between">
+					<button
+						className="btn btn-secondary btn-sm"
+						disabled={noEvent || slots.length >= MAX_SLOTS}
+						onClick={addSlot}
+						type="button"
+					>
+						Add Slot
+					</button>
+
+					<button
+						className={`btn btn-accent btn-sm ${noEvent ? "btn-disabled pointer-events-none" : ""}`}
+						formNoValidate={true}
+					>
+						Skip for Now
+					</button>
+				</div>
+
+				<button
+					className="btn btn-primary btn-sm w-full md:w-fit"
+					disabled={noEvent || !slotsValid}
+					type="submit"
+				>
+					Save and Continue
+				</button>
+			</div>
 		</Form>
 	);
 };

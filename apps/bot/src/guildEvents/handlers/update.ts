@@ -5,7 +5,7 @@ import {
 	PartialGuildScheduledEvent,
 } from "discord.js";
 import { updateEvent, UpdateEventData } from "~/services/potluck-quest";
-import { removeBlurbAndGetCode } from "~/utilities/description-blurb";
+import { removeBlurbTruncateAndGetCode } from "~/utilities/description-blurb";
 
 export const data = { eventName: Events.GuildScheduledEventUpdate };
 
@@ -23,9 +23,8 @@ export const execute = async (
 		return;
 	}
 
-	const { code, description: cleanedDescription } = removeBlurbAndGetCode(
-		newGuildScheduledEvent.description
-	);
+	const { code, description: cleanedTruncatedDescription } =
+		removeBlurbTruncateAndGetCode(newGuildScheduledEvent.description);
 
 	if (!code) {
 		console.error("Failed to retrieve code from description on event update");
@@ -47,7 +46,7 @@ export const execute = async (
 		newGuildScheduledEvent.description &&
 		oldGuildScheduledEvent?.description !== newGuildScheduledEvent.description
 	) {
-		update.description = cleanedDescription;
+		update.description = cleanedTruncatedDescription;
 	}
 
 	if (

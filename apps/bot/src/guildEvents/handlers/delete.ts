@@ -5,7 +5,7 @@ import {
 	PartialGuildScheduledEvent,
 } from "discord.js";
 import { deleteEvent } from "~/services/potluck-quest";
-import { removeBlurbAndGetCode } from "~/utilities/description-blurb";
+import { removeBlurbTruncateAndGetCode } from "~/utilities/description-blurb";
 
 export const data = { eventName: Events.GuildScheduledEventDelete };
 
@@ -20,7 +20,7 @@ export const execute = async (
 		return;
 	}
 
-	const { code } = removeBlurbAndGetCode(
+	const { code } = removeBlurbTruncateAndGetCode(
 		guildScheduledEvent?.description ?? null
 	);
 

@@ -20,7 +20,7 @@ const RsvpTable = async ({ code }: Props) => {
 		(rsvp) => rsvp.user.id === creator.id
 	);
 
-	if (hostIdx >= 0) {
+	if (hostIdx > 0) {
 		const [host] = rsvpsWithDetails.splice(hostIdx, 1);
 
 		host.message = (
@@ -85,21 +85,21 @@ export default RsvpTable;
 export const RsvpTableFallback = () => {
 	return (
 		<div className="flex w-full flex-col gap-4">
-			<div className="skeleton h-12 w-1/4" />
+			<div className="skeleton h-12 w-1/2 md:w-1/4" />
 			<div className="flex justify-around gap-2">
-				<div className="skeleton h-16 w-1/3" />
-				<div className="skeleton h-16 w-1/3" />
-				<div className="skeleton h-16 w-1/3" />
+				<div className="skeleton h-10 w-1/3" />
+				<div className="skeleton h-10 w-1/3" />
+				<div className="skeleton h-10 w-1/3" />
 			</div>
 			<div className="flex justify-around gap-2">
-				<div className="skeleton h-16 w-1/3" />
-				<div className="skeleton h-16 w-1/3" />
-				<div className="skeleton h-16 w-1/3" />
+				<div className="skeleton h-10 w-1/3" />
+				<div className="skeleton h-10 w-1/3" />
+				<div className="skeleton h-10 w-1/3" />
 			</div>
-			<div className="justify16around flex gap-2">
-				<div className="skeleton h-16 w-1/3" />
-				<div className="skeleton h-16 w-1/3" />
-				<div className="skeleton h-16 w-1/3" />
+			<div className="flex justify-around gap-2">
+				<div className="skeleton h-10 w-1/3" />
+				<div className="skeleton h-10 w-1/3" />
+				<div className="skeleton h-10 w-1/3" />
 			</div>
 		</div>
 	);

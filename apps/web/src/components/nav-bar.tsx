@@ -49,7 +49,7 @@ const SettingsLink = () => (
 
 const Signout = () => (
 	<Form action={signOutAndRevalidate} className="w-full">
-		<button className="m-0 w-full min-w-28 p-0" type="submit">
+		<button className="m-0 w-full min-w-24 p-0" type="submit">
 			<a className="w-full no-underline">
 				<ArrowRightStartOnRectangleIcon className="-ml-8 mr-1 inline-block size-5" />{" "}
 				Sign Out

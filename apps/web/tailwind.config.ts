@@ -11,11 +11,6 @@ const config: Config = {
 	],
 	theme: {
 		extend: {
-			backgroundImage: {
-				"gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-				"gradient-conic":
-					"conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-			},
 			height: {
 				"100": "25rem",
 				"104": "26rem",
@@ -54,7 +49,9 @@ const config: Config = {
 					secondary: "#4CAF50", // Deep green with good contrast
 					accent: "#FFB74D", // Rich golden-yellow for highlights
 					neutral: "#3E2723", // Dark brown for a warm neutral base
-					"base-100": "#212121", // Dark gray for background
+					"base-100": "hsl(229deg 25% 14%)",
+					"base-200": "hsl(229deg 25% 8%)",
+					"base-300": "hsl(229deg 25% 4%)",
 					info: "#1E88E5", // Deep blue for informational tones
 					success: "#66BB6A", // Calm green for success indicators
 					warning: "#FFB300", // Bold amber for warnings
