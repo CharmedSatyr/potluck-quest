@@ -108,18 +108,10 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 	params.append("code", code);
 	params.append("source", "discord");
 
-	const button = new ButtonBuilder()
-		.setLabel("Add Signup Slots")
-		.setStyle(ButtonStyle.Link)
-		.setURL(api.AUTH_PLAN_FOOD.concat("?").concat(params.toString()));
-
-	const createSlotsPrompt = new ActionRowBuilder<ButtonBuilder>().addComponents(
-		button
-	);
+	const slotsLink = api.AUTH_PLAN_FOOD.concat("?").concat(params.toString());
 
 	await interaction.followUp({
-		content: `<@${interaction.user.id}> Make sure to add signup slots so others know what to bring.`,
-		components: [createSlotsPrompt],
+		content: `<@${interaction.user.id}> Make sure to [add signup slots](${slotsLink}) so others know what to bring.`,
 		flags: MessageFlags.Ephemeral,
 	});
 };
