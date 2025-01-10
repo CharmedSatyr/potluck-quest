@@ -34,8 +34,8 @@ const RootLayout = async ({
 				className={`${inter.className} prose flex h-screen w-screen max-w-none flex-col items-center`}
 			>
 				<div className="bg-pattern fixed z-[-3] h-screen w-screen" />
-				<div className="bg-noise fixed animate-spin z-[-2] h-screen w-screen" />
-				<div className="bg-pulsing-gradient z-[-1] fixed bottom-1/3 h-1/4 w-3/4" />
+				<div className="bg-noise fixed z-[-2] h-screen w-screen animate-spin" />
+				<div className="bg-pulsing-gradient fixed bottom-1/3 z-[-1] h-1/4 w-3/4" />
 
 				<div className="fixed z-50 w-full">
 					<NavBar />
