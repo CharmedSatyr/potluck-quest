@@ -1,4 +1,3 @@
-import Loading from "./loading";
 import Link from "next/link";
 import { Suspense } from "react";
 import findEventsByUser from "~/actions/event/find-events-by-user";
