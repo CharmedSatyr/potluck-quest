@@ -31,16 +31,18 @@ const RootLayout = async ({
 	return (
 		<html lang="en">
 			<body
-				className={`${inter.className} prose flex h-screen max-w-none flex-col items-center`}
+				className={`${inter.className} prose flex h-screen w-screen max-w-none flex-col items-center`}
 			>
+				<div className="bg-pattern fixed z-[-3] h-screen w-screen" />
+				<div className="bg-noise fixed animate-spin z-[-2] h-screen w-screen" />
+				<div className="bg-pulsing-gradient z-[-1] fixed bottom-1/3 h-1/4 w-3/4" />
+
 				<div className="fixed z-50 w-full">
 					<NavBar />
 				</div>
 				<div className="2xl:7/12 container flex w-full justify-center px-4 py-24 md:px-10 lg:w-9/12 xl:w-8/12">
 					{children}
 				</div>
-				<div className="bg-img fixed z-[-2] h-screen w-screen"></div>
-				<div className="pulsing-gradient fixed bottom-1/4 z-[-1] h-1/4 w-3/4"></div>
 			</body>
 		</html>
 	);

@@ -49,9 +49,9 @@ const config: Config = {
 					secondary: "#4CAF50", // Deep green with good contrast
 					accent: "#FFB74D", // Rich golden-yellow for highlights
 					neutral: "#3E2723", // Dark brown for a warm neutral base
-					"base-100": "hsl(229deg 25% 18%)", // colors.rose[800], //"#212121", // Dark gray for background
-					"base-200": "hsl(229deg 25% 10%)", // colors.rose[900], // Dark gray for background
-					"base-300": "hsl(229deg 25% 2%)", // Dark gray for background
+					"base-100": "hsl(229deg 25% 14%)",
+					"base-200": "hsl(229deg 25% 8%)",
+					"base-300": "hsl(229deg 25% 4%)",
 					info: "#1E88E5", // Deep blue for informational tones
 					success: "#66BB6A", // Calm green for success indicators
 					warning: "#FFB300", // Bold amber for warnings

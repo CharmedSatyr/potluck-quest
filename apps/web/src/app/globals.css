@@ -30,11 +30,17 @@
 		@apply bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent outline-8 outline-offset-2 outline-accent !important;
 	}
 
-	.pulsing-gradient {
+	.bg-pulsing-gradient {
 		@apply animate-[pulse_10s_ease-in-out_infinite] rounded-[30%_70%_70%_30%_/30%_30%_70%_70%] bg-gradient-to-r from-primary via-secondary to-accent opacity-90 blur-[calc(750px/5)] filter;
 	}
-	.bg-img {
+	.bg-noise {
 		background-repeat: repeat;
-		background-image: url("/noisy-texture-100x100.png");
+		/** https://noisetexturegenerator.com */
+		background-image: url("/noisy-texture.png");
+	}
+	.bg-pattern {
+		background-repeat: repeat;
+		/** https://www.transparenttextures.com/ */
+		background-image: url("/slash-it.png");
 	}
 }
