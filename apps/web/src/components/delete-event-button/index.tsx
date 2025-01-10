@@ -39,7 +39,7 @@ const DeleteEventForm = ({ className, code, redirect }: Props) => {
 	return (
 		<Form action={submit}>
 			<button
-				className={`btn btn-error w-full md:float-right md:w-28 ${className}`}
+				className={`btn btn-error btn-sm w-full md:float-right md:w-24 ${className}`}
 				disabled={dialogRef.current?.open}
 				type="button"
 				onClick={() => dialogRef.current?.showModal()}
