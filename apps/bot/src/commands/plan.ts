@@ -7,7 +7,7 @@ import {
 	TextInputBuilder,
 	TextInputStyle,
 } from "discord.js";
-import { CustomId } from "~/constants";
+import { CustomId, DESCRIPTION_LENGTH } from "~/constants";
 import { getUserTimezone } from "~/services/potluck-quest";
 import { getTimezoneOffsetName } from "~/utilities/date-time";
 import getRandomPlaceholder from "~/utilities/get-random-placeholder";
@@ -69,7 +69,7 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 		.setCustomId(CustomId.PLAN_EVENT_DESCRIPTION)
 		.setLabel("Description")
 		.setMinLength(1)
-		.setMaxLength(500)
+		.setMaxLength(DESCRIPTION_LENGTH)
 		.setPlaceholder("Additional info or vibe text")
 		.setRequired(false)
 		.setStyle(TextInputStyle.Paragraph);

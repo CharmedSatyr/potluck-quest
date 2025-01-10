@@ -13,3 +13,5 @@ export enum CustomId {
 export const DELIMITER = "+";
 
 export const DEFAULT_TIMEZONE = "America/Los_Angeles";
+
+export const DESCRIPTION_LENGTH = 500;
