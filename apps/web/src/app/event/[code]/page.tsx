@@ -36,7 +36,7 @@ export const generateMetadata = async ({
 type Props = { params: Promise<{ code: string }> };
 
 const Container = ({ children }: PropsWithChildren) => (
-	<main className="container -m-6 flex h-full w-full flex-wrap rounded-xl border bg-base-300 px-6 pb-20 pt-6 opacity-80">
+	<main className="container -m-6 flex h-full w-full flex-wrap rounded-xl bg-base-300 px-6 pb-20 pt-6 opacity-80">
 		{children}
 	</main>
 );

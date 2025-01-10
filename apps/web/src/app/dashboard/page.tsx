@@ -9,6 +9,7 @@ import DeleteEventForm from "~/components/delete-event-button";
 import SlideIn from "~/components/slide-in";
 import genPageMetadata from "~/seo";
 import eventIsPassed from "~/utilities/event-is-passed";
+import Loading from "./loading";
 
 export const metadata = genPageMetadata({ title: "Dashboard" });
 
@@ -136,6 +137,7 @@ const AttendingTable = async () => {
 };
 
 const DashboardPage = async () => {
+	//return <Loading />
 	return (
 		<main className="w-full">
 			<h1 className="text-primary-gradient">Dashboard</h1>
