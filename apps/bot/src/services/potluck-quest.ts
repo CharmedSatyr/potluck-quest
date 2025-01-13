@@ -43,6 +43,30 @@ export const createEvent = async (data: EventData): Promise<string | null> => {
 	}
 };
 
+type DiscordPotluckEventMapping = {
+	discordGuildId: string;
+	discordEventId: string;
+	potluckEventCode: string;
+};
+
+export const mapDiscordToPotluckEvent = async (
+	data: DiscordPotluckEventMapping
+): Promise<boolean> => {
+	try {
+		const result = await fetch(api.MAPPING, {
+			headers,
+			method: "POST",
+			body: JSON.stringify(data),
+		});
+
+		return result.ok;
+	} catch (error) {
+		console.error("Error mapping Discord event to Potluck Quest event:", error);
+
+		return false;
+	}
+};
+
 export type UpdateEventData = {
 	code: string;
 	description?: string;

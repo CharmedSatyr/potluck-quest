@@ -5,6 +5,7 @@ const pqApi = {
 	AUTH_SETUP: "/api/bot/auth/setup",
 	COMMITMENT: "/api/bot/commitment",
 	EVENT: "/api/bot/event",
+	MAPPING: "/api/bot/mapping",
 	RSVP: "/api/bot/rsvp",
 	SLOTS: "/api/bot/slots",
 	TIMEZONE: "/api/bot/timezone",
