@@ -1,0 +1,2 @@
+ALTER TABLE "discord_event_mapping" ALTER COLUMN "discord_event_id" SET DATA TYPE varchar(19);--> statement-breakpoint
+ALTER TABLE "discord_event_mapping" ALTER COLUMN "discord_guild_id" SET DATA TYPE varchar(19);

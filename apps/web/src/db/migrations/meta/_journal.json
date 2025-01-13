@@ -43,6 +43,13 @@
       "when": 1736808599180,
       "tag": "0005_thin_scorpion",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1736809294370,
+      "tag": "0006_messy_red_hulk",
+      "breakpoints": true
     }
   ]
 }
