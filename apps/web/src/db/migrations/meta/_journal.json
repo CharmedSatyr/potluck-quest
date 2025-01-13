@@ -36,6 +36,13 @@
       "when": 1736540170436,
       "tag": "0004_secret_warlock",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1736808599180,
+      "tag": "0005_thin_scorpion",
+      "breakpoints": true
     }
   ]
 }
