@@ -9,6 +9,7 @@ import eventIsPassed from "~/utilities/event-is-passed";
 
 type Props = {
 	code: string;
+	discordMetadata?: { name: string; iconURL: string };
 };
 
 export const EventHeader = ({
@@ -28,7 +29,7 @@ export const EventHeader = ({
 	);
 };
 
-const EventSkeleton = async ({ code }: Props) => {
+const EventSkeleton = async ({ code, discordMetadata }: Props) => {
 	const [event] = await findEvent({ code });
 	const [creator] = await findUserByEventCode({ code });
 
@@ -52,8 +53,22 @@ const EventSkeleton = async ({ code }: Props) => {
 					height="20"
 					width="20"
 				/>
-				Hosted by {hosts || creator.name}
+				Hosted by {hosts || creator.name}{" "}
+				{discordMetadata && (
+					<>
+						in
+						<Image
+							alt={`${creator.name}'s Avatar`}
+							className="avatar rounded-full border"
+							src={discordMetadata.iconURL}
+							height="20"
+							width="20"
+						/>
+						{discordMetadata.name}
+					</>
+				)}
 			</p>
+
 			<p>{description}</p>
 
 			{isPassed && <WarningAlert text="This event date is in the past." />}

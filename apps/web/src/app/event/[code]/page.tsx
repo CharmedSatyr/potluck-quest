@@ -2,6 +2,7 @@ import EditLink from "./edit-link";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PropsWithChildren, Suspense } from "react";
+import fetchDiscordEventMetadata from "~/actions/bot/fetch-discord-event-metadata";
 import findEvent from "~/actions/event/find-event";
 import findUserEventRsvp from "~/actions/rsvp/find-user-event-rsvp";
 import { auth } from "~/auth";
@@ -52,10 +53,16 @@ const EventTitleSection = ({ code }: { code: string }) => (
 	</section>
 );
 
-const EventSection = ({ code }: { code: string }) => (
+const EventSection = ({
+	code,
+	discordMetadata,
+}: {
+	code: string;
+	discordMetadata?: { name: string; iconURL: string };
+}) => (
 	<section className="min-h-72 w-full md:w-10/12">
 		<Suspense fallback={<EventSkeletonFallback />}>
-			<EventSkeleton code={code} />
+			<EventSkeleton code={code} discordMetadata={discordMetadata} />
 		</Suspense>
 	</section>
 );
@@ -140,9 +147,15 @@ const LoggedOutView = ({ code }: { code: string }) => (
 	</Container>
 );
 
-const PassedView = ({ code }: { code: string }) => (
+const PassedView = ({
+	code,
+	discordMetadata,
+}: {
+	code: string;
+	discordMetadata?: { name: string; iconURL: string };
+}) => (
 	<Container>
-		<EventSection code={code} />
+		<EventSection code={code} discordMetadata={discordMetadata} />
 		<CommitmentsSection code={code} />
 		<AttendeesSection code={code} />
 	</Container>
@@ -150,13 +163,15 @@ const PassedView = ({ code }: { code: string }) => (
 
 const HostView = async ({
 	code,
+	discordMetadata,
 	eventData,
 }: {
 	code: string;
+	discordMetadata?: { name: string; iconURL: string };
 	eventData: EventDataWithCtx;
 }) => (
 	<Container>
-		<EventSection code={code} />
+		<EventSection code={code} discordMetadata={discordMetadata} />
 		<ManageEventSection code={code} eventData={eventData} />
 		{/* TODO: <RsvpSection code={code} userId={eventData.createdBy} /> */}
 		<FoodPlanSection code={code} />
@@ -194,12 +209,20 @@ const EventPage = async ({ params }: Props) => {
 		return <LoggedOutView code={code} />;
 	}
 
+	const discordMetadata = await fetchDiscordEventMetadata({ code });
+
 	if (eventIsPassed(event.startUtcMs)) {
-		return <PassedView code={code} />;
+		return <PassedView code={code} discordMetadata={discordMetadata} />;
 	}
 
 	if (event.createdBy === session.user.id) {
-		return <HostView code={code} eventData={event} />;
+		return (
+			<HostView
+				code={code}
+				eventData={event}
+				discordMetadata={discordMetadata}
+			/>
+		);
 	}
 
 	const [rsvpResponse] = await findUserEventRsvp({
@@ -213,7 +236,7 @@ const EventPage = async ({ params }: Props) => {
 
 	return (
 		<Container>
-			<EventSection code={code} />
+			<EventSection code={code} discordMetadata={discordMetadata} />
 			<RsvpSection code={code} userId={session.user.id} />
 			<CommitmentsSection code={code} />
 			<AttendeesSection code={code} />
