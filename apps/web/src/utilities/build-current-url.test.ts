@@ -1,4 +1,3 @@
-import envConfig from "~/constants/env-config";
 import buildCurrentUrl from "~/utilities/build-current-url";
 
 jest.mock("~/data/site-metadata", () => ({
@@ -35,6 +34,6 @@ describe("buildCurrentUrl", () => {
 
 		const url = buildCurrentUrl(pathName, env);
 
-		expect(url).toBe(`http://localhost:${envConfig.PORT}${pathName}`);
+		expect(url).toBe(`http://localhost:3000${pathName}`);
 	});
 });
