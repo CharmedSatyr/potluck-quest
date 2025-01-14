@@ -35,13 +35,13 @@
 		"node-cache": "^5.1.2"
 	},
 	"devDependencies": {
-		"@potluck/prettier-config": "workspace:*",
 		"@potluck/eslint-config": "workspace:*",
+		"@potluck/prettier-config": "workspace:*",
 		"@potluck/typescript-config": "workspace:*",
 		"@types/express": "^5.0.0",
 		"@types/jest": "^29.5.14",
 		"@types/luxon": "^3.4.2",
-		"@types/node": "^22.10.2",
+		"@types/node": "^22.10.6",
 		"jest": "^29.7.0",
 		"nodemon": "^3.1.9",
 		"ts-jest": "^29.2.5",
