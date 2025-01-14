@@ -1,4 +1,5 @@
 import {
+	Guild,
 	GuildScheduledEventEntityType,
 	GuildScheduledEventPrivacyLevel,
 } from "discord.js";
@@ -39,5 +40,51 @@ export const createEvent = async (data: DiscordEventData) => {
 		);
 
 		return null;
+	}
+};
+
+export const getGuild = async (guildId: string): Promise<Guild | null> => {
+	try {
+		return await client.guilds.fetch(guildId);
+	} catch (error) {
+		console.error(
+			"Error getting Discord guild:",
+			JSON.stringify(error, null, 2)
+		);
+
+		return null;
+	}
+};
+
+type IsGuildMemberData = {
+	guildId: string;
+	userId: string;
+};
+
+export const isGuildMember = async ({
+	guildId,
+	userId,
+}: IsGuildMemberData): Promise<boolean> => {
+	try {
+		const guild = await getGuild(guildId);
+
+		if (!guild) {
+			return false;
+		}
+
+		const member = await guild.members.fetch(userId);
+
+		if (member) {
+			return true;
+		}
+
+		return false;
+	} catch (error) {
+		console.error(
+			"Error getting user is Discord guild member:",
+			JSON.stringify(error, null, 2)
+		);
+
+		return false;
 	}
 };
