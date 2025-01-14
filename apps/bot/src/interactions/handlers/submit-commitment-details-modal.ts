@@ -1,5 +1,6 @@
 import { MessageFlags, ModalSubmitInteraction } from "discord.js";
-import { CustomId, DELIMITER } from "~/constants/constants";
+import { CustomId } from "~/constants/custom-id";
+import { DELIMITER } from "~/constants/delimiter";
 import config from "~/constants/env-config";
 import { createCommitment } from "~/services/potluck-quest";
 import { slotsCache } from "~/utilities/cache";

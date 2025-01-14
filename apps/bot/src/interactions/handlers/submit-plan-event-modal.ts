@@ -1,5 +1,5 @@
 import { MessageFlags, ModalSubmitInteraction } from "discord.js";
-import { CustomId } from "~/constants/constants";
+import { CustomId } from "~/constants/custom-id";
 import config from "~/constants/env-config";
 import api from "~/constants/web-api";
 import { createEvent as createDiscordEvent } from "~/services/discord";

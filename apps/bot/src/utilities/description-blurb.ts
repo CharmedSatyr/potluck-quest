@@ -1,4 +1,4 @@
-import { DESCRIPTION_LENGTH } from "~/constants/constants";
+import { DESCRIPTION_LENGTH } from "~/constants/description";
 
 export const buildDescriptionBlurb = (code: string) =>
 	`See details at [${code} | Potluck Quest](https://potluck.quest/event/${code})`;

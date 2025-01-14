@@ -7,7 +7,8 @@ import {
 	MessageFlags,
 	SlashCommandBuilder,
 } from "discord.js";
-import { DELIMITER, CustomId } from "~/constants/constants";
+import { CustomId } from "~/constants/custom-id";
+import { DELIMITER } from "~/constants/delimiter";
 import config from "~/constants/env-config";
 import { getSlots } from "~/services/potluck-quest";
 

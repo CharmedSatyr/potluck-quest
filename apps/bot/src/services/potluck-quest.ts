@@ -1,5 +1,5 @@
-import { DEFAULT_TIMEZONE } from "~/constants/constants";
 import config from "~/constants/env-config";
+import { DEFAULT_TIMEZONE } from "~/constants/timezone";
 import api from "~/constants/web-api";
 import { slotsCache } from "~/utilities/cache";
 
