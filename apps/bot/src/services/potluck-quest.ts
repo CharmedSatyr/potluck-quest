@@ -1,6 +1,6 @@
-import api from "~/api";
-import config from "~/config";
-import { DEFAULT_TIMEZONE } from "~/constants";
+import { DEFAULT_TIMEZONE } from "~/constants/constants";
+import config from "~/constants/env-config";
+import api from "~/constants/web-api";
 import { slotsCache } from "~/utilities/cache";
 
 // TODO: zod

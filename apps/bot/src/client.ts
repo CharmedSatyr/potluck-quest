@@ -1,6 +1,6 @@
 import { Client, GatewayIntentBits, Partials, Events } from "discord.js";
 import "dotenv/config";
-import config from "~/config";
+import config from "~/constants/env-config";
 import { listener as eventDeleteListener } from "~/guildEvents/listeners/delete";
 import { listener as eventUpdateListener } from "~/guildEvents/listeners/update";
 import { listener as eventUserAddListener } from "~/guildEvents/listeners/user-add";
