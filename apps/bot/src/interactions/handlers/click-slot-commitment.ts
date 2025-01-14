@@ -6,7 +6,7 @@ import {
 	TextInputBuilder,
 	TextInputStyle,
 } from "discord.js";
-import { CustomId, DELIMITER } from "~/constants";
+import { CustomId, DELIMITER } from "~/constants/constants";
 import { slotsCache } from "~/utilities/cache";
 import getRandomPlaceholder from "~/utilities/get-random-placeholder";
 

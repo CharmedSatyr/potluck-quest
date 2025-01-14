@@ -1,7 +1,7 @@
 import { MessageFlags, ModalSubmitInteraction } from "discord.js";
-import api from "~/api";
-import config from "~/config";
-import { CustomId } from "~/constants";
+import { CustomId } from "~/constants/constants";
+import config from "~/constants/env-config";
+import api from "~/constants/web-api";
 import { createEvent as createDiscordEvent } from "~/services/discord";
 import {
 	createEvent as createPotluckQuestEvent,
@@ -57,7 +57,7 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 
 	if (!code) {
 		await interaction.reply({
-			content: `<@${interaction.user.id}> We failed to create event **${title}**. Make sure you have an account on [Potluck Quest](${config.PQ_BASE_URL}) and try again.`,
+			content: `<@${interaction.user.id}> We failed to create event **${title}**. Make sure you have an account on [Potluck Quest](${config.PQ_WEB_BASE_URL}) and try again.`,
 			flags: MessageFlags.Ephemeral,
 		});
 		return;
@@ -97,7 +97,7 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 		);
 	}
 
-	const link = `[**${title}**](${config.PQ_BASE_URL}/event/${code})`;
+	const link = `[**${title}**](${config.PQ_WEB_BASE_URL}/event/${code})`;
 
 	await interaction.reply({
 		content: `<@${interaction.user.id}> is planning a new event, ${link}. Type \`/slots ${code}\` and sign up to bring something!`,

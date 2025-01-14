@@ -1,5 +1,5 @@
 import { CacheType, Interaction, MessageFlags } from "discord.js";
-import api from "~/api";
+import api from "~/constants/web-api";
 import { checkAccountExists } from "~/services/potluck-quest";
 
 export const listener = async (interaction: Interaction<CacheType>) => {
