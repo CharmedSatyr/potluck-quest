@@ -1,3 +1,5 @@
+import "dotenv/config";
+
 const getEnvVar = (key: string): string => {
 	const value = process.env[key];
 
@@ -9,7 +11,6 @@ const getEnvVar = (key: string): string => {
 };
 
 export default {
-	NODE_ENV: getEnvVar("NODE_ENV"),
 	PORT: getEnvVar("PORT"),
 
 	// Auth
@@ -34,7 +35,8 @@ export default {
 	DISCORD_TOKEN: getEnvVar("DISCORD_TOKEN"),
 	DISCORD_PUBLIC_KEY: getEnvVar("DISCORD_PUBLIC_KEY"),
 
-	// Potluck API Keys
+	// Potluck
+	PQ_BOT_BASE_URL: getEnvVar("PQ_BOT_BASE_URL"),
 	PQ_BOT_TO_WEB_API_KEY: getEnvVar("PQ_BOT_TO_WEB_API_KEY"),
 	PQ_WEB_TO_BOT_API_KEY: getEnvVar("PQ_WEB_TO_BOT_API_KEY"),
 };
