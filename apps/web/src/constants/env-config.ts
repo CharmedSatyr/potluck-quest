@@ -11,6 +11,7 @@ const getEnvVar = (key: string): string => {
 };
 
 export default {
+	NODE_ENV: getEnvVar("NODE_ENV"),
 	PORT: getEnvVar("PORT"),
 
 	// Auth
