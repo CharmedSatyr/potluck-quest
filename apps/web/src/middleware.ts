@@ -3,11 +3,12 @@ import { NextResponse } from "next/server";
 import type { MiddlewareConfig, NextRequest } from "next/server";
 import findEventCreatedBy from "~/actions/event/find-event-created-by";
 import { auth } from "~/auth";
+import envConfig from "~/constants/env-config";
 
 const hasValidApiKey = async () => {
 	const headersMap = await headers();
 
-	return process.env.PQ_BOT_TO_WEB_API_KEY === headersMap.get("x-api-key");
+	return envConfig.PQ_BOT_TO_WEB_API_KEY === headersMap.get("x-api-key");
 };
 
 const isAuthenticated = async () => {

@@ -1,6 +1,6 @@
 import { REST, Routes } from "discord.js";
 import "dotenv/config";
-import config from "~/config";
+import config from "~/constants/env-config";
 import collectCommands from "~/utilities/collect-commands";
 
 const rest = new REST({ version: "10" }).setToken(config.BOT_TOKEN);

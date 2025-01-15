@@ -1,6 +1,7 @@
 import { MessageFlags, ModalSubmitInteraction } from "discord.js";
-import config from "~/config";
-import { CustomId, DELIMITER } from "~/constants";
+import { CustomId } from "~/constants/custom-id";
+import { DELIMITER } from "~/constants/delimiter";
+import config from "~/constants/env-config";
 import { createCommitment } from "~/services/potluck-quest";
 import { slotsCache } from "~/utilities/cache";
 
@@ -86,7 +87,7 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 				.concat(description ? `: *${description}*.` : ".")
 				.concat(" ")
 				.concat(
-					`See more details at [${code}](${config.PQ_BASE_URL}/event/${code}).`
+					`See more details at [${code}](${config.PQ_WEB_BASE_URL}/event/${code}).`
 				),
 	});
 };

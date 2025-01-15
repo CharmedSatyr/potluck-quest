@@ -7,7 +7,8 @@ import {
 	TextInputBuilder,
 	TextInputStyle,
 } from "discord.js";
-import { CustomId, DESCRIPTION_LENGTH } from "~/constants";
+import { CustomId } from "~/constants/custom-id";
+import { DESCRIPTION_LENGTH } from "~/constants/description";
 import { getUserTimezone } from "~/services/potluck-quest";
 import { getTimezoneOffsetName } from "~/utilities/date-time";
 import getRandomPlaceholder from "~/utilities/get-random-placeholder";

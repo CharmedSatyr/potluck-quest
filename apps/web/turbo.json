@@ -1,0 +1,30 @@
+{
+	"$schema": "https://turbo.build/schema.json",
+	"extends": ["//"],
+	"tasks": {
+		"build": {
+			"dependsOn": ["^build"],
+			"inputs": ["$TURBO_DEFAULT$", ".env*"],
+			"outputs": [".next/**", "!next/cache/**"],
+			"env": [
+				"AUTH_SECRET",
+				"AUTH_DISCORD_ID",
+				"AUTH_DISCORD_SECRET",
+				"AUTH_DRIZZLE_URL",
+				"NEXTAUTH_SECRET",
+				"OPENAI_API_KEY",
+				"DISCORD_TOKEN",
+				"DISCORD_PUBLIC_KEY",
+				"PQ_BOT_BASE_URL",
+				"PQ_BOT_TO_WEB_API_KEY",
+				"PQ_WEB_TO_BOT_API_KEY",
+				"DISCORD_APP_ID",
+				"DATABASE_URL",
+				"DATABASE_USER",
+				"DATABASE_PASSWORD",
+				"DATABASE_HOST",
+				"DATABASE_NAME"
+			]
+		}
+	}
+}

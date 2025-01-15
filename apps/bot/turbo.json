@@ -1,0 +1,20 @@
+{
+	"$schema": "https://turbo.build/schema.json",
+	"extends": ["//"],
+	"tasks": {
+		"build": {
+			"dependsOn": ["^build"],
+			"inputs": ["$TURBO_DEFAULT$", ".env*"],
+			"outputs": ["dist/**"],
+			"env": [
+				"BOT_TOKEN",
+				"PUBLIC_KEY",
+				"CLIENT_ID",
+				"PORT",
+				"PQ_WEB_BASE_URL",
+				"PQ_BOT_TO_WEB_API_KEY",
+				"PQ_WEB_TO_BOT_API_KEY"
+			]
+		}
+	}
+}

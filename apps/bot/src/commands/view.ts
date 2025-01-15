@@ -4,7 +4,7 @@ import {
 	MessageFlags,
 	SlashCommandBuilder,
 } from "discord.js";
-import config from "~/config";
+import config from "~/constants/env-config";
 import { getUserTimezone } from "~/services/potluck-quest";
 import {
 	formatTimestampForView,
@@ -70,7 +70,7 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 
 	if (flattened.length > 25) {
 		await interaction.reply({
-			content: `Too many events to view using this command. Visit [Potluck Quest](${config.PQ_BASE_URL}) for more options.`,
+			content: `Too many events to view using this command. Visit [Potluck Quest](${config.PQ_WEB_BASE_URL}) for more options.`,
 			flags: MessageFlags.Ephemeral,
 		});
 		return;

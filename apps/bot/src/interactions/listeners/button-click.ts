@@ -1,6 +1,6 @@
 import { CacheType, Interaction, MessageFlags } from "discord.js";
 import { InteractionHandler } from "discord.js-extensions";
-import { DELIMITER } from "~/constants";
+import { DELIMITER } from "~/constants/delimiter";
 
 export const listener = async (interaction: Interaction<CacheType>) => {
 	if (!interaction.isButton()) {

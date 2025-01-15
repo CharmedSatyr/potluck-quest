@@ -1,10 +1,11 @@
-import config from "~/config";
+import envConfig from "~/constants/env-config";
 
-const pqApi = {
+const webApi = {
 	AUTH_PLAN_FOOD: "/api/bot/auth/plan-food",
 	AUTH_SETUP: "/api/bot/auth/setup",
 	COMMITMENT: "/api/bot/commitment",
 	EVENT: "/api/bot/event",
+	MAPPING: "/api/bot/mapping",
 	RSVP: "/api/bot/rsvp",
 	SLOTS: "/api/bot/slots",
 	TIMEZONE: "/api/bot/timezone",
@@ -12,8 +13,8 @@ const pqApi = {
 };
 
 export default Object.fromEntries(
-	Object.entries(pqApi).map(([key, path]) => [
+	Object.entries(webApi).map(([key, path]) => [
 		key,
-		config.PQ_BASE_URL.concat(path),
+		envConfig.PQ_WEB_BASE_URL.concat(path),
 	])
 );

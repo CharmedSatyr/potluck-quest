@@ -1,23 +1,25 @@
 {
-    "$schema": "https://turbo.build/schema.json",
-    "tasks": {
-      "build": {
-        "dependsOn": ["^build"],
-        "outputs": [".next/**", "!.next/cache/**", "dist/**"],
-        "env": ["DATABASE_URL"] 
-      },
-      "dev": {
-        "persistent": true,
-        "cache": false
-      },
-      "test": {
-        "dependsOn": ["^test"]
-      },
-      "lint": {
-        "dependsOn": ["^lint", "build"]
-      },
-      "prettier": {
-        "dependsOn": ["^prettier"]
-      }
-    }
-  }
+	"$schema": "https://turbo.build/schema.json",
+	"tasks": {
+		"build": {
+			"dependsOn": ["^clean", "^prettier", "^lint", "^build"]
+		},
+		"dev": {
+			"dependsOn": ["^build"],
+			"persistent": true,
+			"cache": false
+		},
+		"test": {
+			"dependsOn": ["^build", "^test"]
+		},
+		"clean": {
+			"cache": false
+		},
+		"lint": {
+			"dependsOn": ["^prettier"]
+		},
+		"prettier": {
+			"dependsOn": []
+		}
+	}
+}

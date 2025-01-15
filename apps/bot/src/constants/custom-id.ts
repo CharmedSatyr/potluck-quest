@@ -9,9 +9,3 @@ export enum CustomId {
 	PLAN_EVENT_LOCATION = "plan-event-location",
 	PLAN_EVENT_DESCRIPTION = "plan-event-description",
 }
-
-export const DELIMITER = "+";
-
-export const DEFAULT_TIMEZONE = "America/Los_Angeles";
-
-export const DESCRIPTION_LENGTH = 500;

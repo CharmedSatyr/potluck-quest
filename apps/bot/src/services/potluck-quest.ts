@@ -1,6 +1,6 @@
-import api from "~/api";
-import config from "~/config";
-import { DEFAULT_TIMEZONE } from "~/constants";
+import config from "~/constants/env-config";
+import { DEFAULT_TIMEZONE } from "~/constants/timezone";
+import api from "~/constants/web-api";
 import { slotsCache } from "~/utilities/cache";
 
 // TODO: zod
@@ -40,6 +40,30 @@ export const createEvent = async (data: EventData): Promise<string | null> => {
 		console.error("Error creating Potluck Quest event:", error);
 
 		return null;
+	}
+};
+
+type DiscordPotluckEventMapping = {
+	discordGuildId: string;
+	discordEventId: string;
+	potluckEventCode: string;
+};
+
+export const mapDiscordToPotluckEvent = async (
+	data: DiscordPotluckEventMapping
+): Promise<boolean> => {
+	try {
+		const result = await fetch(api.MAPPING, {
+			headers,
+			method: "POST",
+			body: JSON.stringify(data),
+		});
+
+		return result.ok;
+	} catch (error) {
+		console.error("Error mapping Discord event to Potluck Quest event:", error);
+
+		return false;
 	}
 };
 

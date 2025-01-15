@@ -1,17 +1,12 @@
-import {
-	ActionRowBuilder,
-	ButtonBuilder,
-	ButtonStyle,
-	MessageFlags,
-	ModalSubmitInteraction,
-} from "discord.js";
-import api from "~/api";
-import config from "~/config";
-import { CustomId } from "~/constants";
+import { MessageFlags, ModalSubmitInteraction } from "discord.js";
+import { CustomId } from "~/constants/custom-id";
+import config from "~/constants/env-config";
+import api from "~/constants/web-api";
 import { createEvent as createDiscordEvent } from "~/services/discord";
 import {
 	createEvent as createPotluckQuestEvent,
 	getUserTimezone,
+	mapDiscordToPotluckEvent,
 } from "~/services/potluck-quest";
 import { parseDateTimeInputForServices } from "~/utilities/date-time";
 import buildDescriptionBlurb from "~/utilities/description-blurb";
@@ -62,7 +57,7 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 
 	if (!code) {
 		await interaction.reply({
-			content: `<@${interaction.user.id}> We failed to create event **${title}**. Make sure you have an account on [Potluck Quest](${config.PQ_BASE_URL}) and try again.`,
+			content: `<@${interaction.user.id}> We failed to create event **${title}**. Make sure you have an account on [Potluck Quest](${config.PQ_WEB_BASE_URL}) and try again.`,
 			flags: MessageFlags.Ephemeral,
 		});
 		return;
@@ -74,7 +69,7 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 	);
 
 	const discordEvent = await createDiscordEvent({
-		guildId: interaction.guild?.id,
+		guildId: interaction.guild.id,
 		title,
 		description: augmentedDescription,
 		location,
@@ -90,14 +85,23 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 		return;
 	}
 
-	const link = `[**${title}**](${config.PQ_BASE_URL}/event/${code})`;
+	const mapped = await mapDiscordToPotluckEvent({
+		discordGuildId: discordEvent.guildId,
+		discordEventId: discordEvent.id,
+		potluckEventCode: code,
+	});
 
-	// Prevent errors with both DEV and PROD servers running.
-	if (!interaction.replied) {
-		await interaction.reply({
-			content: `<@${interaction.user.id}> is planning a new event, ${link}. Type \`/slots ${code}\` and sign up to bring something!`,
-		});
+	if (!mapped) {
+		throw new Error(
+			`Failed to map Discord event ${discordEvent.id} to Potluck Quest event ${code}`
+		);
 	}
+
+	const link = `[**${title}**](${config.PQ_WEB_BASE_URL}/event/${code})`;
+
+	await interaction.reply({
+		content: `<@${interaction.user.id}> is planning a new event, ${link}. Type \`/slots ${code}\` and sign up to bring something!`,
+	});
 
 	const params = new URLSearchParams();
 	params.append("description", description);

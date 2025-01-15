@@ -57,11 +57,11 @@ describe("createCommitment", () => {
 			},
 			{
 				code: "too_big",
-				maximum: 256,
+				maximum: 500,
 				type: "string",
 				inclusive: true,
 				exact: false,
-				message: "String must contain at most 256 character(s)",
+				message: "String must contain at most 500 character(s)",
 				path: ["description"],
 			},
 			{
