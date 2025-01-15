@@ -7,7 +7,9 @@ const buildCurrentUrl = (
 	port: string | undefined = process.env.PORT
 ): string => {
 	const urlBase =
-		env === "development" ? `http://localhost:${port}` : siteMetadata.siteUrl;
+		env === "development"
+			? `http://localhost:${port ?? 3000}`
+			: siteMetadata.siteUrl;
 
 	return urlBase.concat(pathName);
 };
