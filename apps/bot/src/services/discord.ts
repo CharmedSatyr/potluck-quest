@@ -1,6 +1,5 @@
 import {
 	Guild,
-	GuildMember,
 	GuildScheduledEventEntityType,
 	GuildScheduledEventPrivacyLevel,
 } from "discord.js";
@@ -71,7 +70,7 @@ export const isGuildMember = async ({
 		await guild.members.fetch(memberId);
 
 		return true;
-	} catch (error) {
+	} catch (_) {
 		return false;
 	}
 };
