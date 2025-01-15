@@ -9,7 +9,7 @@ import eventIsPassed from "~/utilities/event-is-passed";
 
 type Props = {
 	code: string;
-	discordMetadata?: { name: string; iconURL: string };
+	discordMetadata?: { isMember: boolean; name: string; iconURL: string };
 };
 
 export const EventHeader = ({
@@ -43,7 +43,7 @@ const EventSkeleton = async ({ code, discordMetadata }: Props) => {
 
 			<DateTimeBlock startUtcMs={startUtcMs} />
 			<p className="flex items-center gap-2">
-				<MapPinIcon className="h-6 w-6" /> {location}
+				<MapPinIcon className="-m-1 h-6 w-6" /> {location}
 			</p>
 			<p className="flex h-6 items-center gap-2">
 				<Image
@@ -58,7 +58,7 @@ const EventSkeleton = async ({ code, discordMetadata }: Props) => {
 					<>
 						in
 						<Image
-							alt={`${creator.name}'s Avatar`}
+							alt={`${discordMetadata.name}'s Icon`}
 							className="avatar rounded-full border"
 							src={discordMetadata.iconURL}
 							height="20"
