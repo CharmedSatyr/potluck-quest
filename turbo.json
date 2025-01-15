@@ -4,31 +4,18 @@
 		"build": {
 			"dependsOn": ["^build"]
 		},
-    "bot#build": {
-		"dependsOn": ["^build"],
-		"outputs": ["dist/**"],
-      	"env": [
-      		"BOT_TOKEN",
-      		"PUBLIC_KEY",
-      		"CLIENT_ID",
-      		"PORT",
-      		"PQ_WEB_BASE_URL",
-      		"PQ_BOT_TO_WEB_API_KEY",
-      		"PQ_WEB_TO_BOT_API_KEY"
-		]
-    }, 
-	"dev": {
-		"persistent": true,
-		"cache": false
-	},
-	"test": {
-		"dependsOn": ["^test"]
-	},
-	"lint": {
-		"dependsOn": ["^lint", "build"]
-	},
-	"prettier": {
-		"dependsOn": ["^prettier"]
-	}
+		"dev": {
+			"persistent": true,
+			"cache": false
+		},
+		"test": {
+			"dependsOn": ["^test"]
+		},
+		"lint": {
+			"dependsOn": ["^lint", "build"]
+		},
+		"prettier": {
+			"dependsOn": ["^prettier"]
+		}
 	}
 }
