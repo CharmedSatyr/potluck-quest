@@ -3,13 +3,16 @@
 import { z } from "zod";
 import { schema } from "~/actions/bot/fetch-discord-event-metadata.schema";
 import findDiscordEventMapping from "~/actions/discord-event-mapping/find-discord-event-mapping";
+import findProviderAccountIdByUserId from "~/actions/user/find-provider-account-id-by-user-id";
 import botApi from "~/constants/bot-api";
 import envConfig from "~/constants/env-config";
 
 const fetchDiscordEventMetadata = async ({
 	code,
+	userId,
 }: z.infer<typeof schema>): Promise<
 	| {
+			isMember: boolean;
 			name: string;
 			iconURL: string;
 	  }
@@ -18,9 +21,18 @@ const fetchDiscordEventMetadata = async ({
 	try {
 		const [mapping] = await findDiscordEventMapping({ code });
 
-		const { discordEventId, discordGuildId } = mapping;
+		if (!mapping) {
+			return;
+		}
 
-		const params = new URLSearchParams({ discordEventId, discordGuildId });
+		const [discordAccountLookup] = await findProviderAccountIdByUserId({
+			userId,
+		});
+
+		const params = new URLSearchParams({
+			discordGuildId: mapping.discordGuildId,
+			memberId: discordAccountLookup.providerAccountId,
+		});
 
 		const headers = new Headers({
 			"x-api-key": envConfig.PQ_WEB_TO_BOT_API_KEY,
@@ -36,9 +48,7 @@ const fetchDiscordEventMetadata = async ({
 			return;
 		}
 
-		const { name, iconURL } = await result.json();
-
-		return { name, iconURL };
+		return await result.json();
 	} catch (error) {
 		console.error("Error fetching Discord metadata:", error);
 	}

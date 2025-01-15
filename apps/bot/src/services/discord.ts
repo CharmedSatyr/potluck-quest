@@ -1,5 +1,6 @@
 import {
 	Guild,
+	GuildMember,
 	GuildScheduledEventEntityType,
 	GuildScheduledEventPrivacyLevel,
 } from "discord.js";
@@ -56,35 +57,21 @@ export const getGuild = async (guildId: string): Promise<Guild | null> => {
 	}
 };
 
-type IsGuildMemberData = {
-	guildId: string;
-	userId: string;
+type IsGuildMember = {
+	guild: Guild;
+	memberId: string;
 };
 
 export const isGuildMember = async ({
-	guildId,
-	userId,
-}: IsGuildMemberData): Promise<boolean> => {
+	guild,
+	memberId,
+}: IsGuildMember): Promise<boolean> => {
 	try {
-		const guild = await getGuild(guildId);
+		// Throws on invalid input
+		await guild.members.fetch(memberId);
 
-		if (!guild) {
-			return false;
-		}
-
-		const member = await guild.members.fetch(userId);
-
-		if (member) {
-			return true;
-		}
-
-		return false;
+		return true;
 	} catch (error) {
-		console.error(
-			"Error getting user is Discord guild member:",
-			JSON.stringify(error, null, 2)
-		);
-
 		return false;
 	}
 };
