@@ -1,19 +1,24 @@
-import EditLink from "./edit-link";
 import { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PropsWithChildren, Suspense } from "react";
 import fetchDiscordEventMetadata from "~/actions/bot/fetch-discord-event-metadata";
 import findEvent from "~/actions/event/find-event";
 import findUserEventRsvp from "~/actions/rsvp/find-user-event-rsvp";
+import findUserByEventCode from "~/actions/user/find-user-by-event-code";
+import EditLink from "~/app/event/[code]/edit-link";
 import { auth } from "~/auth";
 import CommitmentsTable, {
 	CommitmentsTableFallback,
 } from "~/components/commitments-table";
 import DeleteEventForm from "~/components/delete-event-button";
+import DateTimeBlock from "~/components/event-skeleton/date-time-block";
 import EventSkeleton, {
 	EventHeader,
 	EventSkeletonFallback,
 } from "~/components/event-skeleton/event-skeleton";
+import { DiscordIcon } from "~/components/icons/discord";
 import RsvpForm, { RsvpFormFallback } from "~/components/rsvp-form";
 import RsvpTable, { RsvpTableFallback } from "~/components/rsvp-table";
 import SlideIn from "~/components/slide-in";
@@ -42,23 +47,12 @@ const Container = ({ children }: PropsWithChildren) => (
 	</main>
 );
 
-const EventTitleSection = ({ code }: { code: string }) => (
-	<section className="w-full">
-		<Suspense>
-			<SlideIn>
-				<EventHeader code={code} title="Something's Happening..." />
-				<p>Sign in to see all the details!</p>
-			</SlideIn>
-		</Suspense>
-	</section>
-);
-
 const EventSection = ({
 	code,
 	discordMetadata,
 }: {
 	code: string;
-	discordMetadata?: { name: string; iconURL: string };
+	discordMetadata?: { isMember: boolean; name: string; iconURL: string };
 }) => (
 	<section className="min-h-72 w-full md:w-10/12">
 		<Suspense fallback={<EventSkeletonFallback />}>
@@ -143,16 +137,87 @@ const FoodPlanSection = ({ code }: { code: string }) => {
 
 const LoggedOutView = ({ code }: { code: string }) => (
 	<Container>
-		<EventTitleSection code={code} />
+		<section className="w-full">
+			<Suspense>
+				<SlideIn>
+					<EventHeader code={code} title="Something's Happening..." />
+					<p>Sign in to see all the details!</p>
+				</SlideIn>
+			</Suspense>
+		</section>
 	</Container>
 );
+
+const UnauthorizedView = async ({
+	code,
+	discordMetadata,
+	eventData,
+}: {
+	code: string;
+	discordMetadata: { isMember: boolean; name: string; iconURL: string };
+	eventData: EventDataWithCtx;
+}) => {
+	const GuildIcon = () => (
+		<Image
+			alt={`${discordMetadata.name}'s Icon`}
+			className="avatar my-0 rounded-full border"
+			src={discordMetadata.iconURL}
+			height="20"
+			width="20"
+		/>
+	);
+	const [creator] = await findUserByEventCode({ code });
+	const CreatorAvatar = () => (
+		<Image
+			alt={`${creator.name}'s Avatar`}
+			className="avatar my-0 rounded-full border"
+			src={creator.image!}
+			height="20"
+			width="20"
+		/>
+	);
+
+	return (
+		<Container>
+			<section className="w-full">
+				<Suspense>
+					<SlideIn>
+						<EventHeader code={code} title={eventData.title} />
+						<DateTimeBlock startUtcMs={eventData.startUtcMs} />
+						<p>
+							Hosted by <CreatorAvatar /> {eventData.hosts || creator.name}
+						</p>
+						<p>
+							Full details are visible to members of <GuildIcon />{" "}
+							{discordMetadata.name} on{" "}
+							<Link
+								className="btn btn-primary btn-sm"
+								href="https://www.discord.com"
+							>
+								<span className="flex h-full w-full items-center gap-2">
+									<DiscordIcon className="inline size-4" />
+									Discord
+								</span>
+							</Link>
+							.
+						</p>
+						<p>
+							Check with whomever shared the event link for information on how
+							to join.
+						</p>
+					</SlideIn>
+				</Suspense>
+			</section>
+		</Container>
+	);
+};
 
 const PassedView = ({
 	code,
 	discordMetadata,
 }: {
 	code: string;
-	discordMetadata?: { name: string; iconURL: string };
+	discordMetadata?: { isMember: boolean; name: string; iconURL: string };
 }) => (
 	<Container>
 		<EventSection code={code} discordMetadata={discordMetadata} />
@@ -167,7 +232,7 @@ const HostView = async ({
 	eventData,
 }: {
 	code: string;
-	discordMetadata?: { name: string; iconURL: string };
+	discordMetadata?: { isMember: boolean; name: string; iconURL: string };
 	eventData: EventDataWithCtx;
 }) => (
 	<Container>
@@ -209,7 +274,20 @@ const EventPage = async ({ params }: Props) => {
 		return <LoggedOutView code={code} />;
 	}
 
-	const discordMetadata = await fetchDiscordEventMetadata({ code });
+	const discordMetadata = await fetchDiscordEventMetadata({
+		code,
+		userId: session.user.id,
+	});
+
+	if (discordMetadata && !discordMetadata.isMember) {
+		return (
+			<UnauthorizedView
+				code={code}
+				discordMetadata={discordMetadata}
+				eventData={event}
+			/>
+		);
+	}
 
 	if (eventIsPassed(event.startUtcMs)) {
 		return <PassedView code={code} discordMetadata={discordMetadata} />;
