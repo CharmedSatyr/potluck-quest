@@ -5,10 +5,9 @@ const getEnvVar = (key: string): string => {
 
 	if (!value) {
 		console.warn(`Environment variable ${key} is not defined.`);
-		return "USING_FALLBACK_VAR";
 	}
 
-	return value;
+	return value!;
 };
 
 export default {
