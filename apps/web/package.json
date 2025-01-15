@@ -10,6 +10,7 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
+		"clean": "rm -rf .next",
 		"lint": "next lint",
 		"prettier": "npx prettier --write .",
 		"db:generate": "npx drizzle-kit generate",

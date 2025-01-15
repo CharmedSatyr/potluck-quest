@@ -9,6 +9,7 @@
 	"scripts": {
 		"build": "tsc && tsc-alias",
 		"dev": "nodemon src/server.ts",
+		"clean": "rm -rf dist",
 		"prettier": "npx prettier --write .",
 		"lint": "npx eslint src/**/*.ts --fix ",
 		"register": "tsc && tsc-alias src/register.ts",
