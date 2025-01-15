@@ -1,7 +1,7 @@
 import envConfig from "~/constants/env-config";
 
 const botApi = {
-	metadata: "/api/discord/metadata",
+	metadata: "/api/event/metadata",
 };
 
 export default Object.fromEntries(
