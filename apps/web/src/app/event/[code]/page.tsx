@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PropsWithChildren, Suspense } from "react";
@@ -18,11 +17,13 @@ import EventSkeleton, {
 	EventHeader,
 	EventSkeletonFallback,
 } from "~/components/event-skeleton/event-skeleton";
+import GuildIcon from "~/components/guild-icon";
 import { DiscordIcon } from "~/components/icons/discord";
 import RsvpForm, { RsvpFormFallback } from "~/components/rsvp-form";
 import RsvpTable, { RsvpTableFallback } from "~/components/rsvp-table";
 import SlideIn from "~/components/slide-in";
 import SlotManager, { SlotManagerFallback } from "~/components/slot-manager";
+import UserAvatar from "~/components/user-avatar";
 import genPageMetadata from "~/seo";
 import eventIsPassed from "~/utilities/event-is-passed";
 
@@ -157,25 +158,7 @@ const UnauthorizedView = async ({
 	discordMetadata: { isMember: boolean; name: string; iconURL: string };
 	eventData: EventDataWithCtx;
 }) => {
-	const GuildIcon = () => (
-		<Image
-			alt={`${discordMetadata.name}'s Icon`}
-			className="avatar my-0 rounded-full border"
-			src={discordMetadata.iconURL}
-			height="20"
-			width="20"
-		/>
-	);
 	const [creator] = await findUserByEventCode({ code });
-	const CreatorAvatar = () => (
-		<Image
-			alt={`${creator.name}'s Avatar`}
-			className="avatar my-0 rounded-full border"
-			src={creator.image!}
-			height="20"
-			width="20"
-		/>
-	);
 
 	return (
 		<Container>
@@ -185,10 +168,15 @@ const UnauthorizedView = async ({
 						<EventHeader code={code} title={eventData.title} />
 						<DateTimeBlock startUtcMs={eventData.startUtcMs} />
 						<p>
-							Hosted by <CreatorAvatar /> {eventData.hosts || creator.name}
+							Hosted by <UserAvatar name={creator.name} url={creator.image} />{" "}
+							{eventData.hosts || creator.name}
 						</p>
 						<p>
-							Full details are visible to members of <GuildIcon />{" "}
+							Full details are visible to members of{" "}
+							<GuildIcon
+								name={discordMetadata.name}
+								url={discordMetadata.iconURL}
+							/>{" "}
 							{discordMetadata.name} on{" "}
 							<Link
 								className="btn btn-primary btn-sm"
