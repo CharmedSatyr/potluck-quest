@@ -1,5 +1,6 @@
 "use client";
 
+import SelectGuildForm from "../select-server-form";
 import { Suspense, use, useEffect, useState } from "react";
 import PlanEventForm, {
 	PlanEventFormFallback,
@@ -17,14 +18,22 @@ type Props = {
 	loggedIn: boolean;
 	mode: WizardMode;
 	slotsPromise: Promise<SlotData[]>;
+	userDiscordGuildsPromise: Promise<
+		{
+			guildId: string;
+			name: string;
+			iconURL: string;
+		}[]
+	>;
 };
 
 export enum Step {
 	CREATE_EVENT = "create-event",
 	PLAN_FOOD = "plan-food",
+	SELECT_SERVER = "select-server",
 }
 
-const ProgressIndicator = () => {
+const ProgressIndicator = ({ mode }: { mode: WizardMode }) => {
 	const [anchor = Step.CREATE_EVENT, scrollToAnchor] = useAnchor();
 
 	useEffect(() => {
@@ -35,7 +44,11 @@ const ProgressIndicator = () => {
 		if (anchor === Step.PLAN_FOOD) {
 			scrollToAnchor(Step.PLAN_FOOD);
 		}
-	}, [anchor, scrollToAnchor]);
+
+		if (mode === "create" && anchor === Step.SELECT_SERVER) {
+			scrollToAnchor(Step.SELECT_SERVER);
+		}
+	}, [anchor, mode, scrollToAnchor]);
 
 	/* TODO: Add a hover state to make it clearer you can click. */
 	return (
@@ -46,12 +59,22 @@ const ProgressIndicator = () => {
 			>
 				Create an Event
 			</button>
+
 			<button
-				className={`step ${anchor === Step.PLAN_FOOD ? "step-secondary" : ""}`}
+				className={`step ${anchor === Step.PLAN_FOOD || anchor === Step.SELECT_SERVER ? "step-secondary" : ""}`}
 				onClick={() => scrollToAnchor(Step.PLAN_FOOD)}
 			>
 				Plan the Food
 			</button>
+
+			{mode === "create" && (
+				<button
+					className={`step ${anchor === Step.SELECT_SERVER ? "step-secondary" : ""}`}
+					onClick={() => scrollToAnchor(Step.SELECT_SERVER)}
+				>
+					Select Discord Server
+				</button>
+			)}
 		</div>
 	);
 };
@@ -63,9 +86,9 @@ const ManageEventWizard = ({
 	loggedIn,
 	mode,
 	slotsPromise,
+	userDiscordGuildsPromise,
 }: Props) => {
 	const eventInput = use(eventInputPromise);
-	const slots = use(slotsPromise);
 
 	const [suggestedSlots, setSuggestedSlots] = useState<SlotData[]>([]);
 
@@ -123,14 +146,27 @@ const ManageEventWizard = ({
 							committedUsersBySlotPromise={committedUsersBySlotPromise}
 							eventInput={eventInput}
 							mode={mode}
-							slots={slots}
+							slotsPromise={slotsPromise}
 							suggestedSlots={suggestedSlots}
 						/>
 					</Suspense>
 				</div>
+
+				{mode === "create" && (
+					<div
+						className="carousel-item flex w-full flex-col items-center justify-center"
+						id={Step.SELECT_SERVER}
+					>
+						<Suspense>
+							<SelectGuildForm
+								userDiscordGuildsPromise={userDiscordGuildsPromise}
+							/>
+						</Suspense>
+					</div>
+				)}
 			</div>
 
-			<ProgressIndicator />
+			<ProgressIndicator mode={mode} />
 		</>
 	);
 };

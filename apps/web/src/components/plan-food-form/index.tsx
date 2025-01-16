@@ -12,7 +12,7 @@ type Props = {
 	committedUsersBySlotPromise: Promise<Map<string, React.JSX.Element>>;
 	eventInput: EventInput;
 	mode: WizardMode;
-	slots: SlotData[];
+	slotsPromise: Promise<SlotData[]>;
 	suggestedSlots: SlotData[];
 };
 
@@ -21,9 +21,10 @@ const PlanFoodForm = ({
 	committedUsersBySlotPromise,
 	eventInput,
 	mode,
-	slots: prevSlots,
+	slotsPromise,
 	suggestedSlots,
 }: Props) => {
+	const prevSlots = use(slotsPromise);
 	const committedUsersBySlot = use(committedUsersBySlotPromise);
 
 	const [slots, setSlots] = useState<
