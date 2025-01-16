@@ -7,4 +7,7 @@ export const schema = z
 		code,
 		userId,
 	})
-	.required() satisfies z.ZodType<{ code: PotluckEvent["code"] }>;
+	.required() satisfies z.ZodType<{
+	code: PotluckEvent["code"];
+	userId: User["id"];
+}>;
