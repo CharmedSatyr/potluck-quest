@@ -2,6 +2,7 @@ import envConfig from "~/constants/env-config";
 
 const botApi = {
 	metadata: "/api/event/metadata",
+	guilds: "/api/user/guilds",
 };
 
 export default Object.fromEntries(
