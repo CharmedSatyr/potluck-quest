@@ -3,6 +3,7 @@
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import Form from "next/form";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { use } from "react";
 import GuildIcon from "~/components/guild-icon";
 import { BOT_INSTALL_LINK } from "~/constants/bot-install-link";
@@ -33,7 +34,7 @@ const GuildOption = ({
 					type="radio"
 					name="guild-option"
 					className="radio checked:bg-primary"
-					value={guildId}
+					value={guildId ?? "none"}
 					defaultChecked={!guildId}
 				/>
 				{iconURL && <GuildIcon name={name} url={iconURL} />}
@@ -43,11 +44,25 @@ const GuildOption = ({
 	);
 };
 
+const getSearchParamsObject = (
+	search: URLSearchParams
+): Record<string, string> => {
+	const paramsObject: Record<string, string> = {};
+
+	for (const [key, value] of search) {
+		paramsObject[key] = value;
+	}
+
+	return paramsObject;
+};
+
 const SelectGuildForm = ({ userDiscordGuildsPromise }: Props) => {
 	const userDiscordGuilds = use(userDiscordGuildsPromise);
 
+	const search = useSearchParams();
+
 	return (
-		<Form action="" className="h-full w-full">
+		<Form action="/plan/confirm" className="h-full w-full">
 			<h1 className="text-primary-gradient flex items-center gap-2">
 				Select a Server
 			</h1>
@@ -104,6 +119,25 @@ const SelectGuildForm = ({ userDiscordGuildsPromise }: Props) => {
 					))}
 				</div>
 			</section>
+
+			{Object.entries(getSearchParamsObject(search))
+				.filter(([, value]) => value !== "")
+				.map(([key, value]) => (
+					<input
+						key={key}
+						hidden
+						name={key}
+						readOnly
+						type="text"
+						value={value}
+					/>
+				))}
+
+			<div className="mt-2 flex justify-end">
+				<button className="btn btn-primary btn-sm" type="submit">
+					Save and Continue
+				</button>
+			</div>
 		</Form>
 	);
 };
