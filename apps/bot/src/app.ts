@@ -5,6 +5,7 @@ import verifyApiKeyMiddleware from "~/utilities/verify-api-key-middleware";
 
 const app = express();
 
+app.use(express.json());
 app.use(verifyApiKeyMiddleware);
 app.use("/api/event", eventRouter);
 app.use("/api/user", userRouter);
