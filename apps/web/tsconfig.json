@@ -7,8 +7,8 @@
 			"~/*": ["./src/*"]
 		},
 		"typeRoots": ["./node_modules/@types", "./src/@types"],
-		"module": "esnext",
-		"moduleResolution": "node",
+		"module": "ESNext",
+		"moduleResolution": "bundler",
 		"plugins": [
 			{
 				"name": "next"
