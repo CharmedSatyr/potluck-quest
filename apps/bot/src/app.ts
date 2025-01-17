@@ -1,7 +1,7 @@
-import verifyApiKeyMiddleware from "./utilities/verify-api-key-middleware";
 import express from "express";
 import eventRouter from "~/routes/event";
 import userRouter from "~/routes/user";
+import verifyApiKeyMiddleware from "~/utilities/verify-api-key-middleware";
 
 const app = express();
 

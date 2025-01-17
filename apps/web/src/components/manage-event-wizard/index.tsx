@@ -1,6 +1,5 @@
 "use client";
 
-import SelectGuildForm from "../select-server-form";
 import { Suspense, use, useEffect, useState } from "react";
 import PlanEventForm, {
 	PlanEventFormFallback,
@@ -8,6 +7,7 @@ import PlanEventForm, {
 import PlanFoodForm, {
 	PlanFoodFormFallback,
 } from "~/components/plan-food-form";
+import SelectGuildForm from "~/components/select-guild-form";
 import Suggestions from "~/components/suggestions";
 import useAnchor, { scrollToAnchor } from "~/hooks/use-anchor";
 

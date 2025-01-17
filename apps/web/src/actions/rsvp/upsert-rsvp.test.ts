@@ -1,7 +1,7 @@
-import { schema } from "./upsert-rsvp.schema";
 import { z, ZodError } from "zod";
 import findEvent from "~/actions/event/find-event";
 import upsertRsvp from "~/actions/rsvp/upsert-rsvp";
+import { schema } from "~/actions/rsvp/upsert-rsvp.schema";
 import db from "~/db/connection";
 import { rsvp } from "~/db/schema/rsvp";
 

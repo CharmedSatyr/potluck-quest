@@ -1,11 +1,11 @@
 "use client";
 
-import LoadingIndicator from "../loading-indicator";
-import { createCommitmentAction } from "./submit-actions";
-import { CreateCommitmentFormState } from "./submit-actions.schema";
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/solid";
 import { usePathname } from "next/navigation";
 import { useActionState, useRef } from "react";
+import LoadingIndicator from "~/components/loading-indicator";
+import { createCommitmentAction } from "~/components/slot-manager/submit-actions";
+import { CreateCommitmentFormState } from "~/components/slot-manager/submit-actions.schema";
 
 type Props = {
 	commitmentsStillNeeded: number;

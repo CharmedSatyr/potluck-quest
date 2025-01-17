@@ -1,10 +1,10 @@
 "use client";
 
-import LoadingIndicator from "../loading-indicator";
-import { DeleteEventState } from "./delete-event-action.types";
 import Form from "next/form";
 import { useActionState, useEffect, useRef } from "react";
 import deleteEventAction from "~/components/delete-event-button/delete-event-action";
+import { DeleteEventState } from "~/components/delete-event-button/delete-event-action.types";
+import LoadingIndicator from "~/components/loading-indicator";
 
 type Props = {
 	className?: string;
