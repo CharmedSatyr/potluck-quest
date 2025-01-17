@@ -13,6 +13,6 @@
 		"rootDir": "./src",
 		"typeRoots": ["./node_modules/@types", "./src/@types"]
 	},
-	"include": ["src/**/*.ts", "src/routes/event.schema.ts"],
+	"include": ["src/**/*.ts"],
 	"exclude": ["node_modules"]
 }
