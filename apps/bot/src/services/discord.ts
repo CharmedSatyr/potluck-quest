@@ -4,11 +4,11 @@ import {
 	GuildScheduledEventEntityType,
 	GuildScheduledEventPrivacyLevel,
 } from "discord.js";
-import client from "~/client";
+import client from "~/client.js";
 import {
 	createDiscordEventSchema,
 	getGuildSchema,
-} from "~/services/discord.schema";
+} from "~/services/discord.schema.js";
 
 export const createDiscordEvent = async (
 	data: z.infer<typeof createDiscordEventSchema>

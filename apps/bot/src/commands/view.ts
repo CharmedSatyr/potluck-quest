@@ -4,13 +4,13 @@ import {
 	MessageFlags,
 	SlashCommandBuilder,
 } from "discord.js";
-import config from "~/constants/env-config";
-import { getUserTimezone } from "~/services/potluck-quest";
+import config from "~/constants/env-config.js";
+import { getUserTimezone } from "~/services/potluck-quest.js";
 import {
 	formatTimestampForView,
 	getTimezoneOffsetName,
-} from "~/utilities/date-time";
-import { removeBlurbTruncateAndGetCode } from "~/utilities/description-blurb";
+} from "~/utilities/date-time.js";
+import { removeBlurbTruncateAndGetCode } from "~/utilities/description-blurb.js";
 
 // TODO: Add cooldowns https://discordjs.guide/additional-features/cooldowns.html#resulting-code
 export const data = new SlashCommandBuilder()

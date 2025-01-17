@@ -2,13 +2,14 @@
 	"name": "potluck-bot",
 	"version": "1.0.0",
 	"description": "",
+	"type": "module",
 	"engines": {
 		"node": "^22",
 		"pnpm": "^9"
 	},
 	"scripts": {
 		"build": "tsc && tsc-alias",
-		"dev": "nodemon src/server.ts",
+		"dev": "nodemon",
 		"clean": "rm -rf dist",
 		"prettier": "npx prettier --write .",
 		"lint": "npx eslint src/**/*.ts --fix ",

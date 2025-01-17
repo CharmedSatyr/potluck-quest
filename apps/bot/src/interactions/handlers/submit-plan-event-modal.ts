@@ -1,15 +1,15 @@
 import { MessageFlags, ModalSubmitInteraction } from "discord.js";
-import { CustomId } from "~/constants/custom-id";
-import config from "~/constants/env-config";
-import api from "~/constants/web-api";
-import { createDiscordEvent } from "~/services/discord";
+import { CustomId } from "~/constants/custom-id.js";
+import config from "~/constants/env-config.js";
+import api from "~/constants/web-api.js";
+import { createDiscordEvent } from "~/services/discord.js";
 import {
 	createPotluckEvent as createPotluckQuestEvent,
 	getUserTimezone,
 	mapDiscordToPotluckEvent,
-} from "~/services/potluck-quest";
-import { parseDateTimeInputForServices } from "~/utilities/date-time";
-import buildDescriptionBlurb from "~/utilities/description-blurb";
+} from "~/services/potluck-quest.js";
+import { parseDateTimeInputForServices } from "~/utilities/date-time.js";
+import buildDescriptionBlurb from "~/utilities/description-blurb.js";
 
 export const data = { customId: CustomId.PLAN_EVENT_MODAL };
 

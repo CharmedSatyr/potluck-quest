@@ -1,7 +1,7 @@
 import express from "express";
-import verifyApiKey from "~/middleware/verify-api-key";
-import eventRouter from "~/routes/event";
-import userRouter from "~/routes/user";
+import verifyApiKey from "~/middleware/verify-api-key.js";
+import eventRouter from "~/routes/event.js";
+import userRouter from "~/routes/user.js";
 
 const app = express();
 

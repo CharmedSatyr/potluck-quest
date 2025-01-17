@@ -1,9 +1,12 @@
 import { Collection } from "discord.js";
 import { Command } from "discord.js-extensions";
 import fs from "fs";
-import path from "path";
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
 
 const collectCommands = async () => {
+	const __dirname = dirname(fileURLToPath(import.meta.url));
+
 	const commands = new Collection<string, Command>();
 
 	const commandsPath = path.resolve(__dirname, "../commands");

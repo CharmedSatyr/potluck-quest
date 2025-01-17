@@ -1,8 +1,8 @@
-import { getUserGuildsSchema } from "./user.schema";
+import { getUserGuildsSchema } from "./user.schema.js";
 import { z } from "@potluck/validation";
 import { Router, Response } from "express";
-import client from "~/client";
-import validateRequest from "~/middleware/validate-request";
+import client from "~/client.js";
+import validateRequest from "~/middleware/validate-request.js";
 
 const router = Router();
 

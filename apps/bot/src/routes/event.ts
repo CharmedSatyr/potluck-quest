@@ -1,6 +1,6 @@
 import { z } from "@potluck/validation";
 import { Router, Response } from "express";
-import validateRequest from "~/middleware/validate-request";
+import validateRequest from "~/middleware/validate-request.js";
 import {
 	getEventMetadataSchema,
 	postEventSchema,
@@ -9,7 +9,7 @@ import {
 	createDiscordEvent,
 	getGuild,
 	isGuildMember,
-} from "~/services/discord";
+} from "~/services/discord.js";
 
 const router = Router();
 

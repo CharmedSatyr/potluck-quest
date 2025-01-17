@@ -6,10 +6,10 @@ import {
 	TextInputBuilder,
 	TextInputStyle,
 } from "discord.js";
-import { CustomId } from "~/constants/custom-id";
-import { DELIMITER } from "~/constants/delimiter";
-import { slotsCache } from "~/utilities/cache";
-import getRandomPlaceholder from "~/utilities/get-random-placeholder";
+import { CustomId } from "~/constants/custom-id.js";
+import { DELIMITER } from "~/constants/delimiter.js";
+import { slotsCache } from "~/utilities/cache.js";
+import getRandomPlaceholder from "~/utilities/get-random-placeholder.js";
 
 export const data = { customId: CustomId.CLICK_SLOT_COMMITMENT };
 

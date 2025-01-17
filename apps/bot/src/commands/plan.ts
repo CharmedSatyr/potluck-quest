@@ -7,11 +7,11 @@ import {
 	TextInputBuilder,
 	TextInputStyle,
 } from "discord.js";
-import { CustomId } from "~/constants/custom-id";
-import { DESCRIPTION_LENGTH } from "~/constants/description";
-import { getUserTimezone } from "~/services/potluck-quest";
-import { getTimezoneOffsetName } from "~/utilities/date-time";
-import getRandomPlaceholder from "~/utilities/get-random-placeholder";
+import { CustomId } from "~/constants/custom-id.js";
+import { DESCRIPTION_LENGTH } from "~/constants/description.js";
+import { getUserTimezone } from "~/services/potluck-quest.js";
+import { getTimezoneOffsetName } from "~/utilities/date-time.js";
+import getRandomPlaceholder from "~/utilities/get-random-placeholder.js";
 
 // TODO: Add cooldowns https://discordjs.guide/additional-features/cooldowns.html#resulting-code
 export const data = new SlashCommandBuilder()

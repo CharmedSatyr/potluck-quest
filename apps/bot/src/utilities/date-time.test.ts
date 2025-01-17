@@ -1,5 +1,5 @@
 // TODO: Fix jest path mapping before changing this to use ~
-import { parseDateTimeInputForServices } from "./date-time";
+import { parseDateTimeInputForServices } from "./date-time.js";
 
 describe("date-time", () => {
 	const timezone = "America/Los_Angeles";

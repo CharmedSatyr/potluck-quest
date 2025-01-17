@@ -1,12 +1,12 @@
 import {
 	createPotluckEventSchema,
 	mapDiscordToPotluckEventSchema,
-} from "./potluck-quest.schema";
+} from "./potluck-quest.schema.js";
 import { z } from "@potluck/validation";
-import config from "~/constants/env-config";
-import { DEFAULT_TIMEZONE } from "~/constants/timezone";
-import api from "~/constants/web-api";
-import { slotsCache } from "~/utilities/cache";
+import config from "~/constants/env-config.js";
+import { DEFAULT_TIMEZONE } from "~/constants/timezone.js";
+import api from "~/constants/web-api.js";
+import { slotsCache } from "~/utilities/cache.js";
 
 const headers = new Headers({ "x-api-key": config.PQ_BOT_TO_WEB_API_KEY });
 

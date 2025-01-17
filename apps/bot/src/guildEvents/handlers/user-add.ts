@@ -5,8 +5,8 @@ import {
 	PartialGuildScheduledEvent,
 	User,
 } from "discord.js";
-import { upsertRsvp } from "~/services/potluck-quest";
-import { removeBlurbTruncateAndGetCode } from "~/utilities/description-blurb";
+import { upsertRsvp } from "~/services/potluck-quest.js";
+import { removeBlurbTruncateAndGetCode } from "~/utilities/description-blurb.js";
 
 export const data = { eventName: Events.GuildScheduledEventUserAdd };
 
