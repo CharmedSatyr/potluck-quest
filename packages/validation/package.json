@@ -8,9 +8,11 @@
 		"pnpm": "^9"
 	},
 	"exports": {
-		".": "./index.js"
+		".": "./dist/index.js"
 	},
 	"scripts": {
+		"build": "tsc && tsc-alias",
+		"clean": "rm -rf dist",
 		"prettier": "npx prettier --write ."
 	},
 	"dependencies": {
@@ -19,6 +21,10 @@
 		"zod": "^3.24.1"
 	},
 	"devDependencies": {
-		"@potluck/prettier-config": "workspace:*"
+		"@potluck/prettier-config": "workspace:*",
+		"@potluck/typescript-config": "workspace:*",
+		"@types/luxon": "^3.4.2",
+		"tsc-alias": "^1.8.10",
+		"typescript": "^5.7.2"
 	}
 }
