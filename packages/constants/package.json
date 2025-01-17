@@ -1,13 +1,31 @@
 {
-    "name": "@potluck/constants",
-    "version": "0.0.0",
-    "type": "module",
-    "private": true,
-    "engines": {
-      "node": "^22",
-      "pnpm": "^9"
-    },
-    "exports": {
-      ".": "./index.js"
+  "name": "@potluck/constants",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": "^22",
+    "pnpm": "^9"
+  },
+  "types": "./dist/@types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/@types/index.d.ts",
+      "import": "./dist/index.js"
     }
+  },
+  "scripts": {
+    "build": "tsc && tsc-alias",
+    "clean": "rm -rf dist",
+    "prettier": "npx prettier --write ."
+  },
+  "dependencies": {
+    "@potluck/types": "workspace:*"
+  },
+  "devDependencies": {
+    "@potluck/prettier-config": "workspace:*",
+    "@potluck/typescript-config": "workspace:*",
+    "tsc-alias": "^1.8.10",
+    "typescript": "^5.7.2"
   }
+}
