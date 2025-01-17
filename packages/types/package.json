@@ -1,0 +1,21 @@
+{
+  "name": "@potluck/types",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": "^22",
+    "pnpm": "^9"
+  },
+  "main": "./lib/index.d.ts",
+  "types": "./lib/index.d.ts",
+  "scripts": {
+    "prettier": "npx prettier --write ."
+  },
+  "devDependencies": {
+    "@potluck/prettier-config": "workspace:*",
+    "@potluck/typescript-config": "workspace:*",
+    "tsc-alias": "^1.8.10",
+    "typescript": "^5.7.2"
+  }
+}
