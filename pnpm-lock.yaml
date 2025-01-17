@@ -195,14 +195,13 @@ importers:
         version: 5.7.3
 
   packages/constants:
-    dependencies:
-      '@potluck/types':
-        specifier: workspace:*
-        version: link:../types
     devDependencies:
       '@potluck/prettier-config':
         specifier: workspace:*
         version: link:../prettier-config
+      '@potluck/types':
+        specifier: workspace:*
+        version: link:../types
       '@potluck/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config

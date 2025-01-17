@@ -7,11 +7,11 @@
     "node": "^22",
     "pnpm": "^9"
   },
-  "types": "./dist/@types/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/@types/index.d.ts",
-      "import": "./dist/index.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
     }
   },
   "scripts": {
@@ -19,10 +19,8 @@
     "clean": "rm -rf dist",
     "prettier": "npx prettier --write ."
   },
-  "dependencies": {
-    "@potluck/types": "workspace:*"
-  },
   "devDependencies": {
+    "@potluck/types": "workspace:*",
     "@potluck/prettier-config": "workspace:*",
     "@potluck/typescript-config": "workspace:*",
     "tsc-alias": "^1.8.10",
