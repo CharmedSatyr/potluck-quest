@@ -1,43 +1,43 @@
 import { getUserGuildsSchema } from "./user.schema";
-import { Router, Request, Response } from "express";
+import { z } from "@potluck/validation";
+import { Router, Response } from "express";
 import client from "~/client";
+import validateRequest from "~/middleware/validate-request";
 
 const router = Router();
 
-router.get("/guilds", async (req: Request, res: Response): Promise<void> => {
-	const { query } = req;
+router.get(
+	"/guilds",
+	validateRequest(getUserGuildsSchema),
+	async (
+		req: ValidRequest<unknown, z.infer<typeof getUserGuildsSchema>>,
+		res: Response
+	): Promise<void> => {
+		const { discordUserId } = req.query;
 
-	const parsed = getUserGuildsSchema.safeParse(query);
+		const botGuilds = client.guilds.cache;
+		const guildsWithPermissions = [];
 
-	if (!parsed.success) {
-		res.status(400).send();
-		return;
-	}
+		for (const [guildId, guild] of botGuilds) {
+			const member = await guild.members.fetch(discordUserId).catch(() => null);
 
-	const botGuilds = client.guilds.cache;
-	const guildsWithPermissions = [];
+			if (!member) {
+				continue;
+			}
 
-	for (const [guildId, guild] of botGuilds) {
-		const member = await guild.members
-			.fetch(parsed.data.discordUserId)
-			.catch(() => null);
-
-		if (!member) {
-			continue;
+			if (member.permissions.has("ManageEvents")) {
+				guildsWithPermissions.push({
+					name: guild.name,
+					guildId,
+					iconUrl: guild.iconURL(),
+				});
+			}
 		}
 
-		if (member.permissions.has("ManageEvents")) {
-			guildsWithPermissions.push({
-				name: guild.name,
-				guildId,
-				iconUrl: guild.iconURL(),
-			});
-		}
+		res.json({
+			guilds: guildsWithPermissions,
+		});
 	}
-
-	res.json({
-		guilds: guildsWithPermissions,
-	});
-});
+);
 
 export default router;
