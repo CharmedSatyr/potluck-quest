@@ -36,6 +36,7 @@ const PlanPage = async ({ searchParams }: Props) => {
 								? fetchUserDiscordGuilds({ userId: session.user.id })
 								: Promise.resolve([])
 						}
+						// TODO: Why not just pass in raw params here to populate plan food? await searchParams
 					/>
 				</Suspense>
 			</ErrorBoundary>
