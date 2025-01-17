@@ -1,11 +1,11 @@
-import {
-	createPotluckEventSchema,
-	mapDiscordToPotluckEventSchema,
-} from "./potluck-quest.schema.js";
 import { z } from "@potluck/validation";
 import config from "~/constants/env-config.js";
 import { DEFAULT_TIMEZONE } from "~/constants/timezone.js";
 import api from "~/constants/web-api.js";
+import {
+	createPotluckEventSchema,
+	mapDiscordToPotluckEventSchema,
+} from "~/services/potluck-quest.schema.js";
 import { slotsCache } from "~/utilities/cache.js";
 
 const headers = new Headers({ "x-api-key": config.PQ_BOT_TO_WEB_API_KEY });

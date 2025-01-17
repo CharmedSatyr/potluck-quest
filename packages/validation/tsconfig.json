@@ -9,6 +9,9 @@
 		"moduleResolution": "nodenext",
 		"noEmit": false,
 		"outDir": "dist",
+		"paths": {
+			"~/*": ["*"]
+		},
 		"rootDir": "lib"
 	},
 	"include": ["lib/**/*.ts"],

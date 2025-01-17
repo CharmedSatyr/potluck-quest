@@ -1,20 +1,20 @@
-import { code } from "./code.js";
-import { description } from "./description.js";
-import { discordEventId } from "./discord-event-id.js";
-import { discordGuildId } from "./discord-guild-id.js";
-import { discordUserId } from "./discord-user-id.js";
-import { endUtcMs } from "./end-utc-ms.js";
-import { hosts } from "./hosts.js";
-import { location } from "./location.js";
-import { slot } from "./slot.js";
-import { startDate } from "./start-date.js";
-import { startTime } from "./start-time.js";
-import { startUtcMs } from "./start-utc-ms.js";
-import { suggestions } from "./suggestions.js";
-import { timezone } from "./timezone.js";
-import { title } from "./title.js";
-import { userId } from "./user-id.js";
 import { z } from "zod";
+import { code } from "~/lib/code.js";
+import { description } from "~/lib/description.js";
+import { discordEventId } from "~/lib/discord-event-id.js";
+import { discordGuildId } from "~/lib/discord-guild-id.js";
+import { discordUserId } from "~/lib/discord-user-id.js";
+import { endUtcMs } from "~/lib/end-utc-ms.js";
+import { hosts } from "~/lib/hosts.js";
+import { location } from "~/lib/location.js";
+import { slot } from "~/lib/slot.js";
+import { startDate } from "~/lib/start-date.js";
+import { startTime } from "~/lib/start-time.js";
+import { startUtcMs } from "~/lib/start-utc-ms.js";
+import { suggestions } from "~/lib/suggestions.js";
+import { timezone } from "~/lib/timezone.js";
+import { title } from "~/lib/title.js";
+import { userId } from "~/lib/user-id.js";
 
 export {
 	code,
