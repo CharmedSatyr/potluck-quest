@@ -2,8 +2,8 @@
 	"$schema": "https://json.schemastore.org/tsconfig",
 	"extends": "@potluck/typescript-config/base",
 	"compilerOptions": {
-		"module": "NodeNext",
-		"moduleResolution": "nodenext",
+		"module": "ESNext",
+		"moduleResolution": "node",
 		"noEmit": false,
 		"outDir": "./dist",
 		"paths": {
@@ -13,6 +13,6 @@
 		"rootDir": "./src",
 		"typeRoots": ["./node_modules/@types", "./src/@types"]
 	},
-	"include": ["src/**/*.ts"],
+	"include": ["src/**/*.ts", "src/routes/event.schema.ts"],
 	"exclude": ["node_modules"]
 }

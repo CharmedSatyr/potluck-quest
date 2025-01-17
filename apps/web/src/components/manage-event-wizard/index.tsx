@@ -22,7 +22,7 @@ type Props = {
 		{
 			guildId: string;
 			name: string;
-			iconURL: string;
+			iconUrl: string;
 		}[]
 	>;
 };

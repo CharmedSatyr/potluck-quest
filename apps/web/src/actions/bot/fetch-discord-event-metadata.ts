@@ -14,7 +14,7 @@ const fetchDiscordEventMetadata = async ({
 	| {
 			isMember: boolean;
 			name: string;
-			iconURL: string;
+			iconUrl: string;
 	  }
 	| undefined
 > => {

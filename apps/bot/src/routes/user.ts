@@ -27,7 +27,7 @@ router.get("/guilds", async (req: Request, res: Response): Promise<void> => {
 			guildsWithPermissions.push({
 				name: guild.name,
 				guildId,
-				iconURL: guild.iconURL(),
+				iconUrl: guild.iconURL(),
 			});
 		}
 	}

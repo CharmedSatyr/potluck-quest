@@ -12,7 +12,7 @@ const fetchUserDiscordGuilds = async ({
 	{
 		guildId: string;
 		name: string;
-		iconURL: string;
+		iconUrl: string;
 	}[]
 > => {
 	try {
@@ -39,7 +39,7 @@ const fetchUserDiscordGuilds = async ({
 		}
 
 		const parsed: {
-			guilds: { name: string; guildId: string; iconURL: string }[];
+			guilds: { name: string; guildId: string; iconUrl: string }[];
 		} = await result.json();
 
 		return parsed.guilds;

@@ -1,4 +1,8 @@
 import { Router, Request, Response } from "express";
+import {
+	getEventMetadataSchema,
+	postEventSchema,
+} from "~/routes/event.schema.js";
 import { createEvent, getGuild, isGuildMember } from "~/services/discord";
 
 const router = Router();
@@ -6,9 +10,14 @@ const router = Router();
 router.post("/", async (req: Request, res: Response): Promise<void> => {
 	const { body } = req;
 
-	// TODO: Validate params
+	const parsed = postEventSchema.safeParse(body);
 
-	const event = await createEvent(body);
+	if (!parsed.success) {
+		res.status(400).send();
+		return;
+	}
+
+	const event = await createEvent(parsed.data);
 
 	if (event) {
 		res.status(200).send();
@@ -20,15 +29,15 @@ router.post("/", async (req: Request, res: Response): Promise<void> => {
 
 router.get("/metadata", async (req: Request, res: Response): Promise<void> => {
 	const { query } = req;
-	const { discordGuildId, memberId } = query;
 
-	// TODO: zod
-	if (typeof discordGuildId !== "string" || typeof memberId !== "string") {
+	const parsed = getEventMetadataSchema.safeParse(query);
+
+	if (!parsed.success) {
 		res.status(400);
 		return;
 	}
 
-	const guild = await getGuild(discordGuildId);
+	const guild = await getGuild(parsed.data.discordGuildId);
 
 	if (!guild) {
 		res.status(400);
@@ -37,13 +46,13 @@ router.get("/metadata", async (req: Request, res: Response): Promise<void> => {
 
 	const isMember = await isGuildMember({
 		guild,
-		memberId,
+		memberId: parsed.data.memberId,
 	});
 
 	res.json({
 		isMember,
 		name: guild.name,
-		iconURL: guild.iconURL(),
+		iconUrl: guild.iconURL(),
 	});
 });
 

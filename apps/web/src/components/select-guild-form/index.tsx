@@ -13,18 +13,18 @@ type Props = {
 		{
 			guildId?: string;
 			name: string;
-			iconURL?: string;
+			iconUrl?: string;
 		}[]
 	>;
 };
 
 const GuildOption = ({
 	guildId,
-	iconURL,
+	iconUrl,
 	name,
 }: {
 	guildId?: string;
-	iconURL?: string;
+	iconUrl?: string;
 	name: string;
 }) => {
 	return (
@@ -37,7 +37,7 @@ const GuildOption = ({
 					value={guildId ?? "none"}
 					defaultChecked={!guildId}
 				/>
-				{iconURL && <GuildIcon name={name} url={iconURL} />}
+				{iconUrl && <GuildIcon name={name} url={iconUrl} />}
 				<span className="label-text">{name}</span>
 			</label>
 		</div>

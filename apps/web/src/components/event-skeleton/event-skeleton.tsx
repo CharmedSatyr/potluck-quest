@@ -10,7 +10,7 @@ import eventIsPassed from "~/utilities/event-is-passed";
 
 type Props = {
 	code: string;
-	discordMetadata?: { isMember: boolean; name: string; iconURL: string };
+	discordMetadata?: { isMember: boolean; name: string; iconUrl: string };
 };
 
 export const EventHeader = ({
@@ -54,7 +54,7 @@ const EventSkeleton = async ({ code, discordMetadata }: Props) => {
 						in{" "}
 						<GuildIcon
 							name={discordMetadata.name}
-							url={discordMetadata.iconURL}
+							url={discordMetadata.iconUrl}
 						/>{" "}
 						{discordMetadata.name}
 					</>

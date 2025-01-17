@@ -53,7 +53,7 @@ const EventSection = ({
 	discordMetadata,
 }: {
 	code: string;
-	discordMetadata?: { isMember: boolean; name: string; iconURL: string };
+	discordMetadata?: { isMember: boolean; name: string; iconUrl: string };
 }) => (
 	<section className="min-h-72 w-full md:w-10/12">
 		<Suspense fallback={<EventSkeletonFallback />}>
@@ -155,7 +155,7 @@ const UnauthorizedView = async ({
 	eventData,
 }: {
 	code: string;
-	discordMetadata: { isMember: boolean; name: string; iconURL: string };
+	discordMetadata: { isMember: boolean; name: string; iconUrl: string };
 	eventData: EventDataWithCtx;
 }) => {
 	const [creator] = await findUserByEventCode({ code });
@@ -175,7 +175,7 @@ const UnauthorizedView = async ({
 							Full details are visible to members of{" "}
 							<GuildIcon
 								name={discordMetadata.name}
-								url={discordMetadata.iconURL}
+								url={discordMetadata.iconUrl}
 							/>{" "}
 							{discordMetadata.name} on{" "}
 							<Link
@@ -205,7 +205,7 @@ const PassedView = ({
 	discordMetadata,
 }: {
 	code: string;
-	discordMetadata?: { isMember: boolean; name: string; iconURL: string };
+	discordMetadata?: { isMember: boolean; name: string; iconUrl: string };
 }) => (
 	<Container>
 		<EventSection code={code} discordMetadata={discordMetadata} />
@@ -220,7 +220,7 @@ const HostView = async ({
 	eventData,
 }: {
 	code: string;
-	discordMetadata?: { isMember: boolean; name: string; iconURL: string };
+	discordMetadata?: { isMember: boolean; name: string; iconUrl: string };
 	eventData: EventDataWithCtx;
 }) => (
 	<Container>

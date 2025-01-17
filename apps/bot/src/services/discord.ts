@@ -3,19 +3,11 @@ import {
 	GuildScheduledEventEntityType,
 	GuildScheduledEventPrivacyLevel,
 } from "discord.js";
+import { z } from "zod";
 import client from "~/client";
+import { createEventSchema } from "~/services/discord.schema";
 
-// TODO: zod
-type DiscordEventData = {
-	description: string;
-	endUtcMs: number;
-	guildId: string;
-	location: string;
-	startUtcMs: number;
-	title: string;
-};
-
-export const createEvent = async (data: DiscordEventData) => {
+export const createEvent = async (data: z.infer<typeof createEventSchema>) => {
 	try {
 		const guild = await client.guilds.fetch(data.guildId);
 
@@ -34,10 +26,7 @@ export const createEvent = async (data: DiscordEventData) => {
 
 		return event;
 	} catch (error) {
-		console.error(
-			"Error creating Discord event:",
-			JSON.stringify(error, null, 2)
-		);
+		console.error("Error creating Discord event:", error);
 
 		return null;
 	}
@@ -66,11 +55,12 @@ export const isGuildMember = async ({
 	memberId,
 }: IsGuildMember): Promise<boolean> => {
 	try {
-		// Throws on invalid input
-		await guild.members.fetch(memberId);
+		const member = await guild.members.fetch(memberId).catch(() => null);
 
-		return true;
-	} catch (_) {
+		return Boolean(member);
+	} catch (error) {
+		console.info("Error looking up guild member:", error);
+
 		return false;
 	}
 };
