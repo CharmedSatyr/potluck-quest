@@ -21,7 +21,7 @@ const fetchUserDiscordGuilds = async ({
 		});
 
 		const params = new URLSearchParams({
-			userId: discordAccountLookup.providerAccountId,
+			discordUserId: discordAccountLookup.providerAccountId,
 		});
 
 		const headers = new Headers({

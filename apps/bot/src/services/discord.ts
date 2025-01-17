@@ -1,9 +1,9 @@
+import { z } from "@potluck/validation";
 import {
 	Guild,
 	GuildScheduledEventEntityType,
 	GuildScheduledEventPrivacyLevel,
 } from "discord.js";
-import { z } from "zod";
 import client from "~/client";
 import { createEventSchema } from "~/services/discord.schema";
 
@@ -45,7 +45,7 @@ export const getGuild = async (guildId: string): Promise<Guild | null> => {
 	}
 };
 
-type IsGuildMember = {
+type IsGuildMemberParams = {
 	guild: Guild;
 	memberId: string;
 };
@@ -53,7 +53,7 @@ type IsGuildMember = {
 export const isGuildMember = async ({
 	guild,
 	memberId,
-}: IsGuildMember): Promise<boolean> => {
+}: IsGuildMemberParams): Promise<boolean> => {
 	try {
 		const member = await guild.members.fetch(memberId).catch(() => null);
 

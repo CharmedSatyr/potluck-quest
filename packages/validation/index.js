@@ -2,6 +2,7 @@ import { code } from "./src/code";
 import { description } from "./src/description";
 import { discordEventId } from "./src/discord-event-id";
 import { discordGuildId } from "./src/discord-guild-id";
+import { discordUserId } from "./src/discord-user-id";
 import { endUtcMs } from "./src/end-utc-ms";
 import { hosts } from "./src/hosts";
 import { location } from "./src/location";
@@ -13,12 +14,14 @@ import { suggestions } from "./src/suggestions";
 import { timezone } from "./src/timezone";
 import { title } from "./src/title";
 import { userId } from "./src/user-id";
+import { z } from "zod";
 
 export {
 	code,
 	description,
 	discordEventId,
 	discordGuildId,
+	discordUserId,
 	endUtcMs,
 	hosts,
 	location,
@@ -30,4 +33,5 @@ export {
 	timezone,
 	title,
 	userId,
+	z,
 };

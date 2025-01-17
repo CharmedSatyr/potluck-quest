@@ -5,8 +5,8 @@ import {
 	startUtcMs,
 	endUtcMs,
 	discordGuildId,
+	z,
 } from "@potluck/validation";
-import { z } from "zod";
 
 export const createEventSchema = z
 	.strictObject({

@@ -1,3 +1,4 @@
+import { getUserGuildsSchema } from "./user.schema";
 import { Router, Request, Response } from "express";
 import client from "~/client";
 
@@ -5,11 +6,11 @@ const router = Router();
 
 router.get("/guilds", async (req: Request, res: Response): Promise<void> => {
 	const { query } = req;
-	const { userId } = query;
 
-	// TODO: zod
-	if (typeof userId !== "string") {
-		res.status(400);
+	const parsed = getUserGuildsSchema.safeParse(query);
+
+	if (!parsed.success) {
+		res.status(400).send();
 		return;
 	}
 
@@ -17,7 +18,9 @@ router.get("/guilds", async (req: Request, res: Response): Promise<void> => {
 	const guildsWithPermissions = [];
 
 	for (const [guildId, guild] of botGuilds) {
-		const member = await guild.members.fetch(userId).catch(() => null);
+		const member = await guild.members
+			.fetch(parsed.data.discordUserId)
+			.catch(() => null);
 
 		if (!member) {
 			continue;

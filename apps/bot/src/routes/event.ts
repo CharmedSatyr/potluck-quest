@@ -46,7 +46,7 @@ router.get("/metadata", async (req: Request, res: Response): Promise<void> => {
 
 	const isMember = await isGuildMember({
 		guild,
-		memberId: parsed.data.memberId,
+		memberId: parsed.data.discordUserId,
 	});
 
 	res.json({
