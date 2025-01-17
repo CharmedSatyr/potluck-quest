@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { auth } from "~/auth";
 import DeleteCommitmentForm from "~/components/slot-manager/delete-commitment-form";
+import UserAvatar from "~/components/user-avatar";
 
 type Props = {
 	commitmentsWithDetails: {
@@ -45,13 +45,7 @@ const CommitmentsBySlotTable = async ({ commitmentsWithDetails }: Props) => {
 									)}
 								</td>
 								<td>
-									<Image
-										alt={`${c.user.name}'s Avatar`}
-										className="avatar my-0 rounded-full border"
-										src={c.user.image!}
-										height="20"
-										width="20"
-									/>{" "}
+									<UserAvatar name={c.user.name} url={c.user.image} />{" "}
 									{c.user.name}
 								</td>
 								<td>{c.quantity}</td>

@@ -1,9 +1,9 @@
 "use server";
 
-import Image from "next/image";
 import findCommitments from "~/actions/commitment/find-commitments";
 import findSlots from "~/actions/slot/find-slots";
 import findUsers from "~/actions/user/find-users";
+import UserAvatar from "~/components/user-avatar";
 
 type UserWithCount = Pick<User, "id" | "image" | "name"> & { count: number };
 
@@ -15,14 +15,7 @@ const Avatars = ({ committedUsers }: Props) => {
 	return committedUsers.map((user) =>
 		user.image ? (
 			<div key={user.id} className="indicator">
-				<Image
-					alt={`Avatar for user ${user.name}`}
-					className="avatar my-0 rounded-full border"
-					src={user.image}
-					height={30}
-					title={`${user.name} is bringing ${user.count}`}
-					width={30}
-				/>
+				<UserAvatar name={user.name} url={user.image} />
 				<span className="badge indicator-item badge-primary badge-sm">
 					{user.count}
 				</span>

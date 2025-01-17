@@ -1,18 +1,20 @@
 import Image from "next/image";
 
 type Props = {
+	height?: number;
 	name: string | null;
 	url: string | null;
+	width?: number;
 };
 
-const UserAvatar = ({ name, url }: Props) =>
+const UserAvatar = ({ height, name, url, width }: Props) =>
 	name && url ? (
 		<Image
 			alt={`${name}'s Avatar`}
 			className="avatar my-0 rounded-full border"
 			src={url}
-			height="20"
-			width="20"
+			height={height ?? "20"}
+			width={width ?? "20"}
 		/>
 	) : null;
 
