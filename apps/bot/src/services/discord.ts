@@ -1,4 +1,4 @@
-import { z } from "@potluck/validation";
+import { z } from "@potluck/shared/validation";
 import {
 	Guild,
 	GuildScheduledEventEntityType,

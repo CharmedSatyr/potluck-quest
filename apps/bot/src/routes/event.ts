@@ -1,4 +1,4 @@
-import { z } from "@potluck/validation";
+import { z } from "@potluck/shared/validation";
 import { Router, Response } from "express";
 import validateRequest from "~/middleware/validate-request.js";
 import {

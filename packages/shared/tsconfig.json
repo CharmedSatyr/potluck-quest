@@ -2,7 +2,7 @@
 	"$schema": "https://json.schemastore.org/tsconfig",
 	"extends": "@potluck/typescript-config/base",
 	"compilerOptions": {
-		"baseUrl": ".",
+		"baseUrl": "./src",
 		"declaration": true,
 		"declarationDir": "dist/@types",
 		"module": "NodeNext",
@@ -12,8 +12,8 @@
 		"paths": {
 			"~/*": ["*"]
 		},
-		"rootDir": "lib"
+		"rootDir": "src"
 	},
-	"include": ["lib/**/*.ts"],
+	"include": ["src/**/*.ts", "src/**/*.d.ts"],
 	"exclude": ["node_modules"]
 }

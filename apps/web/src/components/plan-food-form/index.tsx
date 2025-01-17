@@ -1,6 +1,6 @@
 "use client";
 
-import { slot as slotSchema } from "@potluck/validation";
+import { slot as slotSchema } from "@potluck/shared/validation";
 import Form from "next/form";
 import { use, useCallback, useEffect, useMemo, useState } from "react";
 import deleteSlot from "~/actions/slot/delete-slot";

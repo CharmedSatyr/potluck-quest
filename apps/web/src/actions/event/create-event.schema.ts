@@ -1,10 +1,10 @@
-import { description } from "@potluck/validation";
-import { userId } from "@potluck/validation";
-import { location } from "@potluck/validation";
-import { title } from "@potluck/validation";
-import { startUtcMs } from "@potluck/validation";
-import { endUtcMs } from "@potluck/validation";
-import { hosts } from "@potluck/validation";
+import { description } from "@potluck/shared/validation";
+import { userId } from "@potluck/shared/validation";
+import { location } from "@potluck/shared/validation";
+import { title } from "@potluck/shared/validation";
+import { startUtcMs } from "@potluck/shared/validation";
+import { endUtcMs } from "@potluck/shared/validation";
+import { hosts } from "@potluck/shared/validation";
 import { z } from "zod";
 
 export const schema = z.strictObject({

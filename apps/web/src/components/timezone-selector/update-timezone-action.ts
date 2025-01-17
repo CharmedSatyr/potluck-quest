@@ -1,6 +1,6 @@
 "use server";
 
-import { timezone } from "@potluck/validation";
+import { timezone, z } from "@potluck/shared/validation";
 import { revalidatePath } from "next/cache";
 import upsertTimezone from "~/actions/settings/upsert-timezone";
 import { auth } from "~/auth";
@@ -9,7 +9,9 @@ export const updateTimezoneAction = async (
 	prevState: { timezone: SupportedTimezone },
 	formData: FormData
 ) => {
-	const parsedTz = timezone.safeParse(formData.get("timezone"));
+	const parsedTz = (timezone as z.ZodEnum<SupportedTimezones>).safeParse(
+		formData.get("timezone")
+	);
 
 	if (!parsedTz.success || parsedTz.data === prevState.timezone) {
 		return prevState;

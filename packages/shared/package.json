@@ -1,0 +1,43 @@
+{
+	"name": "@potluck/shared",
+	"version": "0.0.0",
+	"type": "module",
+	"private": true,
+	"engines": {
+		"node": "^22",
+		"pnpm": "^9"
+	},
+	"exports": {
+		"./types": {
+			"types": "./dist/@types/types/index.d.ts",
+			"import": "./dist/types/index.js",
+			"require": "./dist/types/index.js"
+		},
+		"./constants": {
+			"types": "./dist/@types/constants/index.d.ts",
+			"import": "./dist/constants/index.js",
+			"require": "./dist/constants/index.js"
+		},
+		"./validation": {
+			"types": "./dist/@types/validation/index.d.ts",
+			"import": "./dist/validation/index.js",
+			"require": "./dist/validation/index.js"
+		}
+	},
+	"scripts": {
+		"build": "tsc && tsc-alias",
+		"clean": "rm -rf dist",
+		"prettier": "npx prettier --write ."
+	},
+	"devDependencies": {
+		"@potluck/prettier-config": "workspace:*",
+		"@potluck/typescript-config": "workspace:*",
+		"@types/luxon": "^3.4.2",
+		"tsc-alias": "^1.8.10",
+		"typescript": "^5.7.2"
+	},
+	"dependencies": {
+		"luxon": "^3.5.0",
+		"zod": "^3.24.1"
+	}
+}

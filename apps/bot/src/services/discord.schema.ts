@@ -6,7 +6,7 @@ import {
 	endUtcMs,
 	discordGuildId,
 	z,
-} from "@potluck/validation";
+} from "@potluck/shared/validation";
 
 export const createDiscordEventSchema = z.strictObject({
 	guildId: discordGuildId,

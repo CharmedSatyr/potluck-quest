@@ -1,4 +1,4 @@
-import { EVENT_CODE_LENGTH } from "@potluck/constants";
+import { EVENT_CODE_LENGTH } from "@potluck/shared/constants";
 import {
 	index,
 	pgTable,

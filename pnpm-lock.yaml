@@ -14,9 +14,9 @@ importers:
 
   apps/bot:
     dependencies:
-      '@potluck/validation':
+      '@potluck/shared':
         specifier: workspace:*
-        version: link:../../packages/validation
+        version: link:../../packages/shared
       chrono-node:
         specifier: ^2.7.7
         version: 2.7.7
@@ -93,12 +93,9 @@ importers:
       '@next/env':
         specifier: ^15.1.4
         version: 15.1.4
-      '@potluck/constants':
+      '@potluck/shared':
         specifier: workspace:*
-        version: link:../../packages/constants
-      '@potluck/validation':
-        specifier: workspace:*
-        version: link:../../packages/validation
+        version: link:../../packages/shared
       '@types/luxon':
         specifier: ^3.4.2
         version: 3.4.2
@@ -194,24 +191,6 @@ importers:
         specifier: ^5.7.2
         version: 5.7.3
 
-  packages/constants:
-    devDependencies:
-      '@potluck/prettier-config':
-        specifier: workspace:*
-        version: link:../prettier-config
-      '@potluck/types':
-        specifier: workspace:*
-        version: link:../types
-      '@potluck/typescript-config':
-        specifier: workspace:*
-        version: link:../typescript-config
-      tsc-alias:
-        specifier: ^1.8.10
-        version: 1.8.10
-      typescript:
-        specifier: ^5.7.2
-        version: 5.7.3
-
   packages/eslint-config:
     devDependencies:
       '@eslint/js':
@@ -263,32 +242,8 @@ importers:
         specifier: ^0.6.9
         version: 0.6.9(@trivago/prettier-plugin-sort-imports@5.2.1(prettier@3.4.2))(prettier@3.4.2)
 
-  packages/types:
-    devDependencies:
-      '@potluck/prettier-config':
-        specifier: workspace:*
-        version: link:../prettier-config
-      '@potluck/typescript-config':
-        specifier: workspace:*
-        version: link:../typescript-config
-      tsc-alias:
-        specifier: ^1.8.10
-        version: 1.8.10
-      typescript:
-        specifier: ^5.7.2
-        version: 5.7.3
-
-  packages/typescript-config:
-    devDependencies:
-      typescript:
-        specifier: ^5.7.2
-        version: 5.7.3
-
-  packages/validation:
+  packages/shared:
     dependencies:
-      '@potluck/constants':
-        specifier: workspace:*
-        version: link:../constants
       luxon:
         specifier: ^3.5.0
         version: 3.5.0
@@ -299,9 +254,6 @@ importers:
       '@potluck/prettier-config':
         specifier: workspace:*
         version: link:../prettier-config
-      '@potluck/types':
-        specifier: workspace:*
-        version: link:../types
       '@potluck/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
@@ -311,6 +263,12 @@ importers:
       tsc-alias:
         specifier: ^1.8.10
         version: 1.8.10
+      typescript:
+        specifier: ^5.7.2
+        version: 5.7.3
+
+  packages/typescript-config:
+    devDependencies:
       typescript:
         specifier: ^5.7.2
         version: 5.7.3
