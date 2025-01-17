@@ -2,9 +2,9 @@ import { MessageFlags, ModalSubmitInteraction } from "discord.js";
 import { CustomId } from "~/constants/custom-id";
 import config from "~/constants/env-config";
 import api from "~/constants/web-api";
-import { createEvent as createDiscordEvent } from "~/services/discord";
+import { createDiscordEvent } from "~/services/discord";
 import {
-	createEvent as createPotluckQuestEvent,
+	createPotluckEvent as createPotluckQuestEvent,
 	getUserTimezone,
 	mapDiscordToPotluckEvent,
 } from "~/services/potluck-quest";

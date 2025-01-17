@@ -3,7 +3,11 @@ import {
 	getEventMetadataSchema,
 	postEventSchema,
 } from "~/routes/event.schema.js";
-import { createEvent, getGuild, isGuildMember } from "~/services/discord";
+import {
+	createDiscordEvent,
+	getGuild,
+	isGuildMember,
+} from "~/services/discord";
 
 const router = Router();
 
@@ -17,7 +21,7 @@ router.post("/", async (req: Request, res: Response): Promise<void> => {
 		return;
 	}
 
-	const event = await createEvent(parsed.data);
+	const event = await createDiscordEvent(parsed.data);
 
 	if (event) {
 		res.status(200).send();
@@ -33,14 +37,14 @@ router.get("/metadata", async (req: Request, res: Response): Promise<void> => {
 	const parsed = getEventMetadataSchema.safeParse(query);
 
 	if (!parsed.success) {
-		res.status(400);
+		res.status(400).send();
 		return;
 	}
 
-	const guild = await getGuild(parsed.data.discordGuildId);
+	const guild = await getGuild({ guildId: parsed.data.discordGuildId });
 
 	if (!guild) {
-		res.status(400);
+		res.status(400).send();
 		return;
 	}
 

@@ -8,13 +8,13 @@ import {
 	z,
 } from "@potluck/validation";
 
-export const createEventSchema = z
-	.strictObject({
-		guildId: discordGuildId,
-		description,
-		endUtcMs,
-		location,
-		startUtcMs,
-		title,
-	})
-	.required();
+export const createDiscordEventSchema = z.strictObject({
+	guildId: discordGuildId,
+	description,
+	endUtcMs,
+	location,
+	startUtcMs,
+	title,
+});
+
+export const getGuildSchema = z.strictObject({ guildId: discordGuildId });

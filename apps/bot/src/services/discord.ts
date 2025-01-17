@@ -5,10 +5,17 @@ import {
 	GuildScheduledEventPrivacyLevel,
 } from "discord.js";
 import client from "~/client";
-import { createEventSchema } from "~/services/discord.schema";
+import {
+	createDiscordEventSchema,
+	getGuildSchema,
+} from "~/services/discord.schema";
 
-export const createEvent = async (data: z.infer<typeof createEventSchema>) => {
+export const createDiscordEvent = async (
+	data: z.infer<typeof createDiscordEventSchema>
+) => {
 	try {
+		createDiscordEventSchema.parse(data);
+
 		const guild = await client.guilds.fetch(data.guildId);
 
 		const event = await guild.scheduledEvents.create({
@@ -32,9 +39,13 @@ export const createEvent = async (data: z.infer<typeof createEventSchema>) => {
 	}
 };
 
-export const getGuild = async (guildId: string): Promise<Guild | null> => {
+export const getGuild = async (
+	data: z.infer<typeof getGuildSchema>
+): Promise<Guild | null> => {
 	try {
-		return await client.guilds.fetch(guildId);
+		getGuildSchema.parse(data);
+
+		return await client.guilds.fetch(data.guildId);
 	} catch (error) {
 		console.error(
 			"Error getting Discord guild:",

@@ -1,22 +1,21 @@
+import {
+	createPotluckEventSchema,
+	mapDiscordToPotluckEventSchema,
+} from "./potluck-quest.schema";
+import { z } from "@potluck/validation";
 import config from "~/constants/env-config";
 import { DEFAULT_TIMEZONE } from "~/constants/timezone";
 import api from "~/constants/web-api";
 import { slotsCache } from "~/utilities/cache";
 
-// TODO: zod
-type EventData = {
-	description: string;
-	discordUserId: string;
-	endUtcMs?: number;
-	location: string;
-	startUtcMs?: number;
-	title: string;
-};
-
 const headers = new Headers({ "x-api-key": config.PQ_BOT_TO_WEB_API_KEY });
 
-export const createEvent = async (data: EventData): Promise<string | null> => {
+export const createPotluckEvent = async (
+	data: z.infer<typeof createPotluckEventSchema>
+): Promise<string | null> => {
 	try {
+		createPotluckEventSchema.parse(data);
+
 		const result = await fetch(api.EVENT, {
 			headers,
 			method: "POST",
@@ -43,16 +42,12 @@ export const createEvent = async (data: EventData): Promise<string | null> => {
 	}
 };
 
-type DiscordPotluckEventMapping = {
-	discordGuildId: string;
-	discordEventId: string;
-	potluckEventCode: string;
-};
-
 export const mapDiscordToPotluckEvent = async (
-	data: DiscordPotluckEventMapping
+	data: z.infer<typeof mapDiscordToPotluckEventSchema>
 ): Promise<boolean> => {
 	try {
+		mapDiscordToPotluckEventSchema.parse(data);
+
 		const result = await fetch(api.MAPPING, {
 			headers,
 			method: "POST",
