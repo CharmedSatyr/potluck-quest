@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, use, useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import PlanEventForm, {
 	PlanEventFormFallback,
 } from "~/components/plan-event-form";
@@ -88,15 +88,11 @@ const ManageEventWizard = ({
 	slotsPromise,
 	userDiscordGuildsPromise,
 }: Props) => {
-	const eventInput = use(eventInputPromise);
-
 	const [suggestedSlots, setSuggestedSlots] = useState<SlotData[]>([]);
 
 	const populateSuggestedSlots = (items: SlotData[]) => {
 		setSuggestedSlots(items);
 	};
-
-	const { title, startDate, startTime, location } = eventInput;
 
 	return (
 		<>
@@ -108,7 +104,7 @@ const ManageEventWizard = ({
 					<Suspense fallback={<PlanEventFormFallback />}>
 						<PlanEventForm
 							code={code}
-							eventInput={eventInput}
+							eventInputPromise={eventInputPromise}
 							loggedIn={loggedIn}
 							mode={mode}
 						/>
@@ -122,9 +118,9 @@ const ManageEventWizard = ({
 					<h1 className="text-primary-gradient">Plan the Food</h1>
 
 					<Suspense>
-						{loggedIn && title && startDate && startTime && location ? (
+						{loggedIn ? (
 							<Suggestions
-								eventInput={eventInput}
+								eventInputPromise={eventInputPromise}
 								populate={populateSuggestedSlots}
 							/>
 						) : (
@@ -144,7 +140,7 @@ const ManageEventWizard = ({
 						<PlanFoodForm
 							code={code}
 							committedUsersBySlotPromise={committedUsersBySlotPromise}
-							eventInput={eventInput}
+							eventInputPromise={eventInputPromise}
 							mode={mode}
 							slotsPromise={slotsPromise}
 							suggestedSlots={suggestedSlots}

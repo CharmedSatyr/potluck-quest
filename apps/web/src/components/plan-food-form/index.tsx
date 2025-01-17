@@ -3,6 +3,7 @@
 import Form from "next/form";
 import { use, useCallback, useEffect, useMemo, useState } from "react";
 import deleteSlot from "~/actions/slot/delete-slot";
+import { Step } from "~/components/manage-event-wizard";
 import SlotInput from "~/components/plan-food-form/slot-input";
 import { MAX_SLOTS } from "~/constants/max-slots";
 import { schema as slotSchema } from "~/validation/slot.schema";
@@ -10,7 +11,7 @@ import { schema as slotSchema } from "~/validation/slot.schema";
 type Props = {
 	code: string | null;
 	committedUsersBySlotPromise: Promise<Map<string, React.JSX.Element>>;
-	eventInput: EventInput;
+	eventInputPromise: Promise<EventInput>;
 	mode: WizardMode;
 	slotsPromise: Promise<SlotData[]>;
 	suggestedSlots: SlotData[];
@@ -19,11 +20,12 @@ type Props = {
 const PlanFoodForm = ({
 	code,
 	committedUsersBySlotPromise,
-	eventInput,
+	eventInputPromise,
 	mode,
 	slotsPromise,
 	suggestedSlots,
 }: Props) => {
+	const eventInput = use(eventInputPromise);
 	const prevSlots = use(slotsPromise);
 	const committedUsersBySlot = use(committedUsersBySlotPromise);
 
@@ -105,7 +107,7 @@ const PlanFoodForm = ({
 
 	const determineAction = () => {
 		if (mode === "create") {
-			return "/plan/confirm";
+			return `/plan#${Step.SELECT_SERVER}`;
 		}
 
 		if (mode === "edit") {
