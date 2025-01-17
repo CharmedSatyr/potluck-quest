@@ -90,6 +90,12 @@ importers:
       '@next/env':
         specifier: ^15.1.4
         version: 15.1.4
+      '@potluck/constants':
+        specifier: workspace:*
+        version: link:../../packages/constants
+      '@potluck/validation':
+        specifier: workspace:*
+        version: link:../../packages/validation
       '@types/luxon':
         specifier: ^3.4.2
         version: 3.4.2
@@ -185,6 +191,8 @@ importers:
         specifier: ^5.7.2
         version: 5.7.3
 
+  packages/constants: {}
+
   packages/eslint-config:
     devDependencies:
       '@eslint/js':
@@ -241,6 +249,22 @@ importers:
       typescript:
         specifier: ^5.7.2
         version: 5.7.3
+
+  packages/validation:
+    dependencies:
+      '@potluck/constants':
+        specifier: workspace:*
+        version: link:../constants
+      luxon:
+        specifier: ^3.5.0
+        version: 3.5.0
+      zod:
+        specifier: ^3.24.1
+        version: 3.24.1
+    devDependencies:
+      '@potluck/prettier-config':
+        specifier: workspace:*
+        version: link:../prettier-config
 
 packages:
 

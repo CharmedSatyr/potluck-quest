@@ -1,11 +1,11 @@
+import { description } from "@potluck/validation";
+import { userId } from "@potluck/validation";
+import { location } from "@potluck/validation";
+import { title } from "@potluck/validation";
+import { startUtcMs } from "@potluck/validation";
+import { endUtcMs } from "@potluck/validation";
+import { hosts } from "@potluck/validation";
 import { z } from "zod";
-import { description } from "~/validation/description.schema";
-import { endUtcMs } from "~/validation/endUtcMs.schema";
-import { hosts } from "~/validation/hosts.schema";
-import { location } from "~/validation/location.schema";
-import { startUtcMs } from "~/validation/startUtcMs.schema";
-import { title } from "~/validation/title.schema";
-import { userId } from "~/validation/userId";
 
 export const schema = z
 	.strictObject({

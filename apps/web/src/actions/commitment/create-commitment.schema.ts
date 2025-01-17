@@ -1,6 +1,6 @@
+import { description } from "@potluck/validation";
+import { userId } from "@potluck/validation";
 import { z } from "zod";
-import { description } from "~/validation/description.schema";
-import { userId } from "~/validation/userId";
 
 export const schema = z
 	.strictObject({

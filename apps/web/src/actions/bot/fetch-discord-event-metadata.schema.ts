@@ -1,6 +1,6 @@
+import { code } from "@potluck/validation";
+import { userId } from "@potluck/validation";
 import { z } from "zod";
-import { code } from "~/validation/code.schema";
-import { userId } from "~/validation/userId";
 
 export const schema = z
 	.strictObject({

@@ -1,0 +1,13 @@
+{
+    "name": "@potluck/constants",
+    "version": "0.0.0",
+    "type": "module",
+    "private": true,
+    "engines": {
+      "node": "^22",
+      "pnpm": "^9"
+    },
+    "exports": {
+      ".": "./index.js"
+    }
+  }

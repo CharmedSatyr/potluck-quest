@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const suggestionsSchema = z.strictObject({
+export const suggestions = z.strictObject({
 	advice: z.string().trim().max(300).describe(`
 			A helpful, unformatted message indicating an approach to meal planning
 			for this event given the particular event details, and themed for Potluck Quest.

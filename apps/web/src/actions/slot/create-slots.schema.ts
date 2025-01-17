@@ -1,11 +1,11 @@
+import { code } from "@potluck/validation";
+import { slot } from "@potluck/validation";
 import { z } from "zod";
-import { code } from "~/validation/code.schema";
-import { schema as slotSchema } from "~/validation/slot.schema";
 
 export const schema = z
 	.strictObject({
 		code,
-		slots: z.array(slotSchema).nonempty(),
+		slots: z.array(slot).nonempty(),
 	})
 	.required() satisfies z.ZodType<{
 	code: PotluckEvent["code"];

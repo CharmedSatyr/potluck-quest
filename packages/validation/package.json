@@ -1,0 +1,24 @@
+{
+	"name": "@potluck/validation",
+	"version": "0.0.0",
+	"type": "module",
+	"private": true,
+	"engines": {
+		"node": "^22",
+		"pnpm": "^9"
+	},
+	"exports": {
+		".": "./index.js"
+	},
+	"scripts": {
+		"prettier": "npx prettier --write ."
+	},
+	"dependencies": {
+		"@potluck/constants": "workspace:*",
+		"luxon": "^3.5.0",
+		"zod": "^3.24.1"
+	},
+	"devDependencies": {
+		"@potluck/prettier-config": "workspace:*"
+	}
+}

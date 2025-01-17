@@ -24,6 +24,8 @@
 		"@heroicons/react": "^2.2.0",
 		"@neondatabase/serverless": "^0.10.4",
 		"@next/env": "^15.1.4",
+		"@potluck/constants": "workspace:*",
+		"@potluck/validation": "workspace:*",
 		"@types/luxon": "^3.4.2",
 		"ai": "^4.0.39",
 		"dotenv": "^16.4.7",

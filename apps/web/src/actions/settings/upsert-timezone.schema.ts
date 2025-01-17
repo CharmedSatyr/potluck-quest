@@ -1,6 +1,6 @@
+import { userId } from "@potluck/validation";
+import { timezone } from "@potluck/validation";
 import { z } from "zod";
-import { timezone } from "~/validation/timezone.schema";
-import { userId } from "~/validation/userId";
 
 export const schema = z
 	.strictObject({

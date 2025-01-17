@@ -1,12 +1,12 @@
 "use client";
 
+import { slot as slotSchema } from "@potluck/validation";
 import Form from "next/form";
 import { use, useCallback, useEffect, useMemo, useState } from "react";
 import deleteSlot from "~/actions/slot/delete-slot";
 import { Step } from "~/components/manage-event-wizard";
 import SlotInput from "~/components/plan-food-form/slot-input";
 import { MAX_SLOTS } from "~/constants/max-slots";
-import { schema as slotSchema } from "~/validation/slot.schema";
 
 type Props = {
 	code: string | null;
