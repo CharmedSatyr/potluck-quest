@@ -43,6 +43,7 @@ const EditEventPage = async ({ params, searchParams }: Props) => {
 						loggedIn={loggedIn}
 						mode="edit"
 						slotsPromise={findSlots({ code })}
+						userDiscordGuildsPromise={Promise.resolve([])} // No switching event to another guild after creation.
 					/>
 				</Suspense>
 			</ErrorBoundary>
