@@ -7,14 +7,12 @@ import { endUtcMs } from "@potluck/validation";
 import { hosts } from "@potluck/validation";
 import { z } from "zod";
 
-export const schema = z
-	.strictObject({
-		createdBy: userId,
-		description,
-		endUtcMs,
-		hosts,
-		location,
-		startUtcMs,
-		title,
-	})
-	.required() satisfies z.ZodType<EventUserValues>;
+export const schema = z.strictObject({
+	createdBy: userId,
+	description,
+	endUtcMs,
+	hosts,
+	location,
+	startUtcMs,
+	title,
+}) satisfies z.ZodType<EventUserValues>;
