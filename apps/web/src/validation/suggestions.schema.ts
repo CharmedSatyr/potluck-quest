@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const suggestionsSchema = z.strictObject({
-	advice: z.string().trim().max(400).describe(`
+	advice: z.string().trim().max(300).describe(`
 			A helpful, unformatted message indicating an approach to meal planning
 			for this event given the particular event details, and themed for Potluck Quest.
 		`),
@@ -10,7 +10,7 @@ export const suggestionsSchema = z.strictObject({
 			z.strictObject({
 				count: z.number().max(999),
 				item: z.string().trim().max(500),
-				order: z.number().positive(),
+				order: z.number().min(1),
 			})
 		)
 		.describe(
