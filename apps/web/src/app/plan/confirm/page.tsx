@@ -20,18 +20,18 @@ const PlanConfirmPage = async ({ searchParams }: Props) => {
 	const session = await auth();
 
 	if (!session?.user?.id) {
-		redirect("/oauth") // Middleware should already guarantee loggedIn
+		redirect("/oauth"); // Middleware should already guarantee loggedIn
 	}
 
 	const eventInput = await buildEventInputFromParams(searchParams);
 	const eventData = eventInputToData(eventInput);
 
-	const eventDataWithCtx = { ...eventData, createdBy: session.user.id }
+	const eventDataWithCtx = { ...eventData, createdBy: session.user.id };
 
-	const params = await searchParams
+	const params = await searchParams;
 	const queryString = "?" + new URLSearchParams(params).toString();
 
-	const guildId = params['guild-option'];
+	const guildId = params["guild-option"];
 	const discordResult = await createDiscordEvent({
 		...eventDataWithCtx,
 		guildId,
