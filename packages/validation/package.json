@@ -21,6 +21,7 @@
 		"zod": "^3.24.1"
 	},
 	"devDependencies": {
+		"@potluck/types": "workspace:*",
 		"@potluck/prettier-config": "workspace:*",
 		"@potluck/typescript-config": "workspace:*",
 		"@types/luxon": "^3.4.2",
