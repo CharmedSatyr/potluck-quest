@@ -1,6 +1,6 @@
 "use client";
 
-import { DESCRIPTION_LENGTH } from "@potluck/shared/constants";
+import { DESCRIPTION_LENGTH } from "@potluck/utilities/constants";
 import Form from "next/form";
 import Link from "next/link";
 import { usePathname } from "next/navigation";

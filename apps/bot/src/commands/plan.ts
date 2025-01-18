@@ -1,4 +1,4 @@
-import { DESCRIPTION_LENGTH } from "@potluck/shared/constants";
+import { DESCRIPTION_LENGTH } from "@potluck/utilities/constants";
 import {
 	ActionRowBuilder,
 	ChatInputCommandInteraction,

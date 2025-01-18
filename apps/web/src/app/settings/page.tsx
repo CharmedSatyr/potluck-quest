@@ -1,4 +1,4 @@
-import { DEFAULT_TIMEZONE } from "@potluck/shared/constants";
+import { DEFAULT_TIMEZONE } from "@potluck/utilities/constants";
 import { Suspense } from "react";
 import findTimezone from "~/actions/settings/find-timezone";
 import { auth } from "~/auth";

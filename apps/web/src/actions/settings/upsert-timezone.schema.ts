@@ -1,5 +1,5 @@
-import { SupportedTimezone } from "@potluck/shared/types";
-import { timezone, userId } from "@potluck/shared/validation";
+import { SupportedTimezone } from "@potluck/utilities/types";
+import { timezone, userId } from "@potluck/utilities/validation";
 import { z } from "zod";
 
 export const schema = z.strictObject({

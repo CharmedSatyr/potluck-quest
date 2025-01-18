@@ -1,8 +1,8 @@
 "use client";
 
-import { DEFAULT_TIMEZONE } from "@potluck/shared/constants";
-import { SupportedTimezones } from "@potluck/shared/types";
-import { timezone, z } from "@potluck/shared/validation";
+import { DEFAULT_TIMEZONE } from "@potluck/utilities/constants";
+import { SupportedTimezones } from "@potluck/utilities/types";
+import { timezone, z } from "@potluck/utilities/validation";
 import { useEffect } from "react";
 import setDefaultTimezoneAction from "~/components/setup-timezone/set-default-timezone-action";
 import useTimezone from "~/hooks/use-timezone";

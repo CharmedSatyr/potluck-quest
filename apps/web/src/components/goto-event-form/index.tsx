@@ -1,7 +1,7 @@
 "use client";
 
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { EVENT_CODE_LENGTH } from "@potluck/shared/constants";
+import { EVENT_CODE_LENGTH } from "@potluck/utilities/constants";
 import { useActionState } from "react";
 import findEventExistsRedirect from "~/components/goto-event-form/find-event-exists-redirect";
 import LoadingIndicator from "~/components/loading-indicator";

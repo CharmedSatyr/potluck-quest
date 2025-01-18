@@ -1,7 +1,7 @@
 "use server";
 
 import { openai } from "@ai-sdk/openai";
-import { suggestions } from "@potluck/shared/validation";
+import { suggestions } from "@potluck/utilities/validation";
 import { streamObject } from "ai";
 import { createStreamableValue } from "ai/rsc";
 import { auth } from "~/auth";

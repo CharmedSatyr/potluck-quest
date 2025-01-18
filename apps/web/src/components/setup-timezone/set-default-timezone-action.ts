@@ -1,6 +1,6 @@
 "use server";
 
-import { SupportedTimezone } from "@potluck/shared/types";
+import { SupportedTimezone } from "@potluck/utilities/types";
 import upsertTimezone from "~/actions/settings/upsert-timezone";
 import { auth } from "~/auth";
 

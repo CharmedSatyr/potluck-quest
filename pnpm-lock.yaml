@@ -14,9 +14,9 @@ importers:
 
   apps/bot:
     dependencies:
-      '@potluck/shared':
+      '@potluck/utilities':
         specifier: workspace:*
-        version: link:../../packages/shared
+        version: link:../../packages/utilities
       chrono-node:
         specifier: ^2.7.7
         version: 2.7.7
@@ -87,9 +87,9 @@ importers:
       '@next/env':
         specifier: ^15.1.4
         version: 15.1.4
-      '@potluck/shared':
+      '@potluck/utilities':
         specifier: workspace:*
-        version: link:../../packages/shared
+        version: link:../../packages/utilities
       '@types/luxon':
         specifier: ^3.4.2
         version: 3.4.2
@@ -227,7 +227,7 @@ importers:
         specifier: ^8.19.1
         version: 8.19.1(eslint@9.17.0(jiti@1.21.7))(typescript@5.7.3)
 
-  packages/shared:
+  packages/utilities:
     dependencies:
       luxon:
         specifier: ^3.5.0

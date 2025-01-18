@@ -9,7 +9,7 @@ import {
 	startUtcMs,
 	title,
 	z,
-} from "@potluck/shared/validation";
+} from "@potluck/utilities/validation";
 
 export const createPotluckEventSchema = z.strictObject({
 	description,

@@ -1,4 +1,4 @@
-import { SUPPORTED_TIMEZONES } from "@potluck/shared/constants";
+import { SUPPORTED_TIMEZONES } from "@potluck/utilities/constants";
 import { timestamp, pgTable, uuid, pgEnum } from "drizzle-orm/pg-core";
 import { user } from "~/db/schema/auth/user";
 

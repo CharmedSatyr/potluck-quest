@@ -1,5 +1,5 @@
-import { code } from "@potluck/shared/validation";
-import { slot } from "@potluck/shared/validation";
+import { code } from "@potluck/utilities/validation";
+import { slot } from "@potluck/utilities/validation";
 import { z } from "zod";
 
 export const schema = z.strictObject({

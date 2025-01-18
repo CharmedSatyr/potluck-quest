@@ -1,4 +1,4 @@
-import { discordGuildId } from "@potluck/shared/validation";
+import { discordGuildId } from "@potluck/utilities/validation";
 import { z } from "zod";
 import { schema as createEventSchema } from "~/actions/event/create-event.schema";
 

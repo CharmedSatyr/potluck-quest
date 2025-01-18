@@ -1,10 +1,10 @@
-import { code } from "@potluck/shared/validation";
-import { description } from "@potluck/shared/validation";
-import { location } from "@potluck/shared/validation";
-import { title } from "@potluck/shared/validation";
-import { startUtcMs } from "@potluck/shared/validation";
-import { endUtcMs } from "@potluck/shared/validation";
-import { hosts } from "@potluck/shared/validation";
+import { code } from "@potluck/utilities/validation";
+import { description } from "@potluck/utilities/validation";
+import { location } from "@potluck/utilities/validation";
+import { title } from "@potluck/utilities/validation";
+import { startUtcMs } from "@potluck/utilities/validation";
+import { endUtcMs } from "@potluck/utilities/validation";
+import { hosts } from "@potluck/utilities/validation";
 import { z } from "zod";
 
 const currentDate = new Date();

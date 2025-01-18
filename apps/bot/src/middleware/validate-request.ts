@@ -1,4 +1,4 @@
-import { z } from "@potluck/shared/validation";
+import { z } from "@potluck/utilities/validation";
 import { Request, Response, NextFunction } from "express";
 
 const sendInvalidParamsResponse = (error: z.ZodError, res: Response) => {

@@ -1,6 +1,6 @@
-import { DEFAULT_TIMEZONE } from "@potluck/shared/constants";
-import { SupportedTimezone } from "@potluck/shared/types";
-import { z } from "@potluck/shared/validation";
+import { DEFAULT_TIMEZONE } from "@potluck/utilities/constants";
+import { SupportedTimezone } from "@potluck/utilities/types";
+import { z } from "@potluck/utilities/validation";
 import config from "~/constants/env-config.js";
 import api from "~/constants/web-api.js";
 import {

@@ -1,4 +1,4 @@
-import { EVENT_CODE_LENGTH } from "@potluck/shared/constants";
+import { EVENT_CODE_LENGTH } from "@potluck/utilities/constants";
 import { pgTable, timestamp, uuid, varchar } from "drizzle-orm/pg-core";
 import { event } from "~/db/schema/event";
 

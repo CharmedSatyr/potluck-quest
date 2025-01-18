@@ -1,7 +1,7 @@
 import {
 	DESCRIPTION_LENGTH,
 	EVENT_CODE_LENGTH,
-} from "@potluck/shared/constants";
+} from "@potluck/utilities/constants";
 import {
 	index,
 	pgTable,

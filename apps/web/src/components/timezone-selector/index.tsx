@@ -1,7 +1,7 @@
 "use client";
 
-import { SUPPORTED_TIMEZONES } from "@potluck/shared/constants";
-import { SupportedTimezone } from "@potluck/shared/types";
+import { SUPPORTED_TIMEZONES } from "@potluck/utilities/constants";
+import { SupportedTimezone } from "@potluck/utilities/types";
 import Form from "next/form";
 import { useActionState, useEffect, useRef, useState } from "react";
 import { updateTimezoneAction } from "~/components/timezone-selector/update-timezone-action";

@@ -1,4 +1,4 @@
-import { SupportedTimezone } from "@potluck/shared/types";
+import { SupportedTimezone } from "@potluck/utilities/types";
 import * as chrono from "chrono-node";
 import { DateTime } from "luxon";
 

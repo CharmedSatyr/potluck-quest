@@ -1,4 +1,8 @@
-import { discordGuildId, discordUserId, z } from "@potluck/shared/validation";
+import {
+	discordGuildId,
+	discordUserId,
+	z,
+} from "@potluck/utilities/validation";
 import { createDiscordEventSchema } from "~/services/discord.schema.js";
 
 export const postEventSchema = createDiscordEventSchema;
