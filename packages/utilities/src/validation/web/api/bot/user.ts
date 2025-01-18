@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { discordUserId } from "~/validation/discord-user-id.js";
+import { discordUserId } from "~/validation/common/discord-user-id.js";
 
 export const getSchema = z.strictObject({
 	providerAccountId: discordUserId,

@@ -1,11 +1,11 @@
 import { z } from "zod";
-import { code } from "~/validation/code.js";
-import { description } from "~/validation/description.js";
-import { discordUserId } from "~/validation/discord-user-id.js";
-import { endUtcMs } from "~/validation/end-utc-ms.js";
-import { location } from "~/validation/location.js";
-import { startUtcMs } from "~/validation/start-utc-ms.js";
-import { title } from "~/validation/title.js";
+import { code } from "~/validation/common/code.js";
+import { description } from "~/validation/common/description.js";
+import { discordUserId } from "~/validation/common/discord-user-id.js";
+import { endUtcMs } from "~/validation/common/end-utc-ms.js";
+import { location } from "~/validation/common/location.js";
+import { startUtcMs } from "~/validation/common/start-utc-ms.js";
+import { title } from "~/validation/common/title.js";
 
 export const postSchema = z.strictObject({
 	description,

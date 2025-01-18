@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { code } from "~/validation/code.js";
+import { code } from "~/validation/common/code.js";
 
 export const getPlanFoodSchema = z.strictObject({
 	code,
