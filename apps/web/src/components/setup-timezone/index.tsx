@@ -1,8 +1,7 @@
 "use client";
 
 import { DEFAULT_TIMEZONE } from "@potluck/utilities/constants";
-import { SupportedTimezones } from "@potluck/utilities/types";
-import { timezone, z } from "@potluck/utilities/validation";
+import { timezone } from "@potluck/utilities/validation";
 import { useEffect } from "react";
 import setDefaultTimezoneAction from "~/components/setup-timezone/set-default-timezone-action";
 import useTimezone from "~/hooks/use-timezone";
@@ -13,9 +12,7 @@ const SetupTimezone = () => {
 
 	useEffect(() => {
 		(async () => {
-			const parsed = (timezone as z.ZodEnum<SupportedTimezones>).safeParse(
-				detectedTimezone
-			);
+			const parsed = timezone.safeParse(detectedTimezone);
 
 			if (!parsed.success) {
 				await setDefaultTimezoneAction(DEFAULT_TIMEZONE);

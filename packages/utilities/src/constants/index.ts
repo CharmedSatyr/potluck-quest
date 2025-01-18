@@ -1,4 +1,7 @@
-import { SupportedTimezone, SupportedTimezones } from "~/types/timezone.js";
+import type {
+	SupportedTimezone,
+	SupportedTimezones,
+} from "~/types/timezone.d.ts";
 
 export const DESCRIPTION_LENGTH = 500;
 export const EVENT_CODE_LENGTH = 5;

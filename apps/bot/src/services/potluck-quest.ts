@@ -1,5 +1,5 @@
 import { DEFAULT_TIMEZONE } from "@potluck/utilities/constants";
-import { SupportedTimezone } from "@potluck/utilities/types";
+import type { SupportedTimezone } from "@potluck/utilities/types";
 import { z } from "@potluck/utilities/validation";
 import config from "~/constants/env-config.js";
 import api from "~/constants/web-api.js";
