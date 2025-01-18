@@ -14,7 +14,6 @@
     "./typescript": "./typescript/tsconfig.json"
   },
   "scripts": {
-    "clean": "rm -rf dist tsconfig.tsbuildinfo || true",
     "prettier": "npx prettier --write ."
   },
   "devDependencies": {
