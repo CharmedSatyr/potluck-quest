@@ -1,3 +1,3 @@
-import config from "@potluck/prettier-config";
+import config from "@potluck/config/prettier";
 
 export default config;

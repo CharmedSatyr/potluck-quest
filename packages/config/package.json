@@ -1,5 +1,5 @@
 {
-  "name": "@potluck/eslint-config",
+  "name": "@potluck/config",
   "version": "0.0.0",
   "type": "module",
   "private": true,
@@ -8,8 +8,14 @@
     "pnpm": "^9"
   },
   "exports": {
-    "./bot": "./bot.mjs",
-    "./web": "./web.mjs"
+    "./eslint/bot": "./eslint/bot.mjs",
+    "./eslint/web": "./eslint/web.mjs",
+    "./prettier": "./prettier/prettier.config.mjs",
+    "./typescript": "./typescript/tsconfig.json"
+  },
+  "scripts": {
+    "clean": "rm -rf dist tsconfig.tsbuildinfo || true",
+    "prettier": "npx prettier --write ."
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
@@ -23,6 +29,9 @@
     "eslint-plugin-turbo": "^2.3.3",
     "globals": "^15.14.0",
     "typescript": "^5.7.2",
-    "typescript-eslint": "^8.19.1"
+    "typescript-eslint": "^8.19.1",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.1",
+    "prettier": "^3.4.2",
+    "prettier-plugin-tailwindcss": "^0.6.9"
   }
 }

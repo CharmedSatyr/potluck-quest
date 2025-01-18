@@ -30,8 +30,7 @@
 		"prettier": "npx prettier --write ."
 	},
 	"devDependencies": {
-		"@potluck/prettier-config": "workspace:*",
-		"@potluck/typescript-config": "workspace:*",
+		"@potluck/config": "workspace:*",
 		"@types/luxon": "^3.4.2",
 		"tsc-alias": "^1.8.10",
 		"typescript": "^5.7.2"

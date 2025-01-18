@@ -1,3 +1,3 @@
-import config from "@potluck/eslint-config/bot";
+import config from "@potluck/config/eslint/bot";
 
 export default config;

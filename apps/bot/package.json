@@ -38,9 +38,7 @@
 		"node-cache": "^5.1.2"
 	},
 	"devDependencies": {
-		"@potluck/eslint-config": "workspace:*",
-		"@potluck/prettier-config": "workspace:*",
-		"@potluck/typescript-config": "workspace:*",
+		"@potluck/config": "workspace:*",
 		"@types/express": "^5.0.0",
 		"@types/jest": "^29.5.14",
 		"@types/luxon": "^3.4.2",

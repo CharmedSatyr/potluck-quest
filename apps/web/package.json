@@ -38,9 +38,7 @@
 		"zod": "^3.24.1"
 	},
 	"devDependencies": {
-		"@potluck/eslint-config": "workspace:*",
-		"@potluck/prettier-config": "workspace:*",
-		"@potluck/typescript-config": "workspace:*",
+		"@potluck/config": "workspace:*",
 		"@tailwindcss/typography": "^0.5.16",
 		"@testing-library/dom": "^10.4.0",
 		"@testing-library/jest-dom": "^6.6.3",
