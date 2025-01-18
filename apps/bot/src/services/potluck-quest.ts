@@ -1,21 +1,21 @@
 import { DEFAULT_TIMEZONE } from "@potluck/utilities/constants";
 import type { SupportedTimezone } from "@potluck/utilities/types";
-import { z } from "@potluck/utilities/validation";
+import {
+	webApiPostBotEventSchema,
+	webApiPostBotMappingSchema,
+	z,
+} from "@potluck/utilities/validation";
 import config from "~/constants/env-config.js";
 import api from "~/constants/web-api.js";
-import {
-	createPotluckEventSchema,
-	mapDiscordToPotluckEventSchema,
-} from "~/services/potluck-quest.schema.js";
 import { slotsCache } from "~/utilities/cache.js";
 
 const headers = new Headers({ "x-api-key": config.PQ_BOT_TO_WEB_API_KEY });
 
 export const createPotluckEvent = async (
-	data: z.infer<typeof createPotluckEventSchema>
+	data: z.infer<typeof webApiPostBotEventSchema>
 ): Promise<string | null> => {
 	try {
-		createPotluckEventSchema.parse(data);
+		webApiPostBotEventSchema.parse(data);
 
 		const result = await fetch(api.EVENT, {
 			headers,
@@ -44,10 +44,10 @@ export const createPotluckEvent = async (
 };
 
 export const mapDiscordToPotluckEvent = async (
-	data: z.infer<typeof mapDiscordToPotluckEventSchema>
+	data: z.infer<typeof webApiPostBotMappingSchema>
 ): Promise<boolean> => {
 	try {
-		mapDiscordToPotluckEventSchema.parse(data);
+		webApiPostBotMappingSchema.parse(data);
 
 		const result = await fetch(api.MAPPING, {
 			headers,

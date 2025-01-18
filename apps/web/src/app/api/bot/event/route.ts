@@ -1,7 +1,6 @@
+import { webApiPostBotEventSchema } from "@potluck/utilities/validation";
 import { NextRequest, NextResponse } from "next/server";
-import { z } from "zod";
 import createEvent from "~/actions/event/create-event";
-import { schema as createEventSchema } from "~/actions/event/create-event.schema";
 import deleteEvent from "~/actions/event/delete-event";
 import { schema as deleteEventSchema } from "~/actions/event/delete-event.schema";
 import findEvent from "~/actions/event/find-event";
@@ -12,13 +11,7 @@ import findUserIdByProviderAccountId from "~/actions/user/find-user-id-by-provid
 export const POST = async (request: NextRequest) => {
 	const data = await request.json();
 
-	const schema = createEventSchema
-		.omit({ createdBy: true, hosts: true })
-		.extend({
-			discordUserId: z.string().trim(),
-		});
-
-	const parsed = schema.safeParse(data);
+	const parsed = webApiPostBotEventSchema.safeParse(data);
 
 	if (!parsed.success) {
 		return NextResponse.json(
