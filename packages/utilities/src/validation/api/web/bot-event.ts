@@ -1,13 +1,11 @@
 import { z } from "zod";
-import {
-	code,
-	description,
-	discordUserId,
-	endUtcMs,
-	location,
-	startUtcMs,
-	title,
-} from "~/validation/index.js";
+import { code } from "~/validation/code.js";
+import { description } from "~/validation/description.js";
+import { discordUserId } from "~/validation/discord-user-id.js";
+import { endUtcMs } from "~/validation/end-utc-ms.js";
+import { location } from "~/validation/location.js";
+import { startUtcMs } from "~/validation/start-utc-ms.js";
+import { title } from "~/validation/title.js";
 
 export const webPostBotEventSchema = z.strictObject({
 	description,
