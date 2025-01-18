@@ -13,6 +13,7 @@
 		"clean": "rm -rf dist",
 		"prettier": "npx prettier --write .",
 		"lint": "npx eslint src/**/*.ts --fix ",
+		"type-check": "tsc --noEmit && tsc-alias",
 		"register": "tsc && tsc-alias src/register.ts",
 		"start": "node dist/server.js",
 		"test": "TZ=UTC jest src"

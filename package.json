@@ -16,7 +16,8 @@
     "dev": "turbo run dev",
     "test": "turbo run test",
     "lint": "turbo run lint",
-    "prettier": "turbo run prettier"
+    "prettier": "turbo run prettier",
+    "type-check": "turbo run type-check"
   },
   "devDependencies": {
     "turbo": "^2.3.3"

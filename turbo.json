@@ -19,6 +19,9 @@
 		"lint": {
 			"dependsOn": ["^prettier"]
 		},
+		"type-check": {
+			"dependsOn": ["^build"]
+		},
 		"prettier": {
 			"dependsOn": []
 		}
