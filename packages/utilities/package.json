@@ -23,7 +23,7 @@
 		}
 	},
 	"scripts": {
-		"build": "tsc && tsc-alias && mkdir dist/@types/types; cp src/types/* dist/@types/types",
+		"build": "tsc && tsc-alias && mkdir -p dist/@types/types; cp src/types/* dist/@types/types",
 		"clean": "rm -rf dist tsconfig.tsbuildinfo || true",
 		"prettier": "npx prettier --write .",
 		"type-check": "tsc --noEmit && tsc-alias"
