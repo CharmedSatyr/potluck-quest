@@ -56,15 +56,13 @@ export const getGuild = async (
 	}
 };
 
-type IsGuildMemberParams = {
-	guild: Guild;
-	memberId: string;
-};
-
 export const isGuildMember = async ({
 	guild,
 	memberId,
-}: IsGuildMemberParams): Promise<boolean> => {
+}: {
+	guild: Guild;
+	memberId: string;
+}): Promise<boolean> => {
 	try {
 		const member = await guild.members.fetch(memberId).catch(() => null);
 

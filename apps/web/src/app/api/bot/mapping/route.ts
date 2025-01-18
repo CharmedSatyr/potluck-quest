@@ -1,11 +1,11 @@
-import { webApiPostBotMappingSchema } from "@potluck/utilities/validation";
+import { webPostBotMappingSchema } from "@potluck/utilities/validation";
 import { NextRequest, NextResponse } from "next/server";
 import createDiscordEventMapping from "~/actions/discord-event-mapping/create-discord-event-mapping";
 
 export const POST = async (request: NextRequest) => {
 	const data = await request.json();
 
-	const parsed = webApiPostBotMappingSchema.safeParse(data);
+	const parsed = webPostBotMappingSchema.safeParse(data);
 
 	if (!parsed.success) {
 		return NextResponse.json(

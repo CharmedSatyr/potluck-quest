@@ -1,0 +1,3 @@
+/*
+discordUserId: string;
+*/

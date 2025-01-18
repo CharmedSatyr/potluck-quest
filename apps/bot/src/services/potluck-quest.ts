@@ -1,11 +1,12 @@
 import { DEFAULT_TIMEZONE } from "@potluck/utilities/constants";
 import type { SupportedTimezone } from "@potluck/utilities/types";
 import {
-	webApiDeleteBotEventSchema,
-	webApiPostBotEventSchema,
-	webApiPutBotEventSchema,
-	webApiPostBotMappingSchema,
+	webDeleteBotEventSchema,
+	webPostBotEventSchema,
+	webPutBotEventSchema,
+	webPostBotMappingSchema,
 	z,
+	webGetBotUser,
 } from "@potluck/utilities/validation";
 import config from "~/constants/env-config.js";
 import api from "~/constants/web-api.js";
@@ -14,10 +15,10 @@ import { slotsCache } from "~/utilities/cache.js";
 const headers = new Headers({ "x-api-key": config.PQ_BOT_TO_WEB_API_KEY });
 
 export const createPotluckEvent = async (
-	data: z.infer<typeof webApiPostBotEventSchema>
+	data: z.infer<typeof webPostBotEventSchema>
 ): Promise<string | null> => {
 	try {
-		webApiPostBotEventSchema.parse(data);
+		webPostBotEventSchema.parse(data);
 
 		const result = await fetch(api.EVENT, {
 			headers,
@@ -46,10 +47,10 @@ export const createPotluckEvent = async (
 };
 
 export const mapDiscordToPotluckEvent = async (
-	data: z.infer<typeof webApiPostBotMappingSchema>
+	data: z.infer<typeof webPostBotMappingSchema>
 ): Promise<boolean> => {
 	try {
-		webApiPostBotMappingSchema.parse(data);
+		webPostBotMappingSchema.parse(data);
 
 		const result = await fetch(api.MAPPING, {
 			headers,
@@ -66,10 +67,10 @@ export const mapDiscordToPotluckEvent = async (
 };
 
 export const updateEvent = async (
-	data: z.infer<typeof webApiPutBotEventSchema>
+	data: z.infer<typeof webPutBotEventSchema>
 ): Promise<boolean> => {
 	try {
-		webApiPutBotEventSchema.parse(data);
+		webPutBotEventSchema.parse(data);
 
 		const result = await fetch(api.EVENT, {
 			headers,
@@ -90,10 +91,10 @@ export const updateEvent = async (
 };
 
 export const deleteEvent = async (
-	data: z.infer<typeof webApiDeleteBotEventSchema>
+	data: z.infer<typeof webDeleteBotEventSchema>
 ): Promise<boolean> => {
 	try {
-		webApiDeleteBotEventSchema.parse(data);
+		webDeleteBotEventSchema.parse(data);
 
 		const result = await fetch(api.EVENT, {
 			headers,
@@ -163,21 +164,27 @@ export const createCommitment = async (data: SlotData) => {
 };
 
 export const checkAccountExists = async (
-	discordUserId: string
+	data: z.infer<typeof webGetBotUser>
 ): Promise<boolean> => {
 	try {
-		const params = new URLSearchParams({ providerAccountId: discordUserId });
+		webGetBotUser.parse(data);
 
-		const result = await fetch(api.USER + "?" + params.toString(), { headers });
+		const params = new URLSearchParams({
+			providerAccountId: data.providerAccountId,
+		});
 
-		if (!result.ok) {
-			console.error("Failed account exists check", result.status);
+		const response = await fetch(api.USER + "?" + params.toString(), {
+			headers,
+		});
+
+		if (!response.ok) {
+			console.error("Failed account exists check", response.status);
 			return false;
 		}
 
-		const data: { exists: boolean } = await result.json();
+		const result: { exists: boolean } = await response.json();
 
-		return data.exists;
+		return result.exists;
 	} catch (err) {
 		console.error(
 			"Error checking account exists:",

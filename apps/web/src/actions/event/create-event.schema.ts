@@ -1,11 +1,13 @@
-import { description } from "@potluck/utilities/validation";
-import { userId } from "@potluck/utilities/validation";
-import { location } from "@potluck/utilities/validation";
-import { title } from "@potluck/utilities/validation";
-import { startUtcMs } from "@potluck/utilities/validation";
-import { endUtcMs } from "@potluck/utilities/validation";
-import { hosts } from "@potluck/utilities/validation";
-import { z } from "zod";
+import {
+	description,
+	userId,
+	location,
+	title,
+	startUtcMs,
+	endUtcMs,
+	hosts,
+	z,
+} from "@potluck/utilities/validation";
 
 export const schema = z.strictObject({
 	createdBy: userId,

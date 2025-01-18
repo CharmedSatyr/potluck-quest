@@ -1,10 +1,11 @@
+import { webPutBotEventSchema, z } from "@potluck/utilities/validation";
 import {
 	Events,
 	GuildScheduledEvent,
 	GuildScheduledEventStatus,
 	PartialGuildScheduledEvent,
 } from "discord.js";
-import { updateEvent, UpdateEventData } from "~/services/potluck-quest.js";
+import { updateEvent } from "~/services/potluck-quest.js";
 import { removeBlurbTruncateAndGetCode } from "~/utilities/description-blurb.js";
 
 export const data = { eventName: Events.GuildScheduledEventUpdate };
@@ -31,7 +32,7 @@ export const execute = async (
 		return;
 	}
 
-	const update: UpdateEventData = {
+	const update: z.infer<typeof webPutBotEventSchema> = {
 		code,
 	};
 

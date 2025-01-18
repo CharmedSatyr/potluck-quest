@@ -1,7 +1,7 @@
 import {
-	webApiDeleteBotEventSchema,
-	webApiPostBotEventSchema,
-	webApiPutBotEventSchema,
+	webDeleteBotEventSchema,
+	webPostBotEventSchema,
+	webPutBotEventSchema,
 } from "@potluck/utilities/validation";
 import { NextRequest, NextResponse } from "next/server";
 import createEvent from "~/actions/event/create-event";
@@ -12,7 +12,7 @@ import findUserIdByProviderAccountId from "~/actions/user/find-user-id-by-provid
 export const POST = async (request: NextRequest) => {
 	const data = await request.json();
 
-	const parsed = webApiPostBotEventSchema.safeParse(data);
+	const parsed = webPostBotEventSchema.safeParse(data);
 
 	if (!parsed.success) {
 		return NextResponse.json(
@@ -75,7 +75,7 @@ export const POST = async (request: NextRequest) => {
 export const PUT = async (request: NextRequest) => {
 	const data = await request.json();
 
-	const parsed = webApiPutBotEventSchema.safeParse(data);
+	const parsed = webPutBotEventSchema.safeParse(data);
 
 	if (!parsed.success) {
 		return NextResponse.json(
@@ -110,7 +110,7 @@ export const PUT = async (request: NextRequest) => {
 export const DELETE = async (request: NextRequest) => {
 	const data = await request.json();
 
-	const parsed = webApiDeleteBotEventSchema.safeParse(data);
+	const parsed = webDeleteBotEventSchema.safeParse(data);
 
 	if (!parsed.success) {
 		return NextResponse.json(

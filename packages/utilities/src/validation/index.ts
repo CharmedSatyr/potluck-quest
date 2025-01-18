@@ -1,4 +1,11 @@
 import { z } from "zod";
+import {
+	webDeleteBotEventSchema,
+	webPostBotEventSchema,
+	webPutBotEventSchema,
+} from "~/validation/api/web/bot-event.js";
+import { webPostBotMappingSchema } from "~/validation/api/web/bot-mapping.js";
+import { webGetBotUser } from "~/validation/api/web/bot-user.js";
 import { code } from "~/validation/code.js";
 import { description } from "~/validation/description.js";
 import { discordEventId } from "~/validation/discord-event-id.js";
@@ -33,5 +40,10 @@ export {
 	timezone,
 	title,
 	userId,
+	webDeleteBotEventSchema,
+	webGetBotUser,
+	webPostBotEventSchema,
+	webPutBotEventSchema,
+	webPostBotMappingSchema,
 	z,
 };

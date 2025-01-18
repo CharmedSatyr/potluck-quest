@@ -9,7 +9,7 @@ import {
 	title,
 } from "~/validation/index.js";
 
-export const webApiPostBotEventSchema = z.strictObject({
+export const webPostBotEventSchema = z.strictObject({
 	description,
 	discordUserId,
 	endUtcMs,
@@ -18,7 +18,7 @@ export const webApiPostBotEventSchema = z.strictObject({
 	title,
 });
 
-export const webApiPutBotEventSchema = z.strictObject({
+export const webPutBotEventSchema = z.strictObject({
 	code,
 	description: description.optional(),
 	endUtcMs: endUtcMs.optional(),
@@ -27,4 +27,4 @@ export const webApiPutBotEventSchema = z.strictObject({
 	title: title.optional(),
 });
 
-export const webApiDeleteBotEventSchema = z.strictObject({ code });
+export const webDeleteBotEventSchema = z.strictObject({ code });

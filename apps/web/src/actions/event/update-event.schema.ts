@@ -7,10 +7,6 @@ import { endUtcMs } from "@potluck/utilities/validation";
 import { hosts } from "@potluck/utilities/validation";
 import { z } from "zod";
 
-const currentDate = new Date();
-const futureDate = new Date(currentDate);
-futureDate.setFullYear(futureDate.getFullYear() + 1);
-
 export const schema = z
 	.strictObject({
 		code,
