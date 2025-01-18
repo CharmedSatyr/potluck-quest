@@ -1,5 +1,6 @@
 "use client";
 
+import { DESCRIPTION_LENGTH } from "@potluck/shared/constants";
 import Form from "next/form";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -8,7 +9,6 @@ import { DiscordIcon } from "~/components/icons/discord";
 import LoadingIndicator from "~/components/loading-indicator";
 import { Step } from "~/components/manage-event-wizard";
 import { loginAction } from "~/components/plan-event-form/login-action";
-import { DESCRIPTION_LENGTH } from "~/constants/description-length";
 import useTimezone from "~/hooks/use-timezone";
 import { oneYearFromToday, today } from "~/utilities/date";
 import enterToNextRef from "~/utilities/enter-to-next-ref";

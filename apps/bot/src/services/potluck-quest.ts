@@ -1,6 +1,7 @@
+import { DEFAULT_TIMEZONE } from "@potluck/shared/constants";
+import { SupportedTimezone } from "@potluck/shared/types";
 import { z } from "@potluck/shared/validation";
 import config from "~/constants/env-config.js";
-import { DEFAULT_TIMEZONE } from "~/constants/timezone.js";
 import api from "~/constants/web-api.js";
 import {
 	createPotluckEventSchema,

@@ -1,5 +1,6 @@
 "use server";
 
+import { SupportedTimezone, SupportedTimezones } from "@potluck/shared/types";
 import { timezone, z } from "@potluck/shared/validation";
 import { revalidatePath } from "next/cache";
 import upsertTimezone from "~/actions/settings/upsert-timezone";

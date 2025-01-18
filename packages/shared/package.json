@@ -26,7 +26,7 @@
 	},
 	"scripts": {
 		"build": "tsc && tsc-alias",
-		"clean": "rm -rf dist",
+		"clean": "rm -rf dist tsconfig.tsbuildinfo || true",
 		"prettier": "npx prettier --write ."
 	},
 	"devDependencies": {

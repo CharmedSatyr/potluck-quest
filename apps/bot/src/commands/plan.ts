@@ -1,3 +1,4 @@
+import { DESCRIPTION_LENGTH } from "@potluck/shared/constants";
 import {
 	ActionRowBuilder,
 	ChatInputCommandInteraction,
@@ -8,7 +9,6 @@ import {
 	TextInputStyle,
 } from "discord.js";
 import { CustomId } from "~/constants/custom-id.js";
-import { DESCRIPTION_LENGTH } from "~/constants/description.js";
 import { getUserTimezone } from "~/services/potluck-quest.js";
 import { getTimezoneOffsetName } from "~/utilities/date-time.js";
 import getRandomPlaceholder from "~/utilities/get-random-placeholder.js";
