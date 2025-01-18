@@ -1,7 +1,9 @@
 import { DEFAULT_TIMEZONE } from "@potluck/utilities/constants";
 import type { SupportedTimezone } from "@potluck/utilities/types";
 import {
+	webApiDeleteBotEventSchema,
 	webApiPostBotEventSchema,
+	webApiPutBotEventSchema,
 	webApiPostBotMappingSchema,
 	z,
 } from "@potluck/utilities/validation";
@@ -63,17 +65,12 @@ export const mapDiscordToPotluckEvent = async (
 	}
 };
 
-export type UpdateEventData = {
-	code: string;
-	description?: string;
-	endUtcMs?: number;
-	location?: string;
-	startUtcMs?: number;
-	title?: string;
-};
-
-export const updateEvent = async (data: UpdateEventData): Promise<boolean> => {
+export const updateEvent = async (
+	data: z.infer<typeof webApiPutBotEventSchema>
+): Promise<boolean> => {
 	try {
+		webApiPutBotEventSchema.parse(data);
+
 		const result = await fetch(api.EVENT, {
 			headers,
 			method: "PUT",
@@ -92,12 +89,12 @@ export const updateEvent = async (data: UpdateEventData): Promise<boolean> => {
 	}
 };
 
-export type DeleteEventData = {
-	code: string;
-};
-
-export const deleteEvent = async (data: DeleteEventData): Promise<boolean> => {
+export const deleteEvent = async (
+	data: z.infer<typeof webApiDeleteBotEventSchema>
+): Promise<boolean> => {
 	try {
+		webApiDeleteBotEventSchema.parse(data);
+
 		const result = await fetch(api.EVENT, {
 			headers,
 			method: "DELETE",
