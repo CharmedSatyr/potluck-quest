@@ -1,13 +1,6 @@
 import { DEFAULT_TIMEZONE } from "@potluck/utilities/constants";
 import type { SupportedTimezone } from "@potluck/utilities/types";
-import { apiWebBot } from "@potluck/utilities/validation";
-import {
-	webDeleteBotEventSchema,
-	webPostBotEventSchema,
-	webPutBotEventSchema,
-	z,
-	webGetBotUser,
-} from "@potluck/utilities/validation";
+import { webApiBot, z } from "@potluck/utilities/validation";
 import config from "~/constants/env-config.js";
 import api from "~/constants/web-api.js";
 import { slotsCache } from "~/utilities/cache.js";
@@ -15,10 +8,10 @@ import { slotsCache } from "~/utilities/cache.js";
 const headers = new Headers({ "x-api-key": config.PQ_BOT_TO_WEB_API_KEY });
 
 export const createPotluckEvent = async (
-	data: z.infer<typeof webPostBotEventSchema>
+	data: z.infer<typeof webApiBot.event.postSchema>
 ): Promise<string | null> => {
 	try {
-		webPostBotEventSchema.parse(data);
+		webApiBot.event.postSchema.parse(data);
 
 		const result = await fetch(api.EVENT, {
 			headers,
@@ -47,10 +40,10 @@ export const createPotluckEvent = async (
 };
 
 export const mapDiscordToPotluckEvent = async (
-	data: z.infer<typeof apiWebBot.mapping.postSchema>
+	data: z.infer<typeof webApiBot.mapping.postSchema>
 ): Promise<boolean> => {
 	try {
-		apiWebBot.mapping.postSchema.parse(data);
+		webApiBot.mapping.postSchema.parse(data);
 
 		const result = await fetch(api.MAPPING, {
 			headers,
@@ -67,10 +60,10 @@ export const mapDiscordToPotluckEvent = async (
 };
 
 export const updateEvent = async (
-	data: z.infer<typeof webPutBotEventSchema>
+	data: z.infer<typeof webApiBot.event.putSchema>
 ): Promise<boolean> => {
 	try {
-		webPutBotEventSchema.parse(data);
+		webApiBot.event.putSchema.parse(data);
 
 		const result = await fetch(api.EVENT, {
 			headers,
@@ -91,10 +84,10 @@ export const updateEvent = async (
 };
 
 export const deleteEvent = async (
-	data: z.infer<typeof webDeleteBotEventSchema>
+	data: z.infer<typeof webApiBot.event.deleteSchema>
 ): Promise<boolean> => {
 	try {
-		webDeleteBotEventSchema.parse(data);
+		webApiBot.event.deleteSchema.parse(data);
 
 		const result = await fetch(api.EVENT, {
 			headers,
@@ -164,10 +157,10 @@ export const createCommitment = async (data: SlotData) => {
 };
 
 export const checkAccountExists = async (
-	data: z.infer<typeof webGetBotUser>
+	data: z.infer<typeof webApiBot.user.getSchema>
 ): Promise<boolean> => {
 	try {
-		webGetBotUser.parse(data);
+		webApiBot.user.getSchema.parse(data);
 
 		const params = new URLSearchParams({
 			providerAccountId: data.providerAccountId,

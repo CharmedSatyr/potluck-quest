@@ -7,7 +7,7 @@ import { location } from "~/validation/location.js";
 import { startUtcMs } from "~/validation/start-utc-ms.js";
 import { title } from "~/validation/title.js";
 
-export const webPostBotEventSchema = z.strictObject({
+export const postSchema = z.strictObject({
 	description,
 	discordUserId,
 	endUtcMs,
@@ -16,7 +16,7 @@ export const webPostBotEventSchema = z.strictObject({
 	title,
 });
 
-export const webPutBotEventSchema = z.strictObject({
+export const putSchema = z.strictObject({
 	code,
 	description: description.optional(),
 	endUtcMs: endUtcMs.optional(),
@@ -25,4 +25,4 @@ export const webPutBotEventSchema = z.strictObject({
 	title: title.optional(),
 });
 
-export const webDeleteBotEventSchema = z.strictObject({ code });
+export const deleteSchema = z.strictObject({ code });

@@ -1,4 +1,4 @@
-import { webPutBotEventSchema, z } from "@potluck/utilities/validation";
+import { webApiBot, z } from "@potluck/utilities/validation";
 import {
 	Events,
 	GuildScheduledEvent,
@@ -32,7 +32,7 @@ export const execute = async (
 		return;
 	}
 
-	const update: z.infer<typeof webPutBotEventSchema> = {
+	const update: z.infer<typeof webApiBot.event.putSchema> = {
 		code,
 	};
 

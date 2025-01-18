@@ -1,4 +1,4 @@
-import { apiWebBot } from "@potluck/utilities/validation";
+import { webApiBot } from "@potluck/utilities/validation";
 import { NextRequest, NextResponse } from "next/server";
 import { auth, signIn } from "~/auth";
 
@@ -8,7 +8,7 @@ export const GET = async (request: NextRequest) => {
 	const code = searchParams.get("code");
 	const source = searchParams.get("source");
 
-	const parsed = apiWebBot.auth.getPlanFoodSchema.safeParse({ code, source });
+	const parsed = webApiBot.auth.getPlanFoodSchema.safeParse({ code, source });
 
 	if (!parsed.success) {
 		return NextResponse.redirect(origin.concat("/oauth"));
