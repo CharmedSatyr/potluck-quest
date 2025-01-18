@@ -1,10 +1,10 @@
 import { DEFAULT_TIMEZONE } from "@potluck/utilities/constants";
 import type { SupportedTimezone } from "@potluck/utilities/types";
+import { apiWebBot } from "@potluck/utilities/validation";
 import {
 	webDeleteBotEventSchema,
 	webPostBotEventSchema,
 	webPutBotEventSchema,
-	webPostBotMappingSchema,
 	z,
 	webGetBotUser,
 } from "@potluck/utilities/validation";
@@ -47,10 +47,10 @@ export const createPotluckEvent = async (
 };
 
 export const mapDiscordToPotluckEvent = async (
-	data: z.infer<typeof webPostBotMappingSchema>
+	data: z.infer<typeof apiWebBot.mapping.postSchema>
 ): Promise<boolean> => {
 	try {
-		webPostBotMappingSchema.parse(data);
+		apiWebBot.mapping.postSchema.parse(data);
 
 		const result = await fetch(api.MAPPING, {
 			headers,

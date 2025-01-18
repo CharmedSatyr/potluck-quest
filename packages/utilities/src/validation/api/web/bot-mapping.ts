@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { code, discordEventId, discordGuildId } from "~/validation/index.js";
 
-export const webPostBotMappingSchema = z.strictObject({
+export const postSchema = z.strictObject({
 	discordGuildId,
 	discordEventId,
 	potluckEventCode: code,

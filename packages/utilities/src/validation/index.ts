@@ -4,8 +4,8 @@ import {
 	webPostBotEventSchema,
 	webPutBotEventSchema,
 } from "~/validation/api/web/bot-event.js";
-import { webPostBotMappingSchema } from "~/validation/api/web/bot-mapping.js";
 import { webGetBotUser } from "~/validation/api/web/bot-user.js";
+import apiWebBot from "~/validation/api/web/index.js";
 import { code } from "~/validation/code.js";
 import { description } from "~/validation/description.js";
 import { discordEventId } from "~/validation/discord-event-id.js";
@@ -24,6 +24,7 @@ import { title } from "~/validation/title.js";
 import { userId } from "~/validation/user-id.js";
 
 export {
+	apiWebBot,
 	code,
 	description,
 	discordEventId,
@@ -44,6 +45,5 @@ export {
 	webGetBotUser,
 	webPostBotEventSchema,
 	webPutBotEventSchema,
-	webPostBotMappingSchema,
 	z,
 };
