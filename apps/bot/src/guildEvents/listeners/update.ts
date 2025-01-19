@@ -5,7 +5,7 @@ import {
 	PartialGuildScheduledEvent,
 } from "discord.js";
 import { GuildScheduledEventUpdateHandler } from "discord.js-extensions";
-import config from "~/constants/env-config";
+import config from "~/constants/env-config.js";
 
 export const listener = async (
 	oldGuildScheduledEvent:

@@ -1,24 +1,14 @@
+import { webApiBot } from "@potluck/utilities/validation";
 import { NextRequest, NextResponse } from "next/server";
-import { z } from "zod";
 import createEvent from "~/actions/event/create-event";
-import { schema as createEventSchema } from "~/actions/event/create-event.schema";
 import deleteEvent from "~/actions/event/delete-event";
-import { schema as deleteEventSchema } from "~/actions/event/delete-event.schema";
-import findEvent from "~/actions/event/find-event";
 import updateEvent from "~/actions/event/update-event";
-import { schema as updateEventSchema } from "~/actions/event/update-event.schema";
 import findUserIdByProviderAccountId from "~/actions/user/find-user-id-by-provider-account-id";
 
 export const POST = async (request: NextRequest) => {
 	const data = await request.json();
 
-	const schema = createEventSchema
-		.omit({ createdBy: true, hosts: true })
-		.extend({
-			discordUserId: z.string().trim(),
-		});
-
-	const parsed = schema.safeParse(data);
+	const parsed = webApiBot.event.postSchema.safeParse(data);
 
 	if (!parsed.success) {
 		return NextResponse.json(
@@ -81,7 +71,7 @@ export const POST = async (request: NextRequest) => {
 export const PUT = async (request: NextRequest) => {
 	const data = await request.json();
 
-	const parsed = updateEventSchema.safeParse(data);
+	const parsed = webApiBot.event.putSchema.safeParse(data);
 
 	if (!parsed.success) {
 		return NextResponse.json(
@@ -93,17 +83,7 @@ export const PUT = async (request: NextRequest) => {
 		);
 	}
 
-	const { code, description, endUtcMs, location, startUtcMs, title } =
-		parsed.data;
-
-	const [result] = await updateEvent({
-		code,
-		description,
-		endUtcMs,
-		location,
-		startUtcMs,
-		title,
-	});
+	const [result] = await updateEvent(parsed.data);
 
 	if (!result?.code) {
 		return NextResponse.json(
@@ -116,7 +96,7 @@ export const PUT = async (request: NextRequest) => {
 
 	return NextResponse.json(
 		{
-			code,
+			code: parsed.data.code,
 			message: "Event updated",
 		},
 		{ status: 200 }
@@ -126,7 +106,7 @@ export const PUT = async (request: NextRequest) => {
 export const DELETE = async (request: NextRequest) => {
 	const data = await request.json();
 
-	const parsed = deleteEventSchema.safeParse(data);
+	const parsed = webApiBot.event.deleteSchema.safeParse(data);
 
 	if (!parsed.success) {
 		return NextResponse.json(
@@ -140,21 +120,12 @@ export const DELETE = async (request: NextRequest) => {
 
 	const { code } = parsed.data;
 
-	const [event] = await findEvent({ code });
-
-	if (!event) {
-		return NextResponse.json(
-			{ message: `Event with code ${code} does not exist` },
-			{ status: 400 }
-		);
-	}
-
 	const [result] = await deleteEvent({ code });
 
 	if (!result?.id) {
 		return NextResponse.json(
-			{ message: "Failed to delete event" },
-			{ status: 500 }
+			{ message: "Failed to delete event", code },
+			{ status: 400 }
 		);
 	}
 

@@ -1,4 +1,4 @@
-import envConfig from "~/constants/env-config";
+import envConfig from "~/constants/env-config.js";
 
 const webApi = {
 	AUTH_PLAN_FOOD: "/api/bot/auth/plan-food",

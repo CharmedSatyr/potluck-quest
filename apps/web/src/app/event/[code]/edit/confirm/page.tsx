@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
+import updateDiscordEvent from "~/actions/bot/event/update-discord-event";
+import findEvent from "~/actions/event/find-event";
 import updateEvent from "~/actions/event/update-event";
 import upsertSlots from "~/actions/slot/upsert-slots";
 import genPageMetadata from "~/seo";
@@ -7,6 +9,7 @@ import {
 	buildEventInputFromParams,
 	buildSlotDataFromParams,
 } from "~/utilities/build-from-params";
+import { diffEventData } from "~/utilities/diff-objects";
 import { eventInputToData } from "~/utilities/event-input-to-data";
 
 type MetadataProps = {
@@ -33,12 +36,15 @@ const Page = async ({ params, searchParams }: Props) => {
 	const eventInput = await buildEventInputFromParams(searchParams);
 	const eventData = eventInputToData(eventInput);
 
-	if (Object.values(eventData).filter((value) => Boolean(value)).length === 0) {
+	const [originalEventData] = await findEvent({ code });
+	const diff = diffEventData(originalEventData, eventData);
+
+	if (Object.keys(diff).length === 0) {
 		redirect(`/event/${code}`);
 	}
 
 	const [result] = await updateEvent({
-		...eventData,
+		...diff,
 		code,
 	});
 
@@ -46,6 +52,8 @@ const Page = async ({ params, searchParams }: Props) => {
 		// TODO: Add some error messaging via toast
 		redirect(`/event/${code}`);
 	}
+
+	await updateDiscordEvent(code, { ...diff });
 
 	const slotData = await buildSlotDataFromParams(searchParams);
 

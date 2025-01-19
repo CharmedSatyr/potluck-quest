@@ -1,3 +1,3 @@
-import config from "@potluck/eslint-config/web";
+import config from "@potluck/config/eslint/web";
 
 export default config;

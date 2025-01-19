@@ -1,22 +1,23 @@
+import { z } from "@potluck/utilities/validation";
 import {
 	Guild,
 	GuildScheduledEventEntityType,
 	GuildScheduledEventPrivacyLevel,
 } from "discord.js";
-import client from "~/client";
+import client from "~/client.js";
+import {
+	cancelDiscordEventSchema,
+	createDiscordEventSchema,
+	getGuildSchema,
+	updateDiscordEventSchema,
+} from "~/services/discord.schema.js";
 
-// TODO: zod
-type DiscordEventData = {
-	description: string;
-	endUtcMs: number;
-	guildId: string;
-	location: string;
-	startUtcMs: number;
-	title: string;
-};
-
-export const createEvent = async (data: DiscordEventData) => {
+export const createDiscordEvent = async (
+	data: z.infer<typeof createDiscordEventSchema>
+) => {
 	try {
+		createDiscordEventSchema.parse(data);
+
 		const guild = await client.guilds.fetch(data.guildId);
 
 		const event = await guild.scheduledEvents.create({
@@ -34,18 +35,88 @@ export const createEvent = async (data: DiscordEventData) => {
 
 		return event;
 	} catch (error) {
-		console.error(
-			"Error creating Discord event:",
-			JSON.stringify(error, null, 2)
-		);
+		console.error("Error creating Discord event:", error);
 
 		return null;
 	}
 };
 
-export const getGuild = async (guildId: string): Promise<Guild | null> => {
+export const updateDiscordEvent = async (
+	data: z.infer<typeof updateDiscordEventSchema>
+) => {
 	try {
-		return await client.guilds.fetch(guildId);
+		updateDiscordEventSchema.parse(data);
+
+		const guild = await client.guilds.fetch(data.guildId);
+
+		const options: Partial<{
+			name: string;
+			description: string;
+			scheduledStartTime: Date;
+			scheduledEndTime: Date;
+			entityMetadata: { location: string };
+		}> = {};
+
+		if (data.title) {
+			options.name = data.title;
+		}
+
+		if (data.description) {
+			options.description = data.description;
+		}
+
+		if (data.startUtcMs) {
+			options.scheduledStartTime = new Date(data.startUtcMs);
+		}
+
+		if (data.endUtcMs) {
+			options.scheduledEndTime = new Date(data.endUtcMs);
+		}
+
+		if (data.location) {
+			options.entityMetadata = { location: data.location };
+		}
+
+		const event = await guild.scheduledEvents.edit(data.eventId, options);
+
+		return event;
+	} catch (error) {
+		console.error("Error creating Discord event:", error);
+
+		return null;
+	}
+};
+
+export const cancelDiscordEvent = async (
+	data: z.infer<typeof cancelDiscordEventSchema>
+): Promise<boolean> => {
+	try {
+		cancelDiscordEventSchema.parse(data);
+
+		const guild = await client.guilds.fetch(data.guildId);
+
+		await guild.scheduledEvents.delete(data.eventId);
+
+		return true;
+	} catch (error) {
+		console.error({
+			message: "Error canceling Discord event",
+			error,
+			guildId: data?.guildId,
+			eventId: data?.eventId,
+		});
+
+		return false;
+	}
+};
+
+export const getGuild = async (
+	data: z.infer<typeof getGuildSchema>
+): Promise<Guild | null> => {
+	try {
+		getGuildSchema.parse(data);
+
+		return await client.guilds.fetch(data.guildId);
 	} catch (error) {
 		console.error(
 			"Error getting Discord guild:",
@@ -56,21 +127,20 @@ export const getGuild = async (guildId: string): Promise<Guild | null> => {
 	}
 };
 
-type IsGuildMember = {
-	guild: Guild;
-	memberId: string;
-};
-
 export const isGuildMember = async ({
 	guild,
 	memberId,
-}: IsGuildMember): Promise<boolean> => {
+}: {
+	guild: Guild;
+	memberId: string;
+}): Promise<boolean> => {
 	try {
-		// Throws on invalid input
-		await guild.members.fetch(memberId);
+		const member = await guild.members.fetch(memberId).catch(() => null);
 
-		return true;
-	} catch (_) {
+		return Boolean(member);
+	} catch (error) {
+		console.info("Error looking up guild member:", error);
+
 		return false;
 	}
 };

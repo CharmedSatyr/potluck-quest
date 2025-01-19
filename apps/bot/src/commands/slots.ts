@@ -7,10 +7,10 @@ import {
 	MessageFlags,
 	SlashCommandBuilder,
 } from "discord.js";
-import { CustomId } from "~/constants/custom-id";
-import { DELIMITER } from "~/constants/delimiter";
-import config from "~/constants/env-config";
-import { getSlots } from "~/services/potluck-quest";
+import { CustomId } from "~/constants/custom-id.js";
+import { DELIMITER } from "~/constants/delimiter.js";
+import config from "~/constants/env-config.js";
+import { getSlots } from "~/services/potluck-quest.js";
 
 // TODO: Add cooldowns https://discordjs.guide/additional-features/cooldowns.html#resulting-code
 export const data = new SlashCommandBuilder()
@@ -38,7 +38,7 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 		return;
 	}
 
-	const slots = await getSlots(input);
+	const slots = await getSlots({ code: input });
 
 	if (!slots) {
 		await interaction.reply({

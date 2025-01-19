@@ -1,9 +1,9 @@
 import { MessageFlags, ModalSubmitInteraction } from "discord.js";
-import { CustomId } from "~/constants/custom-id";
-import { DELIMITER } from "~/constants/delimiter";
-import config from "~/constants/env-config";
-import { createCommitment } from "~/services/potluck-quest";
-import { slotsCache } from "~/utilities/cache";
+import { CustomId } from "~/constants/custom-id.js";
+import { DELIMITER } from "~/constants/delimiter.js";
+import config from "~/constants/env-config.js";
+import { createCommitment } from "~/services/potluck-quest.js";
+import { slotsCache } from "~/utilities/cache.js";
 
 export const data = { customId: CustomId.COMMITMENT_DETAILS_MODAL };
 

@@ -1,15 +1,16 @@
 import { MapPinIcon } from "@heroicons/react/24/outline";
-import Image from "next/image";
 import findEvent from "~/actions/event/find-event";
 import findUserByEventCode from "~/actions/user/find-user-by-event-code";
 import CopyLinkButton from "~/components/copy-link-button";
 import DateTimeBlock from "~/components/event-skeleton/date-time-block";
+import GuildIcon from "~/components/guild-icon";
+import UserAvatar from "~/components/user-avatar";
 import WarningAlert from "~/components/warning-alert";
 import eventIsPassed from "~/utilities/event-is-passed";
 
 type Props = {
 	code: string;
-	discordMetadata?: { isMember: boolean; name: string; iconURL: string };
+	discordMetadata?: { isMember: boolean; name: string; iconUrl: string };
 };
 
 export const EventHeader = ({
@@ -46,24 +47,15 @@ const EventSkeleton = async ({ code, discordMetadata }: Props) => {
 				<MapPinIcon className="-m-1 h-6 w-6" /> {location}
 			</p>
 			<p className="flex h-6 items-center gap-2">
-				<Image
-					alt={`${creator.name}'s Avatar`}
-					className="avatar rounded-full border"
-					src={creator.image!}
-					height="20"
-					width="20"
-				/>
+				<UserAvatar name={creator.name} url={creator.image} />
 				Hosted by {hosts || creator.name}{" "}
 				{discordMetadata && (
 					<>
-						in
-						<Image
-							alt={`${discordMetadata.name}'s Icon`}
-							className="avatar rounded-full border"
-							src={discordMetadata.iconURL}
-							height="20"
-							width="20"
-						/>
+						in{" "}
+						<GuildIcon
+							name={discordMetadata.name}
+							url={discordMetadata.iconUrl}
+						/>{" "}
 						{discordMetadata.name}
 					</>
 				)}

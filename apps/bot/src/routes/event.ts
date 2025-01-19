@@ -1,35 +1,105 @@
-import { Router, Request, Response } from "express";
-import { getGuild, isGuildMember } from "~/services/discord";
+import { botApi, z } from "@potluck/utilities/validation";
+import { Router, Response } from "express";
+import validateRequest from "~/middleware/validate-request.js";
+import {
+	cancelDiscordEvent,
+	createDiscordEvent,
+	getGuild,
+	isGuildMember,
+	updateDiscordEvent,
+} from "~/services/discord.js";
 
 const router = Router();
 
-router.get("/metadata", async (req: Request, res: Response): Promise<void> => {
-	const { query } = req;
-	const { discordGuildId, memberId } = query;
+router.post(
+	"/",
+	validateRequest(botApi.event.postSchema),
+	async (
+		req: ValidRequest<z.infer<typeof botApi.event.postSchema>>,
+		res: Response
+	): Promise<void> => {
+		const { body } = req;
 
-	// TODO: zod
-	if (typeof discordGuildId !== "string" || typeof memberId !== "string") {
-		res.status(400);
-		return;
+		const event = await createDiscordEvent(body);
+
+		if (event) {
+			res.status(200).send();
+			return;
+		}
+
+		res.status(500).send();
 	}
+);
 
-	const guild = await getGuild(discordGuildId);
+router.put(
+	"/",
+	validateRequest(botApi.event.putSchema),
+	async (
+		req: ValidRequest<z.infer<typeof botApi.event.putSchema>>,
+		res: Response
+	) => {
+		const { body } = req;
 
-	if (!guild) {
-		res.status(400);
-		return;
+		const result = await updateDiscordEvent(body);
+
+		if (result) {
+			res.status(200).send();
+			return;
+		}
+
+		res.status(500).send();
 	}
+);
 
-	const isMember = await isGuildMember({
-		guild,
-		memberId,
-	});
+router.delete(
+	"/",
+	validateRequest(botApi.event.deleteSchema),
+	async (
+		req: ValidRequest<{}, z.infer<typeof botApi.event.deleteSchema>>,
+		res: Response
+	): Promise<void> => {
+		const { query } = req;
 
-	res.json({
-		isMember,
-		name: guild.name,
-		iconURL: guild.iconURL(),
-	});
-});
+		const result = await cancelDiscordEvent(query);
+
+		if (result) {
+			res.status(200).send();
+			return;
+		}
+
+		res.status(500).send();
+	}
+);
+
+router.get(
+	"/metadata",
+	validateRequest(botApi.event.getMetadataSchema),
+	async (
+		req: ValidRequest<unknown, z.infer<typeof botApi.event.getMetadataSchema>>,
+		res: Response
+	): Promise<void> => {
+		const { discordGuildId, discordUserId } = req.query;
+
+		const guild = await getGuild({ guildId: discordGuildId });
+
+		if (!guild) {
+			res.status(400).send();
+			return;
+		}
+
+		const isMember = await isGuildMember({
+			guild,
+			memberId: discordUserId,
+		});
+
+		res.json({
+			isMember,
+			name: guild.name,
+			iconUrl: guild.iconURL(),
+		});
+
+		res.status(400).send();
+	}
+);
 
 export default router;

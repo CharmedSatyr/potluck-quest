@@ -9,6 +9,8 @@ const createDiscordEventMapping = async (
 	data: z.infer<typeof schema>
 ): Promise<{ id: DiscordEventMapping["id"] }[]> => {
 	try {
+		schema.parse(data);
+
 		const { discordEventId, discordGuildId, potluckEventCode } = data;
 
 		return db

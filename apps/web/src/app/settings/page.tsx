@@ -1,9 +1,9 @@
+import { DEFAULT_TIMEZONE } from "@potluck/utilities/constants";
 import { Suspense } from "react";
 import findTimezone from "~/actions/settings/find-timezone";
 import { auth } from "~/auth";
 import SetupTimezone from "~/components/setup-timezone";
 import TimezoneSelector from "~/components/timezone-selector";
-import { DEFAULT_TIMEZONE } from "~/constants/timezone";
 import genPageMetadata from "~/seo";
 
 export const metadata = genPageMetadata({ title: "Settings" });

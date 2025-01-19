@@ -5,13 +5,13 @@ import {
 	TableCellsIcon,
 } from "@heroicons/react/24/outline";
 import Form from "next/form";
-import Image from "next/image";
 import Link from "next/link";
 import { PropsWithChildren } from "react";
 import signInWithDiscordAndRevalidate from "~/actions/auth/sign-in-with-discord-and-revalidate";
 import signOutAndRevalidate from "~/actions/auth/sign-out-and-revalidate";
 import { auth } from "~/auth";
 import { DiscordIcon } from "~/components/icons/discord";
+import UserAvatar from "~/components/user-avatar";
 import siteMetadata from "~/data/site-metadata";
 
 const LoggedOutContent = () => {
@@ -73,16 +73,7 @@ const LoggedInContent = ({ image, name }: { image: string; name: string }) => {
 				<li>
 					<details className="dropdown dropdown-end">
 						<summary role="button" tabIndex={0}>
-							<div className="w-10 rounded-full border">
-								<Image
-									width={64}
-									height={64}
-									className="m-0 rounded-full p-0"
-									src={image}
-									alt={`${name}'s Avatar`}
-									priority
-								/>
-							</div>
+							<UserAvatar name={name} url={image} height={30} width={30} />
 						</summary>
 						<ul
 							tabIndex={0}

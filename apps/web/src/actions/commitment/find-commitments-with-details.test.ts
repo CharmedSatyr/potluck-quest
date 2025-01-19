@@ -1,6 +1,6 @@
-import { schema } from "./find-commitments-with-details.schema";
 import { z } from "zod";
 import findCommitmentsWithDetails from "~/actions/commitment/find-commitments-with-details";
+import { schema } from "~/actions/commitment/find-commitments-with-details.schema";
 import findEvent from "~/actions/event/find-event";
 import db from "~/db/connection";
 import { user } from "~/db/schema/auth/user";

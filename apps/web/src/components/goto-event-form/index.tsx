@@ -1,11 +1,11 @@
 "use client";
 
-import LoadingIndicator from "../loading-indicator";
-import WarningAlert from "../warning-alert";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { EVENT_CODE_LENGTH } from "@potluck/utilities/constants";
 import { useActionState } from "react";
 import findEventExistsRedirect from "~/components/goto-event-form/find-event-exists-redirect";
-import { EVENT_CODE_LENGTH } from "~/constants/event-code-length";
+import LoadingIndicator from "~/components/loading-indicator";
+import WarningAlert from "~/components/warning-alert";
 
 export type GotoEventFormState = {
 	code: string;

@@ -1,8 +1,6 @@
+import { userId } from "@potluck/utilities/validation";
 import { z } from "zod";
-import { userId } from "~/validation/userId";
 
-export const schema = z
-	.strictObject({
-		id: userId,
-	})
-	.required() satisfies z.ZodType<{ id: User["id"] }>;
+export const schema = z.strictObject({
+	id: userId,
+}) satisfies z.ZodType<{ id: User["id"] }>;

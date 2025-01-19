@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import createDiscordEvent from "~/actions/bot/event/create-discord-event";
 import createEvent from "~/actions/event/create-event";
 import createSlots from "~/actions/slot/create-slots";
 import { auth } from "~/auth";
@@ -18,19 +19,35 @@ type Props = {
 const PlanConfirmPage = async ({ searchParams }: Props) => {
 	const session = await auth();
 
+	if (!session?.user?.id) {
+		redirect("/oauth"); // Middleware should already guarantee loggedIn
+	}
+
 	const eventInput = await buildEventInputFromParams(searchParams);
 	const eventData = eventInputToData(eventInput);
 
-	const [result] = await createEvent({
-		...eventData,
-		createdBy: session!.user!.id!, // Guaranteed by middleware
+	const eventDataWithCtx = { ...eventData, createdBy: session.user.id };
+
+	const params = await searchParams;
+	const queryString = "?" + new URLSearchParams(params).toString();
+
+	const guildId = params["guild-option"];
+	const discordResult = await createDiscordEvent({
+		...eventDataWithCtx,
+		guildId,
 	});
+
+	if (!discordResult) {
+		console.warn("Failed to create Discord event");
+		// TODO: Add some error messaging via toast
+		redirect("/plan".concat(queryString));
+	}
+
+	const [result] = await createEvent(eventDataWithCtx);
 
 	if (!result?.code) {
 		console.warn("No code created for new event:", JSON.stringify(eventData));
 		// TODO: Add some error messaging via toast
-		const params = await searchParams;
-		const queryString = "?" + new URLSearchParams(params).toString();
 		redirect("/plan".concat(queryString));
 	}
 

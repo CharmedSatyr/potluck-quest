@@ -1,8 +1,8 @@
 "use client";
 
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/solid";
-import Image from "next/image";
 import { PropsWithChildren, useState } from "react";
+import UserAvatar from "~/components/user-avatar";
 
 type Props = {
 	item: string;
@@ -20,14 +20,7 @@ const Avatars = ({ users }: { users: Props["users"] }) => {
 	return users.map(({ id, image, name, commitments }) =>
 		image ? (
 			<div key={id} className="indicator">
-				<Image
-					alt={`Avatar for user ${name}`}
-					className="avatar my-0 size-8 rounded-full border"
-					src={image} // TODO: Use a static import
-					height={40}
-					title={`${name} is bringing ${commitments}`}
-					width={40}
-				/>
+				<UserAvatar name={name} url={image} height={40} width={40} />
 				<span className="badge indicator-item badge-primary badge-sm">
 					{commitments}
 				</span>

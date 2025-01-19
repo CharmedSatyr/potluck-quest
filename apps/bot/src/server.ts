@@ -1,6 +1,6 @@
-import app from "~/app";
-import "~/client";
-import envConfig from "~/constants/env-config";
+import app from "~/app.js";
+import "~/client.js";
+import envConfig from "~/constants/env-config.js";
 
 const PORT = envConfig.PORT;
 

@@ -1,5 +1,5 @@
+import { SUPPORTED_TIMEZONES } from "@potluck/utilities/constants";
 import { timestamp, pgTable, uuid, pgEnum } from "drizzle-orm/pg-core";
-import { SUPPORTED_TIMEZONES } from "~/constants/timezone";
 import { user } from "~/db/schema/auth/user";
 
 export const timezoneEnum = pgEnum("timezone", SUPPORTED_TIMEZONES); // Must export to generate enum type

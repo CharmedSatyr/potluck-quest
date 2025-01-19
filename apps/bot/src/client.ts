@@ -1,15 +1,15 @@
 import { Client, GatewayIntentBits, Partials, Events } from "discord.js";
 import "dotenv/config";
-import config from "~/constants/env-config";
-import { listener as eventDeleteListener } from "~/guildEvents/listeners/delete";
-import { listener as eventUpdateListener } from "~/guildEvents/listeners/update";
-import { listener as eventUserAddListener } from "~/guildEvents/listeners/user-add";
-import { listener as eventUserRemoveListener } from "~/guildEvents/listeners/user-remove";
-import { listener as buttonClickListener } from "~/interactions/listeners/button-click";
-import { listener as chatInputCommandListener } from "~/interactions/listeners/chat-input-command";
-import { listener as modalSubmitListener } from "~/interactions/listeners/modal-submit";
-import collectCommands from "~/utilities/collect-commands";
-import collectHandlers from "~/utilities/collect-handlers";
+import config from "~/constants/env-config.js";
+import { listener as eventDeleteListener } from "~/guildEvents/listeners/delete.js";
+import { listener as eventUpdateListener } from "~/guildEvents/listeners/update.js";
+import { listener as eventUserAddListener } from "~/guildEvents/listeners/user-add.js";
+import { listener as eventUserRemoveListener } from "~/guildEvents/listeners/user-remove.js";
+import { listener as buttonClickListener } from "~/interactions/listeners/button-click.js";
+import { listener as chatInputCommandListener } from "~/interactions/listeners/chat-input-command.js";
+import { listener as modalSubmitListener } from "~/interactions/listeners/modal-submit.js";
+import collectCommands from "~/utilities/collect-commands.js";
+import collectHandlers from "~/utilities/collect-handlers.js";
 
 const client = new Client({
 	partials: [Partials.GuildScheduledEvent],

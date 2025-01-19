@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, use, useState } from "react";
 import FailureWarning from "~/components/suggestions/failure-warning";
 import Prompt from "~/components/suggestions/prompt";
 import Results from "~/components/suggestions/results";
@@ -51,16 +51,19 @@ const Suggestions = ({
 };
 
 const SuggestionsContainer = ({
-	eventInput,
+	eventInputPromise,
 	populate,
 }: {
-	eventInput: EventInput;
+	eventInputPromise: Promise<EventInput>;
 	populate: (items: SlotData[]) => void;
 }) => {
+	const eventInput = use(eventInputPromise);
 	const [attendees, setAttendees] = useState<string>("0");
 	const hookReturn = useSlotSuggestions(eventInput, Number(attendees));
 
-	if (!eventInput) {
+	const { title, startDate, startTime, location } = eventInput;
+
+	if (!title || !startDate || !startTime || !location) {
 		return null;
 	}
 

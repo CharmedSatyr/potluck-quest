@@ -2,16 +2,18 @@
 	"name": "potluck-bot",
 	"version": "1.0.0",
 	"description": "",
+	"type": "module",
 	"engines": {
 		"node": "^22",
 		"pnpm": "^9"
 	},
 	"scripts": {
 		"build": "tsc && tsc-alias",
-		"dev": "nodemon src/server.ts",
+		"dev": "nodemon",
 		"clean": "rm -rf dist",
 		"prettier": "npx prettier --write .",
 		"lint": "npx eslint src/**/*.ts --fix ",
+		"type-check": "tsc --noEmit && tsc-alias",
 		"register": "tsc && tsc-alias src/register.ts",
 		"start": "node dist/server.js",
 		"test": "TZ=UTC jest src"
@@ -27,6 +29,7 @@
 	},
 	"homepage": "https://github.com/CharmedSatyr/potluck-bot#readme",
 	"dependencies": {
+		"@potluck/utilities": "workspace:*",
 		"chrono-node": "^2.7.7",
 		"discord-interactions": "^4.1.0",
 		"discord.js": "^14.16.3",
@@ -36,13 +39,11 @@
 		"node-cache": "^5.1.2"
 	},
 	"devDependencies": {
-		"@potluck/eslint-config": "workspace:*",
-		"@potluck/prettier-config": "workspace:*",
-		"@potluck/typescript-config": "workspace:*",
+		"@potluck/config": "workspace:*",
 		"@types/express": "^5.0.0",
 		"@types/jest": "^29.5.14",
 		"@types/luxon": "^3.4.2",
-		"@types/node": "^22.10.6",
+		"@types/node": "^22.10.7",
 		"jest": "^29.7.0",
 		"nodemon": "^3.1.9",
 		"ts-jest": "^29.2.5",

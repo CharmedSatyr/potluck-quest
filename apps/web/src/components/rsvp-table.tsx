@@ -1,7 +1,7 @@
 import { CheckBadgeIcon } from "@heroicons/react/24/outline";
-import Image from "next/image";
 import findRsvpsWithDetails from "~/actions/rsvp/find-rsvps-with-details";
 import findUserByEventCode from "~/actions/user/find-user-by-event-code";
+import UserAvatar from "~/components/user-avatar";
 
 type Props = {
 	code: string;
@@ -61,13 +61,7 @@ const RsvpTable = async ({ code }: Props) => {
 									</label>
 								</th>
 								<td>
-									<Image
-										alt={`${rsvp.user.name}'s avatar`}
-										className="avatar rounded-full border"
-										src={rsvp.user.image!}
-										height="30"
-										width="30"
-									/>{" "}
+									<UserAvatar name={rsvp.user.name} url={rsvp.user.image} />{" "}
 									{rsvp.user.name}
 								</td>
 								<td>{rsvp.message}</td>

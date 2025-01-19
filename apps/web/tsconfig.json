@@ -1,14 +1,14 @@
 {
 	"$schema": "https://json.schemastore.org/tsconfig",
-	"extends": "@potluck/typescript-config/base",
+	"extends": "@potluck/config/typescript",
 	"compilerOptions": {
 		"noEmit": true,
 		"paths": {
 			"~/*": ["./src/*"]
 		},
 		"typeRoots": ["./node_modules/@types", "./src/@types"],
-		"module": "esnext",
-		"moduleResolution": "node",
+		"module": "ESNext",
+		"moduleResolution": "bundler",
 		"plugins": [
 			{
 				"name": "next"

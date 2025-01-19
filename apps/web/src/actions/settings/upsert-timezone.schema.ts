@@ -1,13 +1,10 @@
-import { z } from "zod";
-import { timezone } from "~/validation/timezone.schema";
-import { userId } from "~/validation/userId";
+import type { SupportedTimezone } from "@potluck/utilities/types";
+import { timezone, userId, z } from "@potluck/utilities/validation";
 
-export const schema = z
-	.strictObject({
-		timezone,
-		userId,
-	})
-	.required() satisfies z.ZodType<{
+export const schema = z.strictObject({
+	timezone,
+	userId,
+}) satisfies z.ZodType<{
 	timezone: SupportedTimezone;
 	userId: User["id"];
 }>;

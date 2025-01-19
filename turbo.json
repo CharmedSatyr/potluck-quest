@@ -13,10 +13,14 @@
 			"dependsOn": ["^build", "^test"]
 		},
 		"clean": {
-			"cache": false
+			"cache": false,
+			"dependsOn": []
 		},
 		"lint": {
 			"dependsOn": ["^prettier"]
+		},
+		"type-check": {
+			"dependsOn": ["^build"]
 		},
 		"prettier": {
 			"dependsOn": []

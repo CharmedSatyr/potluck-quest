@@ -1,10 +1,10 @@
 "use client";
 
-import LoadingIndicator from "../loading-indicator";
 import Form from "next/form";
 import { usePathname } from "next/navigation";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
+import LoadingIndicator from "~/components/loading-indicator";
 import { deleteCommitmentAction } from "~/components/slot-manager/submit-actions";
 import { DeleteCommitmentFormState } from "~/components/slot-manager/submit-actions.schema";
 

@@ -1,7 +1,7 @@
-import { schema } from "./upsert-slots.schema";
 import { z, ZodError } from "zod";
 import findEvent from "~/actions/event/find-event";
 import upsertSlots from "~/actions/slot/upsert-slots";
+import { schema } from "~/actions/slot/upsert-slots.schema";
 import db from "~/db/connection";
 import { slot } from "~/db/schema/slot";
 

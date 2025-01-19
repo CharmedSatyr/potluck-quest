@@ -1,10 +1,10 @@
 "use server";
 
 import { openai } from "@ai-sdk/openai";
+import { suggestions } from "@potluck/utilities/validation";
 import { streamObject } from "ai";
 import { createStreamableValue } from "ai/rsc";
 import { auth } from "~/auth";
-import { suggestionsSchema } from "~/validation/suggestions.schema";
 
 export const generateSlotSuggestions = async (
 	eventInput: EventInput,
@@ -56,7 +56,7 @@ export const generateSlotSuggestions = async (
 			model: openai("gpt-4o-mini"),
 			system,
 			prompt,
-			schema: suggestionsSchema,
+			schema: suggestions,
 		});
 
 		for await (const partialObject of partialObjectStream) {

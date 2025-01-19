@@ -1,5 +1,5 @@
+import { EVENT_CODE_LENGTH } from "@potluck/utilities/constants";
 import { pgTable, timestamp, uuid, varchar } from "drizzle-orm/pg-core";
-import { EVENT_CODE_LENGTH } from "~/constants/event-code-length";
 import { event } from "~/db/schema/event";
 
 export const discordEventMapping = pgTable("discord_event_mapping", {

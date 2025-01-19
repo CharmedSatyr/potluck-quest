@@ -1,0 +1,19 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"extends": "@potluck/config/typescript",
+	"compilerOptions": {
+		"baseUrl": "./src",
+		"declaration": true,
+		"declarationDir": "dist/@types",
+		"module": "NodeNext",
+		"moduleResolution": "nodenext",
+		"noEmit": false,
+		"outDir": "dist",
+		"paths": {
+			"~/*": ["*"]
+		},
+		"rootDir": "src"
+	},
+	"include": ["src/**/*.ts", "src/**/*.d.ts"],
+	"exclude": ["node_modules"]
+}

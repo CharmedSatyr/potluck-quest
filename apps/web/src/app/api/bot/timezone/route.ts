@@ -1,3 +1,4 @@
+import { webApiBot } from "@potluck/utilities/validation";
 import { NextRequest, NextResponse } from "next/server";
 import findTimezone from "~/actions/settings/find-timezone";
 import findUserIdByProviderAccountId from "~/actions/user/find-user-id-by-provider-account-id";
@@ -7,7 +8,9 @@ export const GET = async (request: NextRequest) => {
 
 	const discordUserId = searchParams.get("discordUserId");
 
-	if (!discordUserId) {
+	const parsed = webApiBot.timezone.getSchema.safeParse({ discordUserId });
+
+	if (!parsed.success) {
 		return NextResponse.json(
 			{ message: "Discord user ID required" },
 			{ status: 400 }
@@ -15,7 +18,7 @@ export const GET = async (request: NextRequest) => {
 	}
 
 	const [result] = await findUserIdByProviderAccountId({
-		providerAccountId: discordUserId,
+		providerAccountId: parsed.data.discordUserId,
 	});
 
 	if (!result?.id) {

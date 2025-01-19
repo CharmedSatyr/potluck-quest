@@ -1,5 +1,5 @@
-import Image from "next/image";
 import findCommitmentsWithDetails from "~/actions/commitment/find-commitments-with-details";
+import UserAvatar from "~/components/user-avatar";
 
 type Props = {
 	code: string;
@@ -29,13 +29,7 @@ const CommitmentsTable = async ({ code }: Props) => {
 						return (
 							<tr key={c.commitmentId}>
 								<td>
-									<Image
-										alt={`${c.user.name}'s Avatar`}
-										className="avatar my-0 rounded-full border"
-										src={c.user.image!}
-										height="20"
-										width="20"
-									/>{" "}
+									<UserAvatar name={c.user.name} url={c.user.image} />{" "}
 									{c.user.name}
 								</td>
 								<td>{c.item}</td>

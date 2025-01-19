@@ -133,7 +133,7 @@ describe("deleteCommitmentAction", () => {
 	it("returns 'Missing commitment ID' if commitment ID is not provided", async () => {
 		prevState.commitmentId = "";
 
-		const result = await deleteCommitmentAction(prevState, new FormData());
+		const result = await deleteCommitmentAction(prevState);
 
 		expect(result.message).toBe("Missing commitment ID");
 		expect(result.success).toBe(false);
@@ -142,14 +142,14 @@ describe("deleteCommitmentAction", () => {
 	it("returns 'Not authenticated' if user is not logged in", async () => {
 		(auth as jest.Mock).mockResolvedValue(null);
 
-		const result = await deleteCommitmentAction(prevState, new FormData());
+		const result = await deleteCommitmentAction(prevState);
 
 		expect(result.message).toBe("Not authenticated");
 		expect(result.success).toBe(false);
 	});
 
 	it("calls deleteCommitment with correct data when authenticated", async () => {
-		await deleteCommitmentAction(prevState, new FormData());
+		await deleteCommitmentAction(prevState);
 
 		expect(deleteCommitment).toHaveBeenCalledWith({
 			createdBy: "b2c2e71d-c72a-4f8a-bce6-cc89c6a33529",
@@ -160,14 +160,14 @@ describe("deleteCommitmentAction", () => {
 	it("returns 'Failed to delete commitment' if deleteCommitment fails", async () => {
 		(deleteCommitment as jest.Mock).mockResolvedValue([null]);
 
-		const result = await deleteCommitmentAction(prevState, new FormData());
+		const result = await deleteCommitmentAction(prevState);
 
 		expect(result.message).toBe("Failed to delete commitment");
 		expect(result.success).toBe(false);
 	});
 
 	it("returns 'Commitment deleted' and revalidates path on successful deletion", async () => {
-		const result = await deleteCommitmentAction(prevState, new FormData());
+		const result = await deleteCommitmentAction(prevState);
 
 		expect(result.message).toBe("Commitment deleted");
 		expect(result.success).toBe(true);

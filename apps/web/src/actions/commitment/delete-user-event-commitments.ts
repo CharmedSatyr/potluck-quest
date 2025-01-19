@@ -1,9 +1,9 @@
 "use server";
 
-import findEvent from "../event/find-event";
 import { eq, inArray } from "drizzle-orm";
 import { z } from "zod";
 import { schema } from "~/actions/commitment/delete-user-event-commitments.schema";
+import findEvent from "~/actions/event/find-event";
 import db from "~/db/connection";
 import { commitment } from "~/db/schema/commitment";
 import { slot } from "~/db/schema/slot";

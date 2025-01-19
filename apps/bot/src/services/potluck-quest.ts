@@ -1,41 +1,37 @@
-import config from "~/constants/env-config";
-import { DEFAULT_TIMEZONE } from "~/constants/timezone";
-import api from "~/constants/web-api";
-import { slotsCache } from "~/utilities/cache";
-
-// TODO: zod
-type EventData = {
-	description: string;
-	discordUserId: string;
-	endUtcMs?: number;
-	location: string;
-	startUtcMs?: number;
-	title: string;
-};
+import { DEFAULT_TIMEZONE } from "@potluck/utilities/constants";
+import type { SupportedTimezone } from "@potluck/utilities/types";
+import { webApiBot, z } from "@potluck/utilities/validation";
+import config from "~/constants/env-config.js";
+import api from "~/constants/web-api.js";
+import { slotsCache } from "~/utilities/cache.js";
 
 const headers = new Headers({ "x-api-key": config.PQ_BOT_TO_WEB_API_KEY });
 
-export const createEvent = async (data: EventData): Promise<string | null> => {
+export const createPotluckEvent = async (
+	data: z.infer<typeof webApiBot.event.postSchema>
+): Promise<string | null> => {
 	try {
-		const result = await fetch(api.EVENT, {
+		webApiBot.event.postSchema.parse(data);
+
+		const response = await fetch(api.EVENT, {
 			headers,
 			method: "POST",
 			body: JSON.stringify(data),
 		});
 
-		if (!result.ok) {
-			const json = await result.json();
-			console.warn("Failed to create event:", result.status, json.errors);
+		if (!response.ok) {
+			const json = await response.json();
+			console.warn("Failed to create event:", response.status, json.errors);
 			return null;
 		}
 
-		const { code } = await result.json();
+		const result = await response.json();
 
-		if (!code) {
+		if (!result?.code) {
 			return null;
 		}
 
-		return code;
+		return result.code;
 	} catch (error) {
 		console.error("Error creating Potluck Quest event:", error);
 
@@ -43,23 +39,19 @@ export const createEvent = async (data: EventData): Promise<string | null> => {
 	}
 };
 
-type DiscordPotluckEventMapping = {
-	discordGuildId: string;
-	discordEventId: string;
-	potluckEventCode: string;
-};
-
 export const mapDiscordToPotluckEvent = async (
-	data: DiscordPotluckEventMapping
+	data: z.infer<typeof webApiBot.mapping.postSchema>
 ): Promise<boolean> => {
 	try {
-		const result = await fetch(api.MAPPING, {
+		webApiBot.mapping.postSchema.parse(data);
+
+		const response = await fetch(api.MAPPING, {
 			headers,
 			method: "POST",
 			body: JSON.stringify(data),
 		});
 
-		return result.ok;
+		return response.ok;
 	} catch (error) {
 		console.error("Error mapping Discord event to Potluck Quest event:", error);
 
@@ -67,28 +59,23 @@ export const mapDiscordToPotluckEvent = async (
 	}
 };
 
-export type UpdateEventData = {
-	code: string;
-	description?: string;
-	endUtcMs?: number;
-	location?: string;
-	startUtcMs?: number;
-	title?: string;
-};
-
-export const updateEvent = async (data: UpdateEventData): Promise<boolean> => {
+export const updatePotluckEvent = async (
+	data: z.infer<typeof webApiBot.event.putSchema>
+): Promise<boolean> => {
 	try {
-		const result = await fetch(api.EVENT, {
+		webApiBot.event.putSchema.parse(data);
+
+		const response = await fetch(api.EVENT, {
 			headers,
 			method: "PUT",
 			body: JSON.stringify(data),
 		});
 
-		if (!result.ok) {
-			console.warn("Failed to update Potluck Quest event:", result.status);
+		if (!response.ok) {
+			console.warn("Failed to update Potluck Quest event:", response.status);
 		}
 
-		return result.ok;
+		return response.ok;
 	} catch (error) {
 		console.error("Error updating Potluck Quest event:", error);
 
@@ -96,23 +83,28 @@ export const updateEvent = async (data: UpdateEventData): Promise<boolean> => {
 	}
 };
 
-export type DeleteEventData = {
-	code: string;
-};
-
-export const deleteEvent = async (data: DeleteEventData): Promise<boolean> => {
+export const deletePotluckEvent = async (
+	data: z.infer<typeof webApiBot.event.deleteSchema>
+): Promise<boolean> => {
 	try {
-		const result = await fetch(api.EVENT, {
+		webApiBot.event.deleteSchema.parse(data);
+
+		const response = await fetch(api.EVENT, {
 			headers,
 			method: "DELETE",
 			body: JSON.stringify(data),
 		});
 
-		if (!result.ok) {
-			console.warn("Failed to delete Potluck Quest event:", result.status);
+		if (!response.ok) {
+			const json = await response.json();
+			console.warn({
+				message: "Failed to delete Potluck Quest event",
+				json,
+				status: response.status,
+			});
 		}
 
-		return result.ok;
+		return response.ok;
 	} catch (error) {
 		console.error("Error deleting Potluck Quest event:", error);
 
@@ -120,48 +112,52 @@ export const deleteEvent = async (data: DeleteEventData): Promise<boolean> => {
 	}
 };
 
-export const getSlots = async (code: string): Promise<Slot[] | null> => {
+export const getSlots = async (
+	data: z.infer<typeof webApiBot.slots.getSchema>
+): Promise<Slot[] | null> => {
 	try {
-		code = code.toUpperCase();
+		webApiBot.slots.getSchema.parse(data);
 
-		const params = new URLSearchParams({ code });
+		const params = new URLSearchParams(data);
 
-		const result = await fetch(api.SLOTS + "?" + params.toString(), {
+		const response = await fetch(api.SLOTS + "?" + params.toString(), {
 			headers,
 		});
 
-		if (!result.ok) {
+		if (!response.ok) {
 			return null;
 		}
 
-		const { slots }: { slots: Slot[] } = await result.json();
+		const result: { slots: Slot[] } = await response.json();
 
-		slots.forEach((slot) => slotsCache.set(slot.id, { code, slot }));
+		result.slots.forEach((slot) =>
+			slotsCache.set(slot.id, { code: data.code, slot })
+		);
 
-		return slots;
+		return result.slots;
 	} catch (err) {
-		console.error(`Error getting Potluck Quest slots for code ${code}:`, err);
+		console.error(
+			`Error getting Potluck Quest slots for code ${data.code}:`,
+			err
+		);
 
 		return null;
 	}
 };
 
-type SlotData = {
-	discordUserId: string;
-	description: string;
-	quantity: number;
-	slotId: string;
-};
-
-export const createCommitment = async (data: SlotData) => {
+export const createCommitment = async (
+	data: z.infer<typeof webApiBot.commitment.postSchema>
+) => {
 	try {
-		const result = await fetch(api.COMMITMENT, {
+		webApiBot.commitment.postSchema.parse(data);
+
+		const response = await fetch(api.COMMITMENT, {
 			headers,
 			method: "POST",
 			body: JSON.stringify(data),
 		});
 
-		return result.ok;
+		return response.ok;
 	} catch (err) {
 		console.error("Error creating commitment", JSON.stringify(err, null, 2));
 
@@ -170,21 +166,27 @@ export const createCommitment = async (data: SlotData) => {
 };
 
 export const checkAccountExists = async (
-	discordUserId: string
+	data: z.infer<typeof webApiBot.user.getSchema>
 ): Promise<boolean> => {
 	try {
-		const params = new URLSearchParams({ providerAccountId: discordUserId });
+		webApiBot.user.getSchema.parse(data);
 
-		const result = await fetch(api.USER + "?" + params.toString(), { headers });
+		const params = new URLSearchParams({
+			providerAccountId: data.providerAccountId,
+		});
 
-		if (!result.ok) {
-			console.error("Failed account exists check", result.status);
+		const response = await fetch(api.USER + "?" + params.toString(), {
+			headers,
+		});
+
+		if (!response.ok) {
+			console.error("Failed account exists check", response.status);
 			return false;
 		}
 
-		const data: { exists: boolean } = await result.json();
+		const result: { exists: boolean } = await response.json();
 
-		return data.exists;
+		return result.exists;
 	} catch (err) {
 		console.error(
 			"Error checking account exists:",
@@ -195,22 +197,19 @@ export const checkAccountExists = async (
 	}
 };
 
-type RsvpData = {
-	code: string;
-	discordUserId: string;
-	message: string;
-	response: "yes" | "no";
-};
-
-export const upsertRsvp = async (data: RsvpData) => {
+export const upsertRsvp = async (
+	data: z.infer<typeof webApiBot.rsvp.postSchema>
+) => {
 	try {
-		const result = await fetch(api.RSVP, {
+		webApiBot.rsvp.postSchema.parse(data);
+
+		const response = await fetch(api.RSVP, {
 			headers,
 			method: "POST",
 			body: JSON.stringify(data),
 		});
 
-		return result.ok;
+		return response.ok;
 	} catch (err) {
 		console.error("Failed to upsert RSVP:", err, JSON.stringify(err, null, 2));
 
@@ -219,23 +218,25 @@ export const upsertRsvp = async (data: RsvpData) => {
 };
 
 export const getUserTimezone = async (
-	discordUserId: string
+	data: z.infer<typeof webApiBot.timezone.getSchema>
 ): Promise<SupportedTimezone> => {
 	try {
-		const params = new URLSearchParams({ discordUserId });
+		webApiBot.timezone.getSchema.parse(data);
 
-		const result = await fetch(api.TIMEZONE + "?" + params.toString(), {
+		const params = new URLSearchParams(data);
+
+		const response = await fetch(api.TIMEZONE + "?" + params.toString(), {
 			headers,
 		});
 
-		if (!result.ok) {
-			console.warn("Failed to get user timezone:", result.status);
+		if (!response.ok) {
+			console.warn("Failed to get user timezone:", response.status);
 			return DEFAULT_TIMEZONE;
 		}
 
-		const data: { timezone: SupportedTimezone } = await result.json();
+		const result: { timezone: SupportedTimezone } = await response.json();
 
-		return data.timezone;
+		return result.timezone;
 	} catch (err) {
 		console.error("Error getting user timezone:", err);
 

@@ -1,1 +1,0 @@
-export const DESCRIPTION_LENGTH = 500;

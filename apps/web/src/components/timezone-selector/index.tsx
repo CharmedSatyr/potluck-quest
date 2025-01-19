@@ -1,9 +1,10 @@
 "use client";
 
+import { SUPPORTED_TIMEZONES } from "@potluck/utilities/constants";
+import type { SupportedTimezone } from "@potluck/utilities/types";
 import Form from "next/form";
 import { useActionState, useEffect, useRef, useState } from "react";
 import { updateTimezoneAction } from "~/components/timezone-selector/update-timezone-action";
-import { SUPPORTED_TIMEZONES } from "~/constants/timezone";
 
 type Props = {
 	currentTimezone: SupportedTimezone;
@@ -31,7 +32,7 @@ const TimezoneSelector = ({ currentTimezone }: Props) => {
 				name="timezone"
 				value={selection}
 			>
-				{SUPPORTED_TIMEZONES.map((timezone) => (
+				{SUPPORTED_TIMEZONES.map((timezone: SupportedTimezone) => (
 					<option key={timezone} value={timezone}>
 						{timezone}
 					</option>

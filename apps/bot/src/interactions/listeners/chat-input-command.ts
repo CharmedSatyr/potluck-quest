@@ -1,6 +1,6 @@
 import { CacheType, Interaction, MessageFlags } from "discord.js";
-import api from "~/constants/web-api";
-import { checkAccountExists } from "~/services/potluck-quest";
+import api from "~/constants/web-api.js";
+import { checkAccountExists } from "~/services/potluck-quest.js";
 
 export const listener = async (interaction: Interaction<CacheType>) => {
 	if (!interaction.isChatInputCommand()) {
@@ -14,7 +14,9 @@ export const listener = async (interaction: Interaction<CacheType>) => {
 		return;
 	}
 
-	const hasPotluckAccount = await checkAccountExists(interaction.user.id);
+	const hasPotluckAccount = await checkAccountExists({
+		providerAccountId: interaction.user.id,
+	});
 
 	if (!hasPotluckAccount) {
 		const signupUrl = api.AUTH_SETUP;

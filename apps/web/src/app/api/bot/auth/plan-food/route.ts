@@ -1,3 +1,4 @@
+import { webApiBot } from "@potluck/utilities/validation";
 import { NextRequest, NextResponse } from "next/server";
 import { auth, signIn } from "~/auth";
 
@@ -7,7 +8,9 @@ export const GET = async (request: NextRequest) => {
 	const code = searchParams.get("code");
 	const source = searchParams.get("source");
 
-	if (!code || source !== "discord") {
+	const parsed = webApiBot.auth.getPlanFoodSchema.safeParse({ code, source });
+
+	if (!parsed.success) {
 		return NextResponse.redirect(origin.concat("/oauth"));
 	}
 
@@ -16,7 +19,7 @@ export const GET = async (request: NextRequest) => {
 	if (!session?.user?.id) {
 		return await signIn("discord", {
 			redirectTo: origin
-				.concat(`/event/${code}/edit`)
+				.concat(`/event/${parsed.data.code}/edit`)
 				.concat(search)
 				.concat("#plan-food"),
 		});

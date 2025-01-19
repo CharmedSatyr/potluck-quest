@@ -1,11 +1,12 @@
+import { webApiBot, z } from "@potluck/utilities/validation";
 import {
 	Events,
 	GuildScheduledEvent,
 	GuildScheduledEventStatus,
 	PartialGuildScheduledEvent,
 } from "discord.js";
-import { updateEvent, UpdateEventData } from "~/services/potluck-quest";
-import { removeBlurbTruncateAndGetCode } from "~/utilities/description-blurb";
+import { updatePotluckEvent } from "~/services/potluck-quest.js";
+import { removeBlurbTruncateAndGetCode } from "~/utilities/description-blurb.js";
 
 export const data = { eventName: Events.GuildScheduledEventUpdate };
 
@@ -31,7 +32,7 @@ export const execute = async (
 		return;
 	}
 
-	const update: UpdateEventData = {
+	const update: z.infer<typeof webApiBot.event.putSchema> = {
 		code,
 	};
 
@@ -77,5 +78,5 @@ export const execute = async (
 		return;
 	}
 
-	updateEvent(update);
+	updatePotluckEvent(update);
 };

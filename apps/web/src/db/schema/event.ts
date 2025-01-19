@@ -1,4 +1,8 @@
 import {
+	DESCRIPTION_LENGTH,
+	EVENT_CODE_LENGTH,
+} from "@potluck/utilities/constants";
+import {
 	index,
 	pgTable,
 	timestamp,
@@ -6,8 +10,6 @@ import {
 	varchar,
 	bigint,
 } from "drizzle-orm/pg-core";
-import { DESCRIPTION_LENGTH } from "~/constants/description-length";
-import { EVENT_CODE_LENGTH } from "~/constants/event-code-length";
 import { user } from "~/db/schema/auth/user";
 
 const createCode = (): string =>

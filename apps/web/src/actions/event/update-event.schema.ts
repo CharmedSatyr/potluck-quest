@@ -1,15 +1,11 @@
+import { code } from "@potluck/utilities/validation";
+import { description } from "@potluck/utilities/validation";
+import { location } from "@potluck/utilities/validation";
+import { title } from "@potluck/utilities/validation";
+import { startUtcMs } from "@potluck/utilities/validation";
+import { endUtcMs } from "@potluck/utilities/validation";
+import { hosts } from "@potluck/utilities/validation";
 import { z } from "zod";
-import { code } from "~/validation/code.schema";
-import { description } from "~/validation/description.schema";
-import { endUtcMs } from "~/validation/endUtcMs.schema";
-import { hosts } from "~/validation/hosts.schema";
-import { location } from "~/validation/location.schema";
-import { startUtcMs } from "~/validation/startUtcMs.schema";
-import { title } from "~/validation/title.schema";
-
-const currentDate = new Date();
-const futureDate = new Date(currentDate);
-futureDate.setFullYear(futureDate.getFullYear() + 1);
 
 export const schema = z
 	.strictObject({

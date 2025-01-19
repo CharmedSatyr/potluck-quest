@@ -4,11 +4,15 @@ import {
 	GuildScheduledEventStatus,
 	PartialGuildScheduledEvent,
 } from "discord.js";
-import { deleteEvent } from "~/services/potluck-quest";
-import { removeBlurbTruncateAndGetCode } from "~/utilities/description-blurb";
+import { deletePotluckEvent } from "~/services/potluck-quest.js";
+import { removeBlurbTruncateAndGetCode } from "~/utilities/description-blurb.js";
 
 export const data = { eventName: Events.GuildScheduledEventDelete };
 
+/**
+ * TODO: This event is fired after an event is deleted from PQ web,
+ * in which case it should not call PQ to delete again.
+ */
 export const execute = async (
 	guildScheduledEvent:
 		| GuildScheduledEvent<GuildScheduledEventStatus>
@@ -31,5 +35,5 @@ export const execute = async (
 
 	console.info("Deleting event", code);
 
-	await deleteEvent({ code });
+	await deletePotluckEvent({ code });
 };

@@ -1,11 +1,14 @@
 import { Collection } from "discord.js";
 import { Handler } from "discord.js-extensions";
 import fs from "fs";
-import path from "path";
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
 
 const handlersDirs = ["../interactions/handlers", "../guildEvents/handlers"];
 
 const collectHandlers = async () => {
+	const __dirname = dirname(fileURLToPath(import.meta.url));
+
 	const handlers = new Collection<string, Handler>();
 
 	for (const dir of handlersDirs) {

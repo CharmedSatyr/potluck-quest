@@ -1,26 +1,27 @@
 "use client";
 
+import { DESCRIPTION_LENGTH } from "@potluck/utilities/constants";
 import Form from "next/form";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useActionState, useEffect, useRef } from "react";
+import { use, useActionState, useEffect, useRef } from "react";
 import { DiscordIcon } from "~/components/icons/discord";
 import LoadingIndicator from "~/components/loading-indicator";
 import { Step } from "~/components/manage-event-wizard";
 import { loginAction } from "~/components/plan-event-form/login-action";
-import { DESCRIPTION_LENGTH } from "~/constants/description-length";
 import useTimezone from "~/hooks/use-timezone";
 import { oneYearFromToday, today } from "~/utilities/date";
 import enterToNextRef from "~/utilities/enter-to-next-ref";
 
 type Props = {
 	code: string | null;
-	eventInput: EventInput;
+	eventInputPromise: Promise<EventInput>;
 	loggedIn: boolean;
 	mode: WizardMode;
 };
 
-const PlanEventForm = ({ code, eventInput, loggedIn, mode }: Props) => {
+const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
+	const eventInput = use(eventInputPromise);
 	const pathname = usePathname();
 	const [, login, isPending] = useActionState(loginAction, { path: pathname });
 

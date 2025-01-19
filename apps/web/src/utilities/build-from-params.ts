@@ -1,4 +1,4 @@
-import { DEFAULT_TIMEZONE } from "~/constants/timezone";
+import { DEFAULT_TIMEZONE } from "@potluck/utilities/constants";
 
 export const buildEventInputFromParams = async (
 	paramsPromise: Promise<{

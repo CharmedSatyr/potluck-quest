@@ -1,18 +1,17 @@
 {
 	"$schema": "https://json.schemastore.org/tsconfig",
-	"extends": "@potluck/typescript-config/base",
+	"extends": "@potluck/config/typescript",
 	"compilerOptions": {
+		"baseUrl": "./src",
 		"module": "NodeNext",
 		"moduleResolution": "nodenext",
-		"noEmit": false,
-		"outDir": "./dist",
+		"outDir": "dist",
 		"paths": {
-			"~/*": ["*"]
+			"~/*": ["*"],
+			"discord.js-extensions": ["./@types/discord.js-extensions.d.ts"]
 		},
-		"baseUrl": "./src",
-		"rootDir": "./src",
-		"typeRoots": ["./node_modules/@types", "./src/@types"]
+		"typeRoots": ["./node_modules/@types", "./src/@types/**/*.d.ts"]
 	},
-	"include": ["src/**/*.ts"],
+	"include": ["src/**/*.ts", "src/**/*.d.ts"],
 	"exclude": ["node_modules"]
 }

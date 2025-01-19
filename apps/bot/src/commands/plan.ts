@@ -1,3 +1,4 @@
+import { DESCRIPTION_LENGTH } from "@potluck/utilities/constants";
 import {
 	ActionRowBuilder,
 	ChatInputCommandInteraction,
@@ -7,11 +8,10 @@ import {
 	TextInputBuilder,
 	TextInputStyle,
 } from "discord.js";
-import { CustomId } from "~/constants/custom-id";
-import { DESCRIPTION_LENGTH } from "~/constants/description";
-import { getUserTimezone } from "~/services/potluck-quest";
-import { getTimezoneOffsetName } from "~/utilities/date-time";
-import getRandomPlaceholder from "~/utilities/get-random-placeholder";
+import { CustomId } from "~/constants/custom-id.js";
+import { getUserTimezone } from "~/services/potluck-quest.js";
+import { getTimezoneOffsetName } from "~/utilities/date-time.js";
+import getRandomPlaceholder from "~/utilities/get-random-placeholder.js";
 
 // TODO: Add cooldowns https://discordjs.guide/additional-features/cooldowns.html#resulting-code
 export const data = new SlashCommandBuilder()
@@ -19,7 +19,9 @@ export const data = new SlashCommandBuilder()
 	.setDescription("Plan a new Potluck Quest event");
 
 export const execute = async (interaction: ChatInputCommandInteraction) => {
-	const timezone = await getUserTimezone(interaction.user.id);
+	const timezone = await getUserTimezone({
+		discordUserId: interaction.user.id,
+	});
 	const { offsetNameShort } = getTimezoneOffsetName(timezone);
 
 	const modal = new ModalBuilder()

@@ -1,6 +1,6 @@
 import { CacheType, Interaction, MessageFlags } from "discord.js";
 import { InteractionHandler } from "discord.js-extensions";
-import { DELIMITER } from "~/constants/delimiter";
+import { DELIMITER } from "~/constants/delimiter.js";
 
 export const listener = async (interaction: Interaction<CacheType>) => {
 	if (!interaction.isModalSubmit()) {

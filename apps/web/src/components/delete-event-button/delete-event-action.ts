@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import deleteDiscordEvent from "~/actions/bot/event/delete-discord-event";
 import deleteEvent from "~/actions/event/delete-event";
 import findEventCreatedBy from "~/actions/event/find-event-created-by";
 import { auth } from "~/auth";
@@ -16,6 +17,8 @@ const deleteEventAction = async (
 	if (!session?.user?.id || session.user.id !== createdBy?.id) {
 		return { ...prevState, success: false };
 	}
+
+	await deleteDiscordEvent({ code: prevState.code });
 
 	const [id] = await deleteEvent({
 		code: prevState.code,
