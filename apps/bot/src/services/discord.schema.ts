@@ -6,6 +6,7 @@ import {
 	endUtcMs,
 	discordGuildId,
 	z,
+	discordEventId,
 } from "@potluck/utilities/validation";
 
 export const createDiscordEventSchema = z.strictObject({
@@ -18,3 +19,8 @@ export const createDiscordEventSchema = z.strictObject({
 });
 
 export const getGuildSchema = z.strictObject({ guildId: discordGuildId });
+
+export const cancelDiscordEventSchema = z.strictObject({
+	guildId: discordGuildId,
+	eventId: discordEventId,
+});

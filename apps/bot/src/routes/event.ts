@@ -2,6 +2,7 @@ import { botApi, z } from "@potluck/utilities/validation";
 import { Router, Response } from "express";
 import validateRequest from "~/middleware/validate-request.js";
 import {
+	cancelDiscordEvent,
 	createDiscordEvent,
 	getGuild,
 	isGuildMember,
@@ -21,6 +22,26 @@ router.post(
 		const event = await createDiscordEvent(body);
 
 		if (event) {
+			res.status(200).send();
+			return;
+		}
+
+		res.status(500).send();
+	}
+);
+
+router.delete(
+	"/",
+	validateRequest(botApi.event.deleteSchema),
+	async (
+		req: ValidRequest<z.infer<typeof botApi.event.deleteSchema>>,
+		res: Response
+	): Promise<void> => {
+		const { body } = req;
+
+		const result = await cancelDiscordEvent(body);
+
+		if (result) {
 			res.status(200).send();
 			return;
 		}

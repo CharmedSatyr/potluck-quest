@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { description } from "~/validation/common/description.js";
+import { discordEventId } from "~/validation/common/discord-event-id.js";
 import { discordGuildId } from "~/validation/common/discord-guild-id.js";
 import { discordUserId } from "~/validation/common/discord-user-id.js";
 import { endUtcMs } from "~/validation/common/end-utc-ms.js";
@@ -14,6 +15,11 @@ export const postSchema = z.strictObject({
 	location,
 	startUtcMs,
 	title,
+});
+
+export const deleteSchema = z.strictObject({
+	guildId: discordGuildId,
+	eventId: discordEventId,
 });
 
 export const getMetadataSchema = z.strictObject({

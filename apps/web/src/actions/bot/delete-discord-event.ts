@@ -5,11 +5,11 @@ import { z } from "zod";
 import botRoutes from "~/constants/bot-api";
 import envConfig from "~/constants/env-config";
 
-const createDiscordEvent = async (
-	data: z.infer<typeof botApi.event.postSchema>
+const deleteDiscordEvent = async (
+	data: z.infer<typeof botApi.event.deleteSchema>
 ): Promise<boolean> => {
 	try {
-		botApi.event.postSchema.parse(data);
+		botApi.event.deleteSchema.parse(data);
 
 		const headers = new Headers({
 			"Content-Type": "application/json",
@@ -18,21 +18,21 @@ const createDiscordEvent = async (
 
 		const response = await fetch(botRoutes.event, {
 			body: JSON.stringify(data),
-			method: "POST",
+			method: "DELETE",
 			headers,
 		});
 
 		if (!response.ok) {
-			console.warn("Failed to create Discord event", response.status);
+			console.warn("Failed to delete Discord event", response.status);
 			return false;
 		}
 
 		return response.ok;
 	} catch (error) {
-		console.error("Error creating Discord event:", error);
+		console.error("Error deleting Discord event:", error);
 
 		return false;
 	}
 };
 
-export default createDiscordEvent;
+export default deleteDiscordEvent;

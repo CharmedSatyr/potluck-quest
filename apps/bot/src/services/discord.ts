@@ -6,6 +6,7 @@ import {
 } from "discord.js";
 import client from "~/client.js";
 import {
+	cancelDiscordEventSchema,
 	createDiscordEventSchema,
 	getGuildSchema,
 } from "~/services/discord.schema.js";
@@ -69,6 +70,29 @@ export const isGuildMember = async ({
 		return Boolean(member);
 	} catch (error) {
 		console.info("Error looking up guild member:", error);
+
+		return false;
+	}
+};
+
+export const cancelDiscordEvent = async (
+	data: z.infer<typeof cancelDiscordEventSchema>
+): Promise<boolean> => {
+	try {
+		cancelDiscordEventSchema.parse(data);
+
+		const guild = await client.guilds.fetch(data.guildId);
+
+		await guild.scheduledEvents.delete(data.eventId);
+
+		return true;
+	} catch (error) {
+		console.error({
+			message: "Error canceling Discord event",
+			error,
+			guildId: data?.guildId,
+			eventId: data?.eventId,
+		});
 
 		return false;
 	}
