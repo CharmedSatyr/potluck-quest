@@ -53,7 +53,7 @@ const Page = async ({ params, searchParams }: Props) => {
 		redirect(`/event/${code}`);
 	}
 
-	updateDiscordEvent(code, { ...diff });
+	await updateDiscordEvent(code, { ...diff });
 
 	const slotData = await buildSlotDataFromParams(searchParams);
 

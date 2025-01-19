@@ -8,9 +8,13 @@ import envConfig from "~/constants/env-config";
 const updateDiscordEvent = async (
 	code: string,
 	update: Partial<EventData>
-): Promise<boolean> => {
+): Promise<void> => {
 	try {
 		const [mapping] = await findDiscordEventMapping({ code });
+
+		if (!mapping) {
+			return;
+		}
 
 		const data = {
 			guildId: mapping.discordGuildId,
@@ -33,14 +37,12 @@ const updateDiscordEvent = async (
 
 		if (!response.ok) {
 			console.warn("Failed to update Discord event", response.status);
-			return false;
+			return;
 		}
 
-		return response.ok;
+		return;
 	} catch (error) {
 		console.error("Error updating Discord event:", error);
-
-		return false;
 	}
 };
 
