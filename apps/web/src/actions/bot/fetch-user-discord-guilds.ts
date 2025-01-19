@@ -1,9 +1,10 @@
 "use server";
 
+import { botApi } from "@potluck/utilities/validation";
 import { z } from "zod";
 import { schema } from "~/actions/bot/fetch-user-discord-guilds.schema";
 import findProviderAccountIdByUserId from "~/actions/user/find-provider-account-id-by-user-id";
-import botApi from "~/constants/bot-api";
+import botRoutes from "~/constants/bot-api";
 import envConfig from "~/constants/env-config";
 
 const fetchUserDiscordGuilds = async ({
@@ -20,29 +21,31 @@ const fetchUserDiscordGuilds = async ({
 			userId,
 		});
 
-		const params = new URLSearchParams({
-			discordUserId: discordAccountLookup.providerAccountId,
-		});
+		const data = { discordUserId: discordAccountLookup.providerAccountId };
+
+		botApi.user.getGuildsSchema.parse(data);
+
+		const params = new URLSearchParams(data);
 
 		const headers = new Headers({
 			"x-api-key": envConfig.PQ_WEB_TO_BOT_API_KEY,
 		});
 
-		const result = await fetch(
-			botApi.guilds.concat("?").concat(params.toString()),
+		const response = await fetch(
+			botRoutes.guilds.concat("?").concat(params.toString()),
 			{ headers }
 		);
 
-		if (!result.ok) {
-			console.warn("Failed to fetch user Discord guilds", result.status);
+		if (!response.ok) {
+			console.warn("Failed to fetch user Discord guilds", response.status);
 			return [];
 		}
 
-		const parsed: {
+		const result: {
 			guilds: { name: string; guildId: string; iconUrl: string }[];
-		} = await result.json();
+		} = await response.json();
 
-		return parsed.guilds;
+		return result.guilds;
 	} catch (error) {
 		console.error("Error fetching user Discord guilds:", error);
 

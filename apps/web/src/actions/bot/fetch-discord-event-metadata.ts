@@ -43,17 +43,17 @@ const fetchDiscordEventMetadata = async ({
 			"x-api-key": envConfig.PQ_WEB_TO_BOT_API_KEY,
 		});
 
-		const result = await fetch(
+		const response = await fetch(
 			botRoutes.metadata.concat("?").concat(params.toString()),
 			{ headers }
 		);
 
-		if (!result.ok) {
-			console.warn("Failed to fetch Discord metadata", result.status);
+		if (!response.ok) {
+			console.warn("Failed to fetch Discord metadata", response.status);
 			return;
 		}
 
-		return await result.json();
+		return await response.json();
 	} catch (error) {
 		console.error("Error fetching Discord metadata:", error);
 	}

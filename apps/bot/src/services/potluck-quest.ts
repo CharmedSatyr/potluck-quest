@@ -198,13 +198,13 @@ export const upsertRsvp = async (
 	try {
 		webApiBot.rsvp.postSchema.parse(data);
 
-		const result = await fetch(api.RSVP, {
+		const response = await fetch(api.RSVP, {
 			headers,
 			method: "POST",
 			body: JSON.stringify(data),
 		});
 
-		return result.ok;
+		return response.ok;
 	} catch (err) {
 		console.error("Failed to upsert RSVP:", err, JSON.stringify(err, null, 2));
 

@@ -1,16 +1,15 @@
-import { z } from "@potluck/utilities/validation";
+import { botApi, z } from "@potluck/utilities/validation";
 import { Router, Response } from "express";
 import client from "~/client.js";
 import validateRequest from "~/middleware/validate-request.js";
-import { getUserGuildsSchema } from "~/routes/user.schema.js";
 
 const router = Router();
 
 router.get(
 	"/guilds",
-	validateRequest(getUserGuildsSchema),
+	validateRequest(botApi.user.getGuildsSchema),
 	async (
-		req: ValidRequest<unknown, z.infer<typeof getUserGuildsSchema>>,
+		req: ValidRequest<unknown, z.infer<typeof botApi.user.getGuildsSchema>>,
 		res: Response
 	): Promise<void> => {
 		const { discordUserId } = req.query;

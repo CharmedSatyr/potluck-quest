@@ -16,7 +16,7 @@ router.post(
 		req: ValidRequest<z.infer<typeof botApi.event.postSchema>>,
 		res: Response
 	): Promise<void> => {
-		const body = req.body;
+		const { body } = req;
 
 		const event = await createDiscordEvent(body);
 
