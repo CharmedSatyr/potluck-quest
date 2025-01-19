@@ -107,11 +107,13 @@ export const deleteEvent = async (
 	}
 };
 
-export const getSlots = async (code: string): Promise<Slot[] | null> => {
+export const getSlots = async (
+	data: z.infer<typeof webApiBot.slots.getSchema>
+): Promise<Slot[] | null> => {
 	try {
-		code = code.toUpperCase();
+		webApiBot.slots.getSchema.parse(data);
 
-		const params = new URLSearchParams({ code });
+		const params = new URLSearchParams(data);
 
 		const result = await fetch(api.SLOTS + "?" + params.toString(), {
 			headers,
@@ -123,11 +125,14 @@ export const getSlots = async (code: string): Promise<Slot[] | null> => {
 
 		const { slots }: { slots: Slot[] } = await result.json();
 
-		slots.forEach((slot) => slotsCache.set(slot.id, { code, slot }));
+		slots.forEach((slot) => slotsCache.set(slot.id, { code: data.code, slot }));
 
 		return slots;
 	} catch (err) {
-		console.error(`Error getting Potluck Quest slots for code ${code}:`, err);
+		console.error(
+			`Error getting Potluck Quest slots for code ${data.code}:`,
+			err
+		);
 
 		return null;
 	}

@@ -38,7 +38,7 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 		return;
 	}
 
-	const slots = await getSlots(input);
+	const slots = await getSlots({ code: input });
 
 	if (!slots) {
 		await interaction.reply({
