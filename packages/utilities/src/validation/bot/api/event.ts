@@ -17,6 +17,16 @@ export const postSchema = z.strictObject({
 	title,
 });
 
+export const putSchema = z.strictObject({
+	description: description.optional(),
+	endUtcMs: endUtcMs.optional(),
+	eventId: discordEventId,
+	guildId: discordGuildId,
+	location: location.optional(),
+	startUtcMs: startUtcMs.optional(),
+	title: title.optional(),
+});
+
 export const deleteSchema = z.strictObject({
 	guildId: discordGuildId,
 	eventId: discordEventId,

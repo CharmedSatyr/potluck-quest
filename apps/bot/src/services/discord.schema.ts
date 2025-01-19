@@ -18,9 +18,19 @@ export const createDiscordEventSchema = z.strictObject({
 	title,
 });
 
-export const getGuildSchema = z.strictObject({ guildId: discordGuildId });
+export const updateDiscordEventSchema = z.strictObject({
+	description: description.optional(),
+	endUtcMs: endUtcMs.optional(),
+	eventId: discordEventId,
+	guildId: discordGuildId,
+	location: location.optional(),
+	startUtcMs: startUtcMs.optional(),
+	title: title.optional(),
+});
 
 export const cancelDiscordEventSchema = z.strictObject({
 	guildId: discordGuildId,
 	eventId: discordEventId,
 });
+
+export const getGuildSchema = z.strictObject({ guildId: discordGuildId });

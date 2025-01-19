@@ -6,6 +6,7 @@ import {
 	createDiscordEvent,
 	getGuild,
 	isGuildMember,
+	updateDiscordEvent,
 } from "~/services/discord.js";
 
 const router = Router();
@@ -22,6 +23,26 @@ router.post(
 		const event = await createDiscordEvent(body);
 
 		if (event) {
+			res.status(200).send();
+			return;
+		}
+
+		res.status(500).send();
+	}
+);
+
+router.put(
+	"/",
+	validateRequest(botApi.event.putSchema),
+	async (
+		req: ValidRequest<z.infer<typeof botApi.event.putSchema>>,
+		res: Response
+	) => {
+		const { body } = req;
+
+		const result = await updateDiscordEvent(body);
+
+		if (result) {
 			res.status(200).send();
 			return;
 		}

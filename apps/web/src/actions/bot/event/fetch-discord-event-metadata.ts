@@ -2,7 +2,7 @@
 
 import { botApi } from "@potluck/utilities/validation";
 import { z } from "zod";
-import { schema } from "~/actions/bot/fetch-discord-event-metadata.schema";
+import { schema } from "~/actions/bot/event/fetch-discord-event-metadata.schema";
 import findDiscordEventMapping from "~/actions/discord-event-mapping/find-discord-event-mapping";
 import findProviderAccountIdByUserId from "~/actions/user/find-provider-account-id-by-user-id";
 import botRoutes from "~/constants/bot-api";

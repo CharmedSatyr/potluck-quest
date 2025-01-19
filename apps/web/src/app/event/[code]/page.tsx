@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PropsWithChildren, Suspense } from "react";
-import fetchDiscordEventMetadata from "~/actions/bot/fetch-discord-event-metadata";
+import fetchDiscordEventMetadata from "~/actions/bot/event/fetch-discord-event-metadata";
 import findEvent from "~/actions/event/find-event";
 import findUserEventRsvp from "~/actions/rsvp/find-user-event-rsvp";
 import findUserByEventCode from "~/actions/user/find-user-by-event-code";

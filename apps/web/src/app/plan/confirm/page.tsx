@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import createDiscordEvent from "~/actions/bot/create-discord-event";
+import createDiscordEvent from "~/actions/bot/event/create-discord-event";
 import createEvent from "~/actions/event/create-event";
 import createSlots from "~/actions/slot/create-slots";
 import { auth } from "~/auth";
