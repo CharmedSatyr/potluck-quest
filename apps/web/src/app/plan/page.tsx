@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import fetchUserDiscordGuilds from "~/actions/bot/fetch-user-discord-guilds";
+import fetchUserDiscordGuilds from "~/actions/bot/user/fetch-user-discord-guilds";
 import { auth } from "~/auth";
 import ErrorBoundary from "~/components/error-boundary";
 import ManageEventWizard from "~/components/manage-event-wizard";

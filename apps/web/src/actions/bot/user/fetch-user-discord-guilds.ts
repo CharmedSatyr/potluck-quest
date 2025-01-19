@@ -2,7 +2,7 @@
 
 import { botApi } from "@potluck/utilities/validation";
 import { z } from "zod";
-import { schema } from "~/actions/bot/fetch-user-discord-guilds.schema";
+import { schema } from "~/actions/bot/user/fetch-user-discord-guilds.schema";
 import findProviderAccountIdByUserId from "~/actions/user/find-provider-account-id-by-user-id";
 import botRoutes from "~/constants/bot-api";
 import envConfig from "~/constants/env-config";
