@@ -1,5 +1,6 @@
 import { message } from "./common/message.js";
 import { z } from "zod";
+import botApi from "~/validation/bot/api/index.js";
 import { code } from "~/validation/common/code.js";
 import { description } from "~/validation/common/description.js";
 import { discordEventId } from "~/validation/common/discord-event-id.js";
@@ -22,6 +23,7 @@ import { userId } from "~/validation/common/user-id.js";
 import webApiBot from "~/validation/web/api/bot/index.js";
 
 export {
+	botApi,
 	code,
 	description,
 	discordEventId,

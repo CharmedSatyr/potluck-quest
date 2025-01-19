@@ -1,31 +1,33 @@
 "use server";
 
+import { botApi } from "@potluck/utilities/validation";
 import { z } from "zod";
-import { schema } from "~/actions/bot/create-discord-event.schema";
-import botApi from "~/constants/bot-api";
+import botRoutes from "~/constants/bot-api";
 import envConfig from "~/constants/env-config";
 
 const createDiscordEvent = async (
-	data: z.infer<typeof schema>
+	data: z.infer<typeof botApi.event.postSchema>
 ): Promise<boolean> => {
 	try {
+		botApi.event.postSchema.parse(data);
+
 		const headers = new Headers({
 			"Content-Type": "application/json",
 			"x-api-key": envConfig.PQ_WEB_TO_BOT_API_KEY,
 		});
 
-		const result = await fetch(botApi.event, {
+		const response = await fetch(botRoutes.event, {
 			body: JSON.stringify(data),
 			method: "POST",
 			headers,
 		});
 
-		if (!result.ok) {
-			console.warn("Failed to create Discord event", result.status);
+		if (!response.ok) {
+			console.warn("Failed to create Discord event", response.status);
 			return false;
 		}
 
-		return result.ok;
+		return response.ok;
 	} catch (error) {
 		console.error("Error fetching Discord metadata:", error);
 

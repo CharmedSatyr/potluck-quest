@@ -1,10 +1,11 @@
 "use server";
 
+import { botApi } from "@potluck/utilities/validation";
 import { z } from "zod";
 import { schema } from "~/actions/bot/fetch-discord-event-metadata.schema";
 import findDiscordEventMapping from "~/actions/discord-event-mapping/find-discord-event-mapping";
 import findProviderAccountIdByUserId from "~/actions/user/find-provider-account-id-by-user-id";
-import botApi from "~/constants/bot-api";
+import botRoutes from "~/constants/bot-api";
 import envConfig from "~/constants/env-config";
 
 const fetchDiscordEventMetadata = async ({
@@ -29,17 +30,21 @@ const fetchDiscordEventMetadata = async ({
 			userId,
 		});
 
-		const params = new URLSearchParams({
+		const data = {
 			discordGuildId: mapping.discordGuildId,
 			memberId: discordAccountLookup.providerAccountId,
-		});
+		};
+
+		botApi.event.getMetadataSchema.parse(data);
+
+		const params = new URLSearchParams(data);
 
 		const headers = new Headers({
 			"x-api-key": envConfig.PQ_WEB_TO_BOT_API_KEY,
 		});
 
 		const result = await fetch(
-			botApi.metadata.concat("?").concat(params.toString()),
+			botRoutes.metadata.concat("?").concat(params.toString()),
 			{ headers }
 		);
 
