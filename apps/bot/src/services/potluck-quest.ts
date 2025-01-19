@@ -133,15 +133,12 @@ export const getSlots = async (code: string): Promise<Slot[] | null> => {
 	}
 };
 
-type SlotData = {
-	discordUserId: string;
-	description: string;
-	quantity: number;
-	slotId: string;
-};
-
-export const createCommitment = async (data: SlotData) => {
+export const createCommitment = async (
+	data: z.infer<typeof webApiBot.commitment.postSchema>
+) => {
 	try {
+		webApiBot.commitment.postSchema.parse(data);
+
 		const result = await fetch(api.COMMITMENT, {
 			headers,
 			method: "POST",

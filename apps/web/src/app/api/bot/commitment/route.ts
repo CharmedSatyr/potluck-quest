@@ -1,17 +1,12 @@
+import { webApiBot } from "@potluck/utilities/validation";
 import { NextRequest, NextResponse } from "next/server";
-import { z } from "zod";
 import createCommitment from "~/actions/commitment/create-commitment";
-import { schema as createCommitmentSchema } from "~/actions/commitment/create-commitment.schema";
 import findUserIdByProviderAccountId from "~/actions/user/find-user-id-by-provider-account-id";
 
 export const POST = async (request: NextRequest) => {
 	const data = await request.json();
 
-	const schema = createCommitmentSchema.omit({ createdBy: true }).extend({
-		discordUserId: z.string().trim(),
-	});
-
-	const parsed = schema.safeParse(data);
+	const parsed = webApiBot.commitment.postSchema.safeParse(data);
 
 	if (!parsed.success) {
 		return NextResponse.json(

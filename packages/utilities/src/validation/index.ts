@@ -7,6 +7,8 @@ import { discordUserId } from "~/validation/common/discord-user-id.js";
 import { endUtcMs } from "~/validation/common/end-utc-ms.js";
 import { hosts } from "~/validation/common/hosts.js";
 import { location } from "~/validation/common/location.js";
+import { quantity } from "~/validation/common/quantity.js";
+import { slotId } from "~/validation/common/slot-id.js";
 import { slot } from "~/validation/common/slot.js";
 import { startDate } from "~/validation/common/start-date.js";
 import { startTime } from "~/validation/common/start-time.js";
@@ -27,7 +29,9 @@ export {
 	endUtcMs,
 	hosts,
 	location,
+	quantity,
 	slot,
+	slotId,
 	startDate,
 	startTime,
 	startUtcMs,
