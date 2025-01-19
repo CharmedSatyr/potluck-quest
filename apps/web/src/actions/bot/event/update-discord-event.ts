@@ -1,14 +1,23 @@
 "use server";
 
 import { botApi } from "@potluck/utilities/validation";
-import { z } from "zod";
+import findDiscordEventMapping from "~/actions/discord-event-mapping/find-discord-event-mapping";
 import botRoutes from "~/constants/bot-api";
 import envConfig from "~/constants/env-config";
 
 const updateDiscordEvent = async (
-	data: z.infer<typeof botApi.event.putSchema>
+	code: string,
+	update: Partial<EventData>
 ): Promise<boolean> => {
 	try {
+		const [mapping] = await findDiscordEventMapping({ code });
+
+		const data = {
+			guildId: mapping.discordGuildId,
+			eventId: mapping.discordEventId,
+			...update,
+		};
+
 		botApi.event.putSchema.parse(data);
 
 		const headers = new Headers({

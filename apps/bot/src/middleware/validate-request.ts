@@ -18,9 +18,9 @@ const validateRequest =
 			const parsed = schema.parse(dataSource);
 
 			if (req.method === "GET" || req.method === "DELETE") {
-				req.query = parsed.data;
+				req.query = parsed;
 			} else {
-				req.body = parsed.data;
+				req.body = parsed;
 			}
 
 			next();

@@ -32,7 +32,7 @@ const fetchDiscordEventMetadata = async ({
 
 		const data = {
 			discordGuildId: mapping.discordGuildId,
-			memberId: discordAccountLookup.providerAccountId,
+			discordUserId: discordAccountLookup.providerAccountId,
 		};
 
 		botApi.event.getMetadataSchema.parse(data);
