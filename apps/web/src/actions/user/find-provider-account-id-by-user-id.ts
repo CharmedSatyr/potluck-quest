@@ -10,6 +10,8 @@ const findProviderAccountIdByUserId = async (
 	data: z.infer<typeof schema>
 ): Promise<{ providerAccountId: Account["providerAccountId"] }[]> => {
 	try {
+		schema.parse(data);
+
 		return await db
 			.select({ providerAccountId: account.providerAccountId })
 			.from(account)

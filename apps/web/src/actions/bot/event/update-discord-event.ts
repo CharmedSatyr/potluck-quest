@@ -39,8 +39,6 @@ const updateDiscordEvent = async (
 			console.warn("Failed to update Discord event", response.status);
 			return;
 		}
-
-		return;
 	} catch (error) {
 		console.error("Error updating Discord event:", error);
 	}

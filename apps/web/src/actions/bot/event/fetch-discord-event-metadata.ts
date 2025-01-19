@@ -1,8 +1,6 @@
 "use server";
 
 import { botApi } from "@potluck/utilities/validation";
-import { z } from "zod";
-import { schema } from "~/actions/bot/event/fetch-discord-event-metadata.schema";
 import findDiscordEventMapping from "~/actions/discord-event-mapping/find-discord-event-mapping";
 import findProviderAccountIdByUserId from "~/actions/user/find-provider-account-id-by-user-id";
 import botRoutes from "~/constants/bot-api";
@@ -11,7 +9,10 @@ import envConfig from "~/constants/env-config";
 const fetchDiscordEventMetadata = async ({
 	code,
 	userId,
-}: z.infer<typeof schema>): Promise<
+}: {
+	code: PotluckEvent["code"];
+	userId: User["id"];
+}): Promise<
 	| {
 			isMember: boolean;
 			name: string;

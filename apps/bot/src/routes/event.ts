@@ -55,12 +55,12 @@ router.delete(
 	"/",
 	validateRequest(botApi.event.deleteSchema),
 	async (
-		req: ValidRequest<z.infer<typeof botApi.event.deleteSchema>>,
+		req: ValidRequest<{}, z.infer<typeof botApi.event.deleteSchema>>,
 		res: Response
 	): Promise<void> => {
-		const { body } = req;
+		const { query } = req;
 
-		const result = await cancelDiscordEvent(body);
+		const result = await cancelDiscordEvent(query);
 
 		if (result) {
 			res.status(200).send();

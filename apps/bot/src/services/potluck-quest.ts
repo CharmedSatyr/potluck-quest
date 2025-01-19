@@ -96,7 +96,12 @@ export const deletePotluckEvent = async (
 		});
 
 		if (!response.ok) {
-			console.warn("Failed to delete Potluck Quest event:", response.status);
+			const json = await response.json();
+			console.warn({
+				message: "Failed to delete Potluck Quest event",
+				json,
+				status: response.status,
+			});
 		}
 
 		return response.ok;

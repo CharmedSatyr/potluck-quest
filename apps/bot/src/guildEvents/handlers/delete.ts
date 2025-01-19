@@ -9,6 +9,10 @@ import { removeBlurbTruncateAndGetCode } from "~/utilities/description-blurb.js"
 
 export const data = { eventName: Events.GuildScheduledEventDelete };
 
+/**
+ * TODO: This event is fired after an event is deleted from PQ web,
+ * in which case it should not call PQ to delete again.
+ */
 export const execute = async (
 	guildScheduledEvent:
 		| GuildScheduledEvent<GuildScheduledEventStatus>
