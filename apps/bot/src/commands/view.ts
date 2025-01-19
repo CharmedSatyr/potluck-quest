@@ -34,7 +34,9 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 		return;
 	}
 
-	const timezone = await getUserTimezone(interaction.user.id);
+	const timezone = await getUserTimezone({
+		discordUserId: interaction.user.id,
+	});
 	const { offsetNameLong, offsetNameShort } = getTimezoneOffsetName(timezone);
 
 	const fields = pqEvents.map((event) => {

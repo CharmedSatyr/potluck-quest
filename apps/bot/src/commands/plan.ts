@@ -19,7 +19,9 @@ export const data = new SlashCommandBuilder()
 	.setDescription("Plan a new Potluck Quest event");
 
 export const execute = async (interaction: ChatInputCommandInteraction) => {
-	const timezone = await getUserTimezone(interaction.user.id);
+	const timezone = await getUserTimezone({
+		discordUserId: interaction.user.id,
+	});
 	const { offsetNameShort } = getTimezoneOffsetName(timezone);
 
 	const modal = new ModalBuilder()

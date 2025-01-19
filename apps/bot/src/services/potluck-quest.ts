@@ -13,25 +13,25 @@ export const createPotluckEvent = async (
 	try {
 		webApiBot.event.postSchema.parse(data);
 
-		const result = await fetch(api.EVENT, {
+		const response = await fetch(api.EVENT, {
 			headers,
 			method: "POST",
 			body: JSON.stringify(data),
 		});
 
-		if (!result.ok) {
-			const json = await result.json();
-			console.warn("Failed to create event:", result.status, json.errors);
+		if (!response.ok) {
+			const json = await response.json();
+			console.warn("Failed to create event:", response.status, json.errors);
 			return null;
 		}
 
-		const { code } = await result.json();
+		const result = await response.json();
 
-		if (!code) {
+		if (!result?.code) {
 			return null;
 		}
 
-		return code;
+		return result.code;
 	} catch (error) {
 		console.error("Error creating Potluck Quest event:", error);
 
@@ -45,13 +45,13 @@ export const mapDiscordToPotluckEvent = async (
 	try {
 		webApiBot.mapping.postSchema.parse(data);
 
-		const result = await fetch(api.MAPPING, {
+		const response = await fetch(api.MAPPING, {
 			headers,
 			method: "POST",
 			body: JSON.stringify(data),
 		});
 
-		return result.ok;
+		return response.ok;
 	} catch (error) {
 		console.error("Error mapping Discord event to Potluck Quest event:", error);
 
@@ -65,17 +65,17 @@ export const updateEvent = async (
 	try {
 		webApiBot.event.putSchema.parse(data);
 
-		const result = await fetch(api.EVENT, {
+		const response = await fetch(api.EVENT, {
 			headers,
 			method: "PUT",
 			body: JSON.stringify(data),
 		});
 
-		if (!result.ok) {
-			console.warn("Failed to update Potluck Quest event:", result.status);
+		if (!response.ok) {
+			console.warn("Failed to update Potluck Quest event:", response.status);
 		}
 
-		return result.ok;
+		return response.ok;
 	} catch (error) {
 		console.error("Error updating Potluck Quest event:", error);
 
@@ -89,17 +89,17 @@ export const deleteEvent = async (
 	try {
 		webApiBot.event.deleteSchema.parse(data);
 
-		const result = await fetch(api.EVENT, {
+		const response = await fetch(api.EVENT, {
 			headers,
 			method: "DELETE",
 			body: JSON.stringify(data),
 		});
 
-		if (!result.ok) {
-			console.warn("Failed to delete Potluck Quest event:", result.status);
+		if (!response.ok) {
+			console.warn("Failed to delete Potluck Quest event:", response.status);
 		}
 
-		return result.ok;
+		return response.ok;
 	} catch (error) {
 		console.error("Error deleting Potluck Quest event:", error);
 
@@ -115,19 +115,21 @@ export const getSlots = async (
 
 		const params = new URLSearchParams(data);
 
-		const result = await fetch(api.SLOTS + "?" + params.toString(), {
+		const response = await fetch(api.SLOTS + "?" + params.toString(), {
 			headers,
 		});
 
-		if (!result.ok) {
+		if (!response.ok) {
 			return null;
 		}
 
-		const { slots }: { slots: Slot[] } = await result.json();
+		const result: { slots: Slot[] } = await response.json();
 
-		slots.forEach((slot) => slotsCache.set(slot.id, { code: data.code, slot }));
+		result.slots.forEach((slot) =>
+			slotsCache.set(slot.id, { code: data.code, slot })
+		);
 
-		return slots;
+		return result.slots;
 	} catch (err) {
 		console.error(
 			`Error getting Potluck Quest slots for code ${data.code}:`,
@@ -144,13 +146,13 @@ export const createCommitment = async (
 	try {
 		webApiBot.commitment.postSchema.parse(data);
 
-		const result = await fetch(api.COMMITMENT, {
+		const response = await fetch(api.COMMITMENT, {
 			headers,
 			method: "POST",
 			body: JSON.stringify(data),
 		});
 
-		return result.ok;
+		return response.ok;
 	} catch (err) {
 		console.error("Error creating commitment", JSON.stringify(err, null, 2));
 
@@ -211,23 +213,25 @@ export const upsertRsvp = async (
 };
 
 export const getUserTimezone = async (
-	discordUserId: string
+	data: z.infer<typeof webApiBot.timezone.getSchema>
 ): Promise<SupportedTimezone> => {
 	try {
-		const params = new URLSearchParams({ discordUserId });
+		webApiBot.timezone.getSchema.parse(data);
 
-		const result = await fetch(api.TIMEZONE + "?" + params.toString(), {
+		const params = new URLSearchParams(data);
+
+		const response = await fetch(api.TIMEZONE + "?" + params.toString(), {
 			headers,
 		});
 
-		if (!result.ok) {
-			console.warn("Failed to get user timezone:", result.status);
+		if (!response.ok) {
+			console.warn("Failed to get user timezone:", response.status);
 			return DEFAULT_TIMEZONE;
 		}
 
-		const data: { timezone: SupportedTimezone } = await result.json();
+		const result: { timezone: SupportedTimezone } = await response.json();
 
-		return data.timezone;
+		return result.timezone;
 	} catch (err) {
 		console.error("Error getting user timezone:", err);
 

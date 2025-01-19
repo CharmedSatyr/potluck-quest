@@ -33,7 +33,9 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 		CustomId.PLAN_EVENT_DESCRIPTION
 	);
 
-	const timezone = await getUserTimezone(interaction.user.id);
+	const timezone = await getUserTimezone({
+		discordUserId: interaction.user.id,
+	});
 	const parsedDateTime = parseDateTimeInputForServices(dateTime, timezone);
 
 	if (!parsedDateTime) {
