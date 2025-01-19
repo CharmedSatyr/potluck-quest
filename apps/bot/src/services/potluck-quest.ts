@@ -190,15 +190,12 @@ export const checkAccountExists = async (
 	}
 };
 
-type RsvpData = {
-	code: string;
-	discordUserId: string;
-	message: string;
-	response: "yes" | "no";
-};
-
-export const upsertRsvp = async (data: RsvpData) => {
+export const upsertRsvp = async (
+	data: z.infer<typeof webApiBot.rsvp.postSchema>
+) => {
 	try {
+		webApiBot.rsvp.postSchema.parse(data);
+
 		const result = await fetch(api.RSVP, {
 			headers,
 			method: "POST",
