@@ -5,7 +5,7 @@ import {
 	GuildScheduledEventStatus,
 	PartialGuildScheduledEvent,
 } from "discord.js";
-import { updateEvent } from "~/services/potluck-quest.js";
+import { updatePotluckEvent } from "~/services/potluck-quest.js";
 import { removeBlurbTruncateAndGetCode } from "~/utilities/description-blurb.js";
 
 export const data = { eventName: Events.GuildScheduledEventUpdate };
@@ -78,5 +78,5 @@ export const execute = async (
 		return;
 	}
 
-	updateEvent(update);
+	updatePotluckEvent(update);
 };

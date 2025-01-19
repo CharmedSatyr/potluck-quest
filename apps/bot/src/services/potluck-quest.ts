@@ -59,7 +59,7 @@ export const mapDiscordToPotluckEvent = async (
 	}
 };
 
-export const updateEvent = async (
+export const updatePotluckEvent = async (
 	data: z.infer<typeof webApiBot.event.putSchema>
 ): Promise<boolean> => {
 	try {
@@ -83,7 +83,7 @@ export const updateEvent = async (
 	}
 };
 
-export const deleteEvent = async (
+export const deletePotluckEvent = async (
 	data: z.infer<typeof webApiBot.event.deleteSchema>
 ): Promise<boolean> => {
 	try {
