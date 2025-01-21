@@ -1,6 +1,11 @@
 import { DEFAULT_TIMEZONE } from "@potluck/utilities/constants";
 import type { SupportedTimezone } from "@potluck/utilities/types";
-import { webApiBot, z } from "@potluck/utilities/validation";
+import {
+	code,
+	discordEventId,
+	webApiBot,
+	z,
+} from "@potluck/utilities/validation";
 import config from "~/constants/env-config.js";
 import api from "~/constants/web-api.js";
 import { slotsCache } from "~/utilities/cache.js";
@@ -56,6 +61,41 @@ export const mapDiscordToPotluckEvent = async (
 		console.error("Error mapping Discord event to Potluck Quest event:", error);
 
 		return false;
+	}
+};
+
+export const getPotluckCodesByDiscordIds = async (
+	data: z.infer<typeof webApiBot.mapping.getSchema>
+): Promise<Record<z.infer<typeof discordEventId>, z.infer<typeof code>>> => {
+	try {
+		webApiBot.mapping.getSchema.parse(data);
+
+		const params = new URLSearchParams({
+			discordEventIds: data.discordEventIds.join(","),
+		});
+
+		const response = await fetch(api.MAPPING + "?" + params.toString(), {
+			headers,
+		});
+
+		if (!response.ok) {
+			console.warn({
+				message: "Failed to get Potluck Quest codes from Discord event IDs:",
+				status: response.status,
+				response: await response.json(),
+			});
+
+			return {};
+		}
+
+		return await response.json();
+	} catch (error) {
+		console.error(
+			"Error getting Potluck Quest codes from Discord event IDs",
+			error
+		);
+
+		return {};
 	}
 };
 

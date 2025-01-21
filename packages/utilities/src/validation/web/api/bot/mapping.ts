@@ -8,3 +8,7 @@ export const postSchema = z.strictObject({
 	discordEventId,
 	potluckEventCode: code,
 });
+
+export const getSchema = z.strictObject({
+	discordEventIds: z.array(discordEventId).nonempty(),
+});
