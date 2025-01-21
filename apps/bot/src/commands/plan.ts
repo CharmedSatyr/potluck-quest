@@ -9,7 +9,7 @@ import {
 	TextInputStyle,
 } from "discord.js";
 import { CustomId } from "~/constants/custom-id.js";
-import { getUserTimezone } from "~/services/potluck-quest.js";
+import { getUserTimezone } from "~/services/web.js";
 import { getTimezoneOffsetName } from "~/utilities/date-time.js";
 import getRandomPlaceholder from "~/utilities/get-random-placeholder.js";
 

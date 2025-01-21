@@ -8,7 +8,7 @@ import config from "~/constants/env-config.js";
 import {
 	getPotluckCodesByDiscordIds,
 	getUserTimezone,
-} from "~/services/potluck-quest.js";
+} from "~/services/web.js";
 import {
 	formatTimestampForView,
 	getTimezoneOffsetName,

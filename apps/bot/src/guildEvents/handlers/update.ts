@@ -5,7 +5,7 @@ import {
 	GuildScheduledEventStatus,
 	PartialGuildScheduledEvent,
 } from "discord.js";
-import { updatePotluckEvent } from "~/services/potluck-quest.js";
+import { updatePotluckEvent } from "~/services/web.js";
 import { removeBlurbTruncateAndGetCode } from "~/utilities/description-blurb.js";
 
 export const data = { eventName: Events.GuildScheduledEventUpdate };

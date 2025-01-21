@@ -7,7 +7,7 @@ import {
 	createPotluckEvent as createPotluckQuestEvent,
 	getUserTimezone,
 	mapDiscordToPotluckEvent,
-} from "~/services/potluck-quest.js";
+} from "~/services/web.js";
 import { parseDateTimeInputForServices } from "~/utilities/date-time.js";
 import buildDescriptionBlurb from "~/utilities/description-blurb.js";
 

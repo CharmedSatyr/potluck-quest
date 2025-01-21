@@ -4,7 +4,7 @@ import {
 	GuildScheduledEventStatus,
 	PartialGuildScheduledEvent,
 } from "discord.js";
-import { deletePotluckEvent } from "~/services/potluck-quest.js";
+import { deletePotluckEvent } from "~/services/web.js";
 
 export const data = { eventName: Events.GuildScheduledEventDelete };
 

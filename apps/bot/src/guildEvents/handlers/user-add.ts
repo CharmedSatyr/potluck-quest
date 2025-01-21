@@ -5,7 +5,7 @@ import {
 	PartialGuildScheduledEvent,
 	User,
 } from "discord.js";
-import { upsertRsvp } from "~/services/potluck-quest.js";
+import { upsertRsvp } from "~/services/web.js";
 
 export const data = { eventName: Events.GuildScheduledEventUserAdd };
 

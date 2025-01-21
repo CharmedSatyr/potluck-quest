@@ -1,6 +1,6 @@
 import { CacheType, Interaction, MessageFlags } from "discord.js";
 import api from "~/constants/web-api.js";
-import { checkAccountExists } from "~/services/potluck-quest.js";
+import { checkAccountExists } from "~/services/web.js";
 
 export const listener = async (interaction: Interaction<CacheType>) => {
 	if (!interaction.isChatInputCommand()) {
