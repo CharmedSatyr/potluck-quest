@@ -5,12 +5,14 @@ import {
 	SlashCommandBuilder,
 } from "discord.js";
 import config from "~/constants/env-config.js";
-import { getUserTimezone } from "~/services/potluck-quest.js";
+import {
+	getPotluckCodesByDiscordIds,
+	getUserTimezone,
+} from "~/services/web.js";
 import {
 	formatTimestampForView,
 	getTimezoneOffsetName,
 } from "~/utilities/date-time.js";
-import { removeBlurbTruncateAndGetCode } from "~/utilities/description-blurb.js";
 
 // TODO: Add cooldowns https://discordjs.guide/additional-features/cooldowns.html#resulting-code
 export const data = new SlashCommandBuilder()
@@ -39,8 +41,12 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 	});
 	const { offsetNameLong, offsetNameShort } = getTimezoneOffsetName(timezone);
 
+	const codesByIds = await getPotluckCodesByDiscordIds({
+		discordEventIds: pqEvents.map((event) => event.id) as [string, ...string[]],
+	});
+
 	const fields = pqEvents.map((event) => {
-		const { code } = removeBlurbTruncateAndGetCode(event.description);
+		const code = codesByIds[event.id];
 
 		return [
 			{

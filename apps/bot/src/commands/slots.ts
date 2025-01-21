@@ -10,7 +10,7 @@ import {
 import { CustomId } from "~/constants/custom-id.js";
 import { DELIMITER } from "~/constants/delimiter.js";
 import config from "~/constants/env-config.js";
-import { getSlots } from "~/services/potluck-quest.js";
+import { getSlots } from "~/services/web.js";
 
 // TODO: Add cooldowns https://discordjs.guide/additional-features/cooldowns.html#resulting-code
 export const data = new SlashCommandBuilder()

@@ -1,6 +1,6 @@
 import { CacheType, Interaction, MessageFlags } from "discord.js";
 import api from "~/constants/web-api.js";
-import { checkAccountExists } from "~/services/potluck-quest.js";
+import { checkAccountExists } from "~/services/web.js";
 
 export const listener = async (interaction: Interaction<CacheType>) => {
 	if (!interaction.isChatInputCommand()) {
@@ -31,7 +31,10 @@ export const listener = async (interaction: Interaction<CacheType>) => {
 	try {
 		await command.execute(interaction);
 	} catch (error) {
-		console.error(error);
+		console.error({
+			message: "Error in chat input command listener",
+			error,
+		});
 
 		if (interaction.replied || interaction.deferred) {
 			await interaction.followUp({

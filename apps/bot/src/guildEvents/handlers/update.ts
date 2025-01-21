@@ -5,8 +5,8 @@ import {
 	GuildScheduledEventStatus,
 	PartialGuildScheduledEvent,
 } from "discord.js";
-import { updatePotluckEvent } from "~/services/potluck-quest.js";
-import { removeBlurbTruncateAndGetCode } from "~/utilities/description-blurb.js";
+import { updatePotluckEvent } from "~/services/web.js";
+import { removeDescriptionBlurb } from "~/utilities/description-blurb.js";
 
 export const data = { eventName: Events.GuildScheduledEventUpdate };
 
@@ -24,16 +24,12 @@ export const execute = async (
 		return;
 	}
 
-	const { code, description: cleanedTruncatedDescription } =
-		removeBlurbTruncateAndGetCode(newGuildScheduledEvent.description);
-
-	if (!code) {
-		console.error("Failed to retrieve code from description on event update");
-		return;
-	}
+	const { description: cleanedTruncatedDescription } = removeDescriptionBlurb(
+		newGuildScheduledEvent.description
+	);
 
 	const update: z.infer<typeof webApiBot.event.putSchema> = {
-		code,
+		discordEventId: newGuildScheduledEvent.id,
 	};
 
 	if (
