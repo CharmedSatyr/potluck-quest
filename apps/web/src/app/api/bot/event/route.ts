@@ -1,5 +1,6 @@
 import { webApiBot } from "@potluck/utilities/validation";
 import { NextRequest, NextResponse } from "next/server";
+import findDiscordEventMappingByDiscordEventId from "~/actions/discord-event-mapping/find-discord-event-mapping-by-discord-event-id";
 import createEvent from "~/actions/event/create-event";
 import deleteEvent from "~/actions/event/delete-event";
 import updateEvent from "~/actions/event/update-event";
@@ -118,20 +119,38 @@ export const DELETE = async (request: NextRequest) => {
 		);
 	}
 
-	const { code } = parsed.data;
+	const { discordEventId } = parsed.data;
 
-	const [result] = await deleteEvent({ code });
+	const [mapping] = await findDiscordEventMappingByDiscordEventId({
+		discordEventId,
+	});
+
+	if (!mapping) {
+		return NextResponse.json(
+			{
+				message: "Code not found for provided event ID",
+				discordEventId,
+			},
+			{ status: 404 }
+		);
+	}
+
+	const [result] = await deleteEvent({ code: mapping.code });
 
 	if (!result?.id) {
 		return NextResponse.json(
-			{ message: "Failed to delete event", code },
+			{
+				message: "Failed to delete event",
+				discordEventId,
+				code: mapping.code,
+			},
 			{ status: 400 }
 		);
 	}
 
 	return NextResponse.json(
 		{
-			code,
+			code: mapping.code,
 			message: "Event deleted",
 		},
 		{ status: 200 }

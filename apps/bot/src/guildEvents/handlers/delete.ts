@@ -5,7 +5,6 @@ import {
 	PartialGuildScheduledEvent,
 } from "discord.js";
 import { deletePotluckEvent } from "~/services/potluck-quest.js";
-import { removeBlurbTruncateAndGetCode } from "~/utilities/description-blurb.js";
 
 export const data = { eventName: Events.GuildScheduledEventDelete };
 
@@ -24,16 +23,12 @@ export const execute = async (
 		return;
 	}
 
-	const { code } = removeBlurbTruncateAndGetCode(
-		guildScheduledEvent?.description ?? null
-	);
-
-	if (!code) {
-		console.error("Failed to retrieve code from description on event delete");
+	if (!guildScheduledEvent?.id) {
+		console.warn("Failed to retrieve guild scheduled event ID on event delete");
 		return;
 	}
 
-	console.info("Deleting event", code);
+	console.info("Deleting event", guildScheduledEvent.id);
 
-	await deletePotluckEvent({ code });
+	await deletePotluckEvent({ discordEventId: guildScheduledEvent.id });
 };

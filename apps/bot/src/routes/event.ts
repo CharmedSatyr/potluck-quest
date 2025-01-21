@@ -55,7 +55,7 @@ router.delete(
 	"/",
 	validateRequest(botApi.event.deleteSchema),
 	async (
-		req: ValidRequest<{}, z.infer<typeof botApi.event.deleteSchema>>,
+		req: ValidRequest<null, z.infer<typeof botApi.event.deleteSchema>>,
 		res: Response
 	): Promise<void> => {
 		const { query } = req;
