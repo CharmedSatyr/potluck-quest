@@ -1,5 +1,6 @@
 import { webApiBot } from "@potluck/utilities/validation";
 import { NextRequest, NextResponse } from "next/server";
+import findDiscordEventMappingByDiscordEventId from "~/actions/discord-event-mapping/find-discord-event-mapping-by-discord-event-id";
 import upsertRsvp from "~/actions/rsvp/upsert-rsvp";
 import findUserIdByProviderAccountId from "~/actions/user/find-user-id-by-provider-account-id";
 
@@ -13,13 +14,12 @@ export const POST = async (request: NextRequest) => {
 			{
 				errors: parsed.error.flatten().fieldErrors,
 				message: "Invalid parameters",
-				success: false,
 			},
 			{ status: 400 }
 		);
 	}
 
-	const { code, discordUserId, message, response } = parsed.data;
+	const { discordEventId, discordUserId, message, response } = parsed.data;
 
 	const [createdBy] = await findUserIdByProviderAccountId({
 		providerAccountId: discordUserId,
@@ -31,13 +31,29 @@ export const POST = async (request: NextRequest) => {
 		return NextResponse.json(
 			{
 				message: "User account not found",
-				success: false,
 			},
 			{ status: 401 }
 		);
 	}
+
+	const [mapping] = await findDiscordEventMappingByDiscordEventId({
+		discordEventId,
+	});
+
+	if (!mapping) {
+		// TODO: This only handles if the guest has a PQ account! They should still be accounted for regardless.
+		// Accept total number of guests from bot and keep that updated?
+		return NextResponse.json(
+			{
+				message: "Code not found for provided event ID",
+				discordEventId,
+			},
+			{ status: 400 }
+		);
+	}
+
 	const result = await upsertRsvp({
-		code,
+		code: mapping.code,
 		createdBy: createdBy.id,
 		message,
 		response,

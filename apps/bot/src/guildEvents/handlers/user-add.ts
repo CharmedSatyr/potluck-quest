@@ -6,7 +6,6 @@ import {
 	User,
 } from "discord.js";
 import { upsertRsvp } from "~/services/potluck-quest.js";
-import { removeBlurbTruncateAndGetCode } from "~/utilities/description-blurb.js";
 
 export const data = { eventName: Events.GuildScheduledEventUserAdd };
 
@@ -21,21 +20,21 @@ export const execute = async (
 		return;
 	}
 
-	const { code } = removeBlurbTruncateAndGetCode(event.description);
-
-	if (!code) {
-		console.error("Failed to retrieve code from description on event user add");
+	if (!event.id) {
+		console.warn(
+			"Failed to retrieve guild scheduled event ID on event user add"
+		);
 		return;
 	}
 
 	const result = await upsertRsvp({
-		code,
+		discordEventId: event.id,
 		discordUserId: user.id,
 		message: "",
 		response: "yes",
 	});
 
 	if (!result) {
-		console.error("Failed to add rsvp for event:", code);
+		console.error("Failed to add rsvp for event:", event.id);
 	}
 };
