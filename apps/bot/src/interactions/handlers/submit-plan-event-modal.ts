@@ -9,7 +9,7 @@ import {
 	mapDiscordToPotluckEvent,
 } from "~/services/web.js";
 import { parseDateTimeInputForServices } from "~/utilities/date-time.js";
-import buildDescriptionBlurb from "~/utilities/description-blurb.js";
+import { addDescriptionBlurb } from "~/utilities/description-blurb.js";
 
 export const data = { customId: CustomId.PLAN_EVENT_MODAL };
 
@@ -65,10 +65,7 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 		return;
 	}
 
-	const augmentedDescription = description.concat(
-		"\n",
-		buildDescriptionBlurb(code)
-	);
+	const augmentedDescription = addDescriptionBlurb(description, code);
 
 	const discordEvent = await createDiscordEvent({
 		guildId: interaction.guild.id,

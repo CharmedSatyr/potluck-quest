@@ -6,7 +6,7 @@ import {
 	PartialGuildScheduledEvent,
 } from "discord.js";
 import { updatePotluckEvent } from "~/services/web.js";
-import { removeBlurbTruncateAndGetCode } from "~/utilities/description-blurb.js";
+import { removeDescriptionBlurb } from "~/utilities/description-blurb.js";
 
 export const data = { eventName: Events.GuildScheduledEventUpdate };
 
@@ -24,8 +24,9 @@ export const execute = async (
 		return;
 	}
 
-	const { description: cleanedTruncatedDescription } =
-		removeBlurbTruncateAndGetCode(newGuildScheduledEvent.description);
+	const { description: cleanedTruncatedDescription } = removeDescriptionBlurb(
+		newGuildScheduledEvent.description
+	);
 
 	const update: z.infer<typeof webApiBot.event.putSchema> = {
 		discordEventId: newGuildScheduledEvent.id,

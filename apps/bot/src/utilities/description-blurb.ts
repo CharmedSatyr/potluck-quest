@@ -1,13 +1,27 @@
 import { DESCRIPTION_LENGTH } from "@potluck/utilities/constants";
 
-export const buildDescriptionBlurb = (code: string) =>
-	`See details at [${code} | Potluck Quest](https://potluck.quest/event/${code})`;
+export const addDescriptionBlurb = (
+	description: string | null,
+	code: string
+) => {
+	const blurb = `See details at [${code} | Potluck Quest](https://potluck.quest/event/${code})`;
 
-export default buildDescriptionBlurb;
-
-export const removeBlurbTruncateAndGetCode = (description: string | null) => {
 	if (!description) {
-		return { code: null, description: "" };
+		return blurb;
+	}
+
+	if (blurb.length + description.length > DESCRIPTION_LENGTH) {
+		return description;
+	}
+
+	return description.concat("\n").concat(blurb);
+};
+
+export const removeDescriptionBlurb = (
+	description: string | null
+): { description: string } => {
+	if (!description) {
+		return { description: "" };
 	}
 
 	const regex =
@@ -16,22 +30,18 @@ export const removeBlurbTruncateAndGetCode = (description: string | null) => {
 	const found = description.match(regex);
 
 	if (!found) {
-		return { code: null, description };
+		return { description };
 	}
 
-	const code = found[1]; // Capturing group from the regex
+	// Capturing groups from the regex
 	const blurb = found[0];
+	// code is found[1]
+
 	const blurbIndex = description.lastIndexOf(blurb);
 
 	const cleanedDescription = description.slice(0, blurbIndex).trim();
 
-	const truncatedCleanedDescription =
-		cleanedDescription.length > DESCRIPTION_LENGTH
-			? cleanedDescription.slice(0, DESCRIPTION_LENGTH - 3).concat("...")
-			: cleanedDescription;
-
 	return {
-		code,
-		description: truncatedCleanedDescription,
+		description: cleanedDescription,
 	};
 };
