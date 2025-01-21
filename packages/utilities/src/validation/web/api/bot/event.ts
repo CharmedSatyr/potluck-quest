@@ -18,8 +18,8 @@ export const postSchema = z.strictObject({
 });
 
 export const putSchema = z.strictObject({
-	code,
 	description: description.optional(),
+	discordEventId,
 	endUtcMs: endUtcMs.optional(),
 	location: location.optional(),
 	startUtcMs: startUtcMs.optional(),

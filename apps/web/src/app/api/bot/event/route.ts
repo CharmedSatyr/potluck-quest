@@ -84,12 +84,30 @@ export const PUT = async (request: NextRequest) => {
 		);
 	}
 
-	const [result] = await updateEvent(parsed.data);
+	const { discordEventId, ...rest } = parsed.data;
+
+	const [mapping] = await findDiscordEventMappingByDiscordEventId({
+		discordEventId: parsed.data.discordEventId,
+	});
+
+	if (!mapping) {
+		return NextResponse.json(
+			{
+				message: "Code not found for provided event ID",
+				discordEventId: parsed.data.discordEventId,
+			},
+			{ status: 404 }
+		);
+	}
+
+	const [result] = await updateEvent({ ...rest, code: mapping.code });
 
 	if (!result?.code) {
 		return NextResponse.json(
 			{
+				code: mapping.code,
 				message: "Failed to update event",
+				discordEventId,
 			},
 			{ status: 500 }
 		);
@@ -97,7 +115,8 @@ export const PUT = async (request: NextRequest) => {
 
 	return NextResponse.json(
 		{
-			code: parsed.data.code,
+			code: mapping.code,
+			discordEventId,
 			message: "Event updated",
 		},
 		{ status: 200 }

@@ -24,16 +24,11 @@ export const execute = async (
 		return;
 	}
 
-	const { code, description: cleanedTruncatedDescription } =
+	const { description: cleanedTruncatedDescription } =
 		removeBlurbTruncateAndGetCode(newGuildScheduledEvent.description);
 
-	if (!code) {
-		console.error("Failed to retrieve code from description on event update");
-		return;
-	}
-
 	const update: z.infer<typeof webApiBot.event.putSchema> = {
-		code,
+		discordEventId: newGuildScheduledEvent.id,
 	};
 
 	if (

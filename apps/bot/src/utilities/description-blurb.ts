@@ -7,7 +7,7 @@ export default buildDescriptionBlurb;
 
 export const removeBlurbTruncateAndGetCode = (description: string | null) => {
 	if (!description) {
-		return { code: null, description };
+		return { code: null, description: "" };
 	}
 
 	const regex =
