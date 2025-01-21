@@ -99,10 +99,10 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 		);
 	}
 
-	const link = `[**${title}**](${config.PQ_WEB_BASE_URL}/event/${code}\\)`;
+	const url = config.PQ_WEB_BASE_URL.concat("/event/").concat(code);
 
 	await interaction.reply({
-		content: `<@${interaction.user.id}> is planning a new event, ${link}\\. Type \`/slots ${code}\` and sign up to bring something!`,
+		content: `<@${interaction.user.id}> is planning a new event, [**${title}**](${url}). Type \`/slots ${code}\` and sign up to bring something!`,
 	});
 
 	const params = new URLSearchParams();
