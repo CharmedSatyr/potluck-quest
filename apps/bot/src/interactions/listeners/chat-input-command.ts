@@ -31,7 +31,10 @@ export const listener = async (interaction: Interaction<CacheType>) => {
 	try {
 		await command.execute(interaction);
 	} catch (error) {
-		console.error(error);
+		console.error({
+			message: "Error in chat input command listener",
+			error,
+		});
 
 		if (interaction.replied || interaction.deferred) {
 			await interaction.followUp({

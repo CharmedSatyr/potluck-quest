@@ -1,6 +1,6 @@
 import { webApiBot } from "@potluck/utilities/validation";
 import { NextRequest, NextResponse } from "next/server";
-import findDiscordEventMappingByDiscordEventId from "~/actions/discord-event-mapping/find-discord-event-mapping-by-discord-event-id";
+import findEventCodeByDiscordEventId from "~/actions/discord-event-mapping/find-event-code-by-discord-event-id";
 import createEvent from "~/actions/event/create-event";
 import deleteEvent from "~/actions/event/delete-event";
 import updateEvent from "~/actions/event/update-event";
@@ -86,7 +86,7 @@ export const PUT = async (request: NextRequest) => {
 
 	const { discordEventId, ...rest } = parsed.data;
 
-	const [mapping] = await findDiscordEventMappingByDiscordEventId({
+	const [mapping] = await findEventCodeByDiscordEventId({
 		discordEventId: parsed.data.discordEventId,
 	});
 
@@ -140,7 +140,7 @@ export const DELETE = async (request: NextRequest) => {
 
 	const { discordEventId } = parsed.data;
 
-	const [mapping] = await findDiscordEventMappingByDiscordEventId({
+	const [mapping] = await findEventCodeByDiscordEventId({
 		discordEventId,
 	});
 

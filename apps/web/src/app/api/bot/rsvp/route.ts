@@ -1,6 +1,6 @@
 import { webApiBot } from "@potluck/utilities/validation";
 import { NextRequest, NextResponse } from "next/server";
-import findDiscordEventMappingByDiscordEventId from "~/actions/discord-event-mapping/find-discord-event-mapping-by-discord-event-id";
+import findEventCodeByDiscordEventId from "~/actions/discord-event-mapping/find-event-code-by-discord-event-id";
 import upsertRsvp from "~/actions/rsvp/upsert-rsvp";
 import findUserIdByProviderAccountId from "~/actions/user/find-user-id-by-provider-account-id";
 
@@ -36,7 +36,7 @@ export const POST = async (request: NextRequest) => {
 		);
 	}
 
-	const [mapping] = await findDiscordEventMappingByDiscordEventId({
+	const [mapping] = await findEventCodeByDiscordEventId({
 		discordEventId,
 	});
 
