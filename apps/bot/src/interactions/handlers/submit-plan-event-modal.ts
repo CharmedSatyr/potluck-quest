@@ -101,8 +101,9 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 
 	const url = config.PQ_WEB_BASE_URL.concat("/event/").concat(code);
 
+	// The space after the URL is required for preview links to display properly.
 	await interaction.reply({
-		content: `<@${interaction.user.id}> is planning a new event, [**${title}**](${url}). Type \`/slots ${code}\` and sign up to bring something!`,
+		content: `<@${interaction.user.id}> is planning a new event, [**${title}**](${url} ). Type \`/slots ${code}\` and sign up to bring something!`,
 	});
 
 	const params = new URLSearchParams();
