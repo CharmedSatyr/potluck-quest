@@ -48,14 +48,13 @@ const SettingsLink = () => (
 );
 
 const Signout = () => (
-	<Form action={signOutAndRevalidate} className="w-full">
-		<button className="m-0 w-full min-w-24 p-0" type="submit">
-			<a className="w-full no-underline">
-				<ArrowRightStartOnRectangleIcon className="-ml-8 mr-1 inline-block size-5" />{" "}
-				Sign Out
-			</a>
-		</button>
-	</Form>
+	<a className="text-nowrap no-underline">
+		<Form action={signOutAndRevalidate}>
+			<button type="submit">
+				<ArrowRightStartOnRectangleIcon className="inline size-4" /> Sign Out
+			</button>
+		</Form>
+	</a>
 );
 
 const LoggedInContent = ({ image, name }: { image: string; name: string }) => {
