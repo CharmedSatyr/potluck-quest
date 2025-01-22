@@ -10,11 +10,16 @@ export const addDescriptionBlurb = (
 		return blurb;
 	}
 
-	if (blurb.length + description.length > DESCRIPTION_LENGTH) {
+	const descriptionWithBlurb = "\n"
+		.concat(description)
+		.concat("\n")
+		.concat(blurb);
+
+	if (descriptionWithBlurb.length > DESCRIPTION_LENGTH) {
 		return description;
 	}
 
-	return description.concat("\n").concat(blurb);
+	return descriptionWithBlurb;
 };
 
 export const removeDescriptionBlurb = (
