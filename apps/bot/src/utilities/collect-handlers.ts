@@ -1,8 +1,8 @@
 import { Collection } from "discord.js";
-import { Handler } from "discord.js-extensions";
 import fs from "fs";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
+import type { Handler } from "~/@types/handler.d.ts";
 
 const handlersDirs = ["../interactions/handlers", "../guildEvents/handlers"];
 

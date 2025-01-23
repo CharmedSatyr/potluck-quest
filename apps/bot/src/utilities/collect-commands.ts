@@ -1,8 +1,8 @@
 import { Collection } from "discord.js";
-import { Command } from "discord.js-extensions";
 import fs from "fs";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
+import type { Command } from "~/@types/handler.d.ts";
 
 const collectCommands = async () => {
 	const __dirname = dirname(fileURLToPath(import.meta.url));
