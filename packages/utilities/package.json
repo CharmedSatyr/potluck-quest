@@ -24,6 +24,7 @@
 	},
 	"scripts": {
 		"build": "tsc && tsc-alias && mkdir -p dist/@types/types; cp src/types/* dist/@types/types",
+		"dev": "nodemon",
 		"clean": "rm -rf dist tsconfig.tsbuildinfo || true",
 		"prettier": "npx prettier --write .",
 		"type-check": "tsc --noEmit && tsc-alias"
@@ -31,6 +32,7 @@
 	"devDependencies": {
 		"@potluck/config": "workspace:*",
 		"@types/luxon": "^3.4.2",
+		"nodemon": "^3.1.9",
 		"tsc-alias": "^1.8.10",
 		"typescript": "^5.7.2"
 	},
