@@ -72,7 +72,7 @@ const ProgressIndicator = ({ mode }: { mode: WizardMode }) => {
 					className={`step ${anchor === Step.SELECT_SERVER ? "step-secondary" : ""}`}
 					onClick={() => scrollToAnchor(Step.SELECT_SERVER)}
 				>
-					Select Discord Server
+					Select the Server
 				</button>
 			)}
 		</div>
