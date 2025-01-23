@@ -8,6 +8,7 @@ import {
 	isGuildMember,
 	updateDiscordEvent,
 } from "~/services/discord.js";
+import { mapDiscordToPotluckEvent } from "~/services/web.js";
 import { addDescriptionBlurb } from "~/utilities/description-blurb.js";
 
 const router = Router();
@@ -20,17 +21,24 @@ router.post(
 		res: Response
 	): Promise<void> => {
 		const { body } = req;
+		const { code, ...rest } = body;
 
-		body.description = addDescriptionBlurb(body.description, body.code);
+		body.description = addDescriptionBlurb(body.description, code);
 
-		const event = await createDiscordEvent(body);
+		const discordEvent = await createDiscordEvent(rest);
 
-		if (event) {
-			res.status(200).send();
+		if (!discordEvent) {
+			res.status(500).send();
 			return;
 		}
 
-		res.status(500).send();
+		await mapDiscordToPotluckEvent({
+			discordGuildId: discordEvent.guildId,
+			discordEventId: discordEvent.id,
+			potluckEventCode: code,
+		});
+
+		res.status(200).send();
 	}
 );
 
