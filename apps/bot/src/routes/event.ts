@@ -8,6 +8,7 @@ import {
 	isGuildMember,
 	updateDiscordEvent,
 } from "~/services/discord.js";
+import { addDescriptionBlurb } from "~/utilities/description-blurb.js";
 
 const router = Router();
 
@@ -19,6 +20,8 @@ router.post(
 		res: Response
 	): Promise<void> => {
 		const { body } = req;
+
+		body.description = addDescriptionBlurb(body.description, body.code);
 
 		const event = await createDiscordEvent(body);
 

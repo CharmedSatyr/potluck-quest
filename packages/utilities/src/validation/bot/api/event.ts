@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { code } from "~/validation/common/code.js";
 import { description } from "~/validation/common/description.js";
 import { discordEventId } from "~/validation/common/discord-event-id.js";
 import { discordGuildId } from "~/validation/common/discord-guild-id.js";
@@ -9,6 +10,7 @@ import { startUtcMs } from "~/validation/common/start-utc-ms.js";
 import { title } from "~/validation/common/title.js";
 
 export const postSchema = z.strictObject({
+	code,
 	guildId: discordGuildId,
 	description,
 	endUtcMs,

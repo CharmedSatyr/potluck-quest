@@ -33,6 +33,17 @@ const PlanConfirmPage = async ({ searchParams }: Props) => {
 	const eventInput = await buildEventInputFromParams(searchParams);
 	const eventData = eventInputToData(eventInput);
 
+	const [result] = await createEvent({
+		...eventData,
+		createdBy: session.user.id,
+	});
+
+	if (!result?.code) {
+		console.warn("No code created for new event:", JSON.stringify(eventData));
+		// TODO: Add some error messaging via toast
+		redirect("/plan".concat(queryString));
+	}
+
 	const { description, endUtcMs, location, startUtcMs, title } = eventData;
 
 	if (guildId && guildId !== NO_GUILD_ID) {
@@ -46,6 +57,7 @@ const PlanConfirmPage = async ({ searchParams }: Props) => {
 		}
 
 		const discordResult = await createDiscordEvent({
+			code: result.code,
 			description,
 			endUtcMs,
 			guildId,
@@ -59,17 +71,6 @@ const PlanConfirmPage = async ({ searchParams }: Props) => {
 			// TODO: Add some error messaging via toast
 			redirect("/plan".concat(queryString));
 		}
-	}
-
-	const [result] = await createEvent({
-		...eventData,
-		createdBy: session.user.id,
-	});
-
-	if (!result?.code) {
-		console.warn("No code created for new event:", JSON.stringify(eventData));
-		// TODO: Add some error messaging via toast
-		redirect("/plan".concat(queryString));
 	}
 
 	const slotData = await buildSlotDataFromParams(searchParams);
