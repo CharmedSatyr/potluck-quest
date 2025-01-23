@@ -2,10 +2,10 @@
 
 import { DESCRIPTION_LENGTH } from "@potluck/utilities/constants";
 import Form from "next/form";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { use, useActionState, useEffect, useRef } from "react";
-import { DiscordIcon } from "~/components/icons/discord";
 import LoadingIndicator from "~/components/loading-indicator";
 import { Step } from "~/components/manage-event-wizard";
 import { loginAction } from "~/components/plan-event-form/login-action";
@@ -206,7 +206,14 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 				{loggedIn && !isPending && "Next"}
 				{!loggedIn && !isPending && (
 					<>
-						Continue with Discord <DiscordIcon className="size-4" />
+						Continue with{" "}
+						<Image
+							src="/static/discord-logo-black.png"
+							alt=""
+							height="15"
+							width="80"
+							className="m-0"
+						/>
 					</>
 				)}
 			</button>

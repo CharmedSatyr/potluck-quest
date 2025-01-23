@@ -8,6 +8,8 @@ import {
 	isGuildMember,
 	updateDiscordEvent,
 } from "~/services/discord.js";
+import { mapDiscordToPotluckEvent } from "~/services/web.js";
+import { addDescriptionBlurb } from "~/utilities/description-blurb.js";
 
 const router = Router();
 
@@ -19,15 +21,24 @@ router.post(
 		res: Response
 	): Promise<void> => {
 		const { body } = req;
+		const { code, ...rest } = body;
 
-		const event = await createDiscordEvent(body);
+		body.description = addDescriptionBlurb(body.description, code);
 
-		if (event) {
-			res.status(200).send();
+		const discordEvent = await createDiscordEvent(rest);
+
+		if (!discordEvent) {
+			res.status(500).send();
 			return;
 		}
 
-		res.status(500).send();
+		await mapDiscordToPotluckEvent({
+			discordGuildId: discordEvent.guildId,
+			discordEventId: discordEvent.id,
+			potluckEventCode: code,
+		});
+
+		res.status(200).send();
 	}
 );
 

@@ -5,7 +5,7 @@ import {
 	PartialGuildScheduledEvent,
 	User,
 } from "discord.js";
-import { GuildScheduledEventUserHandler } from "discord.js-extensions";
+import type { GuildScheduledEventUserHandler } from "~/@types/handler.d.ts";
 
 export const listener = async (
 	event:

@@ -2,11 +2,13 @@
 
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import Form from "next/form";
+import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { use } from "react";
 import GuildIcon from "~/components/guild-icon";
 import { BOT_INSTALL_LINK } from "~/constants/bot-install-link";
+import { NO_GUILD_ID } from "~/constants/no-guild-id";
 
 type Props = {
 	userDiscordGuildsPromise: Promise<
@@ -34,7 +36,7 @@ const GuildOption = ({
 					type="radio"
 					name="guild-option"
 					className="radio checked:bg-primary"
-					value={guildId ?? "none"}
+					value={guildId ?? NO_GUILD_ID}
 					defaultChecked={!guildId}
 				/>
 				{iconUrl && <GuildIcon name={name} url={iconUrl} />}
@@ -69,15 +71,22 @@ const SelectGuildForm = ({ userDiscordGuildsPromise }: Props) => {
 
 			<section className="rounded-xl bg-base-300 px-6 pb-6 pt-1 shadow-xl">
 				<p>
-					Do you want to create an{" "}
+					Do you want to create an event in a{" "}
+					<Image
+						src="/static/discord-logo-blue.png"
+						alt=""
+						height="19"
+						width="100"
+						className="m-0 inline"
+					/>{" "}
+					server that stays in sync with this one?{" "}
 					<Link
 						href="https://discord.com/community/planning-community-events"
 						rel="noopener noreferrer"
 						target="_blank"
 					>
-						event in a Discord server
-					</Link>{" "}
-					that stays in sync with this one?
+						Read about Planning Community Events.
+					</Link>
 				</p>
 				<div className="rounded-xl border border-info px-2">
 					<p className="mb-0 flex items-center gap-1">
@@ -86,7 +95,7 @@ const SelectGuildForm = ({ userDiscordGuildsPromise }: Props) => {
 							width={25}
 							className="inline text-info"
 						/>{" "}
-						For a Discord server to be eligible:
+						For a server to be eligible:
 					</p>
 					<ul className="mt-0">
 						<li>You must have permission to manage events in that server.</li>

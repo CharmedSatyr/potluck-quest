@@ -1,8 +1,10 @@
 import { redirect } from "next/navigation";
 import createDiscordEvent from "~/actions/bot/event/create-discord-event";
+import fetchUserDiscordGuilds from "~/actions/bot/user/fetch-user-discord-guilds";
 import createEvent from "~/actions/event/create-event";
 import createSlots from "~/actions/slot/create-slots";
 import { auth } from "~/auth";
+import { NO_GUILD_ID } from "~/constants/no-guild-id";
 import genPageMetadata from "~/seo";
 import {
 	buildEventInputFromParams,
@@ -23,32 +25,52 @@ const PlanConfirmPage = async ({ searchParams }: Props) => {
 		redirect("/oauth"); // Middleware should already guarantee loggedIn
 	}
 
-	const eventInput = await buildEventInputFromParams(searchParams);
-	const eventData = eventInputToData(eventInput);
-
-	const eventDataWithCtx = { ...eventData, createdBy: session.user.id };
-
 	const params = await searchParams;
 	const queryString = "?" + new URLSearchParams(params).toString();
 
 	const guildId = params["guild-option"];
-	const discordResult = await createDiscordEvent({
-		...eventDataWithCtx,
-		guildId,
+
+	const eventInput = await buildEventInputFromParams(searchParams);
+	const eventData = eventInputToData(eventInput);
+
+	const [result] = await createEvent({
+		...eventData,
+		createdBy: session.user.id,
 	});
-
-	if (!discordResult) {
-		console.warn("Failed to create Discord event");
-		// TODO: Add some error messaging via toast
-		redirect("/plan".concat(queryString));
-	}
-
-	const [result] = await createEvent(eventDataWithCtx);
 
 	if (!result?.code) {
 		console.warn("No code created for new event:", JSON.stringify(eventData));
 		// TODO: Add some error messaging via toast
 		redirect("/plan".concat(queryString));
+	}
+
+	const { description, endUtcMs, location, startUtcMs, title } = eventData;
+
+	if (guildId && guildId !== NO_GUILD_ID) {
+		/** Confirm user is authorized to create events in guild from (manipulatable) params. */
+		const permittedGuilds = await fetchUserDiscordGuilds({
+			userId: session?.user?.id,
+		});
+
+		if (!permittedGuilds.some((guild) => guild.guildId === guildId)) {
+			redirect("/oauth");
+		}
+
+		const discordResult = await createDiscordEvent({
+			code: result.code,
+			description,
+			endUtcMs,
+			guildId,
+			location,
+			startUtcMs,
+			title,
+		});
+
+		if (!discordResult) {
+			console.warn("Failed to create Discord event");
+			// TODO: Add some error messaging via toast
+			redirect("/plan".concat(queryString));
+		}
 	}
 
 	const slotData = await buildSlotDataFromParams(searchParams);
