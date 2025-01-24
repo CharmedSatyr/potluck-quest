@@ -65,9 +65,17 @@ export const GET = async (request: NextRequest) => {
 		);
 	}
 
-	const codesById = results.map((result) => ({
-		[result.discordEventId]: result.code,
-	}));
+	const codesById = results
+		.map((result) => ({
+			[result.discordEventId]: result.code,
+		}))
+		.reduce(
+			(acc, curr) => ({
+				...acc,
+				...curr,
+			}),
+			{}
+		);
 
 	return NextResponse.json(codesById, { status: 200 });
 };
