@@ -102,6 +102,5 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 
 	await interaction.reply({
 		embeds: [embed],
-		flags: MessageFlags.Ephemeral,
 	});
 };

@@ -106,17 +106,17 @@ const Page = () => {
 							<Link href="#commands">Commands</Link>
 							<ul>
 								<li>
-									<Link href="#plan">
+									<Link href="#plan-command">
 										<code>/plan</code>
 									</Link>
 								</li>
 								<li>
-									<Link href="#view">
+									<Link href="#view-command">
 										<code>/view</code>
 									</Link>
 								</li>
 								<li>
-									<Link href="#slots">
+									<Link href="#slots-command">
 										<code>/slots</code>
 									</Link>
 								</li>
