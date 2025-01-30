@@ -39,31 +39,38 @@ const Page = async ({ params, searchParams }: Props) => {
 	const [originalEventData] = await findEvent({ code });
 	const diff = diffEventData(originalEventData, eventData);
 
-	if (Object.keys(diff).length === 0) {
-		redirect(`/event/${code}`);
+	if (Object.keys(diff).length !== 0) {
+		const [result] = await updateEvent({
+			...diff,
+			code,
+		});
+
+		if (!result.code) {
+			// TODO: Add some error messaging via toast
+			redirect(`/event/${code}`);
+		}
+
+		await updateDiscordEvent(code, { ...diff });
 	}
-
-	const [result] = await updateEvent({
-		...diff,
-		code,
-	});
-
-	if (!result.code) {
-		// TODO: Add some error messaging via toast
-		redirect(`/event/${code}`);
-	}
-
-	await updateDiscordEvent(code, { ...diff });
 
 	const slotData = await buildSlotDataFromParams(searchParams);
 
 	if (slotData.length > 0) {
-		await upsertSlots({
+		const slots = await upsertSlots({
 			code,
 			slots: slotData as NonEmptySlotDataArray,
 		});
 
-		// TODO: Add handling if problem adding slots.
+		// TODO: Add more handling if problem adding slots.
+		if (slots.length !== slotData.length) {
+			console.warn(
+				"Failed to update slots.",
+				"eventData:",
+				JSON.stringify(eventData),
+				"slotData:",
+				JSON.stringify(slotData)
+			);
+		}
 	}
 
 	redirect(`/event/${code}`);
