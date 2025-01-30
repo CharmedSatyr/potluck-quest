@@ -3,7 +3,6 @@ import DiscordLogo from "~/components/discord-blurple-logo";
 
 const Rsvps = () => (
 	<article>
-		<h3>RSVPs</h3>
 		<ul>
 			<li>
 				Participants can RSVP within <DiscordLogo /> by clicking

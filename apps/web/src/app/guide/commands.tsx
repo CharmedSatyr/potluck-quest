@@ -1,19 +1,17 @@
 import { PotluckQuest } from "./links";
-import DiscordLogo from "~/components/discord-blurple-logo";
 
 const Commands = () => (
 	<article>
-		<h3>RSVPs</h3>
+		<h3>Key Discord Commands</h3>
 		<ul>
 			<li>
-				Participants can RSVP within <DiscordLogo /> by clicking
-				&quot;Interested&quot; on the native event. This status is synced to the{" "}
-				<PotluckQuest /> web interface.
+				<code>/plan</code>: Create a new event directly in Discord.
 			</li>
 			<li>
-				On the web interface, RSVPs can be managed by clicking
-				&quot;Attending&quot; or &quot;Not Attending&quot; on the event page.
-				This information will be synced to the connected <DiscordLogo /> event.
+				<code>/view</code>: List all <PotluckQuest /> events for your server.
+			</li>
+			<li>
+				<code>/slots</code>: View and interact with signup slots for an event.
 			</li>
 		</ul>
 	</article>

@@ -74,7 +74,7 @@ const GettingStarted = () => (
 		bot={<GettingStartedWithBot />}
 		botHeading="With PQ Bot on Discord"
 		web={<GettingStartedWithWeb />}
-		webHeading="Standalone Potluck Quest Web Interface"
+		webHeading="Standalone Web Interface"
 	/>
 );
 

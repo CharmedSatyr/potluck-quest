@@ -5,7 +5,6 @@ import OpenAiLogo from "~/components/openai-white-logo";
 
 const UsingSlots = () => (
 	<article>
-		<h3>Using Slots</h3>
 		<p>
 			Signup slots are how <PotluckQuest /> helps you plan meals. A slot
 			represents a request for a specific type and number of item—e.g., main
@@ -15,7 +14,7 @@ const UsingSlots = () => (
 		</p>
 
 		<section>
-			<h4>Creating Slots</h4>
+			<h3>Creating Slots</h3>
 			<ul>
 				<li>
 					The <Link href="/plan">planning wizard</Link> of <PotluckQuest /> is
@@ -32,7 +31,7 @@ const UsingSlots = () => (
 		</section>
 
 		<section>
-			<h4>Signing Up for Slots</h4>
+			<h3>Signing Up for Slots</h3>
 			<ul>
 				<li>
 					Use <code>/slots</code> in your <DiscordLogo /> server to view
