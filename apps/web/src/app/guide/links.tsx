@@ -22,7 +22,7 @@ export const Command = ({
 }: {
 	command: "plan" | "view" | "slots";
 }) => (
-	<Link href="#">
+	<Link href={`#${command}-command`}>
 		<code>/{command}</code>
 	</Link>
 );
