@@ -19,7 +19,7 @@ const GettingStartedWithBot = () => (
 			>
 				Friend Servers
 			</Link>{" "}
-			connecting people who spend time together IRL.
+			connecting people who want to spend time together IRL.
 		</p>
 		<ol>
 			<li>
