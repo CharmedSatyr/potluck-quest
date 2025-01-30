@@ -22,7 +22,7 @@ const Slots = () => (
 		</ul>
 
 		<section>
-			<h3>Managing Slots (Hosts)</h3>
+			<h3 id="managing-slots">Managing Slots (Hosts)</h3>
 			<ul>
 				<li>
 					Event creators are able to add, delete, or modify slots in the
