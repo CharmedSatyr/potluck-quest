@@ -99,12 +99,17 @@ const ManagingEvents = () => (
 				code on the <PotluckQuest /> website.
 			</li>
 			<li>
-				Events can be managed through <DiscordLogo /> if you are using <PQBot />
+				You can manage events through <DiscordLogo /> if you are using <PQBot />
 				.
 			</li>
 			<li>
 				You cannot add or change the <DiscordLogo /> server an event is
 				associated with after the event has been created.
+			</li>
+			<li>
+				Add <Link href="#slots">signup slots</Link> to your events during
+				initial planning so guests can immediately take advantage of core{" "}
+				<PotluckQuest /> tools.
 			</li>
 		</ul>
 
@@ -139,9 +144,15 @@ const ManagingEvents = () => (
 
 			<ul>
 				<li>
-					<PotluckQuest />: Edit and delete capabilities are available to event
-					hosts from the event page and the{" "}
+					Edit and delete capabilities are available to event hosts from the{" "}
+					<PotluckQuest /> event page and the{" "}
 					<Link href="/dashboard">Dashboard</Link>.
+				</li>
+				<li>
+					Event creators can manage <Link href="#slots">signup slots</Link> by
+					clicking on the &quot;Edit&quot; button on the <PotluckQuest /> event
+					page and proceeding to the &quot;Plan the Food&quot; step of the
+					wizard.
 				</li>
 				<li>
 					<PQBot />: Scheduled events in <DiscordLogo /> can be modified or

@@ -3,7 +3,7 @@ import Events from "./events";
 import GettingStarted from "./getting-started";
 import { PotluckQuest, PQBot } from "./links";
 import Rsvps from "./rsvps";
-import UsingSlots from "./using-slots";
+import Slots from "./slots";
 import Link from "next/link";
 import DiscordLogo from "~/components/discord-blurple-logo";
 import OpenAiLogo from "~/components/openai-white-logo";
@@ -34,7 +34,7 @@ const GuideContent = () => {
 			<Events />
 
 			<h2 id="slots">Slots</h2>
-			<UsingSlots />
+			<Slots />
 
 			<h2 id="rsvps">RSVPs</h2>
 			<Rsvps />
@@ -89,9 +89,14 @@ const Page = () => {
 						<li>
 							<Link href="#slots">Slots</Link>
 							<ul>
-								<li>Creating</li>
-								<li>Signing Up</li>
-								<li>Editing and Deleting</li>
+								<li>
+									<Link href="#managing-slots">Managing Slots (Hosts)</Link>
+								</li>
+								<li>
+									<Link href="#signing-up-to-bring-something">
+										Signing Up to Bring Something (Guests)
+									</Link>
+								</li>
 							</ul>
 						</li>
 						<li>
