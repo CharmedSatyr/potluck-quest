@@ -30,7 +30,7 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 
 	if (!pqEvents || pqEvents.size === 0 || !interaction.guild) {
 		await interaction.reply({
-			content: "No Potluck Quest events found. Type `/plan` to get started!",
+			content: `No [Potluck Quest](${config.PQ_WEB_BASE_URL}) events found. Type \`/plan\` to get started!`,
 			flags: MessageFlags.Ephemeral,
 		});
 		return;
