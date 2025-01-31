@@ -1,8 +1,12 @@
 import { z } from "@potluck/utilities/validation";
 import {
+	APIInteractionGuildMember,
 	Guild,
+	GuildMember,
 	GuildScheduledEventEntityType,
 	GuildScheduledEventPrivacyLevel,
+	PermissionFlagsBits,
+	PermissionsBitField,
 } from "discord.js";
 import client from "~/client.js";
 import {
@@ -11,6 +15,24 @@ import {
 	getGuildSchema,
 	updateDiscordEventSchema,
 } from "~/services/discord.schema.js";
+
+export const hasDiscordManageEventsPermissions = (
+	member: GuildMember | APIInteractionGuildMember | null
+): boolean => {
+	if (!member) {
+		return false;
+	}
+
+	// API Interaction Guild Member type
+	if (typeof member.permissions === "string") {
+		const permissionsBitField = new PermissionsBitField(
+			BigInt(member.permissions)
+		);
+		return permissionsBitField.has(PermissionFlagsBits.ManageEvents);
+	}
+
+	return member.permissions.has(PermissionFlagsBits.ManageEvents);
+};
 
 export const createDiscordEvent = async (
 	data: z.infer<typeof createDiscordEventSchema>
