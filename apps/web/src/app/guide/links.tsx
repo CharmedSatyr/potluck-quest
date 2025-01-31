@@ -26,4 +26,6 @@ export const Command = ({
 		<code>/{command}</code>
 	</Link>
 );
-export const SignupSlots = () => <Link href="#">signup slots</Link>;
+
+export const Events = () => <Link href="#events">events</Link>;
+export const SignupSlots = () => <Link href="#slots">signup slots</Link>;

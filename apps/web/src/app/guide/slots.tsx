@@ -7,12 +7,12 @@ const Slots = () => (
 	<article>
 		<ul>
 			<li>
-				Signup slots are how <PotluckQuest /> helps hosts plan meals and helps
-				guests decide what to bring.
+				Signup slots are how <PotluckQuest /> helps hosts plan meals and guests
+				decide what to bring.
 			</li>
 			<li>
 				A slot represents a request for a specific type and number of item—e.g.,
-				main course, appetizers, drinks, or packages of paper plates.
+				a main course, appetizers, drinks, or packages of paper plates.
 			</li>
 			<li>
 				<PotluckQuest />
@@ -22,7 +22,7 @@ const Slots = () => (
 		</ul>
 
 		<section>
-			<h3 id="managing-slots">Managing Slots (Hosts)</h3>
+			<h3 id="managing-slots">Managing Slots</h3>
 			<ul>
 				<li>
 					Event creators are able to add, delete, or modify slots in the
@@ -77,9 +77,7 @@ const Slots = () => (
 		</section>
 
 		<section>
-			<h3 id="signing-up-to-bring-something">
-				Signing Up to Bring Something (Guests)
-			</h3>
+			<h3 id="signing-up-to-bring-something">Signing Up to Bring Something</h3>
 			<ul>
 				<li>
 					Users with access to the <PotluckQuest /> event page can use the

@@ -93,11 +93,11 @@ const Page = () => {
 							<Link href="#slots">Slots</Link>
 							<ul>
 								<li>
-									<Link href="#managing-slots">Managing Slots (Hosts)</Link>
+									<Link href="#managing-slots">Managing Slots</Link>
 								</li>
 								<li>
 									<Link href="#signing-up-to-bring-something">
-										Signing Up to Bring Something (Guests)
+										Signing Up to Bring Something
 									</Link>
 								</li>
 							</ul>

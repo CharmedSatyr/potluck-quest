@@ -1,6 +1,6 @@
-import { Command, PotluckQuest, PQBot } from "./links";
-import TabWrapper from "./tab-wrapper";
 import Link from "next/link";
+import { Command, PotluckQuest, PQBot } from "~/app/guide/links";
+import TabWrapper from "~/app/guide/tab-wrapper";
 import DiscordLogo from "~/components/discord-blurple-logo";
 
 const CreatingEventBot = () => (
@@ -20,6 +20,10 @@ const CreatingEventBot = () => (
 		<li>
 			Each <PotluckQuest /> event can be associated with one <DiscordLogo />{" "}
 			server.
+		</li>
+		<li>
+			You cannot add or change the <DiscordLogo /> server an event is associated
+			with after the event has been created.
 		</li>
 		<li>
 			Use <Command command="plan" /> in the channel you want related messages in
@@ -68,21 +72,26 @@ const CreatingEventBot = () => (
 const CreatingEventWeb = () => (
 	<ul>
 		<li>
-			Navigate to the <Link href="/plan">planning wizard</Link> and follow the
-			instructions.
+			Navigate to the <Link href="/plan">planning wizard</Link> and fill in the
+			details!
 		</li>
-		<li>Events are created in the timezone detected on your system.</li>
+		<li>
+			Events are created in the timezone currently detected on your system.
+		</li>
 		<li>
 			If you are not using <PQBot />, select &quot;None&quot; when prompted to
 			associate your event with a server.
 		</li>
 		<li>
 			Once your event has been created, you can share the code on the event page
-			with friends or click it to copy a shareable direct link.
+			with friends or click it to copy a shareable link to the page.
 		</li>
 		<li>
-			Events created without an associated <DiscordLogo /> server will be
-			visible to anyone who has the event code.
+			Events created without an associated <DiscordLogo /> server are visible to{" "}
+			<strong>
+				any logged-in <PotluckQuest /> user who has the event code
+			</strong>
+			.
 		</li>
 	</ul>
 );
@@ -98,18 +107,11 @@ const ManagingEvents = () => (
 				Each <PotluckQuest /> event has a unique, five-character, alphanumeric
 				code on the <PotluckQuest /> website.
 			</li>
+
 			<li>
-				You can manage events through <DiscordLogo /> if you are using <PQBot />
-				.
-			</li>
-			<li>
-				You cannot add or change the <DiscordLogo /> server an event is
-				associated with after the event has been created.
-			</li>
-			<li>
-				Add <Link href="#slots">signup slots</Link> to your events during
-				initial planning so guests can immediately take advantage of core{" "}
-				<PotluckQuest /> tools.
+				Add <Link href="#slots">signup slots</Link> to your event during event
+				creation so guests can take advantage of <PotluckQuest /> meal planning
+				tools.
 			</li>
 		</ul>
 
@@ -122,14 +124,13 @@ const ManagingEvents = () => (
 			<h3 id="finding-an-event">Finding an Event</h3>
 			<ul>
 				<li>
-					<PotluckQuest />: If you have an event code, you can enter it in the
-					search box on the <Link href="/">home page</Link> to be redirected to
-					the associated event.
+					If you have an event code, you can enter it in the search box on the{" "}
+					<Link href="/">home page</Link> to be redirected to the associated
+					event.
 				</li>
 				<li>
-					<PotluckQuest />: You can visit your{" "}
-					<Link href="/dashboard">Dashboard</Link> to see all the events
-					you&apos;ve created or joined.
+					You can visit your <Link href="/dashboard">Dashboard</Link> to see all
+					the events you&apos;ve created or joined.
 				</li>
 				<li>
 					<PQBot />: Use <Command command="view" /> to see all <PotluckQuest />{" "}

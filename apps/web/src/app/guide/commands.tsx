@@ -38,7 +38,7 @@ const Commands = () => (
 			<li id="view-command">
 				<code>/view</code>: Publicly list all <PotluckQuest /> events for the
 				server. The response will include your preferred time zone (see{" "}
-				<Link href="/settings">settings</Link>), the name of each event, when it
+				<Link href="/settings">Settings</Link>), the name of each event, when it
 				will take place, and each event code linked to its <PotluckQuest />{" "}
 				page.
 			</li>
