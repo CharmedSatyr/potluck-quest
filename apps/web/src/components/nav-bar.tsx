@@ -1,5 +1,6 @@
 import {
 	ArrowRightStartOnRectangleIcon,
+	BookOpenIcon,
 	Cog6ToothIcon,
 	PencilSquareIcon,
 	TableCellsIcon,
@@ -25,6 +26,13 @@ const LoggedOutContent = () => {
 		</div>
 	);
 };
+
+const GuideLink = () => (
+	<Link href="/guide" className="text-nowrap no-underline">
+		<BookOpenIcon className="size-4" />
+		Guide
+	</Link>
+);
 
 const CreateEventLink = () => (
 	<Link href="/plan" className="text-nowrap no-underline">
@@ -62,6 +70,9 @@ const LoggedInContent = ({ image, name }: { image: string; name: string }) => {
 		<div className="navbar-end w-3/4">
 			<ul className="menu menu-horizontal items-center">
 				<li className="hidden lg:inline-block">
+					<GuideLink />
+				</li>
+				<li className="hidden lg:inline-block">
 					<CreateEventLink />
 				</li>
 				<li className="hidden lg:inline-block">
@@ -79,14 +90,21 @@ const LoggedInContent = ({ image, name }: { image: string; name: string }) => {
 							className="dropdown-content w-fit rounded-t-none bg-base-300"
 						>
 							<li className="lg:hidden">
+								<GuideLink />
+							</li>
+
+							<li className="lg:hidden">
 								<CreateEventLink />
 							</li>
+
 							<li className="lg:hidden">
 								<DashboardLink />
 							</li>
+
 							<li>
 								<SettingsLink />
 							</li>
+
 							<li>
 								<Signout />
 							</li>

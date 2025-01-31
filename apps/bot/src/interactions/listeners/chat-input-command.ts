@@ -7,6 +7,22 @@ export const listener = async (interaction: Interaction<CacheType>) => {
 		return;
 	}
 
+	if (!interaction.guild?.id) {
+		await interaction.reply({
+			content: `<@${interaction.user.id}> Please ensure you're creating the event on a server with **Potluck Quest Bot** installed and try again.`,
+			flags: MessageFlags.Ephemeral,
+		});
+		return;
+	}
+
+	if (!interaction.inGuild()) {
+		await interaction.reply({
+			content: `<@${interaction.user.id}> Please ensure you're a member of the server and try again.`,
+			flags: MessageFlags.Ephemeral,
+		});
+		return;
+	}
+
 	const command = interaction.client.commands.get(interaction.commandName);
 
 	if (!command) {
