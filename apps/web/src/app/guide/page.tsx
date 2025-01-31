@@ -10,14 +10,11 @@ import OpenAiLogo from "~/components/openai-white-logo";
 
 const GuideContent = () => {
 	return (
-		<main className="border border-base-300 bg-base-100 lg:rounded-r-xl lg:p-8">
+		<main className="w-full rounded-xl border border-base-300 bg-base-100 px-2 py-6 md:p-8 lg:rounded-none lg:rounded-r-xl">
 			<h1 className="text-primary-gradient">Guide</h1>
 
 			<p>
-				<span className="text-primary-gradient font-bold">
-					<PotluckQuest />
-				</span>{" "}
-				and its <OpenAiLogo />
+				<PotluckQuest /> and its <OpenAiLogo />
 				-assisted tools make shared meal planning simple and collaborative,
 				whether you&apos;re taking full advantage of our powerful{" "}
 				<DiscordLogo /> integration with{" "}
@@ -46,26 +43,32 @@ const GuideContent = () => {
 };
 const Page = () => {
 	return (
-		<div className="lg:absolute lg:top-24 lg:w-10/12">
+		<div className="lg:absolute lg:top-24 lg:w-11/12 xl:w-10/12">
 			<div className="drawer lg:drawer-open">
-				<input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+				{/* Drawer toggle */}
+				<input id="guide-sidebar" type="checkbox" className="drawer-toggle" />
+
 				<div className="drawer-content flex flex-col items-center justify-center">
+					{/* Page content */}
 					<GuideContent />
+
+					{/* Drawer toggle */}
 					<label
-						htmlFor="my-drawer-2"
-						className="btn btn-primary drawer-button lg:hidden"
-					>
-						Open drawer
-					</label>
+						htmlFor="guide-sidebar"
+						className="drawer-button hidden"
+					></label>
 				</div>
 
-				<div className="drawer-side bg-base-200 lg:rounded-l-xl">
+				{/* Drawer side */}
+				<div className="drawer-side lg:rounded-l-xl lg:bg-base-200">
+					{/* Drawer overlay */}
 					<label
-						htmlFor="my-drawer-2"
+						htmlFor="guide-sidebar"
 						aria-label="close sidebar"
 						className="drawer-overlay"
 					></label>
 
+					{/* Drawer content */}
 					<ul className="menu min-h-full w-80 bg-base-200 p-4 text-base-content">
 						<li>
 							<Link href="#getting-started">Getting Started</Link>

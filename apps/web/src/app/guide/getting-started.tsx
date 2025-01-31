@@ -70,12 +70,7 @@ const GettingStartedWithWeb = () => (
 );
 
 const GettingStarted = () => (
-	<TabWrapper
-		bot={<GettingStartedWithBot />}
-		botHeading="With PQ Bot on Discord"
-		web={<GettingStartedWithWeb />}
-		webHeading="Standalone Web Interface"
-	/>
+	<TabWrapper bot={<GettingStartedWithBot />} web={<GettingStartedWithWeb />} />
 );
 
 export default GettingStarted;

@@ -2,21 +2,22 @@ import { JSX } from "react";
 
 type Props = {
 	bot: JSX.Element;
-	botHeading?: string;
 	web: JSX.Element;
-	webHeading?: string;
 };
-const TabWrapper = ({ bot, botHeading, web, webHeading }: Props) => {
+const TabWrapper = ({ bot, web }: Props) => {
 	const name = Math.random().toString();
 
 	return (
-		<div role="tablist" className="tabs tabs-bordered">
+		<div
+			role="tablist"
+			className="tabs tabs-bordered tabs-xs sm:tabs-sm md:tabs-md"
+		>
 			<input
 				type="radio"
 				name={name}
 				role="tab"
 				className="tab text-nowrap"
-				aria-label={botHeading ?? "With PQ Bot on Discord"}
+				aria-label="With PQ Bot on Discord"
 				defaultChecked
 			/>
 			<div role="tabpanel" className="tab-content">
@@ -28,7 +29,7 @@ const TabWrapper = ({ bot, botHeading, web, webHeading }: Props) => {
 				name={name}
 				role="tab"
 				className="tab text-nowrap"
-				aria-label={webHeading ?? "Standalone Web Interface"}
+				aria-label="Standalone Web Interface"
 			/>
 			<div role="tabpanel" className="tab-content">
 				{web}
