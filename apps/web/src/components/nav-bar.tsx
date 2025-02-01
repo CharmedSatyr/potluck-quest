@@ -67,7 +67,7 @@ const Signout = () => (
 
 const LoggedInContent = ({ image, name }: { image: string; name: string }) => {
 	return (
-		<div className="navbar-end w-3/4">
+		<div className="navbar-end max-h-10 w-3/4">
 			<ul className="menu menu-horizontal items-center">
 				<li className="hidden lg:inline-block">
 					<GuideLink />
@@ -118,9 +118,9 @@ const LoggedInContent = ({ image, name }: { image: string; name: string }) => {
 
 const Nav = ({ children }: PropsWithChildren) => {
 	return (
-		<div className="navbar max-h-16 bg-base-100/30">
+		<div className="navbar border border-b-base-300 bg-base-100">
 			<div className="navbar-start">
-				<Link href="/" className="btn btn-ghost btn-sm text-xl">
+				<Link href="/" className="btn btn-ghost btn-sm text-lg">
 					{siteMetadata.title}
 				</Link>
 			</div>
