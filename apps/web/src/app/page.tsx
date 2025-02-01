@@ -1,7 +1,9 @@
 import potluckQuest from "../../public/static/potluck-quest";
 import Image from "next/image";
 import Link from "next/link";
+import DiscordLogo from "~/components/discord-blurple-logo";
 import GotoEventForm from "~/components/goto-event-form";
+import OpenAiLogo from "~/components/openai-white-logo";
 import siteMetadata from "~/data/site-metadata";
 import genPageMetadata from "~/seo";
 
@@ -40,7 +42,7 @@ const StartCta = () => {
 const Home = () => {
 	return (
 		<main>
-			<div className="hero h-full rounded-xl bg-base-300 py-10 shadow-2xl xl:flex">
+			<div className="hero h-full rounded-xl border border-base-300 bg-base-200 py-10 shadow-2xl xl:flex">
 				<div className="hero-content rounded-xl text-center">
 					<div className="flex-col xl:mx-10 xl:w-1/2">
 						<h1 className="mb-0 text-4xl font-bold leading-tight sm:text-5xl">
@@ -51,7 +53,8 @@ const Home = () => {
 							<span className="text-primary-gradient">
 								{siteMetadata.title}
 							</span>{" "}
-							makes it easier to plan events when everyone&apos;s invited to
+							combines powerful <DiscordLogo /> and <OpenAiLogo /> integrations
+							to make it easier to plan events when everyone&apos;s invited to
 							contribute a dish—from birthdays to holidays to game nights.{" "}
 							<span className="text-info">In active development</span> by
 							tabletop gamers who enjoy cooking and eating with their friends.
