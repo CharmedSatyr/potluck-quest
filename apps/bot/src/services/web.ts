@@ -228,10 +228,10 @@ export const checkAccountExists = async (
 
 		return result.exists;
 	} catch (err) {
-		console.error(
-			"Error checking account exists:",
-			JSON.stringify(err, null, 2)
-		);
+		console.error({
+			message: "Error checking account exists",
+			error: err,
+		});
 
 		return false;
 	}

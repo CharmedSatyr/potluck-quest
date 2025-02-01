@@ -35,10 +35,8 @@ export const listener = async (interaction: Interaction<CacheType>) => {
 	});
 
 	if (!hasPotluckAccount) {
-		const signupUrl = api.AUTH_SETUP;
-
 		await interaction.reply({
-			content: `<@${interaction.user.id}>, your journey awaits! [Sign in to Potluck Quest](${signupUrl}) to continue.`,
+			content: `<@${interaction.user.id}>, your journey awaits! [Sign in to Potluck Quest](${api.AUTH_SETUP}) to continue.`,
 			flags: MessageFlags.Ephemeral,
 		});
 		return;
