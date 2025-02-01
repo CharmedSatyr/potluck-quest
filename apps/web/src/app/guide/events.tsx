@@ -9,7 +9,7 @@ const CreatingEventBot = () => (
 			<PQBot /> creates <DiscordLogo />
 			-native{" "}
 			<Link
-				href="https://support.discord.com/hc/en-us/articles/4409494125719-Scheduled-Events"
+				href="https://discord.com/community/planning-community-events"
 				rel="noopener noreferrer"
 				target="_blank"
 			>

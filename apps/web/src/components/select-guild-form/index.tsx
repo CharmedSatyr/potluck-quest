@@ -80,13 +80,7 @@ const SelectGuildForm = ({ userDiscordGuildsPromise }: Props) => {
 						className="m-0 inline"
 					/>{" "}
 					server that stays in sync with this one?{" "}
-					<Link
-						href="https://discord.com/community/planning-community-events"
-						rel="noopener noreferrer"
-						target="_blank"
-					>
-						Read about Planning Community Events.
-					</Link>
+					<Link href="/guide#creating-an-event">Read more.</Link>
 				</p>
 				<div className="rounded-xl border border-info px-2">
 					<p className="mb-0 flex items-center gap-1">
