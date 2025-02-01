@@ -15,6 +15,18 @@ export const getTimezoneOffsetName = (
 	};
 };
 
+export const formatTimestampForPlan = (
+	startUtcMs: number,
+	timezone: SupportedTimezone
+): { date: string; time: string } => {
+	const startDt = DateTime.fromMillis(startUtcMs, { zone: timezone });
+
+	return {
+		date: startDt.toLocaleString(DateTime.DATE_HUGE),
+		time: startDt.toLocaleString(DateTime.TIME_SIMPLE),
+	};
+};
+
 export const formatTimestampForView = (
 	utcMs: number | null,
 	timezone: SupportedTimezone
