@@ -1,4 +1,4 @@
-import { MessageFlags, ModalSubmitInteraction } from "discord.js";
+import { EmbedBuilder, MessageFlags, ModalSubmitInteraction } from "discord.js";
 import { CustomId } from "~/constants/custom-id.js";
 import config from "~/constants/env-config.js";
 import api from "~/constants/web-api.js";
@@ -8,7 +8,11 @@ import {
 	getUserTimezone,
 	mapDiscordToPotluckEvent,
 } from "~/services/web.js";
-import { parseDateTimeInputForServices } from "~/utilities/date-time.js";
+import {
+	formatTimestampForPlan,
+	getTimezoneOffsetName,
+	parseDateTimeInputForServices,
+} from "~/utilities/date-time.js";
 import { addDescriptionBlurb } from "~/utilities/description-blurb.js";
 
 export const data = { customId: CustomId.PLAN_EVENT_MODAL };
@@ -40,7 +44,7 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 
 	if (!parsedDateTime) {
 		await interaction.reply({
-			content: `<@${interaction.user.id}> We failed to create **${title}**. Please format the date and time clearly and try again.`,
+			content: `<@${interaction.user.id}> There was a problem creating **${title}**. Please format the date and time clearly and try again.`,
 			flags: MessageFlags.Ephemeral,
 		});
 		return;
@@ -59,7 +63,7 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 
 	if (!code) {
 		await interaction.reply({
-			content: `<@${interaction.user.id}> We failed to create event **${title}**. Make sure you have an account on [Potluck Quest](${config.PQ_WEB_BASE_URL}) and try again.`,
+			content: `<@${interaction.user.id}> There was a problem creating **${title}**. Please try again.`,
 			flags: MessageFlags.Ephemeral,
 		});
 		return;
@@ -78,7 +82,7 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 
 	if (!discordEvent) {
 		await interaction.reply({
-			content: `<@${interaction.user.id}> We failed to create **${title}**. Please try again.`,
+			content: `<@${interaction.user.id}> There was a problem creating **${title}**. Please try again.`,
 			flags: MessageFlags.Ephemeral,
 		});
 		return;
@@ -98,9 +102,31 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 
 	const url = config.PQ_WEB_BASE_URL.concat("/event/").concat(code);
 
-	// The space after the URL is required for preview links to display properly.
+	const { date, time } = formatTimestampForPlan(startUtcMs, timezone);
+
+	const eventEmbed = new EmbedBuilder()
+		.setColor("#FF8A50") // PQ Primary orange
+		.setTitle(title)
+		.setURL(url)
+		.setDescription(description || null)
+		.addFields(
+			{ name: "Date", value: date, inline: true },
+			{ name: "Time", value: time, inline: true },
+			{ name: "Location", value: location, inline: false }
+		)
+		.setTimestamp()
+		.setAuthor({
+			name: interaction.user.globalName ?? interaction.user.username,
+			iconURL: interaction.user.avatarURL() ?? undefined,
+		})
+		.setFooter({
+			text: `${interaction.guild.name} members are welcome`,
+			iconURL: interaction.guild.iconURL() ?? undefined,
+		});
+
 	await interaction.reply({
-		content: `<@${interaction.user.id}> is planning a new event, [**${title}**](${url} ). Type \`/slots ${code}\` and sign up to bring something!`,
+		content: `<@${interaction.user.id}> is planning a new event with [Potluck Quest](${config.PQ_WEB_BASE_URL}). Type \`/slots ${code}\` to sign up to bring something.`,
+		embeds: [eventEmbed],
 	});
 
 	const params = new URLSearchParams();
