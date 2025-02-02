@@ -2,7 +2,7 @@ import { botApi, z } from "@potluck/utilities/validation";
 import { Router, Response } from "express";
 import client from "~/client.js";
 import validateRequest from "~/middleware/validate-request.js";
-import { hasDiscordManageEventsPermissions } from "~/services/discord.js";
+import { hasDiscordCreateEventsPermissions } from "~/services/discord.js";
 
 const router = Router();
 
@@ -21,7 +21,7 @@ router.get(
 		for (const [guildId, guild] of botGuilds) {
 			const member = await guild.members.fetch(discordUserId).catch(() => null);
 
-			if (hasDiscordManageEventsPermissions(member)) {
+			if (hasDiscordCreateEventsPermissions(member)) {
 				guildsWithPermissions.push({
 					name: guild.name,
 					guildId,
