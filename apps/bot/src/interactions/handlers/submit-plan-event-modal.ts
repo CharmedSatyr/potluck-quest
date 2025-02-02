@@ -1,4 +1,11 @@
-import { EmbedBuilder, MessageFlags, ModalSubmitInteraction } from "discord.js";
+import {
+	ActionRowBuilder,
+	ButtonBuilder,
+	ButtonStyle,
+	EmbedBuilder,
+	MessageFlags,
+	ModalSubmitInteraction,
+} from "discord.js";
 import { CustomId } from "~/constants/custom-id.js";
 import config from "~/constants/env-config.js";
 import api from "~/constants/web-api.js";
@@ -114,7 +121,6 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 			{ name: "Time", value: time, inline: true },
 			{ name: "Location", value: location, inline: false }
 		)
-		.setTimestamp()
 		.setAuthor({
 			name: interaction.user.globalName ?? interaction.user.username,
 			iconURL: interaction.user.avatarURL() ?? undefined,
@@ -122,11 +128,21 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 		.setFooter({
 			text: `${interaction.guild.name} members are welcome`,
 			iconURL: interaction.guild.iconURL() ?? undefined,
-		});
+		})
+		.setTimestamp();
+
+	const interestedButton = new ButtonBuilder()
+		.setCustomId("event_interested")
+		.setLabel("Interested ✅")
+		.setStyle(ButtonStyle.Primary);
+	const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
+		interestedButton
+	);
 
 	await interaction.reply({
 		content: `<@${interaction.user.id}> is planning a new event with [Potluck Quest](${config.PQ_WEB_BASE_URL}). Type \`/slots ${code}\` to sign up to bring something.`,
 		embeds: [eventEmbed],
+		components: [row],
 	});
 
 	const params = new URLSearchParams();

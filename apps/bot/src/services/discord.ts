@@ -16,6 +16,24 @@ import {
 	updateDiscordEventSchema,
 } from "~/services/discord.schema.js";
 
+export const hasDiscordCreateEventsPermissions = (
+	member: GuildMember | APIInteractionGuildMember | null
+): boolean => {
+	if (!member) {
+		return false;
+	}
+
+	// API Interaction Guild Member type
+	if (typeof member.permissions === "string") {
+		const permissionsBitField = new PermissionsBitField(
+			BigInt(member.permissions)
+		);
+		return permissionsBitField.has(PermissionFlagsBits.CreateEvents);
+	}
+
+	return member.permissions.has(PermissionFlagsBits.CreateEvents);
+};
+
 export const hasDiscordManageEventsPermissions = (
 	member: GuildMember | APIInteractionGuildMember | null
 ): boolean => {
