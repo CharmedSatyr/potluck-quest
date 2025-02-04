@@ -4,7 +4,7 @@ export const addDescriptionBlurb = (
 	description: string | null,
 	code: string
 ) => {
-	const blurb = `See details at [${code} | Potluck Quest](https://potluck.quest/event/${code})`;
+	const blurb = `See details at [${code} | Potluck Quest](https://potluck.quest/event/${code}).`;
 
 	if (!description) {
 		return blurb;
