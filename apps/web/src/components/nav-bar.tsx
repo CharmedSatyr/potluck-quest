@@ -118,7 +118,7 @@ const LoggedInContent = ({ image, name }: { image: string; name: string }) => {
 
 const Nav = ({ children }: PropsWithChildren) => {
 	return (
-		<div className="navbar border border-b-base-300 bg-base-100">
+		<div className="navbar border-b border-b-base-300 bg-base-200 shadow">
 			<div className="navbar-start">
 				<Link href="/" className="btn btn-ghost btn-sm text-lg">
 					{siteMetadata.title}
