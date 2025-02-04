@@ -7,6 +7,7 @@ import {
 	ModalSubmitInteraction,
 } from "discord.js";
 import { CustomId } from "~/constants/custom-id.js";
+import { DELIMITER } from "~/constants/delimiter.js";
 import config from "~/constants/env-config.js";
 import api from "~/constants/web-api.js";
 import { createDiscordEvent } from "~/services/discord.js";
@@ -126,15 +127,16 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 			iconURL: interaction.user.avatarURL() ?? undefined,
 		})
 		.setFooter({
-			text: `${interaction.guild.name} members are welcome`,
+			text: `${interaction.guild.name} members are invited`,
 			iconURL: interaction.guild.iconURL() ?? undefined,
 		})
 		.setTimestamp();
 
 	const interestedButton = new ButtonBuilder()
-		.setCustomId("event_interested")
-		.setLabel("Interested ✅")
-		.setStyle(ButtonStyle.Primary);
+		.setLabel("✅ Sign me up!")
+		.setURL(discordEvent.url)
+		.setStyle(ButtonStyle.Link);
+
 	const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
 		interestedButton
 	);
