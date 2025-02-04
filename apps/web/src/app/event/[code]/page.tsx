@@ -92,30 +92,31 @@ const ManageEventSection = ({
 	eventData: EventDataWithCtx;
 }) => {
 	return (
-		<section className="my-4 flex w-full flex-col md:my-0 md:w-2/12 md:items-end md:justify-start">
+		<section className="flex h-fit w-full flex-col">
 			<Suspense fallback={<RsvpFormFallback />}>
 				<SlideIn>
 					<EditLink code={code} eventData={eventData} />
 				</SlideIn>
 				<SlideIn>
-					<DeleteEventForm code={code} redirect={true} className="md:w-20" />
+					<DeleteEventForm code={code} redirect={true} />
 				</SlideIn>
 			</Suspense>
 		</section>
 	);
 };
 
-// TODO: Delete commitments if someone changes RSVP to No.
 const RsvpSection = ({ code, userId }: { code: string; userId: string }) => (
-	<section className="my-4 w-full md:my-0 md:w-1/3">
+	<section className="w-full">
 		<Suspense fallback={<RsvpFormFallback />}>
-			<RsvpForm
-				code={code}
-				currentRsvpPromise={findUserEventRsvp({
-					code,
-					createdBy: userId,
-				})}
-			/>
+			<SlideIn>
+				<RsvpForm
+					code={code}
+					currentRsvpPromise={findUserEventRsvp({
+						code,
+						createdBy: userId,
+					})}
+				/>
+			</SlideIn>
 		</Suspense>
 	</section>
 );
@@ -225,8 +226,12 @@ const HostView = async ({
 }) => (
 	<Container>
 		<EventSection code={code} discordMetadata={discordMetadata} />
-		<ManageEventSection code={code} eventData={eventData} />
-		{/* TODO: <RsvpSection code={code} userId={eventData.createdBy} /> */}
+		<div className="flex w-full justify-end md:w-2/12">
+			<div className="flex w-full flex-col gap-2 md:w-24">
+				<ManageEventSection code={code} eventData={eventData} />
+				<RsvpSection code={code} userId={eventData.createdBy} />
+			</div>
+		</div>
 		<FoodPlanSection code={code} />
 		<AttendeesSection code={code} />
 	</Container>
