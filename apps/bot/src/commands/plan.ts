@@ -84,7 +84,7 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 		.setMinLength(1)
 		.setMaxLength(DESCRIPTION_LENGTH)
 		.setPlaceholder(
-			"Additional info or vibe text." // TODO: Markdown, new lines, and links are supported."
+			"Additional info or vibe text. Markdown, new lines, and links are supported."
 		)
 		.setRequired(false)
 		.setStyle(TextInputStyle.Paragraph);
