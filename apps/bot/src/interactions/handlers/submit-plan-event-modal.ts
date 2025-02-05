@@ -12,7 +12,7 @@ import config from "~/constants/env-config.js";
 import api from "~/constants/web-api.js";
 import { createDiscordEvent } from "~/services/discord.js";
 import {
-	createPotluckEvent as createPotluckQuestEvent,
+	createPotluckQuestEvent,
 	getUserTimezone,
 	mapDiscordToPotluckEvent,
 } from "~/services/web.js";

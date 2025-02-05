@@ -12,7 +12,7 @@ import { slotsCache } from "~/utilities/cache.js";
 
 const headers = new Headers({ "x-api-key": config.PQ_BOT_TO_WEB_API_KEY });
 
-export const createPotluckEvent = async (
+export const createPotluckQuestEvent = async (
 	data: z.infer<typeof webApiBot.event.postSchema>
 ): Promise<string | null> => {
 	try {
