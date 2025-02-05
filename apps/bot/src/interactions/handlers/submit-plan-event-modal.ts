@@ -154,7 +154,7 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 	);
 
 	await interaction.reply({
-		content: `<@${interaction.user.id}> is planning a new event with [Potluck Quest](${config.PQ_WEB_BASE_URL}). Type \`/slots ${code}\` to sign up to bring something.`,
+		content: `<@${interaction.user.id}> is planning a new event with [Potluck Quest](${url}). Type \`/slots ${code}\` to sign up to bring something.`,
 		embeds: [eventEmbed],
 		components: [row],
 	});
