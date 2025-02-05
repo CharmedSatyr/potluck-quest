@@ -66,7 +66,7 @@ export const createDiscordEvent = async (
 				location: data.location,
 			},
 			entityType: GuildScheduledEventEntityType.External,
-			image: undefined, // TODO
+			image: data.imageUrl,
 			name: data.title,
 			privacyLevel: GuildScheduledEventPrivacyLevel.GuildOnly,
 			scheduledEndTime: data.endUtcMs,

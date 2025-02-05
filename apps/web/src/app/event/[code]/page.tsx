@@ -55,7 +55,7 @@ const EventSection = ({
 	discordMetadata,
 }: {
 	code: string;
-	discordMetadata?: { isMember: boolean; name: string; iconUrl: string };
+	discordMetadata?: DiscordEventMetadata;
 }) => (
 	<section className="min-h-72 w-full md:w-10/12">
 		<Suspense fallback={<EventSkeletonFallback />}>
@@ -217,7 +217,7 @@ const PassedView = ({
 	discordMetadata,
 }: {
 	code: string;
-	discordMetadata?: { isMember: boolean; name: string; iconUrl: string };
+	discordMetadata?: DiscordEventMetadata;
 }) => (
 	<Container>
 		<EventSection code={code} discordMetadata={discordMetadata} />

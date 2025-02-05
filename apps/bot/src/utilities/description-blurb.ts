@@ -10,10 +10,7 @@ export const addDescriptionBlurb = (
 		return blurb;
 	}
 
-	const descriptionWithBlurb = "\n"
-		.concat(description)
-		.concat("\n")
-		.concat(blurb);
+	const descriptionWithBlurb = description.concat("\n\n").concat(blurb);
 
 	if (descriptionWithBlurb.length > DESCRIPTION_LENGTH) {
 		return description;

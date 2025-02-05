@@ -1,6 +1,7 @@
 import {
 	description,
 	location,
+	imageUrl,
 	title,
 	startUtcMs,
 	endUtcMs,
@@ -13,6 +14,7 @@ export const createDiscordEventSchema = z.strictObject({
 	guildId: discordGuildId,
 	description,
 	endUtcMs,
+	imageUrl,
 	location,
 	startUtcMs,
 	title,

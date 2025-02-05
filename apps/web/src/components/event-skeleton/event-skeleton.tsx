@@ -1,4 +1,5 @@
 import { MapPinIcon } from "@heroicons/react/24/outline";
+import { DiscordEventMetadata } from "~/actions/bot/event/fetch-discord-event-metadata";
 import findEvent from "~/actions/event/find-event";
 import findUserByEventCode from "~/actions/user/find-user-by-event-code";
 import CopyLinkButton from "~/components/copy-link-button";
@@ -10,7 +11,7 @@ import eventIsPassed from "~/utilities/event-is-passed";
 
 type Props = {
 	code: string;
-	discordMetadata?: { isMember: boolean; name: string; iconUrl: string };
+	discordMetadata?: DiscordEventMetadata;
 };
 
 export const EventHeader = ({
