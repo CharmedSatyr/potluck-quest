@@ -116,7 +116,10 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 					<label className="label label-text text-sm" htmlFor="time-input">
 						Time{" "}
 						<small>
-							{timezone} ({offsetNameShort})
+							<span className="hidden md:block">
+								{timezone} ({offsetNameShort})
+							</span>
+							<span className="md:hidden">{offsetNameShort}</span>
 						</small>
 					</label>
 					<input
