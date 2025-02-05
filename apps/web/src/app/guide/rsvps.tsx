@@ -1,12 +1,13 @@
-import { PotluckQuest, PQBot } from "./links";
+import { PotluckQuest, PQBot } from "~/app/guide/links";
 import DiscordLogo from "~/components/discord-blurple-logo";
 
 const Rsvps = () => (
 	<article>
 		<ul>
 			<li>
-				RSVPs can be managed by clicking &quot;Attending&quot; or &quot;Not
-				Attending&quot; on the <PotluckQuest /> event page.
+				You can manage your RSVP from the <PotluckQuest /> event page. You may
+				be redirected to <DiscordLogo /> if your event is associated with a
+				server.
 			</li>
 			<li>
 				<PQBot />: Participants can RSVP within <DiscordLogo /> by clicking
