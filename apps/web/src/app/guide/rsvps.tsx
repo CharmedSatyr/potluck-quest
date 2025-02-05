@@ -5,9 +5,11 @@ const Rsvps = () => (
 	<article>
 		<ul>
 			<li>
-				You can manage your RSVP from the <PotluckQuest /> event page. You may
-				be redirected to <DiscordLogo /> if your event is associated with a
-				server.
+				You can manage your RSVP from the <PotluckQuest /> event page.
+			</li>
+			<li>
+				You may be redirected to <DiscordLogo /> if your event is associated
+				with a server.
 			</li>
 			<li>
 				<PQBot />: Participants can RSVP within <DiscordLogo /> by clicking
