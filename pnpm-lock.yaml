@@ -94,8 +94,8 @@ importers:
         specifier: ^3.4.2
         version: 3.4.2
       ai:
-        specifier: ^4.1.18
-        version: 4.1.18(react@19.0.0)(zod@3.24.1)
+        specifier: ^4.1.21
+        version: 4.1.21(react@19.0.0)(zod@3.24.1)
       dotenv:
         specifier: ^16.4.7
         version: 16.4.7
@@ -112,8 +112,8 @@ importers:
         specifier: 5.0.0-beta.25
         version: 5.0.0-beta.25(next@15.1.6(@babel/core@7.26.0)(@opentelemetry/api@1.9.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)
       openai:
-        specifier: ^4.82.0
-        version: 4.82.0(ws@8.18.0)(zod@3.24.1)
+        specifier: ^4.83.0
+        version: 4.83.0(ws@8.18.0)(zod@3.24.1)
       react:
         specifier: 19.0.0
         version: 19.0.0
@@ -279,8 +279,8 @@ packages:
     resolution: {integrity: sha512-q1PJEZ0qD9rVR+8JFEd01/QM++csMT5UVwYXSN2u54BrVw/D8TZLTeg2FEfKK00DgAx0UtWd8XOhhwITP9BT5g==}
     engines: {node: '>=18'}
 
-  '@ai-sdk/react@1.1.8':
-    resolution: {integrity: sha512-buHm7hP21xEOksnRQtJX9fKbi7cAUwanEBa5niddTDibCDKd+kIXP2vaJGy8+heB3rff+XSW3BWlA8pscK+n1g==}
+  '@ai-sdk/react@1.1.10':
+    resolution: {integrity: sha512-RTkEVYKq7qO6Ct3XdVTgbaCTyjX+q1HLqb+t2YvZigimzMCQbHkpZCtt2H2Fgpt1UOTqnAAlXjEAgTW3X60Y9g==}
     engines: {node: '>=18'}
     peerDependencies:
       react: ^18 || ^19 || ^19.0.0-rc
@@ -291,8 +291,8 @@ packages:
       zod:
         optional: true
 
-  '@ai-sdk/ui-utils@1.1.8':
-    resolution: {integrity: sha512-nbok53K1EalO2sZjBLFB33cqs+8SxiL6pe7ekZ7+5f2MJTwdvpShl6d9U4O8fO3DnZ9pYLzaVC0XNMxnJt030Q==}
+  '@ai-sdk/ui-utils@1.1.10':
+    resolution: {integrity: sha512-x+A1Nfy8RTSatdCe+7nRpHAZVzPFB6H+r+2JKoapSvrwsu9mw2pAbmFgV8Zaj94TsmUdTlO0/j97e63f+yYuWg==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.0.0
@@ -1498,8 +1498,8 @@ packages:
     resolution: {integrity: sha512-kja8j7PjmncONqaTsB8fQ+wE2mSU2DJ9D4XKoJ5PFWIdRMa6SLSN1ff4mOr4jCbfRSsxR4keIiySJU0N9T5hIQ==}
     engines: {node: '>= 8.0.0'}
 
-  ai@4.1.18:
-    resolution: {integrity: sha512-Ua0rfJ6PQqW3bC+pXcaznAjZyHto5qm/AFoAF7ifvPvkbOZEbENP/KF3/2gF7M+oklTo9yUSLAoShghMvKSh2A==}
+  ai@4.1.21:
+    resolution: {integrity: sha512-w1v3T/fisoD1qRFz7CS7nE7mggeaxEpkEvWvVUWRem9lERgwh670OPhMPUSrdzTtCjMkOTrNkaecKoYAwvqM/A==}
     engines: {node: '>=18'}
     peerDependencies:
       react: ^18 || ^19 || ^19.0.0-rc
@@ -3603,8 +3603,8 @@ packages:
     resolution: {integrity: sha512-VXJjc87FScF88uafS3JllDgvAm+c/Slfz06lorj2uAY34rlUu0Nt+v8wreiImcrgAjjIHp1rXpTDlLOGw29WwQ==}
     engines: {node: '>=18'}
 
-  openai@4.82.0:
-    resolution: {integrity: sha512-1bTxOVGZuVGsKKUWbh3BEwX1QxIXUftJv+9COhhGGVDTFwiaOd4gWsMynF2ewj1mg6by3/O+U8+EEHpWRdPaJg==}
+  openai@4.83.0:
+    resolution: {integrity: sha512-fmTsqud0uTtRKsPC7L8Lu55dkaTwYucqncDHzVvO64DKOpNTuiYwjbR/nVgpapXuYy8xSnhQQPUm+3jQaxICgw==}
     hasBin: true
     peerDependencies:
       ws: ^8.18.0
@@ -4769,17 +4769,17 @@ snapshots:
     dependencies:
       json-schema: 0.4.0
 
-  '@ai-sdk/react@1.1.8(react@19.0.0)(zod@3.24.1)':
+  '@ai-sdk/react@1.1.10(react@19.0.0)(zod@3.24.1)':
     dependencies:
       '@ai-sdk/provider-utils': 2.1.6(zod@3.24.1)
-      '@ai-sdk/ui-utils': 1.1.8(zod@3.24.1)
+      '@ai-sdk/ui-utils': 1.1.10(zod@3.24.1)
       swr: 2.3.0(react@19.0.0)
       throttleit: 2.1.0
     optionalDependencies:
       react: 19.0.0
       zod: 3.24.1
 
-  '@ai-sdk/ui-utils@1.1.8(zod@3.24.1)':
+  '@ai-sdk/ui-utils@1.1.10(zod@3.24.1)':
     dependencies:
       '@ai-sdk/provider': 1.0.7
       '@ai-sdk/provider-utils': 2.1.6(zod@3.24.1)
@@ -5989,12 +5989,12 @@ snapshots:
     dependencies:
       humanize-ms: 1.2.1
 
-  ai@4.1.18(react@19.0.0)(zod@3.24.1):
+  ai@4.1.21(react@19.0.0)(zod@3.24.1):
     dependencies:
       '@ai-sdk/provider': 1.0.7
       '@ai-sdk/provider-utils': 2.1.6(zod@3.24.1)
-      '@ai-sdk/react': 1.1.8(react@19.0.0)(zod@3.24.1)
-      '@ai-sdk/ui-utils': 1.1.8(zod@3.24.1)
+      '@ai-sdk/react': 1.1.10(react@19.0.0)(zod@3.24.1)
+      '@ai-sdk/ui-utils': 1.1.10(zod@3.24.1)
       '@opentelemetry/api': 1.9.0
       jsondiffpatch: 0.6.0
     optionalDependencies:
@@ -8598,7 +8598,7 @@ snapshots:
     dependencies:
       mimic-function: 5.0.1
 
-  openai@4.82.0(ws@8.18.0)(zod@3.24.1):
+  openai@4.83.0(ws@8.18.0)(zod@3.24.1):
     dependencies:
       '@types/node': 18.19.70
       '@types/node-fetch': 2.6.12
