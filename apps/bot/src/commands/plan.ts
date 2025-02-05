@@ -89,10 +89,19 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 		.setRequired(false)
 		.setStyle(TextInputStyle.Paragraph);
 
+	const imageInput = new TextInputBuilder()
+		.setCustomId(CustomId.PLAN_EVENT_IMAGE_URL)
+		.setLabel("Cover Image Link")
+		.setMinLength(13)
+		.setPlaceholder("A jpg/png/gif/webp at least 800px wide and 320px tall.")
+		.setRequired(false)
+		.setStyle(TextInputStyle.Short);
+
 	const actionRows = [
 		titleInput,
 		dateTimeInput,
 		locationInput,
+		imageInput,
 		descriptionInput,
 	].map((input) =>
 		new ActionRowBuilder<ModalActionRowComponentBuilder>().addComponents(input)

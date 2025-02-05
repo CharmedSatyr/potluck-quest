@@ -1,3 +1,4 @@
+import { imageUrl as imageUrlSchema } from "@potluck/utilities/validation";
 import {
 	ActionRowBuilder,
 	ButtonBuilder,
@@ -7,7 +8,6 @@ import {
 	ModalSubmitInteraction,
 } from "discord.js";
 import { CustomId } from "~/constants/custom-id.js";
-import { DELIMITER } from "~/constants/delimiter.js";
 import config from "~/constants/env-config.js";
 import api from "~/constants/web-api.js";
 import { createDiscordEvent } from "~/services/discord.js";
@@ -18,7 +18,6 @@ import {
 } from "~/services/web.js";
 import {
 	formatTimestampForPlan,
-	getTimezoneOffsetName,
 	parseDateTimeInputForServices,
 } from "~/utilities/date-time.js";
 import { addDescriptionBlurb } from "~/utilities/description-blurb.js";
@@ -41,9 +40,20 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 	const location = interaction.fields.getTextInputValue(
 		CustomId.PLAN_EVENT_LOCATION
 	);
+	const imageUrl =
+		interaction.fields.getTextInputValue(CustomId.PLAN_EVENT_IMAGE_URL) ||
+		undefined;
 	const description = interaction.fields.getTextInputValue(
 		CustomId.PLAN_EVENT_DESCRIPTION
 	);
+
+	if (!imageUrlSchema.safeParse(imageUrl).success) {
+		await interaction.reply({
+			content: `<@${interaction.user.id}> There was a problem creating **${title}**. Please make sure your image URL is valid, and try again.`,
+			flags: MessageFlags.Ephemeral,
+		});
+		return;
+	}
 
 	const timezone = await getUserTimezone({
 		discordUserId: interaction.user.id,
@@ -83,6 +93,7 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 		guildId: interaction.guild.id,
 		title,
 		description: augmentedDescription,
+		imageUrl,
 		location,
 		startUtcMs,
 		endUtcMs,
@@ -116,6 +127,7 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 		.setColor("#FF8A50") // PQ Primary orange
 		.setTitle(title)
 		.setURL(url)
+		.setImage(imageUrl ?? null)
 		.setDescription(description || null)
 		.addFields(
 			{ name: "Date", value: date, inline: true },
