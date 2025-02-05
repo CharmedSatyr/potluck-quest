@@ -1,7 +1,10 @@
 "use client";
 
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 import { use, useActionState, useEffect, useState } from "react";
+import { type DiscordEventMetadata } from "~/actions/bot/event/fetch-discord-event-metadata";
+import { DiscordIcon } from "~/components/icons/discord";
 import LoadingIndicator from "~/components/loading-indicator";
 import submitAction, {
 	RsvpFormState,
@@ -11,9 +14,10 @@ import WarningAlert from "~/components/warning-alert";
 type Props = {
 	code: string;
 	currentRsvpPromise: Promise<{ response: "yes" | "no" }[]>;
+	discordMetadata?: DiscordEventMetadata;
 };
 
-const RsvpForm = ({ code, currentRsvpPromise }: Props) => {
+const RsvpForm = ({ code, currentRsvpPromise, discordMetadata }: Props) => {
 	const [currentRsvp] = use(currentRsvpPromise);
 
 	const [override, setOverride] = useState<boolean>(false);
@@ -60,6 +64,20 @@ const RsvpForm = ({ code, currentRsvpPromise }: Props) => {
 					</>
 				)}
 			</button>
+		);
+	}
+
+	// Delegate RSVP to Discord if no RSVP because there is no Discord API for adding a user to an event.
+	if (discordMetadata) {
+		return (
+			<Link
+				className="btn btn-sm w-full bg-blurple hover:bg-dark-blurple"
+				href={`https://discord.com/events/${discordMetadata.discordGuildId}/${discordMetadata.discordEventId}`}
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				<DiscordIcon className="size-4" /> RSVP
+			</Link>
 		);
 	}
 

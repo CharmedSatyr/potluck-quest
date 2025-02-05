@@ -2,7 +2,9 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PropsWithChildren, Suspense } from "react";
-import fetchDiscordEventMetadata from "~/actions/bot/event/fetch-discord-event-metadata";
+import fetchDiscordEventMetadata, {
+	type DiscordEventMetadata,
+} from "~/actions/bot/event/fetch-discord-event-metadata";
 import findEvent from "~/actions/event/find-event";
 import findUserEventRsvp from "~/actions/rsvp/find-user-event-rsvp";
 import findUserByEventCode from "~/actions/user/find-user-by-event-code";
@@ -105,7 +107,15 @@ const ManageEventSection = ({
 	);
 };
 
-const RsvpSection = ({ code, userId }: { code: string; userId: string }) => (
+const RsvpSection = ({
+	code,
+	discordMetadata,
+	userId,
+}: {
+	code: string;
+	discordMetadata?: DiscordEventMetadata;
+	userId: string;
+}) => (
 	<section className="w-full">
 		<Suspense fallback={<RsvpFormFallback />}>
 			<SlideIn>
@@ -115,6 +125,7 @@ const RsvpSection = ({ code, userId }: { code: string; userId: string }) => (
 						code,
 						createdBy: userId,
 					})}
+					discordMetadata={discordMetadata}
 				/>
 			</SlideIn>
 		</Suspense>
@@ -156,7 +167,7 @@ const UnauthorizedView = async ({
 	eventData,
 }: {
 	code: string;
-	discordMetadata: { isMember: boolean; name: string; iconUrl: string };
+	discordMetadata: DiscordEventMetadata;
 	eventData: EventDataWithCtx;
 }) => {
 	const [creator] = await findUserByEventCode({ code });
@@ -221,7 +232,7 @@ const HostView = async ({
 	eventData,
 }: {
 	code: string;
-	discordMetadata?: { isMember: boolean; name: string; iconUrl: string };
+	discordMetadata?: DiscordEventMetadata;
 	eventData: EventDataWithCtx;
 }) => (
 	<Container>
@@ -229,7 +240,11 @@ const HostView = async ({
 		<div className="flex w-full justify-end md:w-2/12">
 			<div className="flex w-full flex-col gap-2 md:w-24">
 				<ManageEventSection code={code} eventData={eventData} />
-				<RsvpSection code={code} userId={eventData.createdBy} />
+				<RsvpSection
+					code={code}
+					userId={eventData.createdBy}
+					discordMetadata={discordMetadata}
+				/>
 			</div>
 		</div>
 		<FoodPlanSection code={code} />
