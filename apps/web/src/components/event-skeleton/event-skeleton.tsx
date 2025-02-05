@@ -1,4 +1,5 @@
 import { MapPinIcon } from "@heroicons/react/24/outline";
+import Markdown from "react-markdown";
 import { DiscordEventMetadata } from "~/actions/bot/event/fetch-discord-event-metadata";
 import findEvent from "~/actions/event/find-event";
 import findUserByEventCode from "~/actions/user/find-user-by-event-code";
@@ -62,7 +63,7 @@ const EventSkeleton = async ({ code, discordMetadata }: Props) => {
 				)}
 			</p>
 
-			<p>{description}</p>
+			<Markdown>{description}</Markdown>
 
 			{isPassed && <WarningAlert text="This event date is in the past." />}
 		</div>
