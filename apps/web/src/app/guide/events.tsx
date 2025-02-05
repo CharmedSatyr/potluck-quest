@@ -63,8 +63,8 @@ const CreatingEventBot = () => (
 			web interface.
 		</li>
 		<li>
-			Some <DiscordLogo /> event functionality, like cover images and repeating
-			events, is not yet available on <PotluckQuest />.
+			Some <DiscordLogo /> event functionality, like repeating events, is not
+			yet available on <PotluckQuest />.
 		</li>
 	</ul>
 );
