@@ -6,20 +6,21 @@ import findProviderAccountIdByUserId from "~/actions/user/find-provider-account-
 import botRoutes from "~/constants/bot-api";
 import envConfig from "~/constants/env-config";
 
+export type DiscordEventMetadata = {
+	discordEventId: string;
+	discordGuildId: string;
+	isMember: boolean;
+	name: string;
+	iconUrl: string;
+};
+
 const fetchDiscordEventMetadata = async ({
 	code,
 	userId,
 }: {
 	code: PotluckEvent["code"];
 	userId: User["id"];
-}): Promise<
-	| {
-			isMember: boolean;
-			name: string;
-			iconUrl: string;
-	  }
-	| undefined
-> => {
+}): Promise<DiscordEventMetadata | undefined> => {
 	try {
 		const [mapping] = await findDiscordEventMapping({ code });
 
@@ -31,8 +32,10 @@ const fetchDiscordEventMetadata = async ({
 			userId,
 		});
 
+		const { discordGuildId, discordEventId } = mapping;
+
 		const data = {
-			discordGuildId: mapping.discordGuildId,
+			discordGuildId,
 			discordUserId: discordAccountLookup.providerAccountId,
 		};
 
@@ -54,7 +57,11 @@ const fetchDiscordEventMetadata = async ({
 			return;
 		}
 
-		return await response.json();
+		return {
+			discordEventId,
+			discordGuildId,
+			...(await response.json()),
+		};
 	} catch (error) {
 		console.error("Error fetching Discord metadata:", error);
 	}

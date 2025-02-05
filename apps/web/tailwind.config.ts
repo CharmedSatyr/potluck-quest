@@ -11,6 +11,10 @@ const config: Config = {
 	],
 	theme: {
 		extend: {
+			colors: {
+				blurple: "#5865F2", // Official Discord blur/purple
+				"dark-blurple": "#4955CC", // Custom on hover Discord blurple hue
+			},
 			height: {
 				"100": "25rem",
 				"104": "26rem",
