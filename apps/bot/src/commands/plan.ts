@@ -84,7 +84,7 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 		.setMinLength(1)
 		.setMaxLength(DESCRIPTION_LENGTH)
 		.setPlaceholder(
-			"Additional info or vibe text." // TODO: Markdown, new lines, and links are supported."
+			"Additional info or vibe text. Markdown, new lines, and links are supported."
 		)
 		.setRequired(false)
 		.setStyle(TextInputStyle.Paragraph);
@@ -92,7 +92,6 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 	const imageInput = new TextInputBuilder()
 		.setCustomId(CustomId.PLAN_EVENT_IMAGE_URL)
 		.setLabel("Cover Image Link")
-		.setMinLength(13)
 		.setPlaceholder("A jpg/png/gif/webp at least 800px wide and 320px tall.")
 		.setRequired(false)
 		.setStyle(TextInputStyle.Short);
