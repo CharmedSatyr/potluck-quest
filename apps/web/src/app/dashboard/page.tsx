@@ -71,7 +71,7 @@ const HostingTable = async () => {
 								<td className="hidden md:table-cell">{event.location}</td>
 								<td className="hidden md:table-cell">
 									<DeleteEventForm
-										className="btn-sm"
+										className="btn-sm float-right max-w-20"
 										code={event.code}
 										redirect={false}
 									/>
