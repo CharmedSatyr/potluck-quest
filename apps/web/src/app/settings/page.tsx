@@ -33,18 +33,19 @@ const SettingsPage = async ({ searchParams }: Props) => {
 
 			{!result && <SetupTimezone />}
 
-			<Suspense fallback="Loading...">
+			<Suspense>
 				<SlideIn>
 					Your <span className="font-bold">preferred timezone</span> is{" "}
 					<TimezoneSelector
 						currentTimezone={result?.timezone ?? DEFAULT_TIMEZONE}
 					/>
 					.
-					<p>
-						<PQBot /> uses this setting on <DiscordLogo />.
-					</p>
 				</SlideIn>
 			</Suspense>
+
+			<p>
+				<PQBot /> uses this setting on <DiscordLogo />.
+			</p>
 		</main>
 	);
 };
