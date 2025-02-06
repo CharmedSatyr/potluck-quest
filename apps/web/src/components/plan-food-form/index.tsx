@@ -133,7 +133,7 @@ const PlanFoodForm = ({
 						remove={removeSlot}
 					/>
 					{committedUsersBySlot.has(slot.id ?? "") && (
-						<div className="flex w-full items-center justify-center">
+						<div className="mt-4 flex w-full items-center justify-center">
 							<span className="text-sm font-light">Existing Commitments:</span>
 							<span className="mx-2">
 								{committedUsersBySlot.get(slot.id ?? "")}
@@ -190,21 +190,3 @@ const PlanFoodForm = ({
 };
 
 export default PlanFoodForm;
-
-export const PlanFoodFormFallback = () => {
-	return (
-		<div className="flex w-full flex-col gap-4">
-			<div className="skeleton h-14 w-5/12" />
-			<div className="flex justify-between gap-2">
-				<div className="skeleton h-14 w-1/12" />
-				<div className="skeleton h-14 w-7/12" />
-				<div className="skeleton h-14 w-3/12" />
-			</div>
-			<div className="flex justify-between gap-2">
-				<div className="skeleton h-14 w-4/12" />
-				<div className="skeleton h-14 w-4/12" />
-			</div>
-			<div className="skeleton h-14 w-full" />
-		</div>
-	);
-};

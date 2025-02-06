@@ -5,9 +5,7 @@ import { Suspense, useEffect, useState } from "react";
 import PlanEventForm, {
 	PlanEventFormFallback,
 } from "~/components/plan-event-form";
-import PlanFoodForm, {
-	PlanFoodFormFallback,
-} from "~/components/plan-food-form";
+import PlanFoodForm from "~/components/plan-food-form";
 import SelectGuildForm from "~/components/select-guild-form";
 import Suggestions from "~/components/suggestions";
 import useAnchor, { scrollToAnchor } from "~/hooks/use-anchor";
@@ -152,7 +150,7 @@ const ManageEventWizard = ({
 							</Suspense>
 						</div>
 
-						<Suspense fallback={<PlanFoodFormFallback />}>
+						<Suspense>
 							<PlanFoodForm
 								code={code}
 								committedUsersBySlotPromise={committedUsersBySlotPromise}
