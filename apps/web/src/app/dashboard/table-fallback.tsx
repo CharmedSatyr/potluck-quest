@@ -1,24 +1,58 @@
 export const TableFallback = () => (
-	<div className="flex w-full flex-col gap-2 rounded-xl bg-base-100 p-2 shadow">
-		<div className="flex justify-around gap-2">
-			<div className="skeleton h-12 w-2/3" />
-			<div className="skeleton h-12 w-1/6" />
-			<div className="skeleton h-12 w-1/6" />
-		</div>
-		<div className="flex justify-around gap-2">
-			<div className="skeleton h-12 w-2/3" />
-			<div className="skeleton h-12 w-1/6" />
-			<div className="skeleton h-12 w-1/6" />
-		</div>
-		<div className="flex justify-around gap-2">
-			<div className="skeleton h-12 w-2/3" />
-			<div className="skeleton h-12 w-1/6" />
-			<div className="skeleton h-12 w-1/6" />
-		</div>
-		<div className="flex justify-around gap-2">
-			<div className="skeleton h-12 w-2/3" />
-			<div className="skeleton h-12 w-1/6" />
-			<div className="skeleton h-12 w-1/6" />
-		</div>
+	<div className="overflow-x-auto rounded-xl border border-base-300 shadow">
+		<table className="table table-pin-rows table-sm my-0 rounded-xl bg-base-100">
+			<thead>
+				<tr>
+					<th>Code</th>
+					<th>Name</th>
+					<th>Date</th>
+					<th className="hidden md:table-cell">Location</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<div className="skeleton h-8" />
+					</td>
+					<td>
+						<div className="skeleton h-8" />
+					</td>
+					<td>
+						<div className="skeleton h-8" />
+					</td>
+					<td className="hidden md:table-cell">
+						<div className="skeleton h-8" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div className="skeleton h-8" />
+					</td>
+					<td>
+						<div className="skeleton h-8" />
+					</td>
+					<td>
+						<div className="skeleton h-8" />
+					</td>
+					<td className="hidden md:table-cell">
+						<div className="skeleton h-8" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div className="skeleton h-8" />
+					</td>
+					<td>
+						<div className="skeleton h-8" />
+					</td>
+					<td>
+						<div className="skeleton h-8" />
+					</td>
+					<td className="hidden md:table-cell">
+						<div className="skeleton h-8" />
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 );

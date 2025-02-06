@@ -19,6 +19,10 @@
 		appearance: textfield;
 	}
 
+	.skeleton {
+		@apply bg-base-200 !important; /* Overwrite DaisyUI */
+	}
+
 	.slide-in {
 		transform: translateY(8%);
 		opacity: 0;
