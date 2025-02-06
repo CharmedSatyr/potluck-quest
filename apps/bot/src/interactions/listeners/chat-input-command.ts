@@ -45,22 +45,27 @@ export const listener = async (interaction: Interaction<CacheType>) => {
 	try {
 		await command.execute(interaction);
 	} catch (error) {
-		console.error({
-			message: "Error in chat input command listener",
-			error,
-		});
+		try {
+			console.error({
+				message: "Error in chat input command listener",
+				error,
+			});
 
-		if (interaction.replied || interaction.deferred) {
-			await interaction.followUp({
+			if (interaction.replied || interaction.deferred) {
+				await interaction.followUp({
+					content: "There was an error while executing this command!",
+					flags: MessageFlags.Ephemeral,
+				});
+				return;
+			}
+
+			await interaction.reply({
 				content: "There was an error while executing this command!",
 				flags: MessageFlags.Ephemeral,
 			});
-			return;
+		} catch (err) {
+			console.log("SECOND BATCH OF ERRORS", err);
+			console.log("Throwing inside the catch block.");
 		}
-
-		await interaction.reply({
-			content: "There was an error while executing this command!",
-			flags: MessageFlags.Ephemeral,
-		});
 	}
 };
