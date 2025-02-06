@@ -120,11 +120,9 @@ const PlanFoodForm = ({
 	return (
 		<Form
 			action={determineAction()}
-			className="form-control w-11/12 md:w-full"
+			className="form-control"
 			data-testid="plan-food-form"
 		>
-			<h2>Create Signup Slots</h2>
-
 			{slots.map((slot, index) => (
 				<div key={slot.order}>
 					<SlotInput

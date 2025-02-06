@@ -1,9 +1,9 @@
 "use client";
 
+import { ArrowRightCircleIcon } from "@heroicons/react/24/outline";
 import { DESCRIPTION_LENGTH } from "@potluck/utilities/constants";
 import Form from "next/form";
 import Image from "next/image";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { use, useActionState, useEffect, useRef } from "react";
 import LoadingIndicator from "~/components/loading-indicator";
@@ -53,25 +53,9 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 	return (
 		<Form
 			action={determineAction()}
-			className="form-control w-11/12"
+			className="form-control"
 			name="create-event-form"
 		>
-			{mode === "create" && (
-				<h1 className="text-primary-gradient mb-4">Create an Event</h1>
-			)}
-
-			{mode === "edit" && (
-				<h1 className="text-primary-gradient mb-4 flex items-center">
-					Now Editing
-					<Link
-						href={`/event/${code}`}
-						className="btn btn-secondary btn-sm ml-2 text-xl"
-					>
-						{code}
-					</Link>
-				</h1>
-			)}
-
 			<div>
 				<label className="label label-text" htmlFor="name-input">
 					Event Title
@@ -204,22 +188,27 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 				</div>
 			</div>
 
-			<button className="btn btn-primary my-6 w-full" type="submit">
-				{isPending && <LoadingIndicator size={10} />}
-				{loggedIn && !isPending && "Next"}
-				{!loggedIn && !isPending && (
-					<>
-						Continue with{" "}
-						<Image
-							src="/static/discord-logo-black.png"
-							alt=""
-							height="15"
-							width="80"
-							className="m-0"
-						/>
-					</>
-				)}
-			</button>
+			<div className="w-full">
+				<button
+					className="btn btn-primary btn-sm float-right my-6"
+					type="submit"
+				>
+					{isPending && <LoadingIndicator size={10} />}
+					{loggedIn && !isPending && "Continue"}
+					{!loggedIn && !isPending && (
+						<>
+							Continue with{" "}
+							<Image
+								src="/static/discord-logo-black.png"
+								alt=""
+								height="15"
+								width="80"
+								className="m-0"
+							/>
+						</>
+					)}
+				</button>
+			</div>
 		</Form>
 	);
 };

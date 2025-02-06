@@ -1,8 +1,8 @@
 "use client";
 
+import DiscordLogo from "../discord-blurple-logo";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import Form from "next/form";
-import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { use } from "react";
@@ -64,24 +64,14 @@ const SelectGuildForm = ({ userDiscordGuildsPromise }: Props) => {
 	const search = useSearchParams();
 
 	return (
-		<Form action="/plan/confirm" className="h-full w-full">
-			<h1 className="text-primary-gradient flex items-center gap-2">
-				Select a Server
-			</h1>
+		<Form action="/plan/confirm" className="flex flex-col items-center">
+			<p className="mt-0">
+				Do you want to create an event in a <DiscordLogo /> server that stays in
+				sync with this one?{" "}
+				<Link href="/guide#creating-an-event">Read more.</Link>
+			</p>
 
-			<section className="rounded-xl bg-base-300 px-6 pb-6 pt-1 shadow-xl">
-				<p>
-					Do you want to create an event in a{" "}
-					<Image
-						src="/static/discord-logo-blue.png"
-						alt=""
-						height="19"
-						width="100"
-						className="m-0 inline"
-					/>{" "}
-					server that stays in sync with this one?{" "}
-					<Link href="/guide#creating-an-event">Read more.</Link>
-				</p>
+			<section className="border-bg-300 w-full rounded-xl bg-base-200 p-6 shadow">
 				<div className="rounded-xl border border-info px-2">
 					<p className="mb-0 flex items-center gap-1">
 						<InformationCircleIcon
@@ -92,7 +82,7 @@ const SelectGuildForm = ({ userDiscordGuildsPromise }: Props) => {
 						For a server to be eligible:
 					</p>
 					<ul className="mt-0">
-						<li>You must have permission to manage events in that server.</li>
+						<li>You must have permission to create events on that server.</li>
 						<li>
 							The server must have{" "}
 							<Link
@@ -136,7 +126,7 @@ const SelectGuildForm = ({ userDiscordGuildsPromise }: Props) => {
 					/>
 				))}
 
-			<div className="mt-2 flex justify-end">
+			<div className="mt-4 flex w-full justify-end">
 				<button className="btn btn-primary btn-sm" type="submit">
 					Save and Continue
 				</button>

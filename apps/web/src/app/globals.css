@@ -35,6 +35,18 @@
 		@apply bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent outline-8 outline-offset-2 outline-accent !important;
 	}
 
+	.contrast-container {
+		@apply rounded-xl border border-base-300 bg-base-100/80 shadow-xl;
+	}
+
+	.step-container {
+		@apply flex w-full justify-center;
+	}
+
+	.step-content {
+		@apply w-8/12;
+	}
+
 	.bg-pulsing-gradient {
 		@apply animate-[pulse_10s_ease-in-out_infinite] rounded-[30%_70%_70%_30%_/30%_30%_70%_70%] bg-gradient-to-r from-primary via-secondary to-accent opacity-90 blur-[calc(750px/5)] filter;
 	}
