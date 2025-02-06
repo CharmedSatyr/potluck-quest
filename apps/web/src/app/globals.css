@@ -37,7 +37,7 @@
 	}
 
 	.contrast-container {
-		@apply my-14 w-full rounded-xl border border-base-300 bg-base-100/80 p-6 shadow-xl sm:my-24 md:w-11/12 md:p-10 lg:my-28 lg:w-10/12 xl:w-9/12 2xl:w-8/12;
+		@apply my-14 w-full rounded-xl border border-base-300 bg-base-100/80 p-6 shadow-xl sm:my-24 md:w-11/12 md:p-10 lg:my-28 lg:w-8/12 xl:w-7/12 2xl:w-6/12;
 	}
 
 	.step-container {
