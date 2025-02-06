@@ -216,28 +216,41 @@ export default PlanEventForm;
 
 export const PlanEventFormFallback = () => {
 	return (
-		<div className="flex w-full flex-col gap-4">
-			<div className="flex justify-around gap-2">
-				<div className="skeleton h-16 w-full" />
+		<div className="form-control">
+			<label className="label label-text">Event Title</label>
+			<div className="skeleton h-12 w-full" />
+
+			<div className="my-2 flex justify-between">
+				<div className="w-5/12">
+					<label className="label label-text">Date</label>
+					<div className="skeleton h-12 w-full" />
+				</div>
+
+				<div className="w-5/12">
+					<label className="label label-text">Time</label>
+					<div className="skeleton h-12 w-full" />
+				</div>
 			</div>
-			<div className="flex justify-around gap-2">
-				<div className="skeleton h-14 w-full" />
+
+			<div className="my-2">
+				<label className="label label-text">Location</label>
+				<div className="skeleton h-12 w-full" />
 			</div>
-			<div className="flex justify-between gap-2">
-				<div className="skeleton h-14 w-5/12" />
-				<div className="skeleton h-14 w-5/12" />
+
+			<div className="my-2">
+				<label className="label label-text">Hosts</label>
+				<div className="skeleton h-12 w-full" />
 			</div>
-			<div className="flex justify-around gap-2">
-				<div className="skeleton h-14 w-full" />
+
+			<div className="my-2">
+				<label className="label label-text">Description</label>
+				<div className="skeleton h-12 w-full" />
 			</div>
-			<div className="flex justify-around gap-2">
-				<div className="skeleton h-14 w-full" />
-			</div>
-			<div className="flex justify-around gap-2">
-				<div className="skeleton h-14 w-full" />
-			</div>
-			<div className="flex justify-around gap-2">
-				<div className="skeleton h-14 w-full" />
+
+			<div className="my-6 w-full">
+				<button className="btn btn-disabled btn-primary btn-sm float-right w-full md:w-fit">
+					Continue
+				</button>
 			</div>
 		</div>
 	);
