@@ -181,7 +181,8 @@ const PlanFoodForm = ({
 					disabled={noEvent || !slotsValid}
 					type="submit"
 				>
-					Save and Continue
+					{mode === "create" && "Continue"}
+					{mode === "edit" && "Save and Continue"}
 				</button>
 			</div>
 		</Form>
