@@ -199,7 +199,7 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 							Continue with{" "}
 							<Image
 								src="/static/discord-logo-black.png"
-								alt=""
+								alt="Discord logo"
 								height="15"
 								width="80"
 								className="m-0"
