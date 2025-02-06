@@ -96,7 +96,7 @@ const ManageEventWizard = ({
 	};
 
 	return (
-		<div className="contrast-container flex w-full flex-col pt-14 md:w-11/12 lg:w-10/12 xl:w-9/12">
+		<div className="contrast-container flex flex-col">
 			<div className="carousel w-full">
 				<div className="step-container carousel-item" id={Step.CREATE_EVENT}>
 					<div className="step-content">

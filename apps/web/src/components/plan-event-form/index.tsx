@@ -1,6 +1,5 @@
 "use client";
 
-import { ArrowRightCircleIcon } from "@heroicons/react/24/outline";
 import { DESCRIPTION_LENGTH } from "@potluck/utilities/constants";
 import Form from "next/form";
 import Image from "next/image";

@@ -7,7 +7,6 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { use } from "react";
 import GuildIcon from "~/components/guild-icon";
-import { BOT_INSTALL_LINK } from "~/constants/bot-install-link";
 import { NO_GUILD_ID } from "~/constants/no-guild-id";
 
 type Props = {
