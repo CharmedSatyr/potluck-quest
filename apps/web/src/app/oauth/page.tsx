@@ -1,8 +1,6 @@
 import Form from "next/form";
 import Image from "next/image";
 import signInWithDiscordAndRevalidate from "~/actions/auth/sign-in-with-discord-and-revalidate";
-import DiscordLogo from "~/components/discord-blurple-logo";
-import { DiscordIcon } from "~/components/icons/discord";
 import siteMetadata from "~/data/site-metadata";
 
 const OauthPage = async () => {

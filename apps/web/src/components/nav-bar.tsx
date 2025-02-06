@@ -1,4 +1,3 @@
-import { PotluckQuest } from "./logos/potluck-quest-logo";
 import {
 	ArrowRightStartOnRectangleIcon,
 	BookOpenIcon,
