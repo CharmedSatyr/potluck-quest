@@ -54,27 +54,27 @@ const ProgressIndicator = ({ mode }: { mode: WizardMode }) => {
 	/* TODO: Add a hover state to make it clearer you can click. */
 	return (
 		<div className="steps my-8 w-full">
-			<button
-				className="step step-secondary"
-				onClick={() => scrollToAnchor(Step.CREATE_EVENT)}
+			<Link
+				className="step step-secondary no-underline"
+				href={`#${Step.CREATE_EVENT}`}
 			>
 				Create an Event
-			</button>
+			</Link>
 
-			<button
-				className={`step ${anchor === Step.PLAN_FOOD || anchor === Step.SELECT_SERVER ? "step-secondary" : ""}`}
-				onClick={() => scrollToAnchor(Step.PLAN_FOOD)}
+			<Link
+				className={`step no-underline ${anchor === Step.PLAN_FOOD || anchor === Step.SELECT_SERVER ? "step-secondary" : ""}`}
+				href={`#${Step.PLAN_FOOD}`}
 			>
 				Plan the Food
-			</button>
+			</Link>
 
 			{mode === "create" && (
-				<button
-					className={`step ${anchor === Step.SELECT_SERVER ? "step-secondary" : ""}`}
-					onClick={() => scrollToAnchor(Step.SELECT_SERVER)}
+				<Link
+					className={`step no-underline ${anchor === Step.SELECT_SERVER ? "step-secondary" : ""}`}
+					href={`#${Step.SELECT_SERVER}`}
 				>
 					Select a Server
-				</button>
+				</Link>
 			)}
 		</div>
 	);
