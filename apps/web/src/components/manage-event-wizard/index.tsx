@@ -1,5 +1,6 @@
 "use client";
 
+import SlideIn from "../slide-in";
 import Link from "next/link";
 import { Suspense, useEffect, useState } from "react";
 import PlanEventForm, {
@@ -51,30 +52,32 @@ const ProgressIndicator = ({ mode }: { mode: WizardMode }) => {
 
 	/* TODO: Add a hover state to make it clearer you can click. */
 	return (
-		<div className="steps my-8 w-full">
-			<Link
-				className="step step-secondary no-underline"
-				href={`#${Step.CREATE_EVENT}`}
-			>
-				Create an Event
-			</Link>
-
-			<Link
-				className={`step no-underline ${anchor === Step.PLAN_FOOD || anchor === Step.SELECT_SERVER ? "step-secondary" : ""}`}
-				href={`#${Step.PLAN_FOOD}`}
-			>
-				Plan the Food
-			</Link>
-
-			{mode === "create" && (
+		<SlideIn>
+			<div className="steps my-8 w-full">
 				<Link
-					className={`step no-underline ${anchor === Step.SELECT_SERVER ? "step-secondary" : ""}`}
-					href={`#${Step.SELECT_SERVER}`}
+					className="step step-secondary no-underline"
+					href={`#${Step.CREATE_EVENT}`}
 				>
-					Select a Server
+					Create an Event
 				</Link>
-			)}
-		</div>
+
+				<Link
+					className={`step no-underline ${anchor === Step.PLAN_FOOD || anchor === Step.SELECT_SERVER ? "step-secondary" : ""}`}
+					href={`#${Step.PLAN_FOOD}`}
+				>
+					Plan the Food
+				</Link>
+
+				{mode === "create" && (
+					<Link
+						className={`step no-underline ${anchor === Step.SELECT_SERVER ? "step-secondary" : ""}`}
+						href={`#${Step.SELECT_SERVER}`}
+					>
+						Select a Server
+					</Link>
+				)}
+			</div>
+		</SlideIn>
 	);
 };
 
