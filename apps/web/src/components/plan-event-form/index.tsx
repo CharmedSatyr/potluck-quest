@@ -100,10 +100,10 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 					<label className="label label-text text-sm" htmlFor="time-input">
 						Time{" "}
 						<small>
-							<span className="hidden md:block">
+							<span className="hidden xl:block">
 								{timezone} ({offsetNameShort})
 							</span>
-							<span className="md:hidden">{offsetNameShort}</span>
+							<span className="xl:hidden">{offsetNameShort}</span>
 						</small>
 					</label>
 					<input
@@ -188,9 +188,9 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 				</div>
 			</div>
 
-			<div className="w-full">
+			<div className="my-6 w-full">
 				<button
-					className="btn btn-primary btn-sm float-right my-6"
+					className="btn btn-primary btn-sm float-right w-full md:w-fit"
 					type="submit"
 				>
 					{isPending && <LoadingIndicator size={10} />}

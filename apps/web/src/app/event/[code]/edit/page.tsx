@@ -33,7 +33,7 @@ const EditEventPage = async ({ params, searchParams }: Props) => {
 	const loggedIn = Boolean(session?.user?.id);
 
 	return (
-		<main className="flex h-full w-full flex-col items-center">
+		<main className="flex w-full justify-center">
 			<ErrorBoundary>
 				<Suspense fallback={<PlanEventFormFallback />}>
 					<ManageEventWizard

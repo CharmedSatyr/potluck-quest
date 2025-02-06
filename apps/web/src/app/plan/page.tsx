@@ -21,7 +21,7 @@ const PlanPage = async ({ searchParams }: Props) => {
 	const loggedIn = Boolean(session?.user?.id);
 
 	return (
-		<main className="contrast-container w-10/12">
+		<main className="flex w-full justify-center">
 			<ErrorBoundary>
 				<Suspense fallback={<PlanEventFormFallback />}>
 					<ManageEventWizard

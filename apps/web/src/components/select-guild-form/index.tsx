@@ -67,37 +67,16 @@ const SelectGuildForm = ({ userDiscordGuildsPromise }: Props) => {
 		<Form action="/plan/confirm" className="flex flex-col items-center">
 			<p className="mt-0">
 				Do you want to create an event in a <DiscordLogo /> server that stays in
-				sync with this one?{" "}
-				<Link href="/guide#creating-an-event">Read more.</Link>
+				sync with this one?
+			</p>
+			<p className="mt-0">
+				<InformationCircleIcon className="inline size-5 text-info" />{" "}
+				<Link href="/guide#creating-an-event">Read more</Link> about what this
+				means and how to make your servers show up below.
 			</p>
 
-			<section className="border-bg-300 w-full rounded-xl bg-base-200 p-6 shadow">
-				<div className="rounded-xl border border-info px-2">
-					<p className="mb-0 flex items-center gap-1">
-						<InformationCircleIcon
-							height={25}
-							width={25}
-							className="inline text-info"
-						/>{" "}
-						For a server to be eligible:
-					</p>
-					<ul className="mt-0">
-						<li>You must have permission to create events on that server.</li>
-						<li>
-							The server must have{" "}
-							<Link
-								href={BOT_INSTALL_LINK}
-								rel="noopener noreferrer"
-								target="_blank"
-							>
-								Potluck Quest Bot
-							</Link>{" "}
-							installed.
-						</li>
-					</ul>
-				</div>
-
-				<h3>Available Servers</h3>
+			<section className="border-bg-300 w-full rounded-xl bg-base-200 p-4 shadow md:w-3/4 2xl:w-1/2">
+				<h3 className="mb-4 mt-0">Available Servers</h3>
 				<div className="form-control">
 					{[
 						{
@@ -126,8 +105,11 @@ const SelectGuildForm = ({ userDiscordGuildsPromise }: Props) => {
 					/>
 				))}
 
-			<div className="mt-4 flex w-full justify-end">
-				<button className="btn btn-primary btn-sm" type="submit">
+			<div className="my-6 flex w-full justify-end">
+				<button
+					className="btn btn-primary btn-sm w-full md:w-fit"
+					type="submit"
+				>
 					Save and Continue
 				</button>
 			</div>
