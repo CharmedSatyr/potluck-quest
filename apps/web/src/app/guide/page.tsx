@@ -1,11 +1,12 @@
-import Commands from "./commands";
-import Events from "./events";
-import GettingStarted from "./getting-started";
-import { PotluckQuest, PQBot } from "./links";
-import Rsvps from "./rsvps";
-import Slots from "./slots";
 import Link from "next/link";
+import Commands from "~/app/guide/commands";
+import Events from "~/app/guide/events";
+import GettingStarted from "~/app/guide/getting-started";
+import Rsvps from "~/app/guide/rsvps";
+import Slots from "~/app/guide/slots";
 import DiscordLogo from "~/components/discord-blurple-logo";
+import { PotluckQuest } from "~/components/logos/potluck-quest-logo";
+import { PQBot } from "~/components/logos/pq-bot-logo";
 import OpenAiLogo from "~/components/openai-white-logo";
 
 const GuideContent = () => {

@@ -1,7 +1,9 @@
-import { Command, PotluckQuest, PQBot, SignupSlots } from "./links";
-import TabWrapper from "./tab-wrapper";
 import Link from "next/link";
+import { Command, SignupSlots } from "~/app/guide/links";
+import TabWrapper from "~/app/guide/tab-wrapper";
 import DiscordLogo from "~/components/discord-blurple-logo";
+import { PotluckQuest } from "~/components/logos/potluck-quest-logo";
+import { PQBot } from "~/components/logos/pq-bot-logo";
 import OpenAiLogo from "~/components/openai-white-logo";
 
 const GettingStartedWithBot = () => (

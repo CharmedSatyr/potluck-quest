@@ -26,7 +26,7 @@ const TimezoneSelector = ({ currentTimezone }: Props) => {
 	return (
 		<Form action={submit} className="inline" ref={formRef}>
 			<select
-				className="select select-secondary select-sm"
+				className="select select-secondary select-sm bg-base-300"
 				disabled={isPending}
 				onChange={() => formRef.current?.requestSubmit()}
 				name="timezone"

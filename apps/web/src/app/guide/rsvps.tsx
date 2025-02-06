@@ -1,5 +1,6 @@
-import { PotluckQuest, PQBot } from "~/app/guide/links";
 import DiscordLogo from "~/components/discord-blurple-logo";
+import { PotluckQuest } from "~/components/logos/potluck-quest-logo";
+import { PQBot } from "~/components/logos/pq-bot-logo";
 
 const Rsvps = () => (
 	<article>
