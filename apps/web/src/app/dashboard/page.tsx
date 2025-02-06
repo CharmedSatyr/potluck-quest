@@ -137,7 +137,7 @@ const AttendingTable = async () => {
 
 const DashboardPage = async () => {
 	return (
-		<main className="contrast-container h-fit">
+		<main className="contrast-container">
 			<h1 className="text-primary-gradient">Dashboard</h1>
 
 			<SlideIn>
