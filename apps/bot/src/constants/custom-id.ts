@@ -9,4 +9,5 @@ export enum CustomId {
 	PLAN_EVENT_LOCATION = "plan-event-location",
 	PLAN_EVENT_DESCRIPTION = "plan-event-description",
 	PLAN_EVENT_IMAGE_URL = "plan-event-image-url",
+	SLOTS_SELECT_EVENT = "slots-select-event",
 }

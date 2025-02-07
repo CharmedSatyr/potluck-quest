@@ -8,6 +8,7 @@ import { listener as eventUserRemoveListener } from "~/guildEvents/listeners/use
 import { listener as buttonClickListener } from "~/interactions/listeners/button-click.js";
 import { listener as chatInputCommandListener } from "~/interactions/listeners/chat-input-command.js";
 import { listener as modalSubmitListener } from "~/interactions/listeners/modal-submit.js";
+import { listener as stringSelectMenuListener } from "~/interactions/listeners/string-select-menu.js";
 import collectCommands from "~/utilities/collect-commands.js";
 import collectHandlers from "~/utilities/collect-handlers.js";
 
@@ -29,6 +30,7 @@ client.once(Events.ClientReady, async (readyClient) => {
 client.on(Events.InteractionCreate, chatInputCommandListener);
 client.on(Events.InteractionCreate, modalSubmitListener);
 client.on(Events.InteractionCreate, buttonClickListener);
+client.on(Events.InteractionCreate, stringSelectMenuListener);
 
 client.on(Events.GuildScheduledEventUserAdd, eventUserAddListener);
 client.on(Events.GuildScheduledEventUserRemove, eventUserRemoveListener);
