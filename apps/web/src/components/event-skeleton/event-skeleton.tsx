@@ -1,11 +1,8 @@
-import LoadingIndicator from "../loading-indicator";
 import {
-	CalculatorIcon,
 	CalendarIcon,
 	ClockIcon,
 	MapPinIcon,
 } from "@heroicons/react/24/outline";
-import { ClipboardDocumentIcon } from "@heroicons/react/24/solid";
 import Markdown from "react-markdown";
 import { DiscordEventMetadata } from "~/actions/bot/event/fetch-discord-event-metadata";
 import findEvent from "~/actions/event/find-event";
@@ -82,20 +79,16 @@ export default EventSkeleton;
 export const EventSkeletonFallback = () => {
 	return (
 		<div className="mb-2 flex w-full flex-col gap-4">
-			<div className="skeleton mb-[9px] h-10 w-3/4" />
+			<div className="skeleton mb-[9px] h-10 w-96" />
 			<div className="mb-[1px] flex items-center font-bold">
 				Event Code:{" "}
 				<button className="btn btn-ghost btn-sm px-2 text-lg font-bold">
-					<span className="text-secondary">
-						<LoadingIndicator size={6} />
-					</span>{" "}
-					<ClipboardDocumentIcon className="size-4" />
+					<span className="text-secondary" />
 				</button>
 			</div>
 			<div className="flex items-center gap-2">
 				<CalendarIcon className="size-4" />{" "}
-				<div className="skeleton h-8 w-[8rem]" />
-				&nbsp;at&nbsp;
+				<div className="skeleton h-8 w-44" />
 				<ClockIcon className="size-4" /> <div className="skeleton h-8 w-24" />
 			</div>
 			<div className="flex items-center gap-2">
@@ -104,10 +97,10 @@ export const EventSkeletonFallback = () => {
 			</div>
 			<div className="flex items-center gap-2">
 				<div className="avatar skeleton size-5 shrink-0 rounded-full" />
-				<div className="skeleton h-8 w-7/12" />
+				<div className="skeleton h-8 w-56" />
 			</div>
-			<div className="skeleton h-8 w-full" />
-			<div className="skeleton h-8 w-3/4" />
+			<div className="skeleton h-8 w-96" />
+			<div className="skeleton h-8 w-72" />
 		</div>
 	);
 };
