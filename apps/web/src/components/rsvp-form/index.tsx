@@ -4,7 +4,7 @@ import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { use, useActionState, useEffect, useState } from "react";
 import { type DiscordEventMetadata } from "~/actions/bot/event/fetch-discord-event-metadata";
-import { DiscordIcon } from "~/components/logos/discord-icon";
+import { DiscordIcon } from "~/components/branding/discord-icon";
 import LoadingIndicator from "~/components/loading-indicator";
 import submitAction, {
 	RsvpFormState,

@@ -1,9 +1,9 @@
 import potluckQuest from "../../public/static/potluck-quest";
 import Image from "next/image";
 import Link from "next/link";
-import GotoEventForm from "~/components/goto-event-form";
-import DiscordLogo from "~/components/logos/discord-blurple-logo";
-import OpenAiLogo from "~/components/logos/openai-white-logo";
+import GotoEventForm from "~/components/branding/discord-blurple-logo";
+import DiscordLogo from "~/components/branding/discord-blurple-logo";
+import OpenAiLogo from "~/components/branding/openai-white-logo";
 import siteMetadata from "~/data/site-metadata";
 import genPageMetadata from "~/seo";
 

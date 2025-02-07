@@ -1,8 +1,8 @@
 import { Command } from "./links";
 import Link from "next/link";
-import DiscordLogo from "~/components/logos/discord-blurple-logo";
-import { PotluckQuest } from "~/components/logos/potluck-quest-logo";
-import { PQBot } from "~/components/logos/pq-bot-logo";
+import DiscordLogo from "~/components/branding/discord-blurple-logo";
+import { PotluckQuest } from "~/components/branding/potluck-quest-logo";
+import { PQBot } from "~/components/branding/pq-bot-logo";
 
 const Commands = () => (
 	<article>

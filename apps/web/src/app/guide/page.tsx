@@ -4,10 +4,10 @@ import Events from "~/app/guide/events";
 import GettingStarted from "~/app/guide/getting-started";
 import Rsvps from "~/app/guide/rsvps";
 import Slots from "~/app/guide/slots";
-import DiscordLogo from "~/components/logos/discord-blurple-logo";
-import OpenAiLogo from "~/components/logos/openai-white-logo";
-import { PotluckQuest } from "~/components/logos/potluck-quest-logo";
-import { PQBot } from "~/components/logos/pq-bot-logo";
+import DiscordLogo from "~/components/branding/discord-blurple-logo";
+import OpenAiLogo from "~/components/branding/openai-white-logo";
+import { PotluckQuest } from "~/components/branding/potluck-quest-logo";
+import { PQBot } from "~/components/branding/pq-bot-logo";
 
 const GuideContent = () => {
 	return (

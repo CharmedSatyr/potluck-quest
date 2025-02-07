@@ -1,5 +1,5 @@
-import DiscordLogo from "~/components/logos/discord-blurple-logo";
-import { PQBot } from "~/components/logos/pq-bot-logo";
+import DiscordLogo from "~/components/branding/discord-blurple-logo";
+import { PQBot } from "~/components/branding/pq-bot-logo";
 
 const Loading = () => (
 	<main className="contrast-container">

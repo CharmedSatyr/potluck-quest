@@ -10,6 +10,7 @@ import findUserEventRsvp from "~/actions/rsvp/find-user-event-rsvp";
 import findUserByEventCode from "~/actions/user/find-user-by-event-code";
 import EditLink from "~/app/event/[code]/edit-link";
 import { auth } from "~/auth";
+import { DiscordIcon } from "~/components/branding/discord-icon";
 import CommitmentsTable from "~/components/commitments-table";
 import DeleteEventForm from "~/components/delete-event-button";
 import DateTimeBlock from "~/components/event-skeleton/date-time-block";
@@ -18,7 +19,6 @@ import EventSkeleton, {
 	EventSkeletonFallback,
 } from "~/components/event-skeleton/event-skeleton";
 import GuildIcon from "~/components/guild-icon";
-import { DiscordIcon } from "~/components/logos/discord-icon";
 import RsvpForm from "~/components/rsvp-form";
 import RsvpTable from "~/components/rsvp-table";
 import SlideIn from "~/components/slide-in";

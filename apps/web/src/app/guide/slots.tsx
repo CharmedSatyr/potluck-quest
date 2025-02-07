@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { Command } from "~/app/guide/links";
-import DiscordLogo from "~/components/logos/discord-blurple-logo";
-import OpenAiLogo from "~/components/logos/openai-white-logo";
-import { PotluckQuest } from "~/components/logos/potluck-quest-logo";
-import { PQBot } from "~/components/logos/pq-bot-logo";
+import DiscordLogo from "~/components/branding/discord-blurple-logo";
+import OpenAiLogo from "~/components/branding/openai-white-logo";
+import { PotluckQuest } from "~/components/branding/potluck-quest-logo";
+import { PQBot } from "~/components/branding/pq-bot-logo";
 
 const Slots = () => (
 	<article>
