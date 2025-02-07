@@ -85,9 +85,10 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 		content:
 			`<@${interaction.user.id}> signed up to bring **${quantity}** of **${item}**`
 				.concat(description ? `: *${description}*.` : ".")
-				.concat(" ")
+				.concat("\n")
+				// Space here so preview link isn't malformed.
 				.concat(
-					`See more details at [${code}](${config.PQ_WEB_BASE_URL}/event/${code}).`
+					`See more details at [${code}](${config.PQ_WEB_BASE_URL}/event/${code} ).`
 				),
 	});
 };
