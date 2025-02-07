@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Command } from "~/app/guide/links";
 import TabWrapper from "~/app/guide/tab-wrapper";
-import DiscordLogo from "~/components/discord-blurple-logo";
+import DiscordLogo from "~/components/logos/discord-blurple-logo";
 import { PotluckQuest } from "~/components/logos/potluck-quest-logo";
 import { PQBot } from "~/components/logos/pq-bot-logo";
 

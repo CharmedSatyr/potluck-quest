@@ -1,4 +1,4 @@
-import DiscordLogo from "~/components/discord-blurple-logo";
+import DiscordLogo from "~/components/logos/discord-blurple-logo";
 import { PQBot } from "~/components/logos/pq-bot-logo";
 
 const Loading = () => (

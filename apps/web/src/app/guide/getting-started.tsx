@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { Command, SignupSlots } from "~/app/guide/links";
 import TabWrapper from "~/app/guide/tab-wrapper";
-import DiscordLogo from "~/components/discord-blurple-logo";
+import DiscordLogo from "~/components/logos/discord-blurple-logo";
+import OpenAiLogo from "~/components/logos/openai-white-logo";
 import { PotluckQuest } from "~/components/logos/potluck-quest-logo";
 import { PQBot } from "~/components/logos/pq-bot-logo";
-import OpenAiLogo from "~/components/openai-white-logo";
 
 const GettingStartedWithBot = () => (
 	<article>

@@ -2,7 +2,7 @@ import { DEFAULT_TIMEZONE } from "@potluck/utilities/constants";
 import { Suspense } from "react";
 import findTimezone from "~/actions/settings/find-timezone";
 import { auth } from "~/auth";
-import DiscordLogo from "~/components/discord-blurple-logo";
+import DiscordLogo from "~/components/logos/discord-blurple-logo";
 import { PQBot } from "~/components/logos/pq-bot-logo";
 import SetupTimezone from "~/components/setup-timezone";
 import SlideIn from "~/components/slide-in";

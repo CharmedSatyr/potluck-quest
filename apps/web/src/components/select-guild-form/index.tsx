@@ -1,6 +1,6 @@
 "use client";
 
-import DiscordLogo from "../discord-blurple-logo";
+import DiscordLogo from "../logos/discord-blurple-logo";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import Form from "next/form";
 import Link from "next/link";
