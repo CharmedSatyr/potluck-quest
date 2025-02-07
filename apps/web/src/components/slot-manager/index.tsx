@@ -21,13 +21,13 @@ const SlotManager = async ({ code }: Props) => {
 	}
 
 	return (
-		<section className="join join-vertical w-full">
+		<section className="join join-vertical w-full bg-base-100 shadow">
 			{details.map((detail) => {
 				const { item, requestedCount, slotId, totalCommitments, users } =
 					detail;
 
 				return (
-					<div key={slotId} className="join-item rounded-lg border">
+					<div key={slotId} className="join-item border border-base-200">
 						<SlotContainer
 							item={item}
 							requestedCount={requestedCount}
@@ -73,30 +73,3 @@ const SlotManager = async ({ code }: Props) => {
 };
 
 export default SlotManager;
-
-export const SlotManagerFallback = () => {
-	return (
-		<section className="flex w-full flex-col gap-4">
-			<div className="skeleton h-12 w-36 md:w-1/4" />
-			<div className="flex justify-around gap-2">
-				<div className="skeleton h-10 w-1/2" />
-				<div className="skeleton h-10 w-16 shrink-0 rounded-full" />
-				<div className="skeleton h-10 w-16 shrink-0 rounded-full" />
-				<div className="skeleton h-10 w-16 shrink-0 rounded-full" />
-				<div className="skeleton h-10 w-1/4" />
-			</div>
-
-			<div className="flex justify-around gap-2">
-				<div className="skeleton h-10 w-2/3" />
-				<div className="skeleton h-10 w-1/3" />
-			</div>
-
-			<div className="flex justify-around gap-2">
-				<div className="skeleton h-10 w-1/2" />
-				<div className="skeleton h-10 w-16 shrink-0 rounded-full" />
-				<div className="skeleton h-10 w-16 shrink-0 rounded-full" />
-				<div className="skeleton h-10 w-1/4" />
-			</div>
-		</section>
-	);
-};

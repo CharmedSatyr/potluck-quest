@@ -1,13 +1,12 @@
 "use client";
 
+import DiscordLogo from "../discord-blurple-logo";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import Form from "next/form";
-import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { use } from "react";
 import GuildIcon from "~/components/guild-icon";
-import { BOT_INSTALL_LINK } from "~/constants/bot-install-link";
 import { NO_GUILD_ID } from "~/constants/no-guild-id";
 
 type Props = {
@@ -64,50 +63,19 @@ const SelectGuildForm = ({ userDiscordGuildsPromise }: Props) => {
 	const search = useSearchParams();
 
 	return (
-		<Form action="/plan/confirm" className="h-full w-full">
-			<h1 className="text-primary-gradient flex items-center gap-2">
-				Select a Server
-			</h1>
+		<Form action="/plan/confirm" className="flex flex-col items-center">
+			<p className="mt-0">
+				Do you want to create an event in a <DiscordLogo /> server that stays in
+				sync with this one?
+			</p>
+			<p className="mt-0">
+				<InformationCircleIcon className="inline size-5 text-info" />{" "}
+				<Link href="/guide#creating-an-event">Read more</Link> about what this
+				means and how to make your servers show up below.
+			</p>
 
-			<section className="rounded-xl bg-base-300 px-6 pb-6 pt-1 shadow-xl">
-				<p>
-					Do you want to create an event in a{" "}
-					<Image
-						src="/static/discord-logo-blue.png"
-						alt=""
-						height="19"
-						width="100"
-						className="m-0 inline"
-					/>{" "}
-					server that stays in sync with this one?{" "}
-					<Link href="/guide#creating-an-event">Read more.</Link>
-				</p>
-				<div className="rounded-xl border border-info px-2">
-					<p className="mb-0 flex items-center gap-1">
-						<InformationCircleIcon
-							height={25}
-							width={25}
-							className="inline text-info"
-						/>{" "}
-						For a server to be eligible:
-					</p>
-					<ul className="mt-0">
-						<li>You must have permission to manage events in that server.</li>
-						<li>
-							The server must have{" "}
-							<Link
-								href={BOT_INSTALL_LINK}
-								rel="noopener noreferrer"
-								target="_blank"
-							>
-								Potluck Quest Bot
-							</Link>{" "}
-							installed.
-						</li>
-					</ul>
-				</div>
-
-				<h3>Available Servers</h3>
+			<section className="border-bg-300 w-full rounded-xl bg-base-200 p-4 shadow md:w-3/4">
+				<h3 className="mb-4 mt-0">Available Servers</h3>
 				<div className="form-control">
 					{[
 						{
@@ -136,8 +104,11 @@ const SelectGuildForm = ({ userDiscordGuildsPromise }: Props) => {
 					/>
 				))}
 
-			<div className="mt-2 flex justify-end">
-				<button className="btn btn-primary btn-sm" type="submit">
+			<div className="my-6 flex w-full justify-end">
+				<button
+					className="btn btn-primary btn-sm w-full md:w-fit"
+					type="submit"
+				>
 					Save and Continue
 				</button>
 			</div>

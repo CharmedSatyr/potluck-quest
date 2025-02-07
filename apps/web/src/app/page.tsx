@@ -41,8 +41,8 @@ const StartCta = () => {
 
 const Home = () => {
 	return (
-		<main>
-			<div className="hero h-full rounded-xl border border-base-300 bg-base-200 py-10 shadow-2xl xl:flex">
+		<main className="my-10 sm:mt-28 md:mx-10">
+			<div className="hero w-fit rounded-xl border border-base-300 bg-base-200 py-10 shadow-xl xl:flex">
 				<div className="hero-content rounded-xl text-center">
 					<div className="flex-col xl:mx-10 xl:w-1/2">
 						<h1 className="mb-0 text-4xl font-bold leading-tight sm:text-5xl">

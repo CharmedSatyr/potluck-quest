@@ -1,6 +1,8 @@
-import { Command, PotluckQuest, PQBot } from "./links";
 import Link from "next/link";
+import { Command } from "~/app/guide/links";
 import DiscordLogo from "~/components/discord-blurple-logo";
+import { PotluckQuest } from "~/components/logos/potluck-quest-logo";
+import { PQBot } from "~/components/logos/pq-bot-logo";
 import OpenAiLogo from "~/components/openai-white-logo";
 
 const Slots = () => (

@@ -3,7 +3,6 @@
 import { DESCRIPTION_LENGTH } from "@potluck/utilities/constants";
 import Form from "next/form";
 import Image from "next/image";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { use, useActionState, useEffect, useRef } from "react";
 import LoadingIndicator from "~/components/loading-indicator";
@@ -53,25 +52,9 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 	return (
 		<Form
 			action={determineAction()}
-			className="form-control w-11/12"
+			className="form-control"
 			name="create-event-form"
 		>
-			{mode === "create" && (
-				<h1 className="text-primary-gradient mb-4">Create an Event</h1>
-			)}
-
-			{mode === "edit" && (
-				<h1 className="text-primary-gradient mb-4 flex items-center">
-					Now Editing
-					<Link
-						href={`/event/${code}`}
-						className="btn btn-secondary btn-sm ml-2 text-xl"
-					>
-						{code}
-					</Link>
-				</h1>
-			)}
-
 			<div>
 				<label className="label label-text" htmlFor="name-input">
 					Event Title
@@ -116,10 +99,10 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 					<label className="label label-text text-sm" htmlFor="time-input">
 						Time{" "}
 						<small>
-							<span className="hidden md:block">
+							<span className="hidden xl:block">
 								{timezone} ({offsetNameShort})
 							</span>
-							<span className="md:hidden">{offsetNameShort}</span>
+							<span className="xl:hidden">{offsetNameShort}</span>
 						</small>
 					</label>
 					<input
@@ -204,22 +187,27 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 				</div>
 			</div>
 
-			<button className="btn btn-primary my-6 w-full" type="submit">
-				{isPending && <LoadingIndicator size={10} />}
-				{loggedIn && !isPending && "Next"}
-				{!loggedIn && !isPending && (
-					<>
-						Continue with{" "}
-						<Image
-							src="/static/discord-logo-black.png"
-							alt=""
-							height="15"
-							width="80"
-							className="m-0"
-						/>
-					</>
-				)}
-			</button>
+			<div className="my-6 w-full">
+				<button
+					className="btn btn-primary btn-sm float-right w-full md:w-fit"
+					type="submit"
+				>
+					{isPending && <LoadingIndicator size={10} />}
+					{loggedIn && !isPending && "Continue"}
+					{!loggedIn && !isPending && (
+						<>
+							Continue with{" "}
+							<Image
+								src="/static/discord-logo-black.png"
+								alt="Discord logo"
+								height="15"
+								width="80"
+								className="m-0"
+							/>
+						</>
+					)}
+				</button>
+			</div>
 		</Form>
 	);
 };
@@ -228,28 +216,41 @@ export default PlanEventForm;
 
 export const PlanEventFormFallback = () => {
 	return (
-		<div className="flex w-full flex-col gap-4">
-			<div className="flex justify-around gap-2">
-				<div className="skeleton h-16 w-full" />
+		<div className="form-control">
+			<label className="label label-text">Event Title</label>
+			<div className="skeleton h-12 w-full" />
+
+			<div className="my-2 flex justify-between">
+				<div className="w-5/12">
+					<label className="label label-text">Date</label>
+					<div className="skeleton h-12 w-full" />
+				</div>
+
+				<div className="w-5/12">
+					<label className="label label-text">Time</label>
+					<div className="skeleton h-12 w-full" />
+				</div>
 			</div>
-			<div className="flex justify-around gap-2">
-				<div className="skeleton h-14 w-full" />
+
+			<div className="my-2">
+				<label className="label label-text">Location</label>
+				<div className="skeleton h-12 w-full" />
 			</div>
-			<div className="flex justify-between gap-2">
-				<div className="skeleton h-14 w-5/12" />
-				<div className="skeleton h-14 w-5/12" />
+
+			<div className="my-2">
+				<label className="label label-text">Hosts</label>
+				<div className="skeleton h-12 w-full" />
 			</div>
-			<div className="flex justify-around gap-2">
-				<div className="skeleton h-14 w-full" />
+
+			<div className="my-2">
+				<label className="label label-text">Description</label>
+				<div className="skeleton h-12 w-full" />
 			</div>
-			<div className="flex justify-around gap-2">
-				<div className="skeleton h-14 w-full" />
-			</div>
-			<div className="flex justify-around gap-2">
-				<div className="skeleton h-14 w-full" />
-			</div>
-			<div className="flex justify-around gap-2">
-				<div className="skeleton h-14 w-full" />
+
+			<div className="my-6 w-full">
+				<button className="btn btn-disabled btn-primary btn-sm float-right w-full md:w-fit">
+					Continue
+				</button>
 			</div>
 		</div>
 	);

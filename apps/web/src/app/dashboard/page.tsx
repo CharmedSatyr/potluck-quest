@@ -41,10 +41,10 @@ const HostingTable = async () => {
 	}
 
 	return (
-		<div className="overflow-x-auto rounded-xl bg-base-300 opacity-80 shadow">
-			<table className="table table-pin-rows table-sm">
+		<div className="overflow-x-auto rounded-xl border border-base-300 shadow">
+			<table className="table table-pin-rows table-sm my-0 rounded-xl">
 				<thead>
-					<tr className="bg-base-300">
+					<tr>
 						<th>Code</th>
 						<th>Name</th>
 						<th>Date</th>
@@ -99,10 +99,10 @@ const AttendingTable = async () => {
 	}
 
 	return (
-		<div className="overflow-x-auto rounded-xl bg-base-300 opacity-80 shadow">
-			<table className="table table-pin-rows table-sm">
+		<div className="overflow-x-auto rounded-xl border border-base-300 shadow">
+			<table className="table table-pin-rows table-sm my-0 rounded-xl">
 				<thead>
-					<tr className="bg-base-300">
+					<tr>
 						<th>Code</th>
 						<th>Name</th>
 						<th>Date</th>
@@ -136,9 +136,8 @@ const AttendingTable = async () => {
 };
 
 const DashboardPage = async () => {
-	//return <Loading />
 	return (
-		<main className="w-full">
+		<main className="contrast-container">
 			<h1 className="text-primary-gradient">Dashboard</h1>
 
 			<SlideIn>

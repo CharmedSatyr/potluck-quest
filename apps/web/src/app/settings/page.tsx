@@ -2,7 +2,10 @@ import { DEFAULT_TIMEZONE } from "@potluck/utilities/constants";
 import { Suspense } from "react";
 import findTimezone from "~/actions/settings/find-timezone";
 import { auth } from "~/auth";
+import DiscordLogo from "~/components/discord-blurple-logo";
+import { PQBot } from "~/components/logos/pq-bot-logo";
 import SetupTimezone from "~/components/setup-timezone";
+import SlideIn from "~/components/slide-in";
 import TimezoneSelector from "~/components/timezone-selector";
 import genPageMetadata from "~/seo";
 
@@ -24,25 +27,26 @@ const SettingsPage = async ({ searchParams }: Props) => {
 	const [result] = await findTimezone({ userId: session!.user!.id! }); // Guaranteed by middleware
 
 	return (
-		<section className="w-full">
+		<main className="contrast-container">
 			<h1 className="text-primary-gradient">Settings</h1>
 			{setup && <h2>Initial setup Complete! You may return to Discord.</h2>}
 
 			{!result && <SetupTimezone />}
 
-			<div className="-m-4 rounded-xl bg-base-300 p-4 shadow">
-				<Suspense fallback="Loading...">
+			<Suspense>
+				<SlideIn>
 					Your <span className="font-bold">preferred timezone</span> is{" "}
 					<TimezoneSelector
 						currentTimezone={result?.timezone ?? DEFAULT_TIMEZONE}
 					/>
 					.
-					<p>
-						This setting is used when your local timezone isn&apos;t recognized.
-					</p>
-				</Suspense>
-			</div>
-		</section>
+				</SlideIn>
+			</Suspense>
+
+			<p>
+				<PQBot /> uses this setting on <DiscordLogo />.
+			</p>
+		</main>
 	);
 };
 

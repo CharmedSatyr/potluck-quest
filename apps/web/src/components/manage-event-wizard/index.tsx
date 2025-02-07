@@ -1,12 +1,12 @@
 "use client";
 
+import SlideIn from "../slide-in";
+import Link from "next/link";
 import { Suspense, useEffect, useState } from "react";
 import PlanEventForm, {
 	PlanEventFormFallback,
 } from "~/components/plan-event-form";
-import PlanFoodForm, {
-	PlanFoodFormFallback,
-} from "~/components/plan-food-form";
+import PlanFoodForm from "~/components/plan-food-form";
 import SelectGuildForm from "~/components/select-guild-form";
 import Suggestions from "~/components/suggestions";
 import useAnchor, { scrollToAnchor } from "~/hooks/use-anchor";
@@ -52,30 +52,32 @@ const ProgressIndicator = ({ mode }: { mode: WizardMode }) => {
 
 	/* TODO: Add a hover state to make it clearer you can click. */
 	return (
-		<div className="steps my-8 w-full">
-			<button
-				className="step step-secondary"
-				onClick={() => scrollToAnchor(Step.CREATE_EVENT)}
-			>
-				Create an Event
-			</button>
-
-			<button
-				className={`step ${anchor === Step.PLAN_FOOD || anchor === Step.SELECT_SERVER ? "step-secondary" : ""}`}
-				onClick={() => scrollToAnchor(Step.PLAN_FOOD)}
-			>
-				Plan the Food
-			</button>
-
-			{mode === "create" && (
-				<button
-					className={`step ${anchor === Step.SELECT_SERVER ? "step-secondary" : ""}`}
-					onClick={() => scrollToAnchor(Step.SELECT_SERVER)}
+		<SlideIn>
+			<div className="steps my-8 w-full">
+				<Link
+					className="step step-secondary no-underline"
+					href={`#${Step.CREATE_EVENT}`}
 				>
-					Select the Server
-				</button>
-			)}
-		</div>
+					Create an Event
+				</Link>
+
+				<Link
+					className={`step no-underline ${anchor === Step.PLAN_FOOD || anchor === Step.SELECT_SERVER ? "step-secondary" : ""}`}
+					href={`#${Step.PLAN_FOOD}`}
+				>
+					Plan the Food
+				</Link>
+
+				{mode === "create" && (
+					<Link
+						className={`step no-underline ${anchor === Step.SELECT_SERVER ? "step-secondary" : ""}`}
+						href={`#${Step.SELECT_SERVER}`}
+					>
+						Select a Server
+					</Link>
+				)}
+			</div>
+		</SlideIn>
 	);
 };
 
@@ -95,75 +97,91 @@ const ManageEventWizard = ({
 	};
 
 	return (
-		<>
+		<div className="contrast-container flex flex-col">
 			<div className="carousel w-full">
-				<div
-					className="carousel-item flex w-full justify-center"
-					id={Step.CREATE_EVENT}
-				>
-					<Suspense fallback={<PlanEventFormFallback />}>
-						<PlanEventForm
-							code={code}
-							eventInputPromise={eventInputPromise}
-							loggedIn={loggedIn}
-							mode={mode}
-						/>
-					</Suspense>
+				<div className="step-container carousel-item" id={Step.CREATE_EVENT}>
+					<div className="step-content">
+						{mode === "create" && (
+							<h1 className="text-primary-gradient mb-4">Create an Event</h1>
+						)}
+
+						{mode === "edit" && (
+							<h1 className="text-primary-gradient mb-4 flex items-center">
+								Now Editing
+								<Link
+									href={`/event/${code}`}
+									className="btn btn-secondary btn-sm ml-2 text-xl"
+								>
+									{code}
+								</Link>
+							</h1>
+						)}
+
+						<Suspense fallback={<PlanEventFormFallback />}>
+							<PlanEventForm
+								code={code}
+								eventInputPromise={eventInputPromise}
+								loggedIn={loggedIn}
+								mode={mode}
+							/>
+						</Suspense>
+					</div>
 				</div>
 
-				<div
-					className="carousel-item flex w-full flex-col items-center justify-center"
-					id={Step.PLAN_FOOD}
-				>
-					<h1 className="text-primary-gradient">Plan the Food</h1>
+				<div className="step-container carousel-item" id={Step.PLAN_FOOD}>
+					<div className="step-content">
+						<h1 className="text-primary-gradient">Plan the Food</h1>
 
-					<Suspense>
-						{loggedIn ? (
-							<Suggestions
+						<div className="mb-12">
+							<Suspense>
+								{loggedIn ? (
+									<Suggestions
+										eventInputPromise={eventInputPromise}
+										populate={populateSuggestedSlots}
+									/>
+								) : (
+									<div>
+										<button
+											className="link"
+											onClick={() => scrollToAnchor(Step.CREATE_EVENT)}
+										>
+											Create an Event
+										</button>{" "}
+										to continue.
+									</div>
+								)}
+							</Suspense>
+						</div>
+
+						<Suspense>
+							<PlanFoodForm
+								code={code}
+								committedUsersBySlotPromise={committedUsersBySlotPromise}
 								eventInputPromise={eventInputPromise}
-								populate={populateSuggestedSlots}
+								mode={mode}
+								slotsPromise={slotsPromise}
+								suggestedSlots={suggestedSlots}
 							/>
-						) : (
-							<div>
-								<button
-									className="link"
-									onClick={() => scrollToAnchor(Step.CREATE_EVENT)}
-								>
-									Create an Event
-								</button>{" "}
-								to continue.
-							</div>
-						)}
-					</Suspense>
-
-					<Suspense fallback={<PlanFoodFormFallback />}>
-						<PlanFoodForm
-							code={code}
-							committedUsersBySlotPromise={committedUsersBySlotPromise}
-							eventInputPromise={eventInputPromise}
-							mode={mode}
-							slotsPromise={slotsPromise}
-							suggestedSlots={suggestedSlots}
-						/>
-					</Suspense>
+						</Suspense>
+					</div>
 				</div>
 
 				{mode === "create" && (
-					<div
-						className="carousel-item flex w-full flex-col items-center justify-center"
-						id={Step.SELECT_SERVER}
-					>
-						<Suspense>
-							<SelectGuildForm
-								userDiscordGuildsPromise={userDiscordGuildsPromise}
-							/>
-						</Suspense>
+					<div className="step-container carousel-item" id={Step.SELECT_SERVER}>
+						<div className="step-content">
+							<h1 className="text-primary-gradient">Select a Server</h1>
+							<Suspense>
+								<SelectGuildForm
+									userDiscordGuildsPromise={userDiscordGuildsPromise}
+								/>
+							</Suspense>
+						</div>
 					</div>
 				)}
 			</div>
 
 			<ProgressIndicator mode={mode} />
-		</>
+		</div>
 	);
 };
 

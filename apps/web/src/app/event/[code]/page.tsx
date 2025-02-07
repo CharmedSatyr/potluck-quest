@@ -10,9 +10,7 @@ import findUserEventRsvp from "~/actions/rsvp/find-user-event-rsvp";
 import findUserByEventCode from "~/actions/user/find-user-by-event-code";
 import EditLink from "~/app/event/[code]/edit-link";
 import { auth } from "~/auth";
-import CommitmentsTable, {
-	CommitmentsTableFallback,
-} from "~/components/commitments-table";
+import CommitmentsTable from "~/components/commitments-table";
 import DeleteEventForm from "~/components/delete-event-button";
 import DateTimeBlock from "~/components/event-skeleton/date-time-block";
 import EventSkeleton, {
@@ -21,10 +19,10 @@ import EventSkeleton, {
 } from "~/components/event-skeleton/event-skeleton";
 import GuildIcon from "~/components/guild-icon";
 import { DiscordIcon } from "~/components/icons/discord";
-import RsvpForm, { RsvpFormFallback } from "~/components/rsvp-form";
-import RsvpTable, { RsvpTableFallback } from "~/components/rsvp-table";
+import RsvpForm from "~/components/rsvp-form";
+import RsvpTable from "~/components/rsvp-table";
 import SlideIn from "~/components/slide-in";
-import SlotManager, { SlotManagerFallback } from "~/components/slot-manager";
+import SlotManager from "~/components/slot-manager";
 import UserAvatar from "~/components/user-avatar";
 import genPageMetadata from "~/seo";
 import eventIsPassed from "~/utilities/event-is-passed";
@@ -45,9 +43,7 @@ export const generateMetadata = async ({
 type Props = { params: Promise<{ code: string }> };
 
 const Container = ({ children }: PropsWithChildren) => (
-	<main className="container -m-6 flex h-full w-full flex-wrap rounded-xl bg-base-300 px-6 pb-20 pt-6 opacity-80">
-		{children}
-	</main>
+	<main className="contrast-container flex flex-wrap">{children}</main>
 );
 
 const EventSection = ({
@@ -64,23 +60,23 @@ const EventSection = ({
 	</section>
 );
 
-const AttendeesSection = ({ code }: { code: string }) => (
-	<section className="w-full">
-		<Suspense fallback={<RsvpTableFallback />}>
+const CommitmentsSection = async ({ code }: { code: string }) => (
+	<section className="my-4 w-full">
+		<Suspense>
 			<SlideIn>
-				<h2>Attendees</h2>
-				<RsvpTable code={code} />
+				<h2 className="m-0 p-0">On the Menu</h2>
+				<CommitmentsTable code={code} />
 			</SlideIn>
 		</Suspense>
 	</section>
 );
 
-const CommitmentsSection = async ({ code }: { code: string }) => (
-	<section className="my-4 w-full">
-		<Suspense fallback={<CommitmentsTableFallback />}>
+const AttendeesSection = ({ code }: { code: string }) => (
+	<section className="w-full">
+		<Suspense>
 			<SlideIn>
-				<h2 className="m-0 p-0">On the Menu</h2>
-				<CommitmentsTable code={code} />
+				<h2>Attendees</h2>
+				<RsvpTable code={code} />
 			</SlideIn>
 		</Suspense>
 	</section>
@@ -94,12 +90,10 @@ const ManageEventSection = ({
 	eventData: EventDataWithCtx;
 }) => {
 	return (
-		<section className="flex h-fit w-full flex-col">
-			<Suspense fallback={<RsvpFormFallback />}>
+		<section className="w-full">
+			<Suspense>
 				<SlideIn>
 					<EditLink code={code} eventData={eventData} />
-				</SlideIn>
-				<SlideIn>
 					<DeleteEventForm code={code} redirect={true} />
 				</SlideIn>
 			</Suspense>
@@ -117,7 +111,7 @@ const RsvpSection = ({
 	userId: string;
 }) => (
 	<section className="w-full">
-		<Suspense fallback={<RsvpFormFallback />}>
+		<Suspense>
 			<SlideIn>
 				<RsvpForm
 					code={code}
@@ -133,15 +127,13 @@ const RsvpSection = ({
 );
 
 const FoodPlanSection = ({ code }: { code: string }) => {
-	// The weird margins account for fallback spacing.
 	return (
-		<section className="my-10 w-full">
-			<Suspense fallback={<SlotManagerFallback />}>
+		<section className="w-full">
+			{/* This is simply filling out the contrast container. */}
+			<Suspense fallback={<div className="h-screen" />}>
 				<SlideIn>
-					<div className="-my-10">
-						<h2>On the Menu</h2>
-						<SlotManager code={code} />
-					</div>
+					<h2>On the Menu</h2>
+					<SlotManager code={code} />
 				</SlideIn>
 			</Suspense>
 		</section>

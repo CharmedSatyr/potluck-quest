@@ -1,12 +1,18 @@
-const Loading = () => (
-	<div className="mb-2 flex w-full flex-col gap-8">
-		<div className="skeleton h-12 w-1/3 md:h-10" />
+import DiscordLogo from "~/components/discord-blurple-logo";
+import { PQBot } from "~/components/logos/pq-bot-logo";
 
-		<div className="-m-4 flex flex-col gap-4 rounded-xl bg-base-100 p-4">
-			<div className="skeleton h-10 w-3/4" />
-			<div className="skeleton h-10 w-1/2" />
+const Loading = () => (
+	<main className="contrast-container">
+		<h1 className="text-primary-gradient">Settings</h1>
+		<div className="flex items-center">
+			Your&nbsp;<span className="font-bold">preferred timezone</span>
+			&nbsp;is&nbsp;
+			<div className="skeleton inline-block h-8 w-44" />.
 		</div>
-	</div>
+		<p>
+			<PQBot /> uses this setting on <DiscordLogo />.
+		</p>
+	</main>
 );
 
 export default Loading;

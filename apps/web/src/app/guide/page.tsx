@@ -1,16 +1,17 @@
-import Commands from "./commands";
-import Events from "./events";
-import GettingStarted from "./getting-started";
-import { PotluckQuest, PQBot } from "./links";
-import Rsvps from "./rsvps";
-import Slots from "./slots";
 import Link from "next/link";
+import Commands from "~/app/guide/commands";
+import Events from "~/app/guide/events";
+import GettingStarted from "~/app/guide/getting-started";
+import Rsvps from "~/app/guide/rsvps";
+import Slots from "~/app/guide/slots";
 import DiscordLogo from "~/components/discord-blurple-logo";
+import { PotluckQuest } from "~/components/logos/potluck-quest-logo";
+import { PQBot } from "~/components/logos/pq-bot-logo";
 import OpenAiLogo from "~/components/openai-white-logo";
 
 const GuideContent = () => {
 	return (
-		<main className="w-full rounded-xl border border-base-300 bg-base-100 px-2 py-6 md:p-8 lg:rounded-none lg:rounded-r-xl">
+		<main className="w-full rounded-xl bg-base-100/80 p-6 md:p-10 lg:rounded-none lg:rounded-r-xl">
 			<h1 className="text-primary-gradient">Guide</h1>
 
 			<p>
@@ -43,7 +44,7 @@ const GuideContent = () => {
 };
 const Page = () => {
 	return (
-		<div className="lg:absolute lg:top-24 lg:w-11/12 xl:w-10/12">
+		<div className="my-14 w-full rounded-xl border border-base-300 bg-base-100/80 shadow-xl sm:my-24 md:w-11/12 lg:my-28">
 			<div className="drawer lg:drawer-open">
 				{/* Drawer toggle */}
 				<input id="guide-sidebar" type="checkbox" className="drawer-toggle" />

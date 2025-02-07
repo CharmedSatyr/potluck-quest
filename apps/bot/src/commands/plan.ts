@@ -92,7 +92,7 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 	const imageInput = new TextInputBuilder()
 		.setCustomId(CustomId.PLAN_EVENT_IMAGE_URL)
 		.setLabel("Cover Image Link")
-		.setPlaceholder("A jpg/png/gif/webp at least 800px wide and 320px tall.")
+		.setPlaceholder("Image should be at least 800px wide and 320px tall.")
 		.setRequired(false)
 		.setStyle(TextInputStyle.Short);
 
