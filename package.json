@@ -11,14 +11,14 @@
   "scripts": {
     "start:bot": "node apps/bot/dist/server.js",
     "build:bot": "turbo run build --filter=./apps/bot",
+    "register:bot": "turbo run register --filter=./apps/bot",
     "build": "turbo run build",
     "clean": "turbo run clean",
     "dev": "turbo run dev",
     "test": "turbo run test",
     "lint": "turbo run lint",
     "prettier": "turbo run prettier",
-    "type-check": "turbo run type-check",
-    "register": "turbo run register --filter=./apps/bot"
+    "type-check": "turbo run type-check"
   },
   "devDependencies": {
     "turbo": "^2.4.0"
