@@ -60,6 +60,11 @@ const Home = () => {
 							tabletop gamers who enjoy cooking and eating with their friends.
 						</p>
 
+						<p>
+							Check out the <Link href="/guide">Guide</Link> to learn more, or
+							get started below.
+						</p>
+
 						<div className="flex w-full justify-center xl:hidden">
 							<Image
 								alt={`${siteMetadata.title} logo`}
