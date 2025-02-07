@@ -1,4 +1,9 @@
-import { CacheType, Interaction, MessageFlags } from "discord.js";
+import {
+	CacheType,
+	DiscordAPIError,
+	Interaction,
+	MessageFlags,
+} from "discord.js";
 import api from "~/constants/web-api.js";
 import { checkAccountExists } from "~/services/web.js";
 
@@ -45,27 +50,31 @@ export const listener = async (interaction: Interaction<CacheType>) => {
 	try {
 		await command.execute(interaction);
 	} catch (error) {
-		try {
-			console.error({
-				message: "Error in chat input command listener",
-				error,
-			});
-
-			if (interaction.replied || interaction.deferred) {
-				await interaction.followUp({
-					content: "There was an error while executing this command!",
-					flags: MessageFlags.Ephemeral,
-				});
+		if (error instanceof DiscordAPIError) {
+			if (error.code === 10062) {
+				console.warn(
+					"Received an unknown interaction (likely from a previous session)."
+				);
 				return;
 			}
+		}
 
-			await interaction.reply({
+		console.error({
+			message: "Error in chat input command listener",
+			error,
+		});
+
+		if (interaction.replied || interaction.deferred) {
+			await interaction.followUp({
 				content: "There was an error while executing this command!",
 				flags: MessageFlags.Ephemeral,
 			});
-		} catch (err) {
-			console.log("SECOND BATCH OF ERRORS", err);
-			console.log("Throwing inside the catch block.");
+			return;
 		}
+
+		await interaction.reply({
+			content: "There was an error while executing this command!",
+			flags: MessageFlags.Ephemeral,
+		});
 	}
 };
