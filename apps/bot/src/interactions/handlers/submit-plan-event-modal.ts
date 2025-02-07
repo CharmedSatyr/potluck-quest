@@ -125,7 +125,7 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 
 	const eventEmbed = new EmbedBuilder()
 		.setColor("#FF8A50") // PQ Primary orange
-		.setTitle(title)
+		.setTitle(title.concat(" | ").concat(code))
 		.setURL(url)
 		.setImage(imageUrl ?? null)
 		.setDescription(description || null)
