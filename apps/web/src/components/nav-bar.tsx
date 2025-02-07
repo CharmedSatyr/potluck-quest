@@ -11,7 +11,7 @@ import { PropsWithChildren } from "react";
 import signInWithDiscordAndRevalidate from "~/actions/auth/sign-in-with-discord-and-revalidate";
 import signOutAndRevalidate from "~/actions/auth/sign-out-and-revalidate";
 import { auth } from "~/auth";
-import { DiscordIcon } from "~/components/icons/discord";
+import { DiscordIcon } from "~/components/logos/discord-icon";
 import UserAvatar from "~/components/user-avatar";
 import siteMetadata from "~/data/site-metadata";
 
