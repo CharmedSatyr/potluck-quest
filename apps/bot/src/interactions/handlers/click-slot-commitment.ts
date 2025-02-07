@@ -19,11 +19,7 @@ export const execute = async (interaction: ButtonInteraction) => {
 	const cachedData = slotsCache.get<{ code: string; slot: Slot }>(slotId);
 
 	if (!cachedData) {
-		await interaction.reply({
-			content: "Something went wrong. Please try again.",
-			flags: MessageFlags.Ephemeral,
-		});
-		return;
+		throw new Error("No cached data found in click slot commitment.");
 	}
 
 	const { slot } = cachedData;

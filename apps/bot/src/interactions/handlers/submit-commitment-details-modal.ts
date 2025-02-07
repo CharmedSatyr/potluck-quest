@@ -21,11 +21,7 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 	const cachedData = slotsCache.get<{ code: string; slot: Slot }>(slotId);
 
 	if (!cachedData) {
-		await interaction.reply({
-			content: "Something went wrong. Please try again.",
-			flags: MessageFlags.Ephemeral,
-		});
-		return;
+		throw new Error("No cached data found in submit commitment details modal.");
 	}
 
 	const { code, slot } = cachedData;
@@ -74,11 +70,9 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 	});
 
 	if (!result) {
-		await interaction.reply({
-			content: "Something went wrong. Please try again.",
-			flags: MessageFlags.Ephemeral,
-		});
-		return;
+		throw new Error(
+			"Failed to create commitment in submit commitment details modal."
+		);
 	}
 
 	await interaction.reply({

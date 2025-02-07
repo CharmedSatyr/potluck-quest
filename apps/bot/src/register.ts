@@ -18,7 +18,9 @@ const rest = new REST({ version: "10" }).setToken(config.BOT_TOKEN);
 		});
 
 		console.log("Successfully reloaded application (/) commands.");
+		process.exit(0);
 	} catch (error) {
 		console.error(error);
+		process.exit(1);
 	}
 })();
