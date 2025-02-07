@@ -14,7 +14,7 @@
 		"prettier": "npx prettier --write .",
 		"lint": "npx eslint src/**/*.ts --fix ",
 		"type-check": "tsc --noEmit && tsc-alias",
-		"register": "tsc && tsc-alias src/register.ts",
+		"register": "tsc && tsc-alias && node dist/register.js",
 		"start": "node dist/server.js",
 		"test": "TZ=UTC jest src"
 	},
