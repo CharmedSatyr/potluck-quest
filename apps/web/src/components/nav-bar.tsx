@@ -17,7 +17,12 @@ import siteMetadata from "~/data/site-metadata";
 
 const LoggedOutContent = () => {
 	return (
-		<div className="navbar-end">
+		<div className="navbar-end max-h-10 w-3/4">
+			<ul className="menu menu-horizontal items-center">
+				<li>
+					<GuideLink />
+				</li>
+			</ul>
 			<Form action={signInWithDiscordAndRevalidate}>
 				<button className="btn btn-accent btn-sm" type="submit">
 					Sign In <DiscordIcon height="16" width="16" />
