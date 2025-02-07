@@ -5,7 +5,7 @@
   "private": true,
   "engines": {
     "node": "^22",
-    "pnpm": "^10"
+    "pnpm": "^9"
   },
   "exports": {
     "./eslint/bot": "./eslint/bot.mjs",
