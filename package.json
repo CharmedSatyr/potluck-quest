@@ -17,7 +17,8 @@
     "test": "turbo run test",
     "lint": "turbo run lint",
     "prettier": "turbo run prettier",
-    "type-check": "turbo run type-check"
+    "type-check": "turbo run type-check",
+    "register": "turbo run register --filter=./apps/bot"
   },
   "devDependencies": {
     "turbo": "^2.4.0"
