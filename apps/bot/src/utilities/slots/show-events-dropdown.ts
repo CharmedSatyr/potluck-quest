@@ -2,6 +2,7 @@ import { formatTimestampForView } from "../date-time.js";
 import {
 	ActionRowBuilder,
 	ChatInputCommandInteraction,
+	MessageComponentInteraction,
 	MessageFlags,
 	StringSelectMenuBuilder,
 	StringSelectMenuOptionBuilder,
@@ -59,9 +60,28 @@ export const showEventsDropdown = async (
 		select
 	);
 
-	await interaction.reply({
-		content: "Choose your event",
+	const prompt = await interaction.reply({
+		content: "Which event would you like to bring something to?",
 		components: [row],
 		flags: MessageFlags.Ephemeral,
 	});
+
+	// Remove the dropdown on click or timeout so it can't be reused.
+	const collectorFilter = (i: MessageComponentInteraction): boolean =>
+		i.isStringSelectMenu() && i.customId === CustomId.SLOTS_SELECT_EVENT;
+
+	try {
+		await prompt.awaitMessageComponent({
+			filter: collectorFilter,
+			time: 60_000,
+		});
+		await prompt.delete();
+	} catch (err) {
+		console.error(err);
+
+		await interaction.editReply({
+			content: "Confirmation not received within 1 minute. Please try again.",
+			components: [],
+		});
+	}
 };

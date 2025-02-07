@@ -1,19 +1,16 @@
 import { CacheType, Interaction, MessageFlags } from "discord.js";
 import type { InteractionHandler } from "~/@types/handler.d.ts";
-import { DELIMITER } from "~/constants/delimiter.js";
 
 export const listener = async (interaction: Interaction<CacheType>) => {
 	if (!interaction.isStringSelectMenu()) {
 		return;
 	}
 
-	const parsedCustomId = interaction.customId.split(DELIMITER)[0];
-
-	const handler = interaction.client.handlers.get(parsedCustomId);
+	const handler = interaction.client.handlers.get(interaction.customId);
 
 	if (!handler) {
 		console.error(
-			`No string select menu customId matching ${parsedCustomId} was found.`
+			`No string select menu customId matching ${interaction.customId} was found.`
 		);
 		return;
 	}
