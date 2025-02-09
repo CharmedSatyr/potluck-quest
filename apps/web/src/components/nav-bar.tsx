@@ -1,3 +1,4 @@
+import { PotluckQuest } from "./branding/potluck-quest-logo";
 import {
 	ArrowRightStartOnRectangleIcon,
 	BookOpenIcon,
@@ -124,13 +125,8 @@ const LoggedInContent = ({ image, name }: { image: string; name: string }) => {
 const Nav = ({ children }: PropsWithChildren) => {
 	return (
 		<div className="navbar border-b-base-300 bg-base-200 border-b shadow-sm">
-			<div className="navbar-start">
-				<Link
-					href="/"
-					className="text-primary-gradient btn btn-ghost btn-sm text-lg"
-				>
-					{siteMetadata.title}
-				</Link>
+			<div className="navbar-start ml-2 text-lg">
+				<PotluckQuest />
 			</div>
 
 			{children}
