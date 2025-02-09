@@ -1,4 +1,5 @@
 @import "tailwindcss";
+
 @plugin "daisyui";
 @plugin "daisyui/theme" {
 	name: "potluck";
@@ -12,13 +13,18 @@
 
 	--color-primary: #ff8a50; /* Slightly muted orange for vibrancy on dark */
 	--color-secondary: #4caf50; /* Deep green with good contrast */
-	--color-accent: ##ffb74d; /* Rich golden-yellow for highlights */
+	--color-accent: #ffb74d; /* Rich golden-yellow for highlights */
 	--color-neutral: #3e2723; /* Dark brown for a warm neutral base */
 
 	--color-info: #1e88e5; /* Deep blue for informational tones */
 	--color-success: #66bb6a; /* Calm green for success indicators */
 	--color-warning: #ffb300; /* Bold amber for warnings */
 	--color-error: #d32f2f; /* Deep red for errors */
+}
+
+@theme {
+	--color-blurple: #f865f2; /* Official Discord blue/purple */
+	--color-dark-blurple: #4955cc; /* Custom on hover Discord blurple */
 }
 
 @config '../../tailwind.config.ts';
