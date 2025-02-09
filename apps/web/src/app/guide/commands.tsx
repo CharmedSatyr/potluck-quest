@@ -46,7 +46,7 @@ const Commands = () => (
 			</li>
 			<li id="slots-command">
 				<code>
-					/slots <span className="rounded-sm bg-base-200 px-1">code</span>
+					/slots <span className="bg-base-200 rounded-sm px-1">code</span>
 				</code>
 				: View and interact with signup slots for a <PotluckQuest /> event for
 				which you have a code. If you&apos;re not sure of the code for an event,

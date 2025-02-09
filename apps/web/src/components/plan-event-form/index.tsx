@@ -147,7 +147,7 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 					Hosts
 				</label>
 				<div className="input input-bordered flex w-full items-center gap-2 text-sm md:text-base">
-					<span className="badge badge-info badge-sm gap-2 md:badge-md">
+					<span className="badge badge-info badge-sm md:badge-md gap-2">
 						Optional
 					</span>
 					<input
@@ -170,7 +170,7 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 					Description
 				</label>
 				<div className="input input-bordered flex w-full items-center gap-2 text-sm md:text-base">
-					<span className="badge badge-info badge-sm gap-2 md:badge-md">
+					<span className="badge badge-info badge-sm md:badge-md gap-2">
 						Optional
 					</span>
 					<input

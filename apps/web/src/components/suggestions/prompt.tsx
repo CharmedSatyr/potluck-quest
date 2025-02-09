@@ -17,7 +17,7 @@ const Prompt = ({
 }: Props) => {
 	return (
 		<aside className="p-4">
-			<h3 className="mb-4 mt-0">Need help planning your meal?</h3>
+			<h3 className="mt-0 mb-4">Need help planning your meal?</h3>
 
 			<div className="flex items-end justify-center">
 				<div className="form-control">

@@ -92,7 +92,7 @@ const LoggedInContent = ({ image, name }: { image: string; name: string }) => {
 						</summary>
 						<ul
 							tabIndex={0}
-							className="dropdown-content w-fit rounded-t-none bg-base-300"
+							className="dropdown-content bg-base-300 w-fit rounded-t-none"
 						>
 							<li className="lg:hidden">
 								<GuideLink />
@@ -123,7 +123,7 @@ const LoggedInContent = ({ image, name }: { image: string; name: string }) => {
 
 const Nav = ({ children }: PropsWithChildren) => {
 	return (
-		<div className="navbar border-b border-b-base-300 bg-base-200 shadow-sm">
+		<div className="navbar border-b-base-300 bg-base-200 border-b shadow-sm">
 			<div className="navbar-start">
 				<Link
 					href="/"

@@ -25,7 +25,7 @@ const Results = ({
 	}
 
 	return (
-		<div className="collapse w-full bg-base-300">
+		<div className="bg-base-300 collapse w-full">
 			<input
 				type="checkbox"
 				checked={expanded}
@@ -47,13 +47,13 @@ const Results = ({
 			</div>
 			<div className="collapse-content">
 				<p>
-					<InformationCircleIcon className="mr-2 inline size-6 text-info" />
+					<InformationCircleIcon className="text-info mr-2 inline size-6" />
 					{suggestions.advice}
 				</p>
 
 				<h3 className="m-0 text-lg">What to Request</h3>
 				<div className="overflow-x-auto">
-					<table className="table table-xs">
+					<table className="table-xs table">
 						<thead>
 							<tr>
 								<th></th>

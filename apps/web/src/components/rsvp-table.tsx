@@ -34,8 +34,8 @@ const RsvpTable = async ({ code }: Props) => {
 	}
 
 	return (
-		<div className="overflow-x-auto rounded-xl border border-base-200 bg-base-100 shadow-sm">
-			<table className="table table-xs mt-0 md:table-md">
+		<div className="border-base-200 bg-base-100 overflow-x-auto rounded-xl border shadow-sm">
+			<table className="table-xs md:table-md mt-0 table">
 				<thead>
 					<tr>
 						<th>RSVP</th>

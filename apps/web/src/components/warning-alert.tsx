@@ -13,7 +13,7 @@ const WarningAlert = ({ text }: Props) => {
 		<output
 			aria-live="polite"
 			role="status"
-			className="alert mt-2 py-1 text-warning"
+			className="alert text-warning mt-2 py-1"
 		>
 			<ExclamationTriangleIcon className="h-6 w-6" />
 			<span>{text}</span>

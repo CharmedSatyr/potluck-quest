@@ -1,6 +1,6 @@
 export const TableFallback = () => (
-	<div className="overflow-x-auto rounded-xl border border-base-300 shadow-sm">
-		<table className="table table-pin-rows table-sm my-0 rounded-xl bg-base-100">
+	<div className="border-base-300 overflow-x-auto rounded-xl border shadow-sm">
+		<table className="table-pin-rows table-sm bg-base-100 my-0 table rounded-xl">
 			<thead>
 				<tr>
 					<th>Code</th>

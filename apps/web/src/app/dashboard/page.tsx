@@ -41,8 +41,8 @@ const HostingTable = async () => {
 	}
 
 	return (
-		<div className="overflow-x-auto rounded-xl border border-base-300 shadow-sm">
-			<table className="table table-pin-rows table-sm my-0 rounded-xl">
+		<div className="border-base-300 overflow-x-auto rounded-xl border shadow-sm">
+			<table className="table-pin-rows table-sm my-0 table rounded-xl">
 				<thead>
 					<tr>
 						<th>Code</th>
@@ -99,8 +99,8 @@ const AttendingTable = async () => {
 	}
 
 	return (
-		<div className="overflow-x-auto rounded-xl border border-base-300 shadow-sm">
-			<table className="table table-pin-rows table-sm my-0 rounded-xl">
+		<div className="border-base-300 overflow-x-auto rounded-xl border shadow-sm">
+			<table className="table-pin-rows table-sm my-0 table rounded-xl">
 				<thead>
 					<tr>
 						<th>Code</th>

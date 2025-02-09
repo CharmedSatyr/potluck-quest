@@ -40,9 +40,9 @@ const RsvpForm = ({ code, currentRsvpPromise, discordMetadata }: Props) => {
 
 	const BtnIcon = () =>
 		attending ? (
-			<CheckCircleIcon className="size-4 text-success" />
+			<CheckCircleIcon className="text-success size-4" />
 		) : (
-			<XCircleIcon className="size-4 text-error" />
+			<XCircleIcon className="text-error size-4" />
 		);
 
 	if (currentRsvp?.response && !override && !isPending) {
@@ -71,7 +71,7 @@ const RsvpForm = ({ code, currentRsvpPromise, discordMetadata }: Props) => {
 	if (discordMetadata) {
 		return (
 			<Link
-				className="btn btn-sm w-full bg-blurple hover:bg-dark-blurple"
+				className="btn btn-sm bg-blurple hover:bg-dark-blurple w-full"
 				href={`https://discord.com/events/${discordMetadata.discordGuildId}/${discordMetadata.discordEventId}`}
 				target="_blank"
 				rel="noopener noreferrer"

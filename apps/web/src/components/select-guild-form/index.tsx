@@ -69,13 +69,13 @@ const SelectGuildForm = ({ userDiscordGuildsPromise }: Props) => {
 				sync with this one?
 			</p>
 			<p className="mt-0">
-				<InformationCircleIcon className="inline size-5 text-info" />{" "}
+				<InformationCircleIcon className="text-info inline size-5" />{" "}
 				<Link href="/guide#creating-an-event">Read more</Link> about what this
 				means and how to make your servers show up below.
 			</p>
 
-			<section className="border-bg-300 w-full rounded-xl bg-base-200 p-4 shadow-sm md:w-3/4">
-				<h3 className="mb-4 mt-0">Available Servers</h3>
+			<section className="border-bg-300 bg-base-200 w-full rounded-xl p-4 shadow-sm md:w-3/4">
+				<h3 className="mt-0 mb-4">Available Servers</h3>
 				<div className="form-control">
 					{[
 						{

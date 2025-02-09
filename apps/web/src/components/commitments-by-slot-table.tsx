@@ -25,7 +25,7 @@ const CommitmentsBySlotTable = async ({ commitmentsWithDetails }: Props) => {
 
 	return (
 		<div className="mt-0 overflow-x-auto p-0">
-			<table className="table table-sm m-0 p-0 md:table-md">
+			<table className="table-sm md:table-md m-0 table p-0">
 				<thead className="m-0 p-0">
 					<tr>
 						<th></th>

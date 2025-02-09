@@ -22,7 +22,7 @@ const OauthPage = async () => {
 				/>
 
 				<button
-					className="btn btn-sm w-fit bg-blurple text-base-300 hover:bg-dark-blurple"
+					className="btn btn-sm bg-blurple text-base-300 hover:bg-dark-blurple w-fit"
 					type="submit"
 				>
 					Continue with{" "}
