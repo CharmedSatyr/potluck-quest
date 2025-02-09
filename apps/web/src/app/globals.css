@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@plugin "@tailwindcss/typography"; /* Deprecated. See https://github.com/tailwindlabs/tailwindcss-typography/issues/372 */
+
 @plugin "daisyui";
 @plugin "daisyui/theme" {
 	name: "potluck";
@@ -26,8 +28,6 @@
 	--color-blurple: #f865f2; /* Official Discord blue/purple */
 	--color-dark-blurple: #4955cc; /* Custom on hover Discord blurple */
 }
-
-@config '../../tailwind.config.ts';
 
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
