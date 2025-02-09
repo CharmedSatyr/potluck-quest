@@ -1,5 +1,25 @@
 @import "tailwindcss";
 @plugin "daisyui";
+@plugin "daisyui/theme" {
+	name: "potluck";
+	default: true;
+	prefersdark: true;
+	color-scheme: dark;
+
+	--color-base-100: hsl(229deg 25% 14%);
+	--color-base-200: hsl(229deg 25% 8%);
+	--color-base-300: hsl(229deg 25% 4%);
+
+	--color-primary: #ff8a50; /* Slightly muted orange for vibrancy on dark */
+	--color-secondary: #4caf50; /* Deep green with good contrast */
+	--color-accent: ##ffb74d; /* Rich golden-yellow for highlights */
+	--color-neutral: #3e2723; /* Dark brown for a warm neutral base */
+
+	--color-info: #1e88e5; /* Deep blue for informational tones */
+	--color-success: #66bb6a; /* Calm green for success indicators */
+	--color-warning: #ffb300; /* Bold amber for warnings */
+	--color-error: #d32f2f; /* Deep red for errors */
+}
 
 @config '../../tailwind.config.ts';
 
