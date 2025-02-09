@@ -1,5 +1,5 @@
 import typography from "@tailwindcss/typography";
-import daisyui from "daisyui";
+//import daisyui from "daisyui";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -36,6 +36,6 @@ const config: Config = {
 			},
 		],
 	},
-	plugins: [typography, daisyui],
+	plugins: [typography /*daisyui*/],
 };
 export default config;
