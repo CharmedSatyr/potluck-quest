@@ -17,6 +17,7 @@ const config: Config = {
 			},
 		},
 	},
+	/*
 	daisyui: {
 		themes: [
 			{
@@ -36,6 +37,7 @@ const config: Config = {
 			},
 		],
 	},
+	*/
 	plugins: [typography /*daisyui*/],
 };
 export default config;
