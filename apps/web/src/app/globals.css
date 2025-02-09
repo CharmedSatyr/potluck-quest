@@ -1,6 +1,24 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@config '../../tailwind.config.ts';
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
 
 @layer base {
 	html {
@@ -20,7 +38,7 @@
 	}
 
 	.skeleton {
-		@apply bg-base-200 !important; /* Overwrite DaisyUI */
+		@apply bg-base-200!; /* Overwrite DaisyUI */
 	}
 
 	.slide-in {
@@ -37,7 +55,7 @@
 	}
 
 	.text-primary-gradient {
-		@apply bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent outline-8 outline-offset-2 outline-accent !important;
+		@apply bg-linear-to-r! from-accent! to-primary! bg-clip-text! text-transparent! outline-8! outline-offset-2! outline-accent!;
 	}
 
 	.contrast-container {
@@ -53,7 +71,7 @@
 	}
 
 	.bg-pulsing-gradient {
-		@apply animate-[pulse_10s_ease-in-out_infinite] rounded-[30%_70%_70%_30%_/30%_30%_70%_70%] bg-gradient-to-r from-primary via-secondary to-accent opacity-90 blur-[calc(750px/5)] filter;
+		@apply animate-[pulse_10s_ease-in-out_infinite] rounded-[30%_70%_70%_30%_/30%_30%_70%_70%] bg-linear-to-r from-primary via-secondary to-accent opacity-90 blur-[calc(750px/5)] filter;
 	}
 
 	.bg-noise {

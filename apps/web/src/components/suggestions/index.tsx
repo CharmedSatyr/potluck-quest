@@ -70,7 +70,7 @@ const SuggestionsContainer = ({
 	return (
 		<div className="flex w-full justify-center">
 			<div
-				className="rounded-xl border-base-300 bg-base-200 shadow transition-all duration-300 ease-in-out"
+				className="rounded-xl border-base-300 bg-base-200 shadow-sm transition-all duration-300 ease-in-out"
 				style={{
 					maxWidth: hookReturn.suggestions && !hookReturn.pending ? 560 : 420,
 				}}

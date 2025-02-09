@@ -1,5 +1,5 @@
 export const TableFallback = () => (
-	<div className="overflow-x-auto rounded-xl border border-base-300 shadow">
+	<div className="overflow-x-auto rounded-xl border border-base-300 shadow-sm">
 		<table className="table table-pin-rows table-sm my-0 rounded-xl bg-base-100">
 			<thead>
 				<tr>

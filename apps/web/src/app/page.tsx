@@ -70,7 +70,7 @@ const Home = () => {
 								alt={`${siteMetadata.title} logo`}
 								blurDataURL={potluckQuest}
 								className="max-w-sm rounded-lg shadow-2xl"
-								placeholder="blur"
+								placeholder="blur-sm"
 								priority
 								src="/static/potluck-quest.webp"
 								width="250"

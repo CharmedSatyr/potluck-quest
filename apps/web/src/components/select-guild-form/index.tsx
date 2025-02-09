@@ -74,7 +74,7 @@ const SelectGuildForm = ({ userDiscordGuildsPromise }: Props) => {
 				means and how to make your servers show up below.
 			</p>
 
-			<section className="border-bg-300 w-full rounded-xl bg-base-200 p-4 shadow md:w-3/4">
+			<section className="border-bg-300 w-full rounded-xl bg-base-200 p-4 shadow-sm md:w-3/4">
 				<h3 className="mb-4 mt-0">Available Servers</h3>
 				<div className="form-control">
 					{[
