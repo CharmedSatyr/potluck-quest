@@ -3,41 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import DiscordLogo from "~/components/branding/discord-blurple-logo";
 import OpenAiLogo from "~/components/branding/openai-white-logo";
-import GotoEventForm from "~/components/goto-event-form";
+import StartCta from "~/components/start-cta";
 import siteMetadata from "~/data/site-metadata";
 import genPageMetadata from "~/seo";
 
 export const metadata = genPageMetadata({ title: "Home" });
-
-const CreateEventButton = () => (
-	<Link href="/plan" className="btn btn-primary text-xl">
-		Create an Event
-	</Link>
-);
-
-const StartCta = () => {
-	return (
-		<div className="w-full xl:p-10">
-			<div className="flex flex-col gap-2 text-center md:hidden">
-				<CreateEventButton />
-
-				<div className="divider-base divider">OR</div>
-
-				<GotoEventForm />
-			</div>
-
-			<div className="hidden min-h-44 w-full md:flex">
-				<div className="divider divider-start divider-horizontal w-1/2">
-					<CreateEventButton />
-				</div>
-				<div className="divider divider-horizontal">OR</div>
-				<div className="divider divider-end divider-horizontal w-1/2">
-					<GotoEventForm />
-				</div>
-			</div>
-		</div>
-	);
-};
 
 const Home = () => {
 	return (
