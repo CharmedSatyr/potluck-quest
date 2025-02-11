@@ -147,7 +147,7 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 					Hosts
 				</label>
 				<div className="input input-bordered flex w-full items-center gap-2 text-sm md:text-base">
-					<span className="badge badge-info badge-sm md:badge-md gap-2">
+					<span className="badge badge-info badge-xs md:badge-sm gap-2">
 						Optional
 					</span>
 					<input
@@ -170,7 +170,7 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 					Description
 				</label>
 				<div className="input input-bordered flex w-full items-center gap-2 text-sm md:text-base">
-					<span className="badge badge-info badge-sm md:badge-md gap-2">
+					<span className="badge badge-info badge-xs md:badge-sm gap-2">
 						Optional
 					</span>
 					<input
@@ -188,25 +188,27 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 			</div>
 
 			<div className="my-6 w-full">
-				<button
-					className="btn btn-primary btn-sm float-right w-full md:w-fit"
-					type="submit"
-				>
-					{isPending && <LoadingIndicator size={10} />}
-					{loggedIn && !isPending && "Continue"}
-					{!loggedIn && !isPending && (
-						<>
-							Continue with{" "}
-							<Image
-								src="/static/discord-logo-black.png"
-								alt="Discord logo"
-								height="15"
-								width="80"
-								className="m-0"
-							/>
-						</>
-					)}
-				</button>
+				{loggedIn && (
+					<button
+						className="btn btn-primary btn-sm float-right w-full md:w-fit"
+						type="submit"
+					>
+						{isPending && <LoadingIndicator size={10} />}
+						{!isPending && "Continue"}
+					</button>
+				)}
+				{!loggedIn && !isPending && (
+					<button className="btn btn-blurple btn-sm float-right w-full md:w-fit">
+						Continue with{" "}
+						<Image
+							src="/static/discord-logo-white.png"
+							alt="Discord logo"
+							height="15"
+							width="80"
+							className="m-0"
+						/>
+					</button>
+				)}
 			</div>
 		</Form>
 	);
