@@ -14,7 +14,6 @@ import signOutAndRevalidate from "~/actions/auth/sign-out-and-revalidate";
 import { auth } from "~/auth";
 import { DiscordIcon } from "~/components/branding/discord-icon";
 import UserAvatar from "~/components/user-avatar";
-import siteMetadata from "~/data/site-metadata";
 
 const LoggedOutContent = () => {
 	return (
@@ -25,8 +24,8 @@ const LoggedOutContent = () => {
 				</li>
 			</ul>
 			<Form action={signInWithDiscordAndRevalidate}>
-				<button className="btn btn-accent btn-sm" type="submit">
-					Sign In <DiscordIcon height="16" width="16" />
+				<button className="btn btn-sm btn-blurple text-nowrap" type="submit">
+					<DiscordIcon className="size-4" /> Sign In
 				</button>
 			</Form>
 		</div>

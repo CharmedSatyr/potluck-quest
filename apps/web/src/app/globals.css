@@ -25,7 +25,7 @@
 }
 
 @theme {
-	--color-blurple: #f865f2; /* Official Discord blue/purple */
+	--color-blurple: #5865f2; /* Official Discord blue/purple */
 	--color-dark-blurple: #4955cc; /* Custom on hover Discord blurple */
 }
 
@@ -112,5 +112,9 @@
 		background-repeat: repeat;
 		/** https://www.transparenttextures.com/ */
 		background-image: url("/slash-it.png");
+	}
+
+	.btn-blurple {
+		@apply bg-blurple! hover:bg-dark-blurple!;
 	}
 }
