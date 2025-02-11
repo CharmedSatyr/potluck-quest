@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import DiscordLogo from "~/components/branding/discord-blurple-logo";
 import OpenAiLogo from "~/components/branding/openai-white-logo";
+import { PotluckQuest } from "~/components/branding/potluck-quest-logo";
 import StartCta from "~/components/start-cta";
 import siteMetadata from "~/data/site-metadata";
 import genPageMetadata from "~/seo";
@@ -20,12 +21,10 @@ const Home = () => {
 						</h1>
 
 						<p className="mb-0">
-							<span className="text-primary-gradient">
-								{siteMetadata.title}
-							</span>{" "}
-							combines powerful <DiscordLogo /> and <OpenAiLogo /> integrations
-							to make it easier to plan events when everyone&apos;s invited to
-							contribute a dish—from birthdays to holidays to game nights.{" "}
+							<PotluckQuest /> combines powerful <DiscordLogo /> and{" "}
+							<OpenAiLogo /> integrations to make it easier to plan events when
+							everyone&apos;s invited to contribute a dish—from birthdays to
+							holidays to game nights.{" "}
 							<span className="text-info">In active development</span> by
 							tabletop gamers who enjoy cooking and eating with their friends.
 						</p>
