@@ -26,8 +26,8 @@ const SlotInput = ({
 	const countRef = useRef<HTMLInputElement>(null);
 
 	return (
-		<div className="flex w-full flex-wrap items-end justify-between sm:flex-nowrap sm:items-center">
-			<div className="mb:0 order-3 sm:order-1 sm:-mb-8">
+		<div className="fieldset flex w-full flex-wrap items-end justify-between sm:flex-nowrap sm:items-center">
+			<div className="order-3 sm:order-1 sm:-mb-5">
 				<DeleteSlotButton
 					hasCommitments={hasCommitments}
 					id={id}
@@ -36,12 +36,12 @@ const SlotInput = ({
 				/>
 			</div>
 
-			<div className="form-control order-2 w-full sm:order-2 sm:w-7/12">
-				<label className="label label-text" htmlFor={`item-${index}`}>
+			<div className="order-1 w-full sm:order-2 sm:w-7/12">
+				<label className="fieldset-label" htmlFor={`item-${index}`}>
 					What&apos;s Needed
 				</label>
 				<input
-					className="input-text input input-bordered text-sm sm:text-base"
+					className="input"
 					id={`item-${index}`}
 					enterKeyHint="next"
 					maxLength={256}
@@ -58,14 +58,15 @@ const SlotInput = ({
 				/>
 			</div>
 
-			<div className="form-control order-2 sm:order-3">
-				<label className="label label-text" htmlFor={`count-${index}`}>
+			<div className="order-2 mt-2 flex flex-col sm:order-3 sm:mt-0">
+				<label className="fieldset-label" htmlFor={`count-${index}`}>
 					Signups Needed
 				</label>
+
 				<div className="join">
 					<button
 						aria-label={`decrement-count-${index}-button`}
-						className="btn join-item input-bordered"
+						className="btn join-item"
 						onClick={() => {
 							countRef.current?.stepDown();
 							change(
@@ -83,7 +84,7 @@ const SlotInput = ({
 						/>
 					</button>
 					<input
-						className="input join-item input-bordered max-w-20"
+						className="input join-item max-w-20"
 						enterKeyHint="next"
 						id={`count-${index}`}
 						inputMode="numeric"
@@ -100,7 +101,7 @@ const SlotInput = ({
 					/>
 					<button
 						aria-label={`increment-count-${index}-button`}
-						className="btn join-item input-bordered"
+						className="btn join-item"
 						onClick={() => {
 							countRef.current?.stepUp();
 							change(

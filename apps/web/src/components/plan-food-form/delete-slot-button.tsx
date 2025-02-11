@@ -15,7 +15,7 @@ const DynamicButton = ({
 	return (
 		<>
 			<button
-				className="btn btn-warning sm:hidden"
+				className="btn btn-accent btn-sm sm:hidden"
 				data-testid="remove-slot"
 				onClick={onClick}
 				type="button"

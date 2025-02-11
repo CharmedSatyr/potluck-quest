@@ -118,11 +118,7 @@ const PlanFoodForm = ({
 	};
 
 	return (
-		<Form
-			action={determineAction()}
-			className="form-control"
-			data-testid="plan-food-form"
-		>
+		<Form action={determineAction()} data-testid="plan-food-form">
 			{slots.map((slot, index) => (
 				<div key={slot.order}>
 					<SlotInput
