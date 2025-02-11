@@ -58,7 +58,7 @@ const SuggestionsContainer = ({
 	populate: (items: SlotData[]) => void;
 }) => {
 	const eventInput = use(eventInputPromise);
-	const [attendees, setAttendees] = useState<string>("0");
+	const [attendees, setAttendees] = useState<string>("");
 	const hookReturn = useSlotSuggestions(eventInput, Number(attendees));
 
 	const { title, startDate, startTime, location } = eventInput;
