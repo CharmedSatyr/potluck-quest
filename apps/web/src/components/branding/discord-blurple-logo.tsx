@@ -15,7 +15,7 @@ const DiscordLogo = ({ width = 90 }: { width?: number }) => {
 				alt="Discord logo"
 				height={height}
 				width={width}
-				className="m-0 inline"
+				className="not-prose m-0 inline"
 			/>
 		</Link>
 	);
