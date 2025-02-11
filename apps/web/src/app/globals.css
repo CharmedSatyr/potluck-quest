@@ -82,8 +82,7 @@
 	}
 
 	.text-primary-gradient {
-		/* @apply from-accent! to-primary! outline-accent! bg-linear-to-r! bg-clip-text! text-transparent! outline-8! outline-offset-2!; */
-		@apply from-accent to-primary bg-gradient-to-r bg-clip-text text-transparent;
+		@apply from-accent! to-primary! bg-gradient-to-r! bg-clip-text! text-transparent!;
 	}
 
 	.contrast-container {
