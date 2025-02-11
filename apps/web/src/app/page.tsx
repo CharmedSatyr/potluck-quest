@@ -13,14 +13,14 @@ export const metadata = genPageMetadata({ title: "Home" });
 const Home = () => {
 	return (
 		<main className="my-10 sm:mt-28 md:mx-10">
-			<div className="hero border-base-300 bg-base-200 w-fit rounded-xl border py-10 shadow-xl xl:flex">
-				<div className="hero-content rounded-xl text-center">
-					<div className="flex-col xl:mx-10 xl:w-1/2">
-						<h1 className="mb-0 text-4xl leading-tight font-bold sm:text-5xl">
+			<div className="hero border-base-300 bg-base-200 rounded-xl py-10 shadow-xl xl:flex">
+				<div className="hero-content">
+					<div className="flex-col text-center xl:w-1/2">
+						<h1 className="mb-0 text-4xl font-bold xl:text-5xl">
 							Gather your party, and roll for an epic meal.
 						</h1>
 
-						<p className="mb-0">
+						<p>
 							<PotluckQuest /> combines powerful <DiscordLogo /> and{" "}
 							<OpenAiLogo /> integrations to make it easier to plan events when
 							everyone&apos;s invited to contribute a dish—from birthdays to
@@ -50,15 +50,14 @@ const Home = () => {
 						<StartCta />
 					</div>
 
-					<div className="hidden h-full w-1/2 items-center justify-center xl:flex">
-						<div className="relative h-96 w-96">
-							<Image
-								alt={`${siteMetadata.title} logo`}
-								className="m-0 rounded-lg shadow-2xl"
-								src="/static/potluck-quest.png"
-								fill
-							/>
-						</div>
+					<div className="hidden h-full w-5/12 items-center justify-center xl:flex">
+						<Image
+							alt={`${siteMetadata.title} logo`}
+							className="rounded-xl"
+							src="/static/potluck-quest.png"
+							height={400}
+							width={400}
+						/>
 					</div>
 				</div>
 			</div>
