@@ -38,12 +38,12 @@ const Home = () => {
 							<Image
 								alt={`${siteMetadata.title} logo`}
 								blurDataURL={potluckQuest}
-								className="max-w-sm rounded-lg shadow-2xl"
+								className="rounded-lg"
 								placeholder="blur"
 								priority
 								src="/static/potluck-quest.webp"
-								width="250"
-								height="250"
+								width="300"
+								height="300"
 							/>
 						</div>
 
@@ -55,8 +55,8 @@ const Home = () => {
 							alt={`${siteMetadata.title} logo`}
 							className="rounded-xl"
 							src="/static/potluck-quest.png"
-							height={400}
-							width={400}
+							height="400"
+							width="400"
 						/>
 					</div>
 				</div>
