@@ -50,19 +50,18 @@ const ProgressIndicator = ({ mode }: { mode: WizardMode }) => {
 		}
 	}, [anchor, mode, scrollToAnchor]);
 
-	/* TODO: Add a hover state to make it clearer you can click. */
 	return (
 		<SlideIn>
-			<div className="steps my-8 w-full">
+			<div className="steps my-8 w-full text-sm">
 				<Link
-					className="step step-secondary no-underline"
+					className="step step-secondary no-underline transition-all hover:after:scale-105"
 					href={`#${Step.CREATE_EVENT}`}
 				>
 					Create an Event
 				</Link>
 
 				<Link
-					className={`step no-underline ${anchor === Step.PLAN_FOOD || anchor === Step.SELECT_SERVER ? "step-secondary" : ""}`}
+					className={`step no-underline transition-all hover:after:scale-105 ${anchor === Step.PLAN_FOOD || anchor === Step.SELECT_SERVER ? "step-secondary" : ""}`}
 					href={`#${Step.PLAN_FOOD}`}
 				>
 					Plan the Food
@@ -70,7 +69,7 @@ const ProgressIndicator = ({ mode }: { mode: WizardMode }) => {
 
 				{mode === "create" && (
 					<Link
-						className={`step no-underline ${anchor === Step.SELECT_SERVER ? "step-secondary" : ""}`}
+						className={`step no-underline transition-all hover:after:scale-105 ${anchor === Step.SELECT_SERVER ? "step-secondary" : ""}`}
 						href={`#${Step.SELECT_SERVER}`}
 					>
 						Select a Server
