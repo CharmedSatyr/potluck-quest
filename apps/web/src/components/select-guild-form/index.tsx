@@ -76,7 +76,7 @@ const SelectGuildForm = ({ userDiscordGuildsPromise }: Props) => {
 
 			<section className="border-bg-300 bg-base-200 w-full rounded-xl p-4 shadow md:w-3/4">
 				<h3 className="mt-0 mb-4 text-base sm:text-xl">Available Servers</h3>
-				<div className="form-control">
+				<div>
 					{[
 						{
 							name: "None",
