@@ -66,7 +66,7 @@ const SlotInput = ({
 				<div className="join">
 					<button
 						aria-label={`decrement-count-${index}-button`}
-						className="btn join-item"
+						className="btn join-item btn-sm sm:btn-md"
 						onClick={() => {
 							countRef.current?.stepDown();
 							change(
@@ -84,7 +84,7 @@ const SlotInput = ({
 						/>
 					</button>
 					<input
-						className="input join-item max-w-20"
+						className="input join-item input-sm sm:input-md max-w-20"
 						enterKeyHint="next"
 						id={`count-${index}`}
 						inputMode="numeric"
@@ -101,7 +101,7 @@ const SlotInput = ({
 					/>
 					<button
 						aria-label={`increment-count-${index}-button`}
-						className="btn join-item"
+						className="btn btn-sm sm:btn-md join-item"
 						onClick={() => {
 							countRef.current?.stepUp();
 							change(
