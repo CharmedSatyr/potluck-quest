@@ -10,7 +10,6 @@ import LoadingIndicator from "~/components/loading-indicator";
 import submitAction, {
 	RsvpFormState,
 } from "~/components/rsvp-form/submit-actions";
-import WarningAlert from "~/components/warning-alert";
 
 type Props = {
 	code: string;
@@ -19,56 +18,25 @@ type Props = {
 };
 
 const RsvpForm = ({ code, currentRsvpPromise, discordMetadata }: Props) => {
-	const dialogRef = useRef<HTMLDialogElement>(null);
-
 	const [currentRsvp] = use(currentRsvpPromise);
 
-	const [override, setOverride] = useState<boolean>(false);
+	const dialogRef = useRef<HTMLDialogElement>(null);
 
 	const [state, submit, isPending] = useActionState<RsvpFormState, FormData>(
 		submitAction,
 		{
 			code,
 			fields: { message: "" },
-			message: "",
 			success: false,
 		}
 	);
 
-	useEffect(() => {
-		setOverride(false);
-	}, [currentRsvp, setOverride]);
-
-	const attending = currentRsvp?.response === "yes";
-
 	const BtnIcon = () =>
-		attending ? (
-			<CheckCircleIcon className="text-success size-4" />
+		currentRsvp?.response === "yes" ? (
+			<CheckCircleIcon className="text-success inline size-4" />
 		) : (
-			<XCircleIcon className="text-error size-4" />
+			<XCircleIcon className="text-error inline size-4" />
 		);
-
-	if (currentRsvp?.response && !override && !isPending) {
-		return (
-			<button
-				className="btn btn-ghost btn-sm w-full p-0"
-				disabled={isPending}
-				type="button"
-				onClick={() => {
-					setOverride(true);
-				}}
-			>
-				{isPending ? (
-					<LoadingIndicator size={6} />
-				) : (
-					<>
-						<BtnIcon />
-						Attending
-					</>
-				)}
-			</button>
-		);
-	}
 
 	// Delegate RSVP to Discord if no RSVP because there is no Discord API for adding a user to an event.
 	if (discordMetadata) {
@@ -79,7 +47,15 @@ const RsvpForm = ({ code, currentRsvpPromise, discordMetadata }: Props) => {
 				target="_blank"
 				rel="noopener noreferrer"
 			>
-				<DiscordIcon className="size-4" /> RSVP
+				{currentRsvp?.response ? (
+					<>
+						<BtnIcon /> Attending
+					</>
+				) : (
+					<>
+						<DiscordIcon className="size-4" /> RSVP
+					</>
+				)}
 			</Link>
 		);
 	}
@@ -87,13 +63,20 @@ const RsvpForm = ({ code, currentRsvpPromise, discordMetadata }: Props) => {
 	return (
 		<Form action={submit}>
 			<button
-				className="btn btn-sm w-full"
+				className="btn btn-sm btn-ghost w-full text-nowrap"
 				disabled={dialogRef.current?.open}
 				type="button"
 				onClick={() => dialogRef.current?.showModal()}
 			>
-				{isPending ? <LoadingIndicator size={8} /> : "RSVP"}
+				{currentRsvp?.response && !isPending && (
+					<span>
+						<BtnIcon /> Attending
+					</span>
+				)}
+				{isPending && <LoadingIndicator size={2} />}
+				{!isPending && !currentRsvp?.response && "RSVP"}
 			</button>
+
 			<dialog ref={dialogRef} className="modal modal-bottom sm:modal-middle">
 				<div className="modal-box">
 					<h3 className="text-lg font-bold">Will you attend?</h3>
@@ -113,7 +96,6 @@ const RsvpForm = ({ code, currentRsvpPromise, discordMetadata }: Props) => {
 								type="search"
 							/>
 						</div>
-						<WarningAlert text={state.message} />
 					</div>
 
 					<div className="modal-action">
@@ -123,10 +105,11 @@ const RsvpForm = ({ code, currentRsvpPromise, discordMetadata }: Props) => {
 							className="btn btn-sm btn-success"
 							disabled={isPending}
 							name="response"
+							onClick={() => dialogRef.current?.close()}
 							type="submit"
 							value="yes"
 						>
-							{isPending ? <LoadingIndicator size={8} /> : "Yes"}
+							{isPending ? <LoadingIndicator size={2} /> : "Yes"}
 						</button>
 
 						<button
@@ -135,10 +118,11 @@ const RsvpForm = ({ code, currentRsvpPromise, discordMetadata }: Props) => {
 							className="btn btn-sm btn-error"
 							disabled={isPending}
 							name="response"
+							onClick={() => dialogRef.current?.close()}
 							type="submit"
 							value="no"
 						>
-							{isPending ? <LoadingIndicator size={8} /> : "No"}
+							{isPending ? <LoadingIndicator size={2} /> : "No"}
 						</button>
 
 						<button

@@ -9,11 +9,8 @@ import formSchema from "~/components/rsvp-form/submit-actions.schema";
 export type RsvpFormState = {
 	code: string;
 	fields: { message: string };
-	message: string;
 	success: boolean;
 };
-
-const ERROR_MESSAGE: string = "There was a problem. Please try again.";
 
 const submitAction = async (
 	prevState: RsvpFormState,
@@ -28,7 +25,6 @@ const submitAction = async (
 		return {
 			...prevState,
 			fields: { message },
-			message: ERROR_MESSAGE,
 			success: false,
 		};
 	}
@@ -45,7 +41,6 @@ const submitAction = async (
 		return {
 			...prevState,
 			fields: { message },
-			message: ERROR_MESSAGE,
 			success: false,
 		};
 	}
@@ -56,7 +51,6 @@ const submitAction = async (
 		return {
 			...prevState,
 			fields: { message },
-			message: ERROR_MESSAGE,
 			success: result.success,
 		};
 	}
@@ -74,7 +68,6 @@ const submitAction = async (
 	return {
 		...prevState,
 		fields: { message: "" },
-		message: "",
 		success: result.success,
 	};
 };
