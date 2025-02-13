@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const OpenAiLogo = ({ width = 72 }: { width?: number }) => {
+const OpenAiLogo = ({ width = 66 }: { width?: number }) => {
 	const height = Math.round(width * 0.27);
 
 	return (
