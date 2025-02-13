@@ -23,9 +23,10 @@ const Commands = () => (
 		</p>
 		<ul>
 			<li id="plan-command">
-				<code>/plan</code>: Create a new <PotluckQuest /> event directly in your{" "}
-				<DiscordLogo /> server. This command will send a message to the channel
-				once the event has been created. It will also send you an{" "}
+				<code className="not-prose">/plan</code>: Create a new <PotluckQuest />{" "}
+				event directly in your <DiscordLogo /> server. This command will send a
+				message to the channel once the event has been created. It will also
+				send you an{" "}
 				<Link
 					href="https://support-apps.discord.com/hc/en-us/articles/26501839512855-Ephemeral-Messages-FAQ"
 					target="_blank"
@@ -38,14 +39,14 @@ const Commands = () => (
 				<Link href="#managing-slots">managing slots</Link>.
 			</li>
 			<li id="view-command">
-				<code>/view</code>: Publicly list all <PotluckQuest /> events for the
-				server. The response will include your preferred time zone (see{" "}
-				<Link href="/settings">Settings</Link>), the name of each event, when it
-				will take place, and each event code linked to its <PotluckQuest />{" "}
-				page.
+				<code className="not-prose">/view</code>: Publicly list all{" "}
+				<PotluckQuest /> events for the server. The response will include your
+				preferred time zone (see <Link href="/settings">Settings</Link>), the
+				name of each event, when it will take place, and each event code linked
+				to its <PotluckQuest /> page.
 			</li>
 			<li id="slots-command">
-				<code>
+				<code className="not-prose">
 					/slots <span className="bg-base-200 rounded-sm px-1">code</span>
 				</code>
 				: View and interact with signup slots for a <PotluckQuest /> event for

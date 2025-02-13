@@ -6,7 +6,7 @@ export const Command = ({
 	command: "plan" | "view" | "slots";
 }) => (
 	<Link href={`#${command}-command`}>
-		<code>/{command}</code>
+		<code className="not-prose">/{command}</code>
 	</Link>
 );
 

@@ -72,56 +72,78 @@ const Page = () => {
 					{/* Drawer content */}
 					<ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
 						<li>
-							<Link href="#getting-started">Getting Started</Link>
+							<Link href="#getting-started" className="no-underline">
+								Getting Started
+							</Link>
 						</li>
 						<li>
-							<Link href="#events">Events</Link>
+							<Link href="#events" className="no-underline">
+								Events
+							</Link>
 							<ul>
 								<li>
-									<Link href="#creating-an-event">Creating an Event</Link>
+									<Link href="#creating-an-event" className="no-underline">
+										Creating an Event
+									</Link>
 								</li>
 								<li>
-									<Link href="#finding-an-event">Finding an Event</Link>
+									<Link href="#finding-an-event" className="no-underline">
+										Finding an Event
+									</Link>
 								</li>
 								<li>
-									<Link href="#editing-and-deleting-events">
+									<Link
+										href="#editing-and-deleting-events"
+										className="no-underline"
+									>
 										Editing and Deleting Events
 									</Link>
 								</li>
 							</ul>
 						</li>
 						<li>
-							<Link href="#slots">Slots</Link>
+							<Link href="#slots" className="no-underline">
+								Slots
+							</Link>
 							<ul>
 								<li>
-									<Link href="#managing-slots">Managing Slots</Link>
+									<Link href="#managing-slots" className="no-underline">
+										Managing Slots
+									</Link>
 								</li>
 								<li>
-									<Link href="#signing-up-to-bring-something">
+									<Link
+										href="#signing-up-to-bring-something"
+										className="no-underline"
+									>
 										Signing Up to Bring Something
 									</Link>
 								</li>
 							</ul>
 						</li>
 						<li>
-							<Link href="#rsvps">RSVPs</Link>
+							<Link href="#rsvps" className="no-underline">
+								RSVPs
+							</Link>
 						</li>
 						<li>
-							<Link href="#commands">Commands</Link>
+							<Link href="#commands" className="no-underline">
+								Commands
+							</Link>
 							<ul>
 								<li>
-									<Link href="#plan-command">
-										<code>/plan</code>
+									<Link href="#plan-command" className="no-underline">
+										<code className="not-prose">/plan</code>
 									</Link>
 								</li>
 								<li>
-									<Link href="#view-command">
-										<code>/view</code>
+									<Link href="#view-command" className="no-underline">
+										<code className="not-prose">/view</code>
 									</Link>
 								</li>
 								<li>
-									<Link href="#slots-command">
-										<code>/slots</code>
+									<Link href="#slots-command" className="no-underline">
+										<code className="not-prose">/slots</code>
 									</Link>
 								</li>
 							</ul>

@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@plugin "@tailwindcss/typography"; /* Deprecated. See https://github.com/tailwindlabs/tailwindcss-typography/issues/372 */
+@plugin "@tailwindcss/typography"; /* Deprecated? See https://github.com/tailwindlabs/tailwindcss-typography/issues/372 */
 
 @plugin "daisyui";
 @plugin "daisyui/theme" {
@@ -62,6 +62,10 @@
 	input[type="number"] {
 		-moz-appearance: textfield;
 		appearance: textfield;
+	}
+
+	code {
+		@apply bg-neutral! rounded! p-px! text-sm!;
 	}
 
 	.skeleton {

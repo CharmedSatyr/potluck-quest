@@ -8,10 +8,7 @@ const TabWrapper = ({ bot, web }: Props) => {
 	const name = Math.random().toString();
 
 	return (
-		<div
-			role="tablist"
-			className="tabs tabs-bordered tabs-xs sm:tabs-sm md:tabs-md"
-		>
+		<div role="tablist" className="tabs tabs-border">
 			<input
 				type="radio"
 				name={name}
@@ -20,7 +17,10 @@ const TabWrapper = ({ bot, web }: Props) => {
 				aria-label="With PQ Bot on Discord"
 				defaultChecked
 			/>
-			<div role="tabpanel" className="tab-content">
+			<div
+				role="tabpanel"
+				className="tab-content border-base-300 bg-base-100 rounded-xl p-4"
+			>
 				{bot}
 			</div>
 
@@ -31,7 +31,10 @@ const TabWrapper = ({ bot, web }: Props) => {
 				className="tab text-nowrap"
 				aria-label="Standalone Web Interface"
 			/>
-			<div role="tabpanel" className="tab-content">
+			<div
+				role="tabpanel"
+				className="tab-content border-base-300 bg-base-100 rounded-xl p-4"
+			>
 				{web}
 			</div>
 		</div>
