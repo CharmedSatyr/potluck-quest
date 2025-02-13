@@ -8,7 +8,7 @@ const TabWrapper = ({ bot, web }: Props) => {
 	const name = Math.random().toString();
 
 	return (
-		<div role="tablist" className="tabs tabs-border">
+		<div role="tablist" className="tabs tabs-border tabs-xs sm:tabs-md">
 			<input
 				type="radio"
 				name={name}
