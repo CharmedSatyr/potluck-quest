@@ -79,7 +79,7 @@ export default EventSkeleton;
 export const EventSkeletonFallback = () => {
 	return (
 		<div className="mb-2 flex w-full flex-col gap-4">
-			<div className="skeleton mb-[9px] h-10 w-96" />
+			<div className="skeleton mb-[9px] h-10 w-50 sm:w-96" />
 			<div className="mb-[1px] flex items-center font-bold">
 				Event Code:{" "}
 				<button className="btn btn-ghost btn-sm px-2 text-lg font-bold">
@@ -99,7 +99,7 @@ export const EventSkeletonFallback = () => {
 				<div className="avatar skeleton size-5 shrink-0 rounded-full" />
 				<div className="skeleton h-8 w-56" />
 			</div>
-			<div className="skeleton h-8 w-96" />
+			<div className="skeleton h-8 w-72 sm:w-96" />
 			<div className="skeleton h-8 w-72" />
 		</div>
 	);
