@@ -14,7 +14,7 @@ describe("buildCurrentUrl", () => {
 		const env = "development";
 		const port = "4000";
 
-		const url = buildCurrentUrl(pathName, env, port);
+		const url = buildCurrentUrl(pathName);
 
 		expect(url).toBe(`http://localhost:${port}${pathName}`);
 	});
@@ -23,7 +23,7 @@ describe("buildCurrentUrl", () => {
 		const pathName = "/test-path";
 		const env = "production";
 
-		const url = buildCurrentUrl(pathName, env);
+		const url = buildCurrentUrl(pathName);
 
 		expect(url).toBe(`https://example.com${pathName}`);
 	});
@@ -32,7 +32,7 @@ describe("buildCurrentUrl", () => {
 		const pathName = "/test-path";
 		const env = "development";
 
-		const url = buildCurrentUrl(pathName, env);
+		const url = buildCurrentUrl(pathName);
 
 		expect(url).toBe(`http://localhost:3000${pathName}`);
 	});
