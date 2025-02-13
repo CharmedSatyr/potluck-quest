@@ -3,7 +3,7 @@
 import { redirect } from "next/navigation";
 import findEvent from "~/actions/event/find-event";
 import { schema } from "~/actions/event/find-event.schema";
-import { GotoEventFormState } from "~/components/goto-event-form";
+import { GotoEventFormState } from "~/components/start-cta/goto-event-form";
 
 const findEventExistsRedirect = async (
 	_: GotoEventFormState,

@@ -25,7 +25,7 @@ const RsvpTable = async ({ code }: Props) => {
 
 		host.message = (
 			<span className="flex items-center gap-1">
-				<CheckBadgeIcon className="text-primary" height="20" width="20" />
+				<CheckBadgeIcon className="text-primary" height="30" width="30" />
 				Event Host
 			</span>
 		) as unknown as string; // TODO: Massage the client type.
@@ -34,8 +34,8 @@ const RsvpTable = async ({ code }: Props) => {
 	}
 
 	return (
-		<div className="overflow-x-auto rounded-xl border border-base-200 bg-base-100 shadow">
-			<table className="table table-xs mt-0 md:table-md">
+		<div className="border-base-200 bg-base-100 overflow-x-auto rounded-xl border shadow">
+			<table className="table-sm mt-0 mb-0 table">
 				<thead>
 					<tr>
 						<th>RSVP</th>
@@ -50,18 +50,23 @@ const RsvpTable = async ({ code }: Props) => {
 								<th>
 									<label>
 										{rsvp.response === "yes" ? (
-											<div className="badge badge-success badge-sm md:badge-md">
+											<div className="badge badge-success badge-sm">
 												Attending
 											</div>
 										) : (
-											<div className="badge badge-neutral badge-sm md:badge-md">
+											<div className="badge badge-neutral badge-sm">
 												Not Attending
 											</div>
 										)}
 									</label>
 								</th>
 								<td>
-									<UserAvatar name={rsvp.user.name} url={rsvp.user.image} />{" "}
+									<UserAvatar
+										name={rsvp.user.name}
+										url={rsvp.user.image}
+										height={30}
+										width={30}
+									/>{" "}
 									{rsvp.user.name}
 								</td>
 								<td>{rsvp.message}</td>

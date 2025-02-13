@@ -1,6 +1,51 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@plugin "@tailwindcss/typography"; /* Deprecated? See https://github.com/tailwindlabs/tailwindcss-typography/issues/372 */
+
+@plugin "daisyui";
+@plugin "daisyui/theme" {
+	name: "potluck";
+	default: true;
+	prefersdark: true;
+	color-scheme: dark;
+
+	--color-base-100: hsl(229deg 25% 14%);
+	--color-base-200: hsl(229deg 25% 8%);
+	--color-base-300: hsl(229deg 25% 4%);
+
+	--color-primary: #ff8a50; /* Slightly muted orange for vibrancy on dark */
+	--color-secondary: #4caf50; /* Deep green with good contrast */
+	--color-accent: #ffb74d; /* Rich golden-yellow for highlights */
+	--color-neutral: #3e2723; /* Dark brown for a warm neutral base */
+
+	--color-info: #1e88e5; /* Deep blue for informational tones */
+	--color-success: #66bb6a; /* Calm green for success indicators */
+	--color-warning: #ffb300; /* Bold amber for warnings */
+	--color-error: #d32f2f; /* Deep red for errors */
+}
+
+@theme {
+	--color-blurple: #5865f2; /* Official Discord blue/purple */
+	--color-dark-blurple: #4955cc; /* Custom on hover Discord blurple */
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+	*,
+	::after,
+	::before,
+	::backdrop,
+	::file-selector-button {
+		border-color: var(--color-gray-200, currentColor);
+	}
+}
 
 @layer base {
 	html {
@@ -19,8 +64,12 @@
 		appearance: textfield;
 	}
 
+	code {
+		@apply bg-neutral! rounded! p-px! text-sm!;
+	}
+
 	.skeleton {
-		@apply bg-base-200 !important; /* Overwrite DaisyUI */
+		@apply bg-base-200!; /* Overwrite DaisyUI */
 	}
 
 	.slide-in {
@@ -37,11 +86,11 @@
 	}
 
 	.text-primary-gradient {
-		@apply bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent outline-8 outline-offset-2 outline-accent !important;
+		@apply from-accent! to-primary! bg-gradient-to-r! bg-clip-text! text-transparent!;
 	}
 
 	.contrast-container {
-		@apply my-14 h-fit w-full rounded-xl border border-base-300 bg-base-100/80 p-6 shadow-xl sm:my-24 md:w-11/12 md:p-10 lg:my-28 lg:w-8/12 xl:w-7/12 2xl:w-6/12;
+		@apply border-base-300 bg-base-100/80 my-14 h-fit w-full rounded-xl border p-6 shadow-xl sm:my-24 md:w-11/12 md:p-10 lg:my-28 lg:w-8/12 xl:w-7/12 2xl:w-6/12;
 	}
 
 	.step-container {
@@ -53,7 +102,7 @@
 	}
 
 	.bg-pulsing-gradient {
-		@apply animate-[pulse_10s_ease-in-out_infinite] rounded-[30%_70%_70%_30%_/30%_30%_70%_70%] bg-gradient-to-r from-primary via-secondary to-accent opacity-90 blur-[calc(750px/5)] filter;
+		@apply from-primary via-secondary to-accent animate-[pulse_10s_ease-in-out_infinite] rounded-[30%_70%_70%_30%_/30%_30%_70%_70%] bg-linear-to-r opacity-90 blur-[calc(750px/5)] filter;
 	}
 
 	.bg-noise {
@@ -66,5 +115,9 @@
 		background-repeat: repeat;
 		/** https://www.transparenttextures.com/ */
 		background-image: url("/slash-it.png");
+	}
+
+	.btn-blurple {
+		@apply bg-blurple! hover:bg-dark-blurple!;
 	}
 }

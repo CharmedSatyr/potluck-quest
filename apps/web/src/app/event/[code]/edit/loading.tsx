@@ -7,7 +7,7 @@ const Loading = () => (
 			<div className="step-content">
 				<h1 className="text-primary-gradient mb-4 flex items-center">
 					Now Editing
-					<button className="btn btn-secondary btn-sm ml-2 text-xl">
+					<button className="btn btn-secondary btn-sm ml-2 text-xl no-underline">
 						<LoadingIndicator size={6} />
 					</button>
 				</h1>

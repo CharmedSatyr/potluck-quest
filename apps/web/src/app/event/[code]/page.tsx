@@ -93,8 +93,10 @@ const ManageEventSection = ({
 		<section className="w-full">
 			<Suspense>
 				<SlideIn>
-					<EditLink code={code} eventData={eventData} />
-					<DeleteEventForm code={code} redirect={true} />
+					<div className="flex w-full flex-col gap-2">
+						<EditLink code={code} eventData={eventData} />
+						<DeleteEventForm code={code} redirect={true} />
+					</div>
 				</SlideIn>
 			</Suspense>
 		</section>
@@ -129,7 +131,7 @@ const RsvpSection = ({
 const FoodPlanSection = ({ code }: { code: string }) => {
 	return (
 		<section className="w-full">
-			{/* This is simply filling out the contrast container. */}
+			{/* This fallback is simply filling out the contrast container. */}
 			<Suspense fallback={<div className="h-screen" />}>
 				<SlideIn>
 					<h2>On the Menu</h2>
@@ -230,7 +232,7 @@ const HostView = async ({
 	<Container>
 		<EventSection code={code} discordMetadata={discordMetadata} />
 		<div className="flex w-full justify-end md:w-2/12">
-			<div className="flex w-full flex-col gap-2 md:w-24">
+			<div className="flex w-full flex-col gap-2 md:w-20">
 				<ManageEventSection code={code} eventData={eventData} />
 				<RsvpSection
 					code={code}

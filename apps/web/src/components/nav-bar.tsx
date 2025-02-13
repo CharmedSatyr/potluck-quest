@@ -1,3 +1,4 @@
+import { PotluckQuest } from "./branding/potluck-quest-logo";
 import {
 	ArrowRightStartOnRectangleIcon,
 	BookOpenIcon,
@@ -13,7 +14,6 @@ import signOutAndRevalidate from "~/actions/auth/sign-out-and-revalidate";
 import { auth } from "~/auth";
 import { DiscordIcon } from "~/components/branding/discord-icon";
 import UserAvatar from "~/components/user-avatar";
-import siteMetadata from "~/data/site-metadata";
 
 const LoggedOutContent = () => {
 	return (
@@ -24,8 +24,8 @@ const LoggedOutContent = () => {
 				</li>
 			</ul>
 			<Form action={signInWithDiscordAndRevalidate}>
-				<button className="btn btn-accent btn-sm" type="submit">
-					Sign In <DiscordIcon height="16" width="16" />
+				<button className="btn btn-sm btn-blurple text-nowrap" type="submit">
+					<DiscordIcon className="size-4" /> Sign In
 				</button>
 			</Form>
 		</div>
@@ -86,13 +86,14 @@ const LoggedInContent = ({ image, name }: { image: string; name: string }) => {
 				<li className="hidden text-sm sm:inline-flex">Welcome, {name}</li>
 
 				<li>
-					<details className="dropdown dropdown-end">
-						<summary role="button" tabIndex={0}>
+					{/* Having dropdown class here breaks it in v5 for some reason. */}
+					<details className="dropdown-end">
+						<summary className="not-prose" role="button" tabIndex={0}>
 							<UserAvatar name={name} url={image} height={30} width={30} />
 						</summary>
 						<ul
 							tabIndex={0}
-							className="dropdown-content w-fit rounded-t-none bg-base-300"
+							className="dropdown-content bg-base-300 w-fit rounded-t-none"
 						>
 							<li className="lg:hidden">
 								<GuideLink />
@@ -123,14 +124,9 @@ const LoggedInContent = ({ image, name }: { image: string; name: string }) => {
 
 const Nav = ({ children }: PropsWithChildren) => {
 	return (
-		<div className="navbar border-b border-b-base-300 bg-base-200 shadow">
-			<div className="navbar-start">
-				<Link
-					href="/"
-					className="text-primary-gradient btn btn-ghost btn-sm text-lg"
-				>
-					{siteMetadata.title}
-				</Link>
+		<div className="navbar border-b-base-300 bg-base-200 border-b shadow-sm">
+			<div className="navbar-start ml-2 text-lg">
+				<PotluckQuest />
 			</div>
 
 			{children}

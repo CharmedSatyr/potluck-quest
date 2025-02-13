@@ -20,7 +20,7 @@ const EventCodeButton = ({
 	passed: boolean;
 }) => (
 	<Link
-		className={`btn btn-sm font-bold ${passed ? "btn-ghost btn-outline" : "btn-success"}`}
+		className={`btn btn-sm w-16 font-bold no-underline ${passed ? "btn-soft" : "btn-success"}`}
 		href={`/event/${code}`}
 	>
 		{code}
@@ -41,8 +41,8 @@ const HostingTable = async () => {
 	}
 
 	return (
-		<div className="overflow-x-auto rounded-xl border border-base-300 shadow">
-			<table className="table table-pin-rows table-sm my-0 rounded-xl">
+		<div className="border-base-300 bg-base-100 overflow-x-auto rounded-xl border shadow-sm">
+			<table className="table-sm mt-0 mb-0 table rounded-xl">
 				<thead>
 					<tr>
 						<th>Code</th>
@@ -59,9 +59,9 @@ const HostingTable = async () => {
 						return (
 							<tr
 								key={event.id}
-								className={passed ? "bg-base-300" : "bg-base-100"}
+								className={`${passed ? "bg-base-200" : "bg-base-100"}`}
 							>
-								<td>
+								<td className="align-middle">
 									<EventCodeButton code={event.code} passed={passed} />
 								</td>
 								<td>{event.title}</td>
@@ -69,7 +69,7 @@ const HostingTable = async () => {
 									<DateCellContents startUtcMs={event.startUtcMs} />
 								</td>
 								<td className="hidden md:table-cell">{event.location}</td>
-								<td className="hidden md:table-cell">
+								<td className="hidden align-middle md:table-cell">
 									<DeleteEventForm
 										className="btn-sm float-right max-w-20"
 										code={event.code}
@@ -99,8 +99,8 @@ const AttendingTable = async () => {
 	}
 
 	return (
-		<div className="overflow-x-auto rounded-xl border border-base-300 shadow">
-			<table className="table table-pin-rows table-sm my-0 rounded-xl">
+		<div className="border-base-300 bg-base-100 overflow-x-auto rounded-xl border shadow-sm">
+			<table className="table-sm mt-0 mb-0 table rounded-xl">
 				<thead>
 					<tr>
 						<th>Code</th>
@@ -118,7 +118,7 @@ const AttendingTable = async () => {
 								key={event.code}
 								className={passed ? "bg-base-300" : "bg-base-100"}
 							>
-								<td>
+								<td className="align-middle">
 									<EventCodeButton code={event.code} passed={passed} />
 								</td>
 								<td>{event.title}</td>

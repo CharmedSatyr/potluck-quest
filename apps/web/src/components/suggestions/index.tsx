@@ -58,7 +58,7 @@ const SuggestionsContainer = ({
 	populate: (items: SlotData[]) => void;
 }) => {
 	const eventInput = use(eventInputPromise);
-	const [attendees, setAttendees] = useState<string>("0");
+	const [attendees, setAttendees] = useState<string>("");
 	const hookReturn = useSlotSuggestions(eventInput, Number(attendees));
 
 	const { title, startDate, startTime, location } = eventInput;
@@ -70,7 +70,7 @@ const SuggestionsContainer = ({
 	return (
 		<div className="flex w-full justify-center">
 			<div
-				className="rounded-xl border-base-300 bg-base-200 shadow transition-all duration-300 ease-in-out"
+				className="border-base-300 bg-base-200 rounded-xl shadow-sm transition-all duration-300 ease-in-out"
 				style={{
 					maxWidth: hookReturn.suggestions && !hookReturn.pending ? 560 : 420,
 				}}

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const DiscordLogo = ({ width = 90 }: { width?: number }) => {
+const DiscordLogo = ({ width = 80 }: { width?: number }) => {
 	const height = Math.round(width * 0.19);
 
 	return (
@@ -15,7 +15,7 @@ const DiscordLogo = ({ width = 90 }: { width?: number }) => {
 				alt="Discord logo"
 				height={height}
 				width={width}
-				className="m-0 inline"
+				className="not-prose m-0 inline"
 			/>
 		</Link>
 	);

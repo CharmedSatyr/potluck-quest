@@ -17,39 +17,43 @@ const Prompt = ({
 }: Props) => {
 	return (
 		<aside className="p-4">
-			<h3 className="mb-4 mt-0">Need help planning your meal?</h3>
+			<h3 className="mt-0 text-base sm:text-xl">
+				Need help planning your meal?
+			</h3>
 
-			<div className="flex items-end justify-center">
-				<div className="form-control">
-					<label className="label label-text" htmlFor="attendees">
-						Estimated attendees
-					</label>
+			<div className="fieldset">
+				<label className="fieldset-label" htmlFor="attendees">
+					Estimated attendees
+				</label>
+
+				<div className="flex gap-2">
 					<input
-						className="input-text input input-bordered w-40 text-sm sm:text-base"
+						className="input input-sm validator"
 						disabled={pending}
+						placeholder="10"
 						id="attendees"
 						min={0}
+						max={1000} // Arbitrary
 						onChange={(e) => setAttendees(e?.target?.value)}
 						type="number"
 						value={attendees}
 					/>
+					<button
+						className="btn btn-info btn-sm mb-2"
+						type="button"
+						disabled={pending || !attendees || attendees === "0"}
+						onClick={fetchSuggestions}
+					>
+						{pending ? (
+							<LoadingIndicator size={6} />
+						) : (
+							<>
+								<SparklesIcon className="size-4" />
+								Ask AI
+							</>
+						)}
+					</button>
 				</div>
-
-				<button
-					className="btn btn-info ml-4 w-28"
-					type="button"
-					disabled={pending || !attendees || attendees === "0"}
-					onClick={fetchSuggestions}
-				>
-					{pending ? (
-						<LoadingIndicator size={6} />
-					) : (
-						<>
-							<SparklesIcon className="size-5" />
-							Ask AI
-						</>
-					)}
-				</button>
 			</div>
 		</aside>
 	);

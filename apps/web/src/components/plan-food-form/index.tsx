@@ -118,11 +118,7 @@ const PlanFoodForm = ({
 	};
 
 	return (
-		<Form
-			action={determineAction()}
-			className="form-control"
-			data-testid="plan-food-form"
-		>
+		<Form action={determineAction()} data-testid="plan-food-form">
 			{slots.map((slot, index) => (
 				<div key={slot.order}>
 					<SlotInput
@@ -158,7 +154,7 @@ const PlanFoodForm = ({
 				))}
 
 			<div className="my-3 flex w-full flex-wrap justify-between gap-2">
-				<div className="flex flex-grow justify-between">
+				<div className="flex grow justify-between">
 					<button
 						className="btn btn-secondary btn-sm"
 						disabled={noEvent || slots.length >= MAX_SLOTS}

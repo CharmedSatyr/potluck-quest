@@ -1,7 +1,7 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { redirect } from "next/navigation";
 import findEvent from "~/actions/event/find-event";
-import GotoEventForm from "~/components/goto-event-form";
+import GotoEventForm from "~/components/start-cta/goto-event-form";
 
 jest.mock("next/navigation", () => ({
 	redirect: jest.fn(),

@@ -14,7 +14,7 @@ const CommitmentsTable = async ({ code }: Props) => {
 
 	return (
 		<div className="overflow-x-auto">
-			<table className="table table-sm md:table-md">
+			<table className="table-sm md:table-md table">
 				<thead>
 					<tr>
 						<th>User</th>

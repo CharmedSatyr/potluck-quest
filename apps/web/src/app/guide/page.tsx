@@ -11,7 +11,7 @@ import { PQBot } from "~/components/branding/pq-bot-logo";
 
 const GuideContent = () => {
 	return (
-		<main className="w-full rounded-xl bg-base-100/80 p-6 md:p-10 lg:rounded-none lg:rounded-r-xl">
+		<main className="bg-base-100/80 w-full rounded-xl p-6 md:p-10 lg:rounded-none lg:rounded-r-xl">
 			<h1 className="text-primary-gradient">Guide</h1>
 
 			<p>
@@ -44,7 +44,7 @@ const GuideContent = () => {
 };
 const Page = () => {
 	return (
-		<div className="my-14 w-full rounded-xl border border-base-300 bg-base-100/80 shadow-xl sm:my-24 md:w-11/12 lg:my-28">
+		<div className="border-base-300 bg-base-100/80 my-14 w-full rounded-xl border shadow-xl sm:my-24 md:w-11/12 lg:my-28">
 			<div className="drawer lg:drawer-open">
 				{/* Drawer toggle */}
 				<input id="guide-sidebar" type="checkbox" className="drawer-toggle" />
@@ -61,7 +61,7 @@ const Page = () => {
 				</div>
 
 				{/* Drawer side */}
-				<div className="drawer-side lg:rounded-l-xl lg:bg-base-200">
+				<div className="drawer-side lg:bg-base-200 lg:rounded-l-xl">
 					{/* Drawer overlay */}
 					<label
 						htmlFor="guide-sidebar"
@@ -70,58 +70,80 @@ const Page = () => {
 					></label>
 
 					{/* Drawer content */}
-					<ul className="menu min-h-full w-80 bg-base-200 p-4 text-base-content">
+					<ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
 						<li>
-							<Link href="#getting-started">Getting Started</Link>
+							<Link href="#getting-started" className="no-underline">
+								Getting Started
+							</Link>
 						</li>
 						<li>
-							<Link href="#events">Events</Link>
+							<Link href="#events" className="no-underline">
+								Events
+							</Link>
 							<ul>
 								<li>
-									<Link href="#creating-an-event">Creating an Event</Link>
+									<Link href="#creating-an-event" className="no-underline">
+										Creating an Event
+									</Link>
 								</li>
 								<li>
-									<Link href="#finding-an-event">Finding an Event</Link>
+									<Link href="#finding-an-event" className="no-underline">
+										Finding an Event
+									</Link>
 								</li>
 								<li>
-									<Link href="#editing-and-deleting-events">
+									<Link
+										href="#editing-and-deleting-events"
+										className="no-underline"
+									>
 										Editing and Deleting Events
 									</Link>
 								</li>
 							</ul>
 						</li>
 						<li>
-							<Link href="#slots">Slots</Link>
+							<Link href="#slots" className="no-underline">
+								Slots
+							</Link>
 							<ul>
 								<li>
-									<Link href="#managing-slots">Managing Slots</Link>
+									<Link href="#managing-slots" className="no-underline">
+										Managing Slots
+									</Link>
 								</li>
 								<li>
-									<Link href="#signing-up-to-bring-something">
+									<Link
+										href="#signing-up-to-bring-something"
+										className="no-underline"
+									>
 										Signing Up to Bring Something
 									</Link>
 								</li>
 							</ul>
 						</li>
 						<li>
-							<Link href="#rsvps">RSVPs</Link>
+							<Link href="#rsvps" className="no-underline">
+								RSVPs
+							</Link>
 						</li>
 						<li>
-							<Link href="#commands">Commands</Link>
+							<Link href="#commands" className="no-underline">
+								Commands
+							</Link>
 							<ul>
 								<li>
-									<Link href="#plan-command">
-										<code>/plan</code>
+									<Link href="#plan-command" className="no-underline">
+										<code className="not-prose">/plan</code>
 									</Link>
 								</li>
 								<li>
-									<Link href="#view-command">
-										<code>/view</code>
+									<Link href="#view-command" className="no-underline">
+										<code className="not-prose">/view</code>
 									</Link>
 								</li>
 								<li>
-									<Link href="#slots-command">
-										<code>/slots</code>
+									<Link href="#slots-command" className="no-underline">
+										<code className="not-prose">/slots</code>
 									</Link>
 								</li>
 							</ul>

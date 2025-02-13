@@ -52,15 +52,15 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 	return (
 		<Form
 			action={determineAction()}
-			className="form-control"
+			className="fieldset"
 			name="create-event-form"
 		>
-			<div>
-				<label className="label label-text" htmlFor="name-input">
+			<div className="mb-2">
+				<label className="fieldset-label" htmlFor="name-input">
 					Event Title
 				</label>
 				<input
-					className="input input-bordered w-full text-sm md:text-base"
+					className="input validator w-full"
 					defaultValue={eventInput.title}
 					enterKeyHint="next"
 					id="name-input"
@@ -76,11 +76,11 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 
 			<div className="my-2 flex justify-between">
 				<div className="w-5/12">
-					<label className="label label-text" htmlFor="date-input">
+					<label className="fieldset-label" htmlFor="date-input">
 						Date
 					</label>
 					<input
-						className="input input-bordered w-full text-sm md:text-base"
+						className="input validator w-full"
 						data-testid="start-date"
 						defaultValue={eventInput.startDate}
 						enterKeyHint="next"
@@ -96,7 +96,10 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 				</div>
 
 				<div className="w-5/12">
-					<label className="label label-text text-sm" htmlFor="time-input">
+					<label
+						className="fieldset-label flex justify-between"
+						htmlFor="time-input"
+					>
 						Time{" "}
 						<small>
 							<span className="hidden xl:block">
@@ -106,7 +109,7 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 						</small>
 					</label>
 					<input
-						className="input input-bordered w-full text-sm md:text-base"
+						className="input validator w-full"
 						data-testid="start-time"
 						defaultValue={eventInput.startTime}
 						enterKeyHint="next"
@@ -124,11 +127,11 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 			</div>
 
 			<div className="my-2">
-				<label className="label label-text" htmlFor="location-input">
+				<label className="fieldset-label" htmlFor="location-input">
 					Location
 				</label>
 				<input
-					className="input input-bordered w-full text-sm md:text-base"
+					className="input validator w-full"
 					defaultValue={eventInput.location}
 					enterKeyHint="next"
 					id="location-input"
@@ -143,11 +146,11 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 			</div>
 
 			<div className="my-2">
-				<label className="label label-text" htmlFor="hosts-input">
+				<label className="fieldset-label" htmlFor="hosts-input">
 					Hosts
 				</label>
-				<div className="input input-bordered flex w-full items-center gap-2 text-sm md:text-base">
-					<span className="badge badge-info badge-sm gap-2 md:badge-md">
+				<div className="input flex w-full items-center gap-2">
+					<span className="badge badge-info badge-xs md:badge-sm gap-2">
 						Optional
 					</span>
 					<input
@@ -166,11 +169,11 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 			</div>
 
 			<div className="my-2">
-				<label className="label label-text" htmlFor="description-input">
+				<label className="fieldset-label" htmlFor="description-input">
 					Description
 				</label>
-				<div className="input input-bordered flex w-full items-center gap-2 text-sm md:text-base">
-					<span className="badge badge-info badge-sm gap-2 md:badge-md">
+				<div className="input flex w-full items-center gap-2">
+					<span className="badge badge-info badge-xs md:badge-sm gap-2">
 						Optional
 					</span>
 					<input
@@ -187,26 +190,28 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 				</div>
 			</div>
 
-			<div className="my-6 w-full">
-				<button
-					className="btn btn-primary btn-sm float-right w-full md:w-fit"
-					type="submit"
-				>
-					{isPending && <LoadingIndicator size={10} />}
-					{loggedIn && !isPending && "Continue"}
-					{!loggedIn && !isPending && (
-						<>
-							Continue with{" "}
-							<Image
-								src="/static/discord-logo-black.png"
-								alt="Discord logo"
-								height="15"
-								width="80"
-								className="m-0"
-							/>
-						</>
-					)}
-				</button>
+			<div className="mt-2 w-full">
+				{loggedIn && (
+					<button
+						className="btn btn-primary btn-sm float-right w-full md:w-fit"
+						type="submit"
+					>
+						{isPending && <LoadingIndicator size={10} />}
+						{!isPending && "Continue"}
+					</button>
+				)}
+				{!loggedIn && !isPending && (
+					<button className="btn btn-blurple btn-sm float-right w-full md:w-fit">
+						Continue with{" "}
+						<Image
+							src="/static/discord-logo-white.png"
+							alt="Discord logo"
+							height="15"
+							width="80"
+							className="m-0"
+						/>
+					</button>
+				)}
 			</div>
 		</Form>
 	);
@@ -216,38 +221,40 @@ export default PlanEventForm;
 
 export const PlanEventFormFallback = () => {
 	return (
-		<div className="form-control">
-			<label className="label label-text">Event Title</label>
-			<div className="skeleton h-12 w-full" />
+		<div className="fieldset">
+			<div className="mb-2">
+				<label className="fieldset-label">Event Title</label>
+				<div className="skeleton h-10 w-full" />
+			</div>
 
 			<div className="my-2 flex justify-between">
 				<div className="w-5/12">
-					<label className="label label-text">Date</label>
-					<div className="skeleton h-12 w-full" />
+					<label className="fieldset-label">Date</label>
+					<div className="skeleton h-10 w-full" />
 				</div>
 
 				<div className="w-5/12">
-					<label className="label label-text">Time</label>
-					<div className="skeleton h-12 w-full" />
+					<label className="fieldset-label">Time</label>
+					<div className="skeleton h-10 w-full" />
 				</div>
 			</div>
 
 			<div className="my-2">
-				<label className="label label-text">Location</label>
-				<div className="skeleton h-12 w-full" />
+				<label className="fieldset-label">Location</label>
+				<div className="skeleton h-10 w-full" />
 			</div>
 
 			<div className="my-2">
-				<label className="label label-text">Hosts</label>
-				<div className="skeleton h-12 w-full" />
+				<label className="fieldset-label">Hosts</label>
+				<div className="skeleton h-10 w-full" />
 			</div>
 
 			<div className="my-2">
-				<label className="label label-text">Description</label>
-				<div className="skeleton h-12 w-full" />
+				<label className="fieldset-label">Description</label>
+				<div className="skeleton h-10 w-full" />
 			</div>
 
-			<div className="my-6 w-full">
+			<div className="mt-2 w-full">
 				<button className="btn btn-disabled btn-primary btn-sm float-right w-full md:w-fit">
 					Continue
 				</button>

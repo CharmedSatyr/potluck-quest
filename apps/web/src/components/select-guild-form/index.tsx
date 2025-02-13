@@ -1,11 +1,11 @@
 "use client";
 
-import DiscordLogo from "../branding/discord-blurple-logo";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import Form from "next/form";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { use } from "react";
+import DiscordLogo from "~/components/branding/discord-blurple-logo";
 import GuildIcon from "~/components/guild-icon";
 import { NO_GUILD_ID } from "~/constants/no-guild-id";
 
@@ -30,16 +30,16 @@ const GuildOption = ({
 }) => {
 	return (
 		<div className="flex items-center">
-			<label className="label flex cursor-pointer items-center gap-2">
+			<label className="label">
 				<input
 					type="radio"
 					name="guild-option"
-					className="radio checked:bg-primary"
+					className="radio radio-primary radio-sm"
 					value={guildId ?? NO_GUILD_ID}
 					defaultChecked={!guildId}
 				/>
 				{iconUrl && <GuildIcon name={name} url={iconUrl} />}
-				<span className="label-text">{name}</span>
+				<span>{name}</span>
 			</label>
 		</div>
 	);
@@ -69,14 +69,14 @@ const SelectGuildForm = ({ userDiscordGuildsPromise }: Props) => {
 				sync with this one?
 			</p>
 			<p className="mt-0">
-				<InformationCircleIcon className="inline size-5 text-info" />{" "}
+				<InformationCircleIcon className="text-info inline size-5" />{" "}
 				<Link href="/guide#creating-an-event">Read more</Link> about what this
 				means and how to make your servers show up below.
 			</p>
 
-			<section className="border-bg-300 w-full rounded-xl bg-base-200 p-4 shadow md:w-3/4">
-				<h3 className="mb-4 mt-0">Available Servers</h3>
-				<div className="form-control">
+			<section className="border-bg-300 bg-base-200 w-full rounded-xl p-4 shadow md:w-3/4">
+				<h3 className="mt-0 mb-4 text-base sm:text-xl">Available Servers</h3>
+				<div>
 					{[
 						{
 							name: "None",

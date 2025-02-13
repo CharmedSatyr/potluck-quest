@@ -3,8 +3,8 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { EVENT_CODE_LENGTH } from "@potluck/utilities/constants";
 import { useActionState } from "react";
-import findEventExistsRedirect from "~/components/goto-event-form/find-event-exists-redirect";
 import LoadingIndicator from "~/components/loading-indicator";
+import findEventExistsRedirect from "~/components/start-cta/goto-event-form/find-event-exists-redirect";
 import WarningAlert from "~/components/warning-alert";
 
 export type GotoEventFormState = {
@@ -38,7 +38,7 @@ const GotoEventForm = () => {
 			</div>
 			<button
 				disabled={isPending}
-				className="btn btn-secondary mt-2 text-xl"
+				className="btn btn-secondary mt-2 w-full text-xl"
 				type="submit"
 			>
 				{isPending ? <LoadingIndicator size={10} /> : "Find an Event"}

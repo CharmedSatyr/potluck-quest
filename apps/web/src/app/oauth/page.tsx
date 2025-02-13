@@ -21,13 +21,10 @@ const OauthPage = async () => {
 					height="300"
 				/>
 
-				<button
-					className="btn btn-sm w-fit bg-blurple text-base-300 hover:bg-dark-blurple"
-					type="submit"
-				>
+				<button className="btn btn-sm btn-blurple w-fit" type="submit">
 					Continue with{" "}
 					<Image
-						src="/static/discord-logo-black.png"
+						src="/static/discord-logo-white.png"
 						alt="Discord logo"
 						height="15"
 						width="80"
