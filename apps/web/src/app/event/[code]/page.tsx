@@ -232,7 +232,7 @@ const HostView = async ({
 	<Container>
 		<EventSection code={code} discordMetadata={discordMetadata} />
 		<div className="flex w-full justify-end md:w-2/12">
-			<div className="flex w-full flex-col gap-2 md:w-24">
+			<div className="flex w-full flex-col gap-2 md:w-20">
 				<ManageEventSection code={code} eventData={eventData} />
 				<RsvpSection
 					code={code}
