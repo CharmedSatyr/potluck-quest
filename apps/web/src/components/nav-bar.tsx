@@ -87,7 +87,7 @@ const LoggedInContent = ({ image, name }: { image: string; name: string }) => {
 
 				<li>
 					<details className="dropdown dropdown-end">
-						<summary role="button" tabIndex={0}>
+						<summary className="not-prose" role="button" tabIndex={0}>
 							<UserAvatar name={name} url={image} height={30} width={30} />
 						</summary>
 						<ul
