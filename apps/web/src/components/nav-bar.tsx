@@ -86,7 +86,8 @@ const LoggedInContent = ({ image, name }: { image: string; name: string }) => {
 				<li className="hidden text-sm sm:inline-flex">Welcome, {name}</li>
 
 				<li>
-					<details className="dropdown dropdown-end">
+					{/* Having dropdown class here breaks it in v5 for some reason. */}
+					<details className="dropdown-end">
 						<summary className="not-prose" role="button" tabIndex={0}>
 							<UserAvatar name={name} url={image} height={30} width={30} />
 						</summary>
