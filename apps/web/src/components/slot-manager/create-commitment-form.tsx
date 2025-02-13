@@ -46,7 +46,7 @@ const CountInput = ({
 					/>
 				</button>
 				<input
-					className="input input-sm max-w-20 rounded-none" // join-item causes misalignment
+					className="input input-sm validator max-w-20 rounded-none" // join-item causes misalignment
 					defaultValue={defaultValue}
 					id="quantity-input"
 					inputMode="numeric"

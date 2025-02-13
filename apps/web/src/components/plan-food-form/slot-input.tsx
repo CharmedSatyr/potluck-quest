@@ -41,7 +41,7 @@ const SlotInput = ({
 					What&apos;s Needed
 				</label>
 				<input
-					className="input"
+					className="input validator"
 					id={`item-${index}`}
 					enterKeyHint="next"
 					maxLength={256}
@@ -84,7 +84,7 @@ const SlotInput = ({
 						/>
 					</button>
 					<input
-						className="input join-item input-sm sm:input-md max-w-20"
+						className="input join-item input-sm sm:input-md validator max-w-20"
 						enterKeyHint="next"
 						id={`count-${index}`}
 						inputMode="numeric"

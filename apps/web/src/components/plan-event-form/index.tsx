@@ -60,7 +60,7 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 					Event Title
 				</label>
 				<input
-					className="input w-full"
+					className="input validator w-full"
 					defaultValue={eventInput.title}
 					enterKeyHint="next"
 					id="name-input"
@@ -80,7 +80,7 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 						Date
 					</label>
 					<input
-						className="input w-full"
+						className="input validator w-full"
 						data-testid="start-date"
 						defaultValue={eventInput.startDate}
 						enterKeyHint="next"
@@ -109,7 +109,7 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 						</small>
 					</label>
 					<input
-						className="input w-full"
+						className="input validator w-full"
 						data-testid="start-time"
 						defaultValue={eventInput.startTime}
 						enterKeyHint="next"
@@ -131,7 +131,7 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 					Location
 				</label>
 				<input
-					className="input w-full"
+					className="input validator w-full"
 					defaultValue={eventInput.location}
 					enterKeyHint="next"
 					id="location-input"

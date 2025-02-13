@@ -28,7 +28,7 @@ const Prompt = ({
 
 				<div className="flex gap-2">
 					<input
-						className="input input-sm"
+						className="input input-sm validator"
 						disabled={pending}
 						placeholder="10"
 						id="attendees"
