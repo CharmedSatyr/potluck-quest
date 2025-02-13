@@ -1,8 +1,9 @@
 "use client";
 
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
+import Form from "next/form";
 import Link from "next/link";
-import { use, useActionState, useEffect, useState } from "react";
+import { use, useActionState, useEffect, useRef, useState } from "react";
 import { type DiscordEventMetadata } from "~/actions/bot/event/fetch-discord-event-metadata";
 import { DiscordIcon } from "~/components/branding/discord-icon";
 import LoadingIndicator from "~/components/loading-indicator";
@@ -18,6 +19,8 @@ type Props = {
 };
 
 const RsvpForm = ({ code, currentRsvpPromise, discordMetadata }: Props) => {
+	const dialogRef = useRef<HTMLDialogElement>(null);
+
 	const [currentRsvp] = use(currentRsvpPromise);
 
 	const [override, setOverride] = useState<boolean>(false);
@@ -82,58 +85,74 @@ const RsvpForm = ({ code, currentRsvpPromise, discordMetadata }: Props) => {
 	}
 
 	return (
-		<form action={submit} className="form-control gap-2 text-center">
-			<p className="mb-0">Will you attend?</p>
-
+		<Form action={submit}>
 			<button
-				className="btn btn-primary btn-sm w-full"
-				data-response="yes"
-				disabled={isPending}
-				name="response"
-				type="submit"
-				value="yes"
+				className="btn btn-sm w-full"
+				disabled={dialogRef.current?.open}
+				type="button"
+				onClick={() => dialogRef.current?.showModal()}
 			>
-				{isPending ? <LoadingIndicator size={6} /> : "Yes"}
+				{isPending ? <LoadingIndicator size={8} /> : "RSVP"}
 			</button>
+			<dialog ref={dialogRef} className="modal modal-bottom sm:modal-middle">
+				<div className="modal-box">
+					<h3 className="text-lg font-bold">Will you attend?</h3>
 
-			<button
-				className="btn btn-secondary btn-sm w-full"
-				data-response="no"
-				disabled={isPending}
-				name="response"
-				type="submit"
-				value="no"
-			>
-				{isPending ? <LoadingIndicator size={6} /> : "No"}
-			</button>
+					<div className="fieldset w-full">
+						<label className="label" htmlFor="rsvp-message">
+							Add a note
+						</label>
+						<input
+							className="input w-full"
+							defaultValue={state.fields.message}
+							disabled={isPending}
+							id="rsvp-message"
+							maxLength={256}
+							name="message"
+							type="search"
+						/>
+						<WarningAlert text={state.message} />
+					</div>
 
-			<div className="form-control">
-				<label className="label label-text" htmlFor="rsvp-message">
-					Notes
-				</label>
-				<input
-					className="input input-bordered w-full"
-					defaultValue={state.fields.message}
-					disabled={isPending}
-					id="rsvp-message"
-					maxLength={256}
-					name="message"
-					type="search"
-				/>
-				<WarningAlert text={state.message} />
-			</div>
-		</form>
+					<div className="modal-action">
+						<button
+							aria-label="Yes"
+							data-response="yes"
+							className="btn btn-sm btn-success"
+							disabled={isPending}
+							name="response"
+							type="submit"
+							value="yes"
+						>
+							{isPending ? <LoadingIndicator size={8} /> : "Yes"}
+						</button>
+
+						<button
+							aria-label="No"
+							data-response="no"
+							className="btn btn-sm btn-error"
+							disabled={isPending}
+							name="response"
+							type="submit"
+							value="no"
+						>
+							{isPending ? <LoadingIndicator size={8} /> : "No"}
+						</button>
+
+						<button
+							aria-label="Cancel"
+							className="btn btn-sm btn-soft"
+							disabled={isPending}
+							type="button"
+							onClick={() => dialogRef.current?.close()}
+						>
+							Cancel
+						</button>
+					</div>
+				</div>
+			</dialog>
+		</Form>
 	);
 };
 
 export default RsvpForm;
-
-export const RsvpFormFallback = () => {
-	return (
-		<div className="flex w-full flex-col gap-4">
-			<div className="skeleton h-10 w-full" />
-			<div className="skeleton h-10 w-full" />
-			<div className="skeleton h-10 w-full" />
-		</div>
-	);
-};

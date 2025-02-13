@@ -93,8 +93,10 @@ const ManageEventSection = ({
 		<section className="w-full">
 			<Suspense>
 				<SlideIn>
-					<EditLink code={code} eventData={eventData} />
-					<DeleteEventForm code={code} redirect={true} />
+					<div className="flex w-full flex-col gap-2">
+						<EditLink code={code} eventData={eventData} />
+						<DeleteEventForm code={code} redirect={true} />
+					</div>
 				</SlideIn>
 			</Suspense>
 		</section>
