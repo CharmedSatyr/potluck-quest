@@ -1,13 +1,10 @@
-import envConfig from "~/constants/env-config";
 import siteMetadata from "~/data/site-metadata";
 
-const buildCurrentUrl = (
-	pathName: string,
-	env: string = envConfig.NODE_ENV,
-	port: string = envConfig.PORT
-): string => {
+const buildCurrentUrl = (pathName: string): string => {
 	const urlBase =
-		env === "development" ? `http://localhost:${port}` : siteMetadata.siteUrl;
+		process.env.NODE_ENV === "development"
+			? `http://localhost:3000`
+			: siteMetadata.siteUrl;
 
 	return urlBase.concat(pathName);
 };
