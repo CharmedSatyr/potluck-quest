@@ -1,6 +1,7 @@
 "use client";
 
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/solid";
+import Form from "next/form";
 import { usePathname } from "next/navigation";
 import { useActionState, useRef } from "react";
 import LoadingIndicator from "~/components/loading-indicator";
@@ -24,13 +25,15 @@ const CountInput = ({
 	const countRef = useRef<HTMLInputElement>(null);
 
 	return (
-		<div className="form-control md:pl-2">
-			<label className="label label-text pl-2" htmlFor="quantity-input">
+		<div className="fieldset">
+			<label className="fieldset-label" htmlFor="quantity-input">
 				Quantity You&apos;ll Bring
 			</label>
-			<div className="join join-horizontal">
+
+			<div className="join">
 				<button
-					className="btn join-item input-bordered"
+					aria-label="decrement-quantity-button"
+					className="btn join-item btn-sm rounded-l-md rounded-r-none"
 					onClick={() => {
 						countRef.current?.stepDown();
 					}}
@@ -43,7 +46,7 @@ const CountInput = ({
 					/>
 				</button>
 				<input
-					className="input join-item input-bordered max-w-20"
+					className="input input-sm max-w-20 rounded-none" // join-item causes misalignment
 					defaultValue={defaultValue}
 					id="quantity-input"
 					inputMode="numeric"
@@ -53,10 +56,9 @@ const CountInput = ({
 					ref={countRef}
 					required
 					type="number"
-					style={{ borderRadius: 0 }} // TODO: Join wasn't working properly
 				/>
 				<button
-					className="btn join-item input-bordered"
+					className="btn join-item btn-sm rounded-l-none rounded-r-md"
 					onClick={() => {
 						countRef.current?.stepUp();
 					}}
@@ -93,18 +95,16 @@ const CreateCommitmentForm = ({ commitmentsStillNeeded, slotId }: Props) => {
 	const isButtonDisabled = isPending || commitmentsStillNeeded === 0;
 
 	return (
-		<form
+		<Form
 			action={formAction}
 			className="flex w-full flex-wrap items-end justify-between gap-2 md:flex-nowrap"
 		>
 			<div className="order-1 w-full md:order-2 md:max-w-1/2">
-				<div className="input input-bordered flex w-full items-center gap-2">
-					<span className="badge badge-info badge-sm md:badge-md">
-						Optional
-					</span>
+				<div className="input input-sm flex w-full items-center gap-2">
+					<span className="badge badge-info badge-xs">Optional</span>
 					<input
 						aria-label="item-description"
-						className="w-full text-sm"
+						className="w-full"
 						defaultValue={state?.fields.hosts}
 						maxLength={256}
 						name="description"
@@ -114,7 +114,7 @@ const CreateCommitmentForm = ({ commitmentsStillNeeded, slotId }: Props) => {
 				</div>
 			</div>
 
-			<div className="order-2 md:order-1">
+			<div className="order-2 -mb-1 md:order-1">
 				<CountInput
 					commitmentsStillNeeded={commitmentsStillNeeded}
 					defaultValue={state.fields.quantity}
@@ -122,13 +122,13 @@ const CreateCommitmentForm = ({ commitmentsStillNeeded, slotId }: Props) => {
 			</div>
 
 			<button
-				className="btn btn-secondary order-3 w-1/3 md:max-w-32"
+				className="btn btn-secondary btn-sm order-3"
 				disabled={isButtonDisabled}
 				type="submit"
 			>
 				{isPending ? <LoadingIndicator size={8} /> : "Save"}
 			</button>
-		</form>
+		</Form>
 	);
 };
 

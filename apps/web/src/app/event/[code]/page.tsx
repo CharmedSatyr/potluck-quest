@@ -131,7 +131,7 @@ const RsvpSection = ({
 const FoodPlanSection = ({ code }: { code: string }) => {
 	return (
 		<section className="w-full">
-			{/* This is simply filling out the contrast container. */}
+			{/* This fallback is simply filling out the contrast container. */}
 			<Suspense fallback={<div className="h-screen" />}>
 				<SlideIn>
 					<h2>On the Menu</h2>

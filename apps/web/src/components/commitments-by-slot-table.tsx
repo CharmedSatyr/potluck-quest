@@ -25,7 +25,7 @@ const CommitmentsBySlotTable = async ({ commitmentsWithDetails }: Props) => {
 
 	return (
 		<div className="mt-0 overflow-x-auto p-0">
-			<table className="table-sm md:table-md m-0 table p-0">
+			<table className="table-sm mt-0 mb-0 table p-0">
 				<thead className="m-0 p-0">
 					<tr>
 						<th></th>
@@ -63,23 +63,40 @@ export default CommitmentsBySlotTable;
 
 export const CommitmentsBySlotTableFallback = () => {
 	return (
-		<div className="flex w-full flex-col gap-4">
-			<div className="skeleton h-12 w-1/4" />
-			<div className="flex justify-around gap-2">
-				<div className="skeleton h-14 w-1/3" />
-				<div className="skeleton h-14 w-1/3" />
-				<div className="skeleton h-14 w-1/3" />
-			</div>
-			<div className="justify-4round flex gap-2">
-				<div className="skeleton h-14 w-1/3" />
-				<div className="skeleton h-14 w-1/3" />
-				<div className="skeleton h-14 w-1/3" />
-			</div>
-			<div className="justify-4round flex gap-2">
-				<div className="skeleton h-14 w-1/3" />
-				<div className="skeleton h-14 w-1/3" />
-				<div className="skeleton h-14 w-1/3" />
-			</div>
+		<div className="mt-0 overflow-x-auto p-0">
+			<table className="table-sm mt-0 mb-0 table p-0">
+				<thead className="m-0 p-0">
+					<tr>
+						<th></th>
+						<th>User</th>
+						<th className="md:hidden">#</th>
+						<th className="hidden md:block">Quantity</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td className="w-23 align-top">
+							<button
+								className="btn btn-circle btn-xs mt-6"
+								type="button"
+								disabled
+							>
+								✕
+							</button>
+						</td>
+						<td className="h-20">
+							<div className="skeleton mt-5 h-8 w-22" />
+						</td>
+						<td className="">
+							<div className="skeleton h-8 w-22" />
+						</td>
+						<td className="">
+							<div className="skeleton h-8 w-28" />
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	);
 };

@@ -21,23 +21,23 @@ const SlotManager = async ({ code }: Props) => {
 	}
 
 	return (
-		<section className="join join-vertical bg-base-100 w-full shadow-sm">
-			{details.map((detail) => {
+		<section className="join join-vertical bg-base-100 w-full shadow">
+			{details.map((detail, index) => {
 				const { item, requestedCount, slotId, totalCommitments, users } =
 					detail;
 
 				return (
-					<div key={slotId} className="join-item border-base-200 border">
+					<div
+						key={slotId}
+						className={`join-item border-base-300 border ${index === 0 ? "rounded-t-xl" : ""} ${index === details.length - 1 ? "rounded-b-xl" : ""}`}
+					>
 						<SlotContainer
 							item={item}
 							requestedCount={requestedCount}
 							totalCommitments={totalCommitments}
 							users={users}
 						>
-							<label
-								className="label label-text ml-2 px-0 pt-0 pb-2"
-								htmlFor="commitments-table"
-							>
+							<label className="label text-xs" htmlFor="commitments-table">
 								Current Signups
 							</label>
 

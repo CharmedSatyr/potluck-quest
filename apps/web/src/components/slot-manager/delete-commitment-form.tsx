@@ -16,8 +16,8 @@ const SubmitButton = () => {
 	const { pending } = useFormStatus();
 
 	return (
-		<button className="btn btn-circle btn-xs md:btn-sm" type="submit">
-			{pending ? <LoadingIndicator size={4} /> : "✕"}
+		<button className="btn btn-circle btn-xs" type="submit">
+			{pending ? <LoadingIndicator size={1} /> : "✕"}
 		</button>
 	);
 };

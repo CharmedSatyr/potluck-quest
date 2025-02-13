@@ -19,11 +19,11 @@ type Props = {
 const Avatars = ({ users }: { users: Props["users"] }) => {
 	return users.map(({ id, image, name, commitments }) =>
 		image ? (
-			<div key={id} className="indicator">
-				<UserAvatar name={name} url={image} height={40} width={40} />
-				<span className="badge indicator-item badge-primary badge-sm">
+			<div key={id} className="indicator not-prose">
+				<span className="indicator-item badge badge-primary badge-xs">
 					{commitments}
 				</span>
+				<UserAvatar name={name} url={image} height={30} width={30} />
 			</div>
 		) : (
 			<div key={id} className="skeleton h-8 w-8 rounded-full border" />
@@ -49,14 +49,14 @@ const SlotContainer = ({
 				onChange={() => setExpanded(!expanded)}
 			/>
 
-			<div className="collapse-title flex w-full items-center justify-between">
-				<div className="md:w-6/12">{item}</div>
+			<div className="collapse-title flex w-full items-center justify-between py-0">
+				<div className="text-sm md:w-6/12">{item}</div>
 
 				<div className="hidden sm:flex sm:gap-4">
 					<Avatars users={users} />
 				</div>
 
-				<div className="flex items-center justify-between text-sm md:text-base">
+				<div className="flex items-center justify-between text-sm">
 					{totalCommitments} of {requestedCount} filled
 					{expanded ? (
 						<ChevronUpIcon className="-mr-6 ml-2 size-4" />

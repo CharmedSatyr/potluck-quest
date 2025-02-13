@@ -99,7 +99,7 @@ const RsvpForm = ({ code, currentRsvpPromise, discordMetadata }: Props) => {
 					<h3 className="text-lg font-bold">Will you attend?</h3>
 
 					<div className="fieldset w-full">
-						<label className="label" htmlFor="rsvp-message">
+						<label className="fieldset-label" htmlFor="rsvp-message">
 							Add a note
 						</label>
 						<input
