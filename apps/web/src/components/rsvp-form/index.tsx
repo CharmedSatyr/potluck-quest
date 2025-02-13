@@ -102,15 +102,17 @@ const RsvpForm = ({ code, currentRsvpPromise, discordMetadata }: Props) => {
 						<label className="fieldset-label" htmlFor="rsvp-message">
 							Add a note
 						</label>
-						<input
-							className="input w-full"
-							defaultValue={state.fields.message}
-							disabled={isPending}
-							id="rsvp-message"
-							maxLength={256}
-							name="message"
-							type="search"
-						/>
+						<div className="input w-full">
+							<span className="badge badge-info badge-xs">Optional</span>
+							<input
+								defaultValue={state.fields.message}
+								disabled={isPending}
+								id="rsvp-message"
+								maxLength={256}
+								name="message"
+								type="search"
+							/>
+						</div>
 						<WarningAlert text={state.message} />
 					</div>
 
