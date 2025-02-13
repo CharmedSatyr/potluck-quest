@@ -109,7 +109,7 @@ const ManageEventWizard = ({
 								Now Editing
 								<Link
 									href={`/event/${code}`}
-									className="btn btn-secondary btn-sm ml-2 text-xl"
+									className="btn btn-secondary btn-sm ml-2 text-xl no-underline"
 								>
 									{code}
 								</Link>
