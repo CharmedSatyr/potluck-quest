@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const DiscordLogo = ({ width = 90 }: { width?: number }) => {
+const DiscordLogo = ({ width = 80 }: { width?: number }) => {
 	const height = Math.round(width * 0.19);
 
 	return (
