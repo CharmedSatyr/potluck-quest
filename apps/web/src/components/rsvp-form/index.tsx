@@ -3,7 +3,7 @@
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
 import Form from "next/form";
 import Link from "next/link";
-import { use, useActionState, useEffect, useRef, useState } from "react";
+import { use, useActionState, useRef } from "react";
 import { type DiscordEventMetadata } from "~/actions/bot/event/fetch-discord-event-metadata";
 import { DiscordIcon } from "~/components/branding/discord-icon";
 import LoadingIndicator from "~/components/loading-indicator";
