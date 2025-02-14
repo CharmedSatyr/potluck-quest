@@ -46,7 +46,7 @@ const AttendeeList = async ({ code }: Props) => {
 					const isHost = creator.id === rsvp.user.id;
 					return (
 						<li key={rsvp.id} className="list-row not-prose pl-0">
-							<div className="text-4xl font-thin tabular-nums opacity-30">
+							<div className="flex items-center font-thin tabular-nums opacity-30">
 								{(index + 1).toString().padStart(2, "0")}
 							</div>
 							<div>
@@ -62,12 +62,14 @@ const AttendeeList = async ({ code }: Props) => {
 							>
 								{rsvp.user.name}&nbsp;
 								{isHost && (
-									<CheckBadgeIcon
-										title="Event Host"
-										className="text-primary inline"
-										height="20"
-										width="20"
-									/>
+									<div className="tooltip tooltip-info" data-tip="Event Host">
+										<CheckBadgeIcon
+											className="text-primary inline"
+											height="20"
+											title="Event Host"
+											width="20"
+										/>
+									</div>
 								)}
 								<p className="list-col-wrap text-xs opacity-60">
 									{rsvp.message}
@@ -106,12 +108,14 @@ const AttendeeList = async ({ code }: Props) => {
 							>
 								{rsvp.user.name}&nbsp;
 								{isHost && (
-									<CheckBadgeIcon
-										title="Event Host"
-										className="text-primary inline"
-										height="20"
-										width="20"
-									/>
+									<div className="tooltip tooltip-info" data-tip="Event Host">
+										<CheckBadgeIcon
+											title="Event Host"
+											className="text-primary inline"
+											height="20"
+											width="20"
+										/>
+									</div>
 								)}
 								<p className="list-col-wrap text-xs opacity-60">
 									{rsvp.message}
