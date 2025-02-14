@@ -73,6 +73,7 @@ export const listener = async (interaction: Interaction<CacheType>) => {
 			await interaction.editReply({
 				content: "There was an error while executing this command!",
 			});
+			return;
 		}
 
 		if (interaction.replied) {
