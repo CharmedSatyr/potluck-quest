@@ -20,6 +20,7 @@ export const data = new SlashCommandBuilder()
 	.setDescription("View existing Potluck Quest events");
 
 export const execute = async (interaction: ChatInputCommandInteraction) => {
+	const timingStart = performance.now();
 	const events = await interaction.guild?.scheduledEvents.fetch();
 
 	const pqEvents = events?.filter(
@@ -103,4 +104,6 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 	await interaction.reply({
 		embeds: [embed],
 	});
+	const timingEnd = performance.now();
+	console.info({ message: "view command timing", ms: timingEnd - timingStart });
 };

@@ -19,14 +19,25 @@ export const data = new SlashCommandBuilder()
 	);
 
 export const execute = async (interaction: ChatInputCommandInteraction) => {
+	const timingStart = performance.now();
 	const input = interaction.options.getString("code");
 
 	const parsed = code.safeParse(input);
 
 	if (!parsed.success) {
 		await showEventsDropdown(interaction);
+		const timingEnd = performance.now();
+		console.info({
+			message: "slots dropdown command timing",
+			ms: timingEnd - timingStart,
+		});
 		return;
 	}
 
 	await showSlotsButtons(parsed.data, interaction);
+	const timingEnd = performance.now();
+	console.info({
+		message: "slots buttons command timing",
+		ms: timingEnd - timingStart,
+	});
 };
