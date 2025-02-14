@@ -69,7 +69,13 @@ export const listener = async (interaction: Interaction<CacheType>) => {
 			error,
 		});
 
-		if (interaction.replied || interaction.deferred) {
+		if (interaction.deferred) {
+			await interaction.editReply({
+				content: "There was an error while executing this command!",
+			});
+		}
+
+		if (interaction.replied) {
 			await interaction.followUp({
 				content: "There was an error while executing this command!",
 				flags: MessageFlags.Ephemeral,
