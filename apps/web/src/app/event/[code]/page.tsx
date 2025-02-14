@@ -10,6 +10,7 @@ import findUserEventRsvp from "~/actions/rsvp/find-user-event-rsvp";
 import findUserByEventCode from "~/actions/user/find-user-by-event-code";
 import EditLink from "~/app/event/[code]/edit-link";
 import { auth } from "~/auth";
+import AttendeesList from "~/components/attendees-list";
 import { DiscordIcon } from "~/components/branding/discord-icon";
 import CommitmentsTable from "~/components/commitments-table";
 import DeleteEventForm from "~/components/delete-event-button";
@@ -20,7 +21,6 @@ import EventSkeleton, {
 } from "~/components/event-skeleton/event-skeleton";
 import GuildIcon from "~/components/guild-icon";
 import RsvpForm from "~/components/rsvp-form";
-import RsvpTable from "~/components/rsvp-table";
 import SlideIn from "~/components/slide-in";
 import SlotManager from "~/components/slot-manager";
 import UserAvatar from "~/components/user-avatar";
@@ -76,7 +76,7 @@ const AttendeesSection = ({ code }: { code: string }) => (
 		<Suspense>
 			<SlideIn>
 				<h2>Attendees</h2>
-				<RsvpTable code={code} />
+				<AttendeesList code={code} />
 			</SlideIn>
 		</Suspense>
 	</section>
