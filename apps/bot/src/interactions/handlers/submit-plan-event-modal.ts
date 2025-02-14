@@ -26,11 +26,7 @@ export const data = { customId: CustomId.PLAN_EVENT_MODAL };
 
 export const execute = async (interaction: ModalSubmitInteraction) => {
 	if (!interaction.guild?.id) {
-		await interaction.reply({
-			content: `<@${interaction.user.id}> Please ensure you're creating the event on a server with **Potluck Quest Bot** installed and try again.`,
-			flags: MessageFlags.Ephemeral,
-		});
-		return;
+		throw new Error("Missing guild ID in submit commitment details modal");
 	}
 
 	const title = interaction.fields.getTextInputValue(CustomId.PLAN_EVENT_TITLE);
