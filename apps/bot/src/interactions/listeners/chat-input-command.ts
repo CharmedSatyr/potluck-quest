@@ -52,21 +52,19 @@ export const listener = async (interaction: Interaction<CacheType>) => {
 		await command.execute(interaction);
 	} catch (error) {
 		const timingEnd = performance.now();
-		console.warn({
+		console.error({
 			commandName: interaction.commandName,
-			message: "chat input command error timing",
-			ms: timingEnd - timingStart,
+			error,
+			message: "Error in chat input command listener",
+			timingMs: timingEnd - timingStart,
 		});
 
-		if (error instanceof DiscordAPIError && error.code === 10062) {
-			console.warn(
-				"Received an unknown interaction (likely from a previous session or timeout)."
-			);
-		} else {
-			console.error({
-				message: "Error in chat input command listener",
-				error,
+		if (!interaction.isRepliable()) {
+			console.warn({
+				message:
+					"Chat input command interaction expired before error reply could be send.",
 			});
+			return;
 		}
 
 		if (interaction.deferred) {
