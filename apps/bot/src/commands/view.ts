@@ -104,6 +104,7 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 	await interaction.reply({
 		embeds: [embed],
 	});
+
 	const timingEnd = performance.now();
 	console.info({ message: "view command timing", ms: timingEnd - timingStart });
 };

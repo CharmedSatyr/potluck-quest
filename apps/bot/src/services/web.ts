@@ -15,6 +15,8 @@ const headers = new Headers({ "x-api-key": config.PQ_BOT_TO_WEB_API_KEY });
 export const createPotluckQuestEvent = async (
 	data: z.infer<typeof webApiBot.event.postSchema>
 ): Promise<string | null> => {
+	const timingStart = performance.now();
+
 	try {
 		webApiBot.event.postSchema.parse(data);
 
@@ -41,12 +43,20 @@ export const createPotluckQuestEvent = async (
 		console.error("Error creating Potluck Quest event:", error);
 
 		return null;
+	} finally {
+		const timingEnd = performance.now();
+		console.info({
+			message: "createPotluckQuestEvent timing",
+			ms: timingEnd - timingStart,
+		});
 	}
 };
 
 export const mapDiscordToPotluckEvent = async (
 	data: z.infer<typeof webApiBot.mapping.postSchema>
 ): Promise<boolean> => {
+	const timingStart = performance.now();
+
 	try {
 		webApiBot.mapping.postSchema.parse(data);
 
@@ -61,12 +71,20 @@ export const mapDiscordToPotluckEvent = async (
 		console.error("Error mapping Discord event to Potluck Quest event:", error);
 
 		return false;
+	} finally {
+		const timingEnd = performance.now();
+		console.info({
+			message: "mapDiscordToPotluckEvent timing",
+			ms: timingEnd - timingStart,
+		});
 	}
 };
 
 export const getPotluckCodesByDiscordIds = async (
 	data: z.infer<typeof webApiBot.mapping.getSchema>
 ): Promise<Record<z.infer<typeof discordEventId>, z.infer<typeof code>>> => {
+	const timingStart = performance.now();
+
 	try {
 		webApiBot.mapping.getSchema.parse(data);
 
@@ -96,12 +114,20 @@ export const getPotluckCodesByDiscordIds = async (
 		);
 
 		return {};
+	} finally {
+		const timingEnd = performance.now();
+		console.info({
+			message: "getPotluckCodesByDiscordIds timing",
+			ms: timingEnd - timingStart,
+		});
 	}
 };
 
 export const updatePotluckEvent = async (
 	data: z.infer<typeof webApiBot.event.putSchema>
 ): Promise<boolean> => {
+	const timingStart = performance.now();
+
 	try {
 		webApiBot.event.putSchema.parse(data);
 
@@ -120,12 +146,20 @@ export const updatePotluckEvent = async (
 		console.error("Error updating Potluck Quest event:", error);
 
 		return false;
+	} finally {
+		const timingEnd = performance.now();
+		console.info({
+			message: "updatePotluckEvent timing",
+			ms: timingEnd - timingStart,
+		});
 	}
 };
 
 export const deletePotluckEvent = async (
 	data: z.infer<typeof webApiBot.event.deleteSchema>
 ): Promise<boolean> => {
+	const timingStart = performance.now();
+
 	try {
 		webApiBot.event.deleteSchema.parse(data);
 
@@ -149,12 +183,20 @@ export const deletePotluckEvent = async (
 		console.error("Error deleting Potluck Quest event:", error);
 
 		return false;
+	} finally {
+		const timingEnd = performance.now();
+		console.info({
+			message: "deletePotluckEvent timing",
+			ms: timingEnd - timingStart,
+		});
 	}
 };
 
 export const getSlots = async (
 	data: z.infer<typeof webApiBot.slots.getSchema>
 ): Promise<Slot[] | null> => {
+	const timingStart = performance.now();
+
 	try {
 		webApiBot.slots.getSchema.parse(data);
 
@@ -182,12 +224,20 @@ export const getSlots = async (
 		);
 
 		return null;
+	} finally {
+		const timingEnd = performance.now();
+		console.info({
+			message: "getSlots timing",
+			ms: timingEnd - timingStart,
+		});
 	}
 };
 
 export const createCommitment = async (
 	data: z.infer<typeof webApiBot.commitment.postSchema>
 ) => {
+	const timingStart = performance.now();
+
 	try {
 		webApiBot.commitment.postSchema.parse(data);
 
@@ -202,12 +252,20 @@ export const createCommitment = async (
 		console.error("Error creating commitment", JSON.stringify(err, null, 2));
 
 		return false;
+	} finally {
+		const timingEnd = performance.now();
+		console.info({
+			message: "createCommitment timing",
+			ms: timingEnd - timingStart,
+		});
 	}
 };
 
 export const checkAccountExists = async (
 	data: z.infer<typeof webApiBot.user.getSchema>
 ): Promise<boolean> => {
+	const timingStart = performance.now();
+
 	try {
 		webApiBot.user.getSchema.parse(data);
 
@@ -234,12 +292,20 @@ export const checkAccountExists = async (
 		});
 
 		return false;
+	} finally {
+		const timingEnd = performance.now();
+		console.info({
+			message: "checkAccountExists timing",
+			ms: timingEnd - timingStart,
+		});
 	}
 };
 
 export const upsertRsvp = async (
 	data: z.infer<typeof webApiBot.rsvp.postSchema>
 ) => {
+	const timingStart = performance.now();
+
 	try {
 		webApiBot.rsvp.postSchema.parse(data);
 
@@ -254,12 +320,20 @@ export const upsertRsvp = async (
 		console.error("Failed to upsert RSVP:", err, JSON.stringify(err, null, 2));
 
 		return false;
+	} finally {
+		const timingEnd = performance.now();
+		console.info({
+			message: "upsertRsvp timing",
+			ms: timingEnd - timingStart,
+		});
 	}
 };
 
 export const getUserTimezone = async (
 	data: z.infer<typeof webApiBot.timezone.getSchema>
 ): Promise<SupportedTimezone> => {
+	const timingStart = performance.now();
+
 	try {
 		webApiBot.timezone.getSchema.parse(data);
 
@@ -281,5 +355,11 @@ export const getUserTimezone = async (
 		console.error("Error getting user timezone:", err);
 
 		return DEFAULT_TIMEZONE;
+	} finally {
+		const timingEnd = performance.now();
+		console.info({
+			message: "getUserTimezone timing",
+			ms: timingEnd - timingStart,
+		});
 	}
 };
