@@ -60,14 +60,14 @@ export const listener = async (interaction: Interaction<CacheType>) => {
 
 		if (error instanceof DiscordAPIError && error.code === 10062) {
 			console.warn(
-				"Received an unknown interaction (likely from a previous session)."
+				"Received an unknown interaction (likely from a previous session or timeout)."
 			);
+		} else {
+			console.error({
+				message: "Error in chat input command listener",
+				error,
+			});
 		}
-
-		console.error({
-			message: "Error in chat input command listener",
-			error,
-		});
 
 		if (interaction.deferred) {
 			await interaction.editReply({
