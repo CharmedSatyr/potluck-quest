@@ -89,7 +89,7 @@ const AttendeeList = async ({ code }: Props) => {
 
 			{rsvpsWithDetails
 				.filter((rsvp) => rsvp.response === "no")
-				.map((rsvp, index) => {
+				.map((rsvp) => {
 					const isHost = creator.id === rsvp.user.id;
 					return (
 						<li key={rsvp.id} className="list-row bg-base-100 not-prose pl-0">

@@ -29,7 +29,7 @@ export const EventHeader = ({
 	return (
 		<>
 			<h1 className="text-primary-gradient mb-4 text-5xl">{title}</h1>
-			<div className="font-bold">
+			<div className="flex items-center font-bold">
 				Event Code: <CopyLinkButton text={code} />
 			</div>
 		</>
@@ -79,10 +79,10 @@ export default EventSkeleton;
 export const EventSkeletonFallback = () => {
 	return (
 		<div className="mb-2 flex w-full flex-col gap-4">
-			<div className="skeleton mb-[9px] h-10 w-50 sm:w-96" />
-			<div className="mb-[1px] flex items-center font-bold">
+			<div className="skeleton mb-[8px] h-10 w-50 sm:w-96" />
+			<div className="mb-[2px] flex items-center font-bold">
 				Event Code:{" "}
-				<button className="btn btn-ghost btn-sm px-2 text-lg font-bold">
+				<button className="btn btn-ghost btn text-lg font-bold">
 					<span className="text-secondary" />
 				</button>
 			</div>
