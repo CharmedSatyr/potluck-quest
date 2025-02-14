@@ -21,6 +21,7 @@ export const data = new SlashCommandBuilder()
 	.setDescription("Plan a new Potluck Quest event");
 
 export const execute = async (interaction: ChatInputCommandInteraction) => {
+	const timingStart = performance.now();
 	if (!hasDiscordCreateEventsPermissions(interaction.member)) {
 		await interaction.reply({
 			content: `<@${interaction.user.id} You don't have permission to manage events on this server.`,
@@ -109,4 +110,7 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 	modal.addComponents(...actionRows);
 
 	await interaction.showModal(modal);
+
+	const timingEnd = performance.now();
+	console.info({ message: "plan command timing", ms: timingEnd - timingStart });
 };
