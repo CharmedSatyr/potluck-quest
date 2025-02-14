@@ -53,6 +53,7 @@ export const listener = async (interaction: Interaction<CacheType>) => {
 	} catch (error) {
 		const timingEnd = performance.now();
 		console.info({
+			commandName: interaction.commandName,
 			message: "chat input command error timing",
 			ms: timingEnd - timingStart,
 		});
