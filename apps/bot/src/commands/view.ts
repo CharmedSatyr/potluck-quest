@@ -23,6 +23,8 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 	const timingStart = performance.now();
 	const events = await interaction.guild?.scheduledEvents.fetch();
 
+	interaction.deferReply({ flags: MessageFlags.Ephemeral });
+
 	const pqEvents = events?.filter(
 		(event) =>
 			(event.creatorId === config.CLIENT_ID && event.isScheduled()) ||
@@ -30,9 +32,8 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 	);
 
 	if (!pqEvents || pqEvents.size === 0 || !interaction.guild) {
-		await interaction.reply({
+		await interaction.editReply({
 			content: `No [Potluck Quest](${config.PQ_WEB_BASE_URL}) events found. Type \`/plan\` to get started!`,
-			flags: MessageFlags.Ephemeral,
 		});
 		return;
 	}
@@ -78,9 +79,8 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 	const flattened = fields.flat();
 
 	if (flattened.length > 25) {
-		await interaction.reply({
+		await interaction.editReply({
 			content: `Too many events to view using this command. Visit [Potluck Quest](${config.PQ_WEB_BASE_URL}) for more options.`,
-			flags: MessageFlags.Ephemeral,
 		});
 		return;
 	}
@@ -101,7 +101,7 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 			text: "Change your timezone at potluck.quest/settings",
 		});
 
-	await interaction.reply({
+	await interaction.editReply({
 		embeds: [embed],
 	});
 
