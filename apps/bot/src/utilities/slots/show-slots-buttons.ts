@@ -17,20 +17,22 @@ export const showSlotsButtons = async (
 	code: z.infer<typeof codeSchema>,
 	interaction: ChatInputCommandInteraction | StringSelectMenuInteraction
 ) => {
+	if (!interaction.deferred) {
+		throw new Error("Expected interaction to be deferred in showSlotsButtons");
+	}
+
 	const slots = await getSlots({ code });
 
 	if (!slots) {
-		await interaction.reply({
+		await interaction.editReply({
 			content: `Failed to retrieve slots for event code ${code}`,
-			flags: MessageFlags.Ephemeral,
 		});
 		return;
 	}
 
 	if (slots.length === 0) {
-		await interaction.reply({
+		await interaction.editReply({
 			content: `No slots have been created for [${code}](${config.PQ_WEB_BASE_URL}/event/${code}). Ask the host to create some!`,
-			flags: MessageFlags.Ephemeral,
 		});
 		return;
 	}
@@ -68,11 +70,10 @@ export const showSlotsButtons = async (
 			}
 		});
 
-	const prompt = await interaction.reply({
+	const prompt = await interaction.editReply({
 		content:
 			"Here's how many of each item is still needed. What would you like to bring?",
 		components: rows,
-		flags: MessageFlags.Ephemeral,
 	});
 
 	// Remove the buttons on click or timeout so they can't be reused.

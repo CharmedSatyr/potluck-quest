@@ -17,6 +17,12 @@ import {
 export const showEventsDropdown = async (
 	interaction: ChatInputCommandInteraction
 ): Promise<void> => {
+	if (!interaction.deferred) {
+		throw new Error(
+			"Expected interaction to be deferred in showEventsDropdown"
+		);
+	}
+
 	const events = await interaction.guild?.scheduledEvents.fetch();
 	const pqEvents = events?.filter(
 		(event) =>
@@ -25,9 +31,8 @@ export const showEventsDropdown = async (
 	);
 
 	if (!pqEvents || pqEvents.size === 0 || !interaction.guild) {
-		await interaction.reply({
+		await interaction.editReply({
 			content: `No [Potluck Quest](${config.PQ_WEB_BASE_URL}) events found. Type \`/plan\` to get started!`,
-			flags: MessageFlags.Ephemeral,
 		});
 		return;
 	}
@@ -60,10 +65,9 @@ export const showEventsDropdown = async (
 		select
 	);
 
-	const prompt = await interaction.reply({
+	const prompt = await interaction.editReply({
 		content: "Which event would you like to bring something to?",
 		components: [row],
-		flags: MessageFlags.Ephemeral,
 	});
 
 	// Remove the dropdown on click or timeout so it can't be reused.
