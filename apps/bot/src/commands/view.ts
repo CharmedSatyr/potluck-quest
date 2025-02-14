@@ -21,9 +21,10 @@ export const data = new SlashCommandBuilder()
 
 export const execute = async (interaction: ChatInputCommandInteraction) => {
 	const timingStart = performance.now();
-	const events = await interaction.guild?.scheduledEvents.fetch();
 
 	await interaction.deferReply({ flags: MessageFlags.Ephemeral });
+
+	const events = await interaction.guild?.scheduledEvents.fetch();
 
 	const pqEvents = events?.filter(
 		(event) =>
