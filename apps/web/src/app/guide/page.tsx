@@ -11,7 +11,7 @@ import { PQBot } from "~/components/branding/pq-bot-logo";
 
 const GuideContent = () => {
 	return (
-		<main className="bg-base-100/80 w-full rounded-xl p-6 md:p-10 lg:rounded-none lg:rounded-r-xl">
+		<main className="bg-base-100/80 border-base-300 w-full rounded-xl border p-6 md:p-10 lg:rounded-none lg:rounded-r-xl">
 			<h1 className="text-primary-gradient">Guide</h1>
 
 			<p>
@@ -44,7 +44,7 @@ const GuideContent = () => {
 };
 const Page = () => {
 	return (
-		<div className="border-base-300 bg-base-100/80 my-14 w-full rounded-xl border shadow-xl sm:my-24 md:w-11/12 lg:my-28">
+		<div className="my-14 w-full rounded-xl sm:my-24 md:w-11/12 lg:my-28">
 			<div className="drawer lg:drawer-open">
 				{/* Drawer toggle */}
 				<input id="guide-sidebar" type="checkbox" className="drawer-toggle" />
