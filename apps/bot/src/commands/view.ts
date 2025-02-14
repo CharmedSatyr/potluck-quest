@@ -23,7 +23,7 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 	const timingStart = performance.now();
 	const events = await interaction.guild?.scheduledEvents.fetch();
 
-	interaction.deferReply({ flags: MessageFlags.Ephemeral });
+	await interaction.deferReply({ flags: MessageFlags.Ephemeral });
 
 	const pqEvents = events?.filter(
 		(event) =>
