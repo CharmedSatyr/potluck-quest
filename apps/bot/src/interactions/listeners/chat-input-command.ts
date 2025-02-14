@@ -58,13 +58,10 @@ export const listener = async (interaction: Interaction<CacheType>) => {
 			ms: timingEnd - timingStart,
 		});
 
-		if (error instanceof DiscordAPIError) {
-			if (error.code === 10062) {
-				console.warn(
-					"Received an unknown interaction (likely from a previous session)."
-				);
-				return;
-			}
+		if (error instanceof DiscordAPIError && error.code === 10062) {
+			console.warn(
+				"Received an unknown interaction (likely from a previous session)."
+			);
 		}
 
 		console.error({
