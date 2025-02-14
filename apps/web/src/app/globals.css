@@ -9,9 +9,9 @@
 	prefersdark: true;
 	color-scheme: dark;
 
-	--color-base-100: hsl(229deg 25% 14%);
-	--color-base-200: hsl(229deg 25% 8%);
-	--color-base-300: hsl(229deg 25% 4%);
+	--color-base-100: #1b1e2d; /* hsl(229deg 25% 14%); */
+	--color-base-200: #0f111a; /* hsl(229deg 25% 8%); */
+	--color-base-300: #08090d; /* hsl(229deg 25% 4%); */
 
 	--color-primary: #ff8a50; /* Slightly muted orange for vibrancy on dark */
 	--color-secondary: #4caf50; /* Deep green with good contrast */
