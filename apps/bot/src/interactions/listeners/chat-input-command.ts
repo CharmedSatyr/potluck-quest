@@ -8,6 +8,7 @@ import api from "~/constants/web-api.js";
 import { checkAccountExists } from "~/services/web.js";
 
 export const listener = async (interaction: Interaction<CacheType>) => {
+	const timingStart = performance.now();
 	if (!interaction.isChatInputCommand()) {
 		return;
 	}
@@ -50,6 +51,12 @@ export const listener = async (interaction: Interaction<CacheType>) => {
 	try {
 		await command.execute(interaction);
 	} catch (error) {
+		const timingEnd = performance.now();
+		console.info({
+			message: "chat input command error timing",
+			ms: timingEnd - timingStart,
+		});
+
 		if (error instanceof DiscordAPIError) {
 			if (error.code === 10062) {
 				console.warn(
