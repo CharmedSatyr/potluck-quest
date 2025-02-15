@@ -79,6 +79,8 @@ export const showEventsDropdown = async (
 			filter: collectorFilter,
 			time: 60_000,
 		});
+
+		await prompt.delete();
 	} catch (err) {
 		console.error(err);
 
