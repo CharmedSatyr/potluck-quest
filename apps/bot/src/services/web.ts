@@ -8,7 +8,11 @@ import {
 } from "@potluck/utilities/validation";
 import config from "~/constants/env-config.js";
 import api from "~/constants/web-api.js";
-import { accountExistsCache, slotsCache } from "~/utilities/cache.js";
+import {
+	accountExistsCache,
+	slotsCache,
+	timezoneCache,
+} from "~/utilities/cache.js";
 
 const headers = new Headers({ "x-api-key": config.PQ_BOT_TO_WEB_API_KEY });
 
@@ -345,6 +349,12 @@ export const getUserTimezone = async (
 	try {
 		webApiBot.timezone.getSchema.parse(data);
 
+		const timezone = timezoneCache.get(data.discordUserId);
+
+		if (timezone) {
+			return timezone;
+		}
+
 		const params = new URLSearchParams(data);
 
 		const response = await fetch(api.TIMEZONE + "?" + params.toString(), {
@@ -357,6 +367,8 @@ export const getUserTimezone = async (
 		}
 
 		const result: { timezone: SupportedTimezone } = await response.json();
+
+		timezoneCache.set(data.discordUserId, result.timezone);
 
 		return result.timezone;
 	} catch (err) {
