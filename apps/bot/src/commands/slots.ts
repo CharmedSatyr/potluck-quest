@@ -24,9 +24,10 @@ export const data = new SlashCommandBuilder()
 
 export const execute = async (interaction: ChatInputCommandInteraction) => {
 	const timingStart = performance.now();
-	const input = interaction.options.getString("code");
 
 	await interaction.deferReply({ flags: MessageFlags.Ephemeral });
+
+	const input = interaction.options.getString("code");
 
 	const parsed = code.safeParse(input);
 
