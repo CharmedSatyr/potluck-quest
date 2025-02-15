@@ -77,7 +77,7 @@ export const showEventsDropdown = async (
 	try {
 		const selection = await prompt.awaitMessageComponent({
 			filter: collectorFilter,
-			time: 5_000,
+			time: 60_000,
 		});
 
 		const label = options.find(
@@ -86,7 +86,7 @@ export const showEventsDropdown = async (
 				option.data.value === selection.values[0]
 		)?.data?.label;
 
-		const selectedCode = label ? `\nSelected: \`${label}\`` : "";
+		const selectedCode = label ? `\n\`${label}\`` : "";
 
 		await interaction.editReply({
 			content: "Which event would you like to bring something to?".concat(
