@@ -71,7 +71,7 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 		);
 	}
 
-	await interaction.reply({
+	await interaction.editReply({
 		content:
 			`<@${interaction.user.id}> signed up to bring **${quantity}** of **${item}**`
 				.concat(description ? `: *${description}*.` : ".")

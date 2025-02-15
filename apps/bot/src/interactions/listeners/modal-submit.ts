@@ -7,6 +7,8 @@ export const listener = async (interaction: Interaction<CacheType>) => {
 		return;
 	}
 
+	interaction.deferReply({ flags: MessageFlags.Ephemeral });
+
 	const parsedCustomId = interaction.customId.split(DELIMITER)[0];
 
 	const handler = interaction.client.handlers.get(parsedCustomId);
@@ -21,15 +23,7 @@ export const listener = async (interaction: Interaction<CacheType>) => {
 	} catch (error) {
 		console.error({ message: "Error in modal submit listener", error });
 
-		if (interaction.replied || interaction.deferred) {
-			await interaction.followUp({
-				content: "There was an error while handling this event!",
-				flags: MessageFlags.Ephemeral,
-			});
-			return;
-		}
-
-		await interaction.reply({
+		await interaction.followUp({
 			content: "There was an error while handling this event!",
 			flags: MessageFlags.Ephemeral,
 		});

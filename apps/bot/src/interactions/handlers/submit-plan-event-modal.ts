@@ -76,9 +76,8 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 	});
 
 	if (!code) {
-		await interaction.reply({
+		await interaction.editReply({
 			content: `<@${interaction.user.id}> There was a problem creating **${title}**. Please try again.`,
-			flags: MessageFlags.Ephemeral,
 		});
 		return;
 	}
@@ -96,9 +95,8 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 	});
 
 	if (!discordEvent) {
-		await interaction.reply({
+		await interaction.editReply({
 			content: `<@${interaction.user.id}> There was a problem creating **${title}**. Please try again.`,
-			flags: MessageFlags.Ephemeral,
 		});
 		return;
 	}
@@ -149,7 +147,8 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 		interestedButton
 	);
 
-	await interaction.reply({
+	await interaction.deleteReply(); // Remove the ephemeral message, allowing the follow up to be public.
+	await interaction.followUp({
 		content: `<@${interaction.user.id}> is planning a new event with [Potluck Quest](${url}). Type \`/slots ${code}\` to sign up to bring something.`,
 		embeds: [eventEmbed],
 		components: [row],
