@@ -6,6 +6,8 @@ export const listener = async (interaction: Interaction<CacheType>) => {
 		return;
 	}
 
+	await interaction.deferReply({ flags: MessageFlags.Ephemeral });
+
 	const handler = interaction.client.handlers.get(interaction.customId);
 
 	if (!handler) {
@@ -20,15 +22,7 @@ export const listener = async (interaction: Interaction<CacheType>) => {
 	} catch (error) {
 		console.error({ message: "Error in string select menu listener", error });
 
-		if (interaction.replied || interaction.deferred) {
-			await interaction.followUp({
-				content: "There was an error while handling this event!",
-				flags: MessageFlags.Ephemeral,
-			});
-			return;
-		}
-
-		await interaction.reply({
+		await interaction.followUp({
 			content: "There was an error while handling this event!",
 			flags: MessageFlags.Ephemeral,
 		});
