@@ -75,12 +75,25 @@ export const showEventsDropdown = async (
 		i.isStringSelectMenu() && i.customId === CustomId.SLOTS_SELECT_EVENT;
 
 	try {
-		await prompt.awaitMessageComponent({
+		const selection = await prompt.awaitMessageComponent({
 			filter: collectorFilter,
-			time: 60_000,
+			time: 5_000,
 		});
 
-		await interaction.deleteReply();
+		const label = options.find(
+			(option) =>
+				selection.isStringSelectMenu() &&
+				option.data.value === selection.values[0]
+		)?.data?.label;
+
+		const selectedCode = label ? `\nSelected: \`${label}\`` : "";
+
+		await interaction.editReply({
+			content: "Which event would you like to bring something to?".concat(
+				selectedCode
+			),
+			components: [],
+		});
 	} catch (err) {
 		await interaction.editReply({
 			content: "Confirmation not received within 1 minute. Please try again.",
