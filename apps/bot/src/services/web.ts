@@ -8,7 +8,7 @@ import {
 } from "@potluck/utilities/validation";
 import config from "~/constants/env-config.js";
 import api from "~/constants/web-api.js";
-import { slotsCache } from "~/utilities/cache.js";
+import { accountExistsCache, slotsCache } from "~/utilities/cache.js";
 
 const headers = new Headers({ "x-api-key": config.PQ_BOT_TO_WEB_API_KEY });
 
@@ -269,6 +269,12 @@ export const checkAccountExists = async (
 	try {
 		webApiBot.user.getSchema.parse(data);
 
+		const accountExists = accountExistsCache.get(data.providerAccountId);
+
+		if (accountExists) {
+			return true;
+		}
+
 		const params = new URLSearchParams({
 			providerAccountId: data.providerAccountId,
 		});
@@ -283,6 +289,8 @@ export const checkAccountExists = async (
 		}
 
 		const result: { exists: boolean } = await response.json();
+
+		accountExistsCache.set(data.providerAccountId, result.exists);
 
 		return result.exists;
 	} catch (err) {
