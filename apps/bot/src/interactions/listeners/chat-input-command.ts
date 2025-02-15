@@ -14,11 +14,7 @@ export const listener = async (interaction: Interaction<CacheType>) => {
 	}
 
 	if (!interaction.guild?.id) {
-		await interaction.reply({
-			content: `<@${interaction.user.id}> Please ensure you're creating the event on a server with **Potluck Quest Bot** installed and try again.`,
-			flags: MessageFlags.Ephemeral,
-		});
-		return;
+		throw new Error("Interaction lacks guild ID");
 	}
 
 	if (!interaction.inGuild()) {
@@ -62,19 +58,12 @@ export const listener = async (interaction: Interaction<CacheType>) => {
 		if (!interaction.isRepliable()) {
 			console.warn({
 				message:
-					"Chat input command interaction expired before error reply could be send.",
+					"Chat input command interaction expired before error reply could be sent.",
 			});
 			return;
 		}
 
-		if (interaction.deferred) {
-			await interaction.editReply({
-				content: "There was an error while executing this command!",
-			});
-			return;
-		}
-
-		if (interaction.replied) {
+		if (interaction.replied || interaction.deferred) {
 			await interaction.followUp({
 				content: "There was an error while executing this command!",
 				flags: MessageFlags.Ephemeral,
