@@ -31,8 +31,9 @@ export const showSlotsButtons = async (
 	}
 
 	if (slots.length === 0) {
+		// Additional space intentional to prevent broken preview links.
 		await interaction.editReply({
-			content: `No slots have been created for [${code}](${config.PQ_WEB_BASE_URL}/event/${code}). Ask the host to create some!`,
+			content: `No slots have been created for [${code}](${config.PQ_WEB_BASE_URL}/event/${code} ). Ask the host to create some!`,
 		});
 		return;
 	}
