@@ -1,9 +1,4 @@
-import {
-	CacheType,
-	DiscordAPIError,
-	Interaction,
-	MessageFlags,
-} from "discord.js";
+import { CacheType, Interaction, MessageFlags } from "discord.js";
 import api from "~/constants/web-api.js";
 import { checkAccountExists } from "~/services/web.js";
 
@@ -18,18 +13,15 @@ export const listener = async (interaction: Interaction<CacheType>) => {
 	}
 
 	if (!interaction.inGuild()) {
-		await interaction.reply({
-			content: `<@${interaction.user.id}> Please ensure you're a member of the server and try again.`,
-			flags: MessageFlags.Ephemeral,
-		});
-		return;
+		throw new Error("User is not in guild");
 	}
 
 	const command = interaction.client.commands.get(interaction.commandName);
 
 	if (!command) {
-		console.error(`No command matching ${interaction.commandName} was found.`);
-		return;
+		throw new Error(
+			`No command matching ${interaction.commandName} was found.`
+		);
 	}
 
 	const hasPotluckAccount = await checkAccountExists({
@@ -50,7 +42,7 @@ export const listener = async (interaction: Interaction<CacheType>) => {
 		const timingEnd = performance.now();
 		console.error({
 			commandName: interaction.commandName,
-			error,
+			error: error instanceof Error ? error.stack : String(error),
 			message: "Error in chat input command listener",
 			timingMs: timingEnd - timingStart,
 		});
