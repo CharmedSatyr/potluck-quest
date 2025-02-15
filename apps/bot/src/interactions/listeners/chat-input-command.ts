@@ -1,4 +1,9 @@
-import { CacheType, Interaction, MessageFlags } from "discord.js";
+import {
+	CacheType,
+	DiscordAPIError,
+	Interaction,
+	MessageFlags,
+} from "discord.js";
 import api from "~/constants/web-api.js";
 import { checkAccountExists } from "~/services/web.js";
 
@@ -47,7 +52,10 @@ export const listener = async (interaction: Interaction<CacheType>) => {
 			timingMs: timingEnd - timingStart,
 		});
 
-		if (!interaction.isRepliable()) {
+		if (
+			!interaction.isRepliable() ||
+			(error instanceof DiscordAPIError && error.code === 10062)
+		) {
 			console.warn({
 				message:
 					"Chat input command interaction expired before error reply could be sent.",
