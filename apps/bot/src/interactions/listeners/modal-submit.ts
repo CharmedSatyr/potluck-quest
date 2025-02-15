@@ -7,7 +7,7 @@ export const listener = async (interaction: Interaction<CacheType>) => {
 		return;
 	}
 
-	interaction.deferReply({ flags: MessageFlags.Ephemeral });
+	await interaction.deferReply({ flags: MessageFlags.Ephemeral });
 
 	const parsedCustomId = interaction.customId.split(DELIMITER)[0];
 

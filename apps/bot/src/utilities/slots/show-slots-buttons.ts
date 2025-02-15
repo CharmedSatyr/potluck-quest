@@ -87,9 +87,9 @@ export const showSlotsButtons = async (
 			filter: collectorFilter,
 			time: 60_000,
 		});
-	} catch (err) {
-		console.error(err);
 
+		await interaction.deleteReply();
+	} catch (err) {
 		await interaction.editReply({
 			content: "Confirmation not received within 1 minute. Please try again.",
 			components: [],

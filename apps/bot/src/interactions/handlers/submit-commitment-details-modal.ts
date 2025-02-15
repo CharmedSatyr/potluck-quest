@@ -51,9 +51,8 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 	);
 
 	if (quantity < 1 || quantity > needed) {
-		await interaction.reply({
+		await interaction.editReply({
 			content: `<@${interaction.user.id}> Must enter a number from 1 to ${needed}. Please try again.`,
-			flags: MessageFlags.Ephemeral,
 		});
 		return;
 	}
@@ -71,7 +70,8 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 		);
 	}
 
-	await interaction.editReply({
+	await interaction.deleteReply();
+	await interaction.followUp({
 		content:
 			`<@${interaction.user.id}> signed up to bring **${quantity}** of **${item}**`
 				.concat(description ? `: *${description}*.` : ".")
