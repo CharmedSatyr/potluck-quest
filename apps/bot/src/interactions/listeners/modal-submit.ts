@@ -7,7 +7,7 @@ export const listener = async (interaction: Interaction<CacheType>) => {
 		return;
 	}
 
-	await interaction.deferReply({ flags: MessageFlags.Ephemeral });
+	await interaction.deferReply();
 
 	const parsedCustomId = interaction.customId.split(DELIMITER)[0];
 
@@ -23,8 +23,14 @@ export const listener = async (interaction: Interaction<CacheType>) => {
 	} catch (error) {
 		console.error({ message: "Error in modal submit listener", error });
 
+		const thrownMessage = error instanceof Error ? error.message : "";
+
+		await interaction.deleteReply();
+
 		await interaction.followUp({
-			content: "There was an error while handling this event!",
+			content: thrownMessage
+				? thrownMessage
+				: `<@${interaction.user.id}> There was an error while handling this event. Please try again.`,
 			flags: MessageFlags.Ephemeral,
 		});
 	}

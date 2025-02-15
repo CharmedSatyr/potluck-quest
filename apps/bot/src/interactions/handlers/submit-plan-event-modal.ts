@@ -26,7 +26,9 @@ export const data = { customId: CustomId.PLAN_EVENT_MODAL };
 
 export const execute = async (interaction: ModalSubmitInteraction) => {
 	if (!interaction.guild?.id) {
-		throw new Error("Missing guild ID in submit commitment details modal");
+		console.error("Missing guild ID in submit commitment details modal");
+
+		throw new Error();
 	}
 
 	const title = interaction.fields.getTextInputValue(CustomId.PLAN_EVENT_TITLE);
@@ -44,11 +46,9 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 	);
 
 	if (!imageUrlSchema.safeParse(imageUrl).success) {
-		await interaction.reply({
-			content: `<@${interaction.user.id}> There was a problem creating **${title}**. Please make sure your image URL is valid, and try again.`,
-			flags: MessageFlags.Ephemeral,
-		});
-		return;
+		throw new Error(
+			`<@${interaction.user.id}> There was a problem creating **${title}**. Please make sure your image URL is valid, and try again.`
+		);
 	}
 
 	const timezone = await getUserTimezone({
@@ -57,11 +57,9 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 	const parsedDateTime = parseDateTimeInputForServices(dateTime, timezone);
 
 	if (!parsedDateTime) {
-		await interaction.reply({
-			content: `<@${interaction.user.id}> There was a problem creating **${title}**. Please format the date and time clearly and try again.`,
-			flags: MessageFlags.Ephemeral,
-		});
-		return;
+		throw new Error(
+			`<@${interaction.user.id}> There was a problem creating **${title}**. Please format the date and time clearly and try again.`
+		);
 	}
 
 	const { startDate, startTime, startUtcMs, endUtcMs } = parsedDateTime;
@@ -76,10 +74,7 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 	});
 
 	if (!code) {
-		await interaction.editReply({
-			content: `<@${interaction.user.id}> There was a problem creating **${title}**. Please try again.`,
-		});
-		return;
+		throw new Error();
 	}
 
 	const augmentedDescription = addDescriptionBlurb(description, code);
@@ -95,10 +90,7 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 	});
 
 	if (!discordEvent) {
-		await interaction.editReply({
-			content: `<@${interaction.user.id}> There was a problem creating **${title}**. Please try again.`,
-		});
-		return;
+		throw new Error();
 	}
 
 	const mapped = await mapDiscordToPotluckEvent({
@@ -108,9 +100,13 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 	});
 
 	if (!mapped) {
-		throw new Error(
-			`Failed to map Discord event ${discordEvent.id} to Potluck Quest event ${code}`
-		);
+		console.error({
+			message: "Failed to map Discord event to PQ event",
+			code,
+			discordEventId: discordEvent.id,
+		});
+
+		throw new Error();
 	}
 
 	const url = config.PQ_WEB_BASE_URL.concat("/event/").concat(code);
@@ -147,9 +143,8 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 		interestedButton
 	);
 
-	await interaction.deleteReply(); // Remove the ephemeral message, allowing the follow up to be public.
 	await interaction.followUp({
-		content: `<@${interaction.user.id}> is planning a new event with [Potluck Quest](${url}). Type \`/slots ${code}\` to sign up to bring something.`,
+		content: `<@${interaction.user.id}> is planning a new event with [Potluck Quest](${url}). Type \`/slots ${code}\` to bring something.`,
 		embeds: [eventEmbed],
 		components: [row],
 	});

@@ -1,4 +1,4 @@
-import { MessageFlags, ModalSubmitInteraction } from "discord.js";
+import { ModalSubmitInteraction } from "discord.js";
 import { CustomId } from "~/constants/custom-id.js";
 import { DELIMITER } from "~/constants/delimiter.js";
 import config from "~/constants/env-config.js";
@@ -9,7 +9,11 @@ export const data = { customId: CustomId.COMMITMENT_DETAILS_MODAL };
 
 export const execute = async (interaction: ModalSubmitInteraction) => {
 	if (!interaction.guild?.id) {
-		throw new Error("Missing guild ID in submit commitment details modal");
+		console.error({
+			message: "Missing guild ID in submit commitment details modal",
+		});
+
+		throw new Error();
 	}
 
 	const [, slotId] = interaction.customId.split(DELIMITER);
@@ -17,7 +21,11 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 	const cachedData = slotsCache.get<{ code: string; slot: Slot }>(slotId);
 
 	if (!cachedData) {
-		throw new Error("No cached data found in submit commitment details modal.");
+		console.error({
+			message: "No cached data found in submit commitment details modal.",
+		});
+
+		throw new Error();
 	}
 
 	const { code, slot } = cachedData;
@@ -51,10 +59,9 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 	);
 
 	if (quantity < 1 || quantity > needed) {
-		await interaction.editReply({
-			content: `<@${interaction.user.id}> Must enter a number from 1 to ${needed}. Please try again.`,
-		});
-		return;
+		throw new Error(
+			`<@${interaction.user.id}> Must enter a number from 1 to ${needed}. Please try again.`
+		);
 	}
 
 	const result = await createCommitment({
@@ -65,13 +72,15 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 	});
 
 	if (!result) {
-		throw new Error(
-			"Failed to create commitment in submit commitment details modal."
-		);
+		console.log({
+			message:
+				"Failed to create commitment in submit commitment details modal.",
+		});
+
+		throw new Error();
 	}
 
-	await interaction.deleteReply();
-	await interaction.followUp({
+	await interaction.editReply({
 		content:
 			`<@${interaction.user.id}> signed up to bring **${quantity}** of **${item}**`
 				.concat(description ? `: *${description}*.` : ".")
