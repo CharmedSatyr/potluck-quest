@@ -21,7 +21,11 @@ export const listener = async (interaction: Interaction<CacheType>) => {
 	try {
 		await (handler as InteractionHandler).execute(interaction);
 	} catch (error) {
-		console.error({ message: "Error in modal submit listener", error });
+		console.error({
+			customId: parsedCustomId,
+			message: "Error in modal submit listener",
+			error: error instanceof Error ? error.stack : String(error),
+		});
 
 		const thrownMessage = error instanceof Error ? error.message : "";
 
