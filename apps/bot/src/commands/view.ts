@@ -81,7 +81,8 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 
 	if (flattened.length > 25) {
 		await interaction.editReply({
-			content: `Too many events to view using this command. Visit [Potluck Quest](${config.PQ_WEB_BASE_URL}) for more options.`,
+			content:
+				"Too many events to view using this command. Check the scheduled events for this server to see a full list.",
 		});
 		return;
 	}
