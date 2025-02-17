@@ -19,6 +19,8 @@ export const listener = async (interaction: Interaction<CacheType>) => {
 		throw new Error("User is not in guild");
 	}
 
+	// Cannot defer replies here because showModal cannot be deferred.
+
 	const command = interaction.client.commands.get(interaction.commandName);
 
 	if (!command) {
