@@ -5,10 +5,7 @@ export const slotsCache = new NodeCache({
 	checkperiod: 1200, // Clear it every 20 minutes
 });
 
-export const accountExistsCache = new NodeCache({
-	stdTTL: 60 * 60 * 24 * 7, // Keep account exists data for a week
-	checkperiod: 60 * 60 * 24, // Clear it out every day
-});
+export const accountExistsCache = new NodeCache(); // Retain account exists data indefinitely
 
 /** Stores <DiscordUserId, SupportedTimezone> */
 export const timezoneCache = new NodeCache({
