@@ -3,11 +3,11 @@
 import { eq } from "drizzle-orm";
 import { z } from "zod";
 import findEvent from "~/actions/event/find-event";
-import { schema } from "~/actions/rsvp/find-interested-count-by-event.schema";
+import { schema } from "~/actions/rsvp/find-discord-interested-count-by-event.schema";
 import db from "~/db/connection";
 import { anonymousRsvps } from "~/db/schema/anonymous-rsvps";
 
-const findInterestedCountByEvent = async (
+const findDiscordInterestedCountByEvent = async (
 	data: z.infer<typeof schema>
 ): Promise<AnonymousRsvps["discordInterestedCount"]> => {
 	try {
@@ -26,6 +26,10 @@ const findInterestedCountByEvent = async (
 			.from(anonymousRsvps)
 			.where(eq(anonymousRsvps.eventId, event.id));
 
+		if (!result) {
+			return 0;
+		}
+
 		return result.discordInterestedCount;
 	} catch (err) {
 		console.error(err);
@@ -34,4 +38,4 @@ const findInterestedCountByEvent = async (
 	}
 };
 
-export default findInterestedCountByEvent;
+export default findDiscordInterestedCountByEvent;
