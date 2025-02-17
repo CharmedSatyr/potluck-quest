@@ -1,6 +1,7 @@
 import { CacheType, Interaction, MessageFlags } from "discord.js";
 import type { InteractionHandler } from "~/@types/handler.d.ts";
 import { DELIMITER } from "~/constants/delimiter.js";
+import { checkAccountExists } from "~/services/web.js";
 
 export const listener = async (interaction: Interaction<CacheType>) => {
 	if (!interaction.isModalSubmit()) {
@@ -9,13 +10,21 @@ export const listener = async (interaction: Interaction<CacheType>) => {
 
 	await interaction.deferReply();
 
+	if (
+		!(await checkAccountExists({
+			providerAccountId: interaction.user.id,
+		}))
+	) {
+		throw new Error();
+	}
+
 	const parsedCustomId = interaction.customId.split(DELIMITER)[0];
 
 	const handler = interaction.client.handlers.get(parsedCustomId);
 
 	if (!handler) {
 		console.error(`No modal customId matching ${parsedCustomId} was found.`);
-		return;
+		throw new Error();
 	}
 
 	try {
