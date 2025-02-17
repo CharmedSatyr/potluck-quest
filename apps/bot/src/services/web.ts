@@ -324,6 +324,11 @@ export const checkAccountExists = async (
 			message: "checkAccountExists timing",
 			ms: timingEnd - timingStart,
 		});
+		if (timingEnd - timingStart > timeoutMs) {
+			console.warn({
+				message: `checkAccountExists timed out after ${timeoutMs}ms`,
+			});
+		}
 	}
 };
 
