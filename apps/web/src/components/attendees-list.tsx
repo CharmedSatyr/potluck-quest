@@ -1,4 +1,6 @@
+import DiscordLogo from "./branding/discord-blurple-logo";
 import { CheckBadgeIcon } from "@heroicons/react/24/outline";
+import findDiscordInterestedCountByEvent from "~/actions/rsvp/find-discord-interested-count-by-event";
 import findRsvpsWithDetails from "~/actions/rsvp/find-rsvps-with-details";
 import findUserByEventCode from "~/actions/user/find-user-by-event-code";
 import UserAvatar from "~/components/user-avatar";
@@ -8,11 +10,14 @@ type Props = {
 };
 
 const AttendeeList = async ({ code }: Props) => {
-	const [creator] = await findUserByEventCode({ code });
+	const [[creator], rsvpsWithDetails, discordInterestedCount] =
+		await Promise.all([
+			findUserByEventCode({ code }),
+			findRsvpsWithDetails({ code }),
+			findDiscordInterestedCountByEvent({ code }),
+		]);
 
-	const rsvpsWithDetails = await findRsvpsWithDetails({ code });
-
-	if (rsvpsWithDetails.length === 0) {
+	if (rsvpsWithDetails.length === 0 && discordInterestedCount === 0) {
 		return <div>No attendees yet. RSVP to join the party!</div>;
 	}
 
@@ -37,6 +42,8 @@ const AttendeeList = async ({ code }: Props) => {
 
 		return -1;
 	});
+
+	const discordOnlyUsers = discordInterestedCount - rsvpsWithDetails.length;
 
 	return (
 		<ul className="list bg-base-100 rounded-box border-base-300 border shadow">
@@ -134,6 +141,11 @@ const AttendeeList = async ({ code }: Props) => {
 						</li>
 					);
 				})}
+			{discordOnlyUsers > 0 ? (
+				<li className="list-row bg-base-100 not-prose inline pl-0">
+					+{discordOnlyUsers} more users on <DiscordLogo />
+				</li>
+			) : null}
 		</ul>
 	);
 };

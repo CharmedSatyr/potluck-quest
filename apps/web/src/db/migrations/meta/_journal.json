@@ -57,6 +57,20 @@
       "when": 1737489665269,
       "tag": "0007_marvelous_caretaker",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1739827952932,
+      "tag": "0008_slow_the_spike",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1739829938375,
+      "tag": "0009_bright_sumo",
+      "breakpoints": true
     }
   ]
 }

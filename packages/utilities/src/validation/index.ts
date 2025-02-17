@@ -5,6 +5,7 @@ import { code } from "~/validation/common/code.js";
 import { description } from "~/validation/common/description.js";
 import { discordEventId } from "~/validation/common/discord-event-id.js";
 import { discordGuildId } from "~/validation/common/discord-guild-id.js";
+import { discordInterestedCount } from "~/validation/common/discord-interested-count.js";
 import { discordUserId } from "~/validation/common/discord-user-id.js";
 import { endUtcMs } from "~/validation/common/end-utc-ms.js";
 import { hosts } from "~/validation/common/hosts.js";
@@ -33,6 +34,7 @@ export {
 	endUtcMs,
 	hosts,
 	imageUrl,
+	discordInterestedCount,
 	location,
 	message,
 	response,

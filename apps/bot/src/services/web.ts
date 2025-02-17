@@ -337,7 +337,7 @@ export const checkAccountExists = async (
 
 export const upsertRsvp = async (
 	data: z.infer<typeof webApiBot.rsvp.postSchema>
-) => {
+): Promise<boolean> => {
 	const timingStart = performance.now();
 
 	try {
@@ -349,9 +349,14 @@ export const upsertRsvp = async (
 			body: JSON.stringify(data),
 		});
 
+		console.info({ message: (await response.json()).message });
+
 		return response.ok;
-	} catch (err) {
-		console.error("Failed to upsert RSVP:", err, JSON.stringify(err, null, 2));
+	} catch (error) {
+		console.error({
+			message: "Failed to upsert RSVP:",
+			error: error instanceof Error ? error.stack : String(error),
+		});
 
 		return false;
 	} finally {

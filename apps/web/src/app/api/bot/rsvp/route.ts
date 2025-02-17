@@ -1,6 +1,7 @@
 import { webApiBot } from "@potluck/utilities/validation";
 import { NextRequest, NextResponse } from "next/server";
 import findEventCodeByDiscordEventId from "~/actions/discord-event-mapping/find-event-code-by-discord-event-id";
+import upsertDiscordInterestedCount from "~/actions/rsvp/upsert-anonymous-rsvps";
 import upsertRsvp from "~/actions/rsvp/upsert-rsvp";
 import findUserIdByProviderAccountId from "~/actions/user/find-user-id-by-provider-account-id";
 
@@ -19,30 +20,22 @@ export const POST = async (request: NextRequest) => {
 		);
 	}
 
-	const { discordEventId, discordUserId, message, response } = parsed.data;
-
-	const [createdBy] = await findUserIdByProviderAccountId({
-		providerAccountId: discordUserId,
-	});
-
-	if (!createdBy) {
-		// TODO: This only handles if the guest has a PQ account! They should still be accounted for regardless.
-		// Accept total number of guests from bot and keep that updated.
-		return NextResponse.json(
-			{
-				message: "User account not found",
-			},
-			{ status: 401 }
-		);
-	}
-
-	const [mapping] = await findEventCodeByDiscordEventId({
+	const {
 		discordEventId,
-	});
+		discordInterestedCount,
+		discordUserId,
+		message,
+		response,
+	} = parsed.data;
+
+	const [[createdBy], [mapping]] = await Promise.all([
+		findUserIdByProviderAccountId({
+			providerAccountId: discordUserId,
+		}),
+		findEventCodeByDiscordEventId({ discordEventId }),
+	]);
 
 	if (!mapping) {
-		// TODO: This only handles if the guest has a PQ account! They should still be accounted for regardless.
-		// Accept total number of guests from bot and keep that updated?
 		return NextResponse.json(
 			{
 				message: "Code not found for provided event ID",
@@ -52,22 +45,32 @@ export const POST = async (request: NextRequest) => {
 		);
 	}
 
-	const result = await upsertRsvp({
+	// Nothing to show the user on failure.
+	await upsertDiscordInterestedCount({
 		code: mapping.code,
-		createdBy: createdBy.id,
-		message,
-		response,
+		discordInterestedCount,
 	});
 
-	if (!result?.success) {
-		return NextResponse.json(
-			{
-				message: "Failed to create commitment",
-				success: false,
-			},
-			{ status: 500 }
-		);
+	if (createdBy) {
+		const result = await upsertRsvp({
+			code: mapping.code,
+			createdBy: createdBy.id,
+			message,
+			response,
+		});
+
+		if (!result?.success) {
+			return NextResponse.json(
+				{ message: "Failed to create RSVP" },
+				{ status: 500 }
+			);
+		}
 	}
 
-	return NextResponse.json(null, { status: 200 });
+	return NextResponse.json(
+		{
+			message: createdBy ? "Created RSVP" : "Updated Discord interested count",
+		},
+		{ status: 200 }
+	);
 };
