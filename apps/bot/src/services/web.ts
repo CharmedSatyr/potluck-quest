@@ -310,8 +310,6 @@ export const checkAccountExists = async (
 			),
 		]);
 
-		responsePromise.catch(() => {}); // Handle error after Promise.race, not immediately.
-
 		return result;
 	} catch (err) {
 		console.error({
