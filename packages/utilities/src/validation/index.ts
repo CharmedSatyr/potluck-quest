@@ -9,6 +9,7 @@ import { discordUserId } from "~/validation/common/discord-user-id.js";
 import { endUtcMs } from "~/validation/common/end-utc-ms.js";
 import { hosts } from "~/validation/common/hosts.js";
 import { imageUrl } from "~/validation/common/image-url.js";
+import { interestedCount } from "~/validation/common/interested-count.js";
 import { location } from "~/validation/common/location.js";
 import { quantity } from "~/validation/common/quantity.js";
 import { response } from "~/validation/common/response.js";
@@ -33,6 +34,7 @@ export {
 	endUtcMs,
 	hosts,
 	imageUrl,
+	interestedCount,
 	location,
 	message,
 	response,
