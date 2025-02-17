@@ -4,43 +4,34 @@ import { z } from "zod";
 import findEvent from "~/actions/event/find-event";
 import { schema } from "~/actions/rsvp/upsert-anonymous-rsvps.schema";
 import db from "~/db/connection";
-import { anonymousRsvp } from "~/db/schema/anonymous-rsvps";
+import { anonymousRsvps } from "~/db/schema/anonymous-rsvps";
 
-const upsertAnonymousRsvps = async (
+const upsertDiscordInterestedCount = async (
 	data: z.infer<typeof schema>
-): Promise<{ success: boolean }> => {
+): Promise<void> => {
 	try {
 		schema.parse(data);
 
 		const [event] = await findEvent({ code: data.code });
 
 		if (!event) {
-			return { success: false };
+			return;
 		}
 
-		const [result] = await db
-			.insert(anonymousRsvp)
+		await db
+			.insert(anonymousRsvps)
 			.values({
 				eventId: event.id,
 			})
 			.onConflictDoUpdate({
-				target: [anonymousRsvp.eventId],
+				target: [anonymousRsvps.eventId],
 				set: {
-					interestedCount: data.interestedCount,
+					discordInterestedCount: data.discordInterestedCount,
 				},
-			})
-			.returning({ id: anonymousRsvp.id });
-
-		if (result.id) {
-			return { success: true };
-		}
-
-		return { success: false };
+			});
 	} catch (err) {
 		console.error(err);
-
-		return { success: false };
 	}
 };
 
-export default upsertAnonymousRsvps;
+export default upsertDiscordInterestedCount;

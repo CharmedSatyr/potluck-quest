@@ -27,13 +27,13 @@ export const execute = async (
 		return;
 	}
 
-	const interestedCount =
+	const discordInterestedCount =
 		event.userCount ?? (await event.fetch()).userCount ?? 0;
 
 	const result = await upsertRsvp({
 		discordEventId: event.id,
+		discordInterestedCount,
 		discordUserId: user.id,
-		interestedCount,
 		message: "",
 		response: "yes",
 	});

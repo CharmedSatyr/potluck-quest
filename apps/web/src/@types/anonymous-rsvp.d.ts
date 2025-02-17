@@ -1,5 +1,5 @@
-import { anonymousRsvp } from "~/db/schema/anonymous-rsvps";
+import { anonymousRsvps } from "~/db/schema/anonymous-rsvps";
 
 declare global {
-	type AnonymousRsvp = typeof anonymousRsvp.$inferSelect;
+	type AnonymousRsvps = typeof anonymousRsvps.$inferSelect;
 }

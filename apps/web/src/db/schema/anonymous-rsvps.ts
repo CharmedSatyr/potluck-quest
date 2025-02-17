@@ -1,7 +1,7 @@
 import { uuid, timestamp, pgTable, integer } from "drizzle-orm/pg-core";
 import { event } from "~/db/schema/event";
 
-export const anonymousRsvp = pgTable("anonymous_rsvp", {
+export const anonymousRsvps = pgTable("anonymous_rsvps", {
 	createdAt: timestamp("created_at", { withTimezone: true })
 		.notNull()
 		.defaultNow(),
@@ -9,7 +9,9 @@ export const anonymousRsvp = pgTable("anonymous_rsvp", {
 		.references(() => event.id, { onDelete: "cascade" })
 		.notNull(),
 	id: uuid("id").primaryKey().notNull().defaultRandom(),
-	interestedCount: integer().default(0).notNull(),
+	discordInterestedCount: integer("discord_interested_count")
+		.default(0)
+		.notNull(),
 	updatedAt: timestamp("updated_at", { withTimezone: true })
 		.notNull()
 		.defaultNow(),

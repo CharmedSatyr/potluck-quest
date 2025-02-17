@@ -5,11 +5,11 @@ import { code } from "~/validation/common/code.js";
 import { description } from "~/validation/common/description.js";
 import { discordEventId } from "~/validation/common/discord-event-id.js";
 import { discordGuildId } from "~/validation/common/discord-guild-id.js";
+import { discordInterestedCount } from "~/validation/common/discord-interested-count.js";
 import { discordUserId } from "~/validation/common/discord-user-id.js";
 import { endUtcMs } from "~/validation/common/end-utc-ms.js";
 import { hosts } from "~/validation/common/hosts.js";
 import { imageUrl } from "~/validation/common/image-url.js";
-import { interestedCount } from "~/validation/common/interested-count.js";
 import { location } from "~/validation/common/location.js";
 import { quantity } from "~/validation/common/quantity.js";
 import { response } from "~/validation/common/response.js";
@@ -34,7 +34,7 @@ export {
 	endUtcMs,
 	hosts,
 	imageUrl,
-	interestedCount,
+	discordInterestedCount,
 	location,
 	message,
 	response,
