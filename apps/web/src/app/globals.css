@@ -12,16 +12,25 @@
 	--color-base-100: #1b1e2d; /* hsl(229deg 25% 14%); */
 	--color-base-200: #0f111a; /* hsl(229deg 25% 8%); */
 	--color-base-300: #08090d; /* hsl(229deg 25% 4%); */
+	--color-base-content: oklch(97.807% 0.029 256.847);
 
 	--color-primary: #ff8a50; /* Slightly muted orange for vibrancy on dark */
+	--color-primary-content: oklch(96% 0.018 272.314);
 	--color-secondary: #4caf50; /* Deep green with good contrast */
+	--color-secondary-content: oklch(94% 0.028 342.258);
 	--color-accent: #ffb74d; /* Rich golden-yellow for highlights */
+	--color-accent-content: oklch(38% 0.063 188.416);
 	--color-neutral: #3e2723; /* Dark brown for a warm neutral base */
+	--color-neutral-content: oklch(92% 0.004 286.32);
 
 	--color-info: #1e88e5; /* Deep blue for informational tones */
+	--color-info-content: oklch(29% 0.066 243.157);
 	--color-success: #66bb6a; /* Calm green for success indicators */
+	--color-success-content: oklch(37% 0.077 168.94);
 	--color-warning: #ffb300; /* Bold amber for warnings */
+	--color-warning-content: oklch(41% 0.112 45.904);
 	--color-error: #d32f2f; /* Deep red for errors */
+	--color-error-content: oklch(27% 0.105 12.094);
 }
 
 @theme {
