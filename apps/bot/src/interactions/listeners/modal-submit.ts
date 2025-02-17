@@ -1,6 +1,7 @@
 import { CacheType, Interaction, MessageFlags } from "discord.js";
 import type { InteractionHandler } from "~/@types/handler.d.ts";
 import { DELIMITER } from "~/constants/delimiter.js";
+import webApi from "~/constants/web-api.js";
 import { checkAccountExists } from "~/services/web.js";
 
 export const listener = async (interaction: Interaction<CacheType>) => {
@@ -15,7 +16,9 @@ export const listener = async (interaction: Interaction<CacheType>) => {
 			providerAccountId: interaction.user.id,
 		}))
 	) {
-		throw new Error();
+		throw new Error(
+			`<@${interaction.user.id}>, your journey awaits! [Sign in to Potluck Quest](${webApi.AUTH_SETUP} ) to create an account, and try again.`
+		);
 	}
 
 	const parsedCustomId = interaction.customId.split(DELIMITER)[0];
