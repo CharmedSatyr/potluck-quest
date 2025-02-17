@@ -7,7 +7,7 @@ import {
 	z,
 } from "@potluck/utilities/validation";
 import config from "~/constants/env-config.js";
-import api from "~/constants/web-api.js";
+import webApi from "~/constants/web-api.js";
 import {
 	accountExistsCache,
 	slotsCache,
@@ -24,7 +24,7 @@ export const createPotluckQuestEvent = async (
 	try {
 		webApiBot.event.postSchema.parse(data);
 
-		const response = await fetch(api.EVENT, {
+		const response = await fetch(webApi.EVENT, {
 			headers,
 			method: "POST",
 			body: JSON.stringify(data),
@@ -64,7 +64,7 @@ export const mapDiscordToPotluckEvent = async (
 	try {
 		webApiBot.mapping.postSchema.parse(data);
 
-		const response = await fetch(api.MAPPING, {
+		const response = await fetch(webApi.MAPPING, {
 			headers,
 			method: "POST",
 			body: JSON.stringify(data),
@@ -96,7 +96,7 @@ export const getPotluckCodesByDiscordIds = async (
 			discordEventIds: data.discordEventIds.join(","),
 		});
 
-		const response = await fetch(api.MAPPING + "?" + params.toString(), {
+		const response = await fetch(webApi.MAPPING + "?" + params.toString(), {
 			headers,
 		});
 
@@ -135,7 +135,7 @@ export const updatePotluckEvent = async (
 	try {
 		webApiBot.event.putSchema.parse(data);
 
-		const response = await fetch(api.EVENT, {
+		const response = await fetch(webApi.EVENT, {
 			headers,
 			method: "PUT",
 			body: JSON.stringify(data),
@@ -167,7 +167,7 @@ export const deletePotluckEvent = async (
 	try {
 		webApiBot.event.deleteSchema.parse(data);
 
-		const response = await fetch(api.EVENT, {
+		const response = await fetch(webApi.EVENT, {
 			headers,
 			method: "DELETE",
 			body: JSON.stringify(data),
@@ -206,7 +206,7 @@ export const getSlots = async (
 
 		const params = new URLSearchParams(data);
 
-		const response = await fetch(api.SLOTS + "?" + params.toString(), {
+		const response = await fetch(webApi.SLOTS + "?" + params.toString(), {
 			headers,
 		});
 
@@ -245,7 +245,7 @@ export const createCommitment = async (
 	try {
 		webApiBot.commitment.postSchema.parse(data);
 
-		const response = await fetch(api.COMMITMENT, {
+		const response = await fetch(webApi.COMMITMENT, {
 			headers,
 			method: "POST",
 			body: JSON.stringify(data),
@@ -283,7 +283,7 @@ export const checkAccountExists = async (
 			providerAccountId: data.providerAccountId,
 		});
 
-		const response = await fetch(api.USER + "?" + params.toString(), {
+		const response = await fetch(webApi.USER + "?" + params.toString(), {
 			headers,
 		});
 
@@ -321,7 +321,7 @@ export const upsertRsvp = async (
 	try {
 		webApiBot.rsvp.postSchema.parse(data);
 
-		const response = await fetch(api.RSVP, {
+		const response = await fetch(webApi.RSVP, {
 			headers,
 			method: "POST",
 			body: JSON.stringify(data),
@@ -357,7 +357,7 @@ export const getUserTimezone = async (
 
 		const params = new URLSearchParams(data);
 
-		const response = await fetch(api.TIMEZONE + "?" + params.toString(), {
+		const response = await fetch(webApi.TIMEZONE + "?" + params.toString(), {
 			headers,
 		});
 
