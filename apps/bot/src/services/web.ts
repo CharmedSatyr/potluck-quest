@@ -265,8 +265,13 @@ export const createCommitment = async (
 	}
 };
 
+/**
+ * This will always resolve within timeoutMs, but to `true` on timeout to unblock users while the actual response is cached.
+ * This can/should be called multiple times during a command flow as a result.
+ **/
 export const checkAccountExists = async (
-	data: z.infer<typeof webApiBot.user.getSchema>
+	data: z.infer<typeof webApiBot.user.getSchema>,
+	timeoutMs = 2000
 ): Promise<boolean> => {
 	const timingStart = performance.now();
 
@@ -283,20 +288,31 @@ export const checkAccountExists = async (
 			providerAccountId: data.providerAccountId,
 		});
 
-		const response = await fetch(webApi.USER + "?" + params.toString(), {
+		const responsePromise = fetch(webApi.USER + "?" + params.toString(), {
 			headers,
+		}).then(async (response) => {
+			if (!response.ok) {
+				console.error("Failed account exists check", response.status);
+				return false;
+			}
+
+			const result: { exists: boolean } = await response.json();
+
+			accountExistsCache.set(data.providerAccountId, result.exists);
+
+			return result.exists;
 		});
 
-		if (!response.ok) {
-			console.error("Failed account exists check", response.status);
-			return false;
-		}
+		const result = await Promise.race([
+			responsePromise,
+			new Promise<boolean>((resolve) =>
+				setTimeout(() => resolve(true), timeoutMs)
+			),
+		]);
 
-		const result: { exists: boolean } = await response.json();
+		responsePromise.catch(() => {}); // Handle error after Promise.race, not immediately.
 
-		accountExistsCache.set(data.providerAccountId, result.exists);
-
-		return result.exists;
+		return result;
 	} catch (err) {
 		console.error({
 			message: "Error checking account exists",
