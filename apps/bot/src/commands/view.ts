@@ -5,7 +5,9 @@ import {
 	SlashCommandBuilder,
 } from "discord.js";
 import config from "~/constants/env-config.js";
+import webApi from "~/constants/web-api.js";
 import {
+	checkAccountExists,
 	getPotluckCodesByDiscordIds,
 	getUserTimezone,
 } from "~/services/web.js";
@@ -14,7 +16,6 @@ import {
 	getTimezoneOffsetName,
 } from "~/utilities/date-time.js";
 
-// TODO: Add cooldowns https://discordjs.guide/additional-features/cooldowns.html#resulting-code
 export const data = new SlashCommandBuilder()
 	.setName("view")
 	.setDescription("View existing Potluck Quest events");
@@ -39,9 +40,20 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 		return;
 	}
 
-	const timezone = await getUserTimezone({
-		discordUserId: interaction.user.id,
-	});
+	const [hasPotluckAccount, timezone] = await Promise.all([
+		checkAccountExists({
+			providerAccountId: interaction.user.id,
+		}),
+		getUserTimezone({ discordUserId: interaction.user.id }),
+	]);
+
+	if (!hasPotluckAccount) {
+		await interaction.editReply({
+			content: `<@${interaction.user.id}>, your journey awaits! [Sign in to Potluck Quest](${webApi.AUTH_SETUP} ) to continue.`,
+		});
+		return;
+	}
+
 	const { offsetNameLong, offsetNameShort } = getTimezoneOffsetName(timezone);
 
 	const codesByIds = await getPotluckCodesByDiscordIds({

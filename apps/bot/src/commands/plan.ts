@@ -10,8 +10,9 @@ import {
 	TextInputStyle,
 } from "discord.js";
 import { CustomId } from "~/constants/custom-id.js";
+import webApi from "~/constants/web-api.js";
 import { hasDiscordCreateEventsPermissions } from "~/services/discord.js";
-import { getUserTimezone } from "~/services/web.js";
+import { checkAccountExists, getUserTimezone } from "~/services/web.js";
 import { getTimezoneOffsetName } from "~/utilities/date-time.js";
 import getRandomPlaceholder from "~/utilities/get-random-placeholder.js";
 
@@ -22,6 +23,7 @@ export const data = new SlashCommandBuilder()
 
 export const execute = async (interaction: ChatInputCommandInteraction) => {
 	const timingStart = performance.now();
+
 	if (!hasDiscordCreateEventsPermissions(interaction.member)) {
 		await interaction.reply({
 			content: `<@${interaction.user.id} You don't have permission to manage events on this server.`,
@@ -30,9 +32,20 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 		return;
 	}
 
-	const timezone = await getUserTimezone({
-		discordUserId: interaction.user.id,
-	});
+	const [hasPotluckAccount, timezone] = await Promise.all([
+		checkAccountExists({
+			providerAccountId: interaction.user.id,
+		}),
+		getUserTimezone({ discordUserId: interaction.user.id }),
+	]);
+
+	if (!hasPotluckAccount) {
+		await interaction.editReply({
+			content: `<@${interaction.user.id}>, your journey awaits! [Sign in to Potluck Quest](${webApi.AUTH_SETUP} ) to continue.`,
+		});
+		return;
+	}
+
 	const { offsetNameShort } = getTimezoneOffsetName(timezone);
 
 	const modal = new ModalBuilder()

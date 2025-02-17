@@ -5,6 +5,8 @@ import {
 	MessageFlags,
 	SlashCommandBuilder,
 } from "discord.js";
+import webApi from "~/constants/web-api.js";
+import { checkAccountExists } from "~/services/web.js";
 import { showEventsDropdown } from "~/utilities/slots/show-events-dropdown.js";
 import { showSlotsButtons } from "~/utilities/slots/show-slots-buttons.js";
 
@@ -26,6 +28,17 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 	const timingStart = performance.now();
 
 	await interaction.deferReply({ flags: MessageFlags.Ephemeral });
+
+	const hasPotluckAccount = await checkAccountExists({
+		providerAccountId: interaction.user.id,
+	});
+
+	if (!hasPotluckAccount) {
+		await interaction.editReply({
+			content: `<@${interaction.user.id}>, your journey awaits! [Sign in to Potluck Quest](${webApi.AUTH_SETUP} ) to continue.`,
+		});
+		return;
+	}
 
 	const input = interaction.options.getString("code");
 
