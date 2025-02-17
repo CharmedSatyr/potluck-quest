@@ -320,13 +320,16 @@ export const checkAccountExists = async (
 		return false;
 	} finally {
 		const timingEnd = performance.now();
-		console.info({
-			message: "checkAccountExists timing",
-			ms: timingEnd - timingStart,
-		});
-		if (timingEnd - timingStart > timeoutMs) {
+		const timing = timingEnd - timingStart;
+		if (timing > timeoutMs) {
 			console.warn({
-				message: `checkAccountExists timed out after ${timeoutMs}ms`,
+				message: `checkAccountExists timing exceeded ${timeoutMs}ms timeout`,
+				ms: timing,
+			});
+		} else {
+			console.info({
+				message: "checkAccountExists timing",
+				ms: timing,
 			});
 		}
 	}
