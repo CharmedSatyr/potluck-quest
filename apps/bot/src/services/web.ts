@@ -368,8 +368,13 @@ export const upsertRsvp = async (
 	}
 };
 
+/**
+ * This will always resolve within timeoutMs, but to the DEFAULT_TIMEZONE on timeout to unblock users while the actual response is cached.
+ * This can/should be called multiple times during a command flow as a result.
+ **/
 export const getUserTimezone = async (
-	data: z.infer<typeof webApiBot.timezone.getSchema>
+	data: z.infer<typeof webApiBot.timezone.getSchema>,
+	timeoutMs = 2000
 ): Promise<SupportedTimezone> => {
 	const timingStart = performance.now();
 
@@ -384,20 +389,29 @@ export const getUserTimezone = async (
 
 		const params = new URLSearchParams(data);
 
-		const response = await fetch(webApi.TIMEZONE + "?" + params.toString(), {
+		const responsePromise = fetch(webApi.TIMEZONE + "?" + params.toString(), {
 			headers,
+		}).then(async (response) => {
+			if (!response.ok) {
+				console.warn("Failed to get user timezone:", response.status);
+				return DEFAULT_TIMEZONE;
+			}
+
+			const result: { timezone: SupportedTimezone } = await response.json();
+
+			timezoneCache.set(data.discordUserId, result.timezone);
+
+			return result.timezone;
 		});
 
-		if (!response.ok) {
-			console.warn("Failed to get user timezone:", response.status);
-			return DEFAULT_TIMEZONE;
-		}
+		const result = await Promise.race([
+			responsePromise,
+			new Promise<boolean>((resolve) =>
+				setTimeout(() => resolve(DEFAULT_TIMEZONE), timeoutMs)
+			),
+		]);
 
-		const result: { timezone: SupportedTimezone } = await response.json();
-
-		timezoneCache.set(data.discordUserId, result.timezone);
-
-		return result.timezone;
+		return result;
 	} catch (err) {
 		console.error("Error getting user timezone:", err);
 
