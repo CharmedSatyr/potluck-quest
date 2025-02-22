@@ -1,6 +1,7 @@
 "use client";
 
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/solid";
+import { COMMITMENT_DESCRIPTION_LENGTH } from "@potluck/utilities/constants";
 import Form from "next/form";
 import { usePathname } from "next/navigation";
 import { useActionState, useRef } from "react";
@@ -106,7 +107,7 @@ const CreateCommitmentForm = ({ commitmentsStillNeeded, slotId }: Props) => {
 						aria-label="item-description"
 						className="w-full"
 						defaultValue={state?.fields.hosts}
-						maxLength={256}
+						maxLength={COMMITMENT_DESCRIPTION_LENGTH}
 						name="description"
 						placeholder="Add a description"
 						type="search"

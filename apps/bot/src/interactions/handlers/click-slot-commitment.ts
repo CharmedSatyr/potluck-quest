@@ -1,3 +1,4 @@
+import { COMMITMENT_DESCRIPTION_LENGTH } from "@potluck/utilities/constants";
 import {
 	ActionRowBuilder,
 	ButtonInteraction,
@@ -54,7 +55,7 @@ export const execute = async (interaction: ButtonInteraction) => {
 		.setLabel("Add a description")
 		.setPlaceholder(getRandomPlaceholder(placeholders))
 		.setStyle(TextInputStyle.Short)
-		.setMaxLength(100)
+		.setMaxLength(COMMITMENT_DESCRIPTION_LENGTH)
 		.setRequired(false);
 
 	const components = [
