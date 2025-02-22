@@ -127,7 +127,7 @@ const CreateCommitmentForm = ({ commitmentsStillNeeded, slotId }: Props) => {
 				disabled={isButtonDisabled}
 				type="submit"
 			>
-				{isPending ? <LoadingIndicator size={8} /> : "Save"}
+				{isPending ? <LoadingIndicator size={6} /> : "Save"}
 			</button>
 		</Form>
 	);
