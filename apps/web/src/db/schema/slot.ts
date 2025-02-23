@@ -1,3 +1,4 @@
+import { SLOT_ITEM_LENGTH } from "@potluck/utilities/constants";
 import {
 	uuid,
 	varchar,
@@ -16,7 +17,7 @@ export const slot = pgTable("slot", {
 		.references(() => event.id, { onDelete: "cascade" })
 		.notNull(),
 	id: uuid("id").primaryKey().notNull().defaultRandom(),
-	item: varchar("item", { length: 256 }).notNull(),
+	item: varchar("item", { length: SLOT_ITEM_LENGTH }).notNull(),
 	order: integer("order").notNull().default(1000),
 	updatedAt: timestamp("updated_at", { withTimezone: true })
 		.notNull()
