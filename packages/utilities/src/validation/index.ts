@@ -1,3 +1,4 @@
+import { commitmentDescription } from "./common/commitment-description.js";
 import { message } from "./common/message.js";
 import { z } from "zod";
 import botApi from "~/validation/bot/api/index.js";
@@ -27,6 +28,7 @@ import webApiBot from "~/validation/web/api/bot/index.js";
 export {
 	botApi,
 	code,
+	commitmentDescription,
 	description,
 	discordEventId,
 	discordGuildId,

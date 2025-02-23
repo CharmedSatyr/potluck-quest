@@ -3,10 +3,15 @@ import type {
 	SupportedTimezones,
 } from "~/types/timezone.d.ts";
 
+export const COMMITMENT_DESCRIPTION_LENGTH = 100;
 export const DESCRIPTION_LENGTH = 1000;
 export const EVENT_CODE_LENGTH = 5;
 export const HOSTS_LENGTH = 100;
 export const DEFAULT_TIMEZONE: SupportedTimezone = "America/Los_Angeles";
+
+export const SLOT_ITEM_LENGTH = 60;
+export const SLOT_COUNT_MAX = 999;
+export const MAX_SLOTS = 20;
 
 export const SUPPORTED_TIMEZONES: SupportedTimezones = [
 	"Pacific/Honolulu",

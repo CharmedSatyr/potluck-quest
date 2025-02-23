@@ -1,4 +1,5 @@
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/solid";
+import { SLOT_COUNT_MAX, SLOT_ITEM_LENGTH } from "@potluck/utilities/constants";
 import { useRef } from "react";
 import DeleteSlotButton from "~/components/plan-food-form/delete-slot-button";
 import enterToNextRef from "~/utilities/enter-to-next-ref";
@@ -44,7 +45,7 @@ const SlotInput = ({
 					className="input validator"
 					id={`item-${index}`}
 					enterKeyHint="next"
-					maxLength={256}
+					maxLength={SLOT_ITEM_LENGTH}
 					minLength={1}
 					name={`item-${index}`}
 					onChange={(e) =>
@@ -88,7 +89,7 @@ const SlotInput = ({
 						enterKeyHint="next"
 						id={`count-${index}`}
 						inputMode="numeric"
-						max="1000" // Arbitrary
+						max={SLOT_COUNT_MAX}
 						min="0"
 						name={`count-${index}`}
 						onChange={(e) =>
