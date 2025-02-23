@@ -19,11 +19,11 @@ const LoggedOutContent = () => {
 	return (
 		<div className="navbar-end max-h-10 w-3/4">
 			<ul className="menu menu-horizontal items-center">
-				<li className="hidden sm:inline-block">
-					<CreateEventLink />
-				</li>
 				<li>
 					<GuideLink />
+				</li>
+				<li className="hidden sm:inline-block">
+					<CreateEventLink />
 				</li>
 			</ul>
 			<Form action={signInWithDiscordAndRevalidate}>
