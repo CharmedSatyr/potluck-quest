@@ -12,18 +12,18 @@ type Props = {
 };
 
 const Avatars = ({ committedUsers }: Props) => {
-	return committedUsers.map((user) =>
-		user.image ? (
-			<div key={user.id} className="indicator">
-				<UserAvatar name={user.name} url={user.image} />
-				<span className="badge indicator-item badge-primary badge-sm">
-					{user.count}
-				</span>
-			</div>
-		) : (
-			<div key={user.id} className="skeleton h-8 w-8 rounded-full border" />
-		)
-	);
+	return committedUsers.map((user) => (
+		<div key={user.id} className="indicator not-prose">
+			{user.image ? (
+				<UserAvatar name={user.name} url={user.image} width={30} />
+			) : (
+				<div className="skeleton h-7 w-7 rounded-full border" />
+			)}
+			<span className="badge indicator-item badge-primary badge-xs">
+				{user.count}
+			</span>
+		</div>
+	));
 };
 
 // TODO: There is something better now. See the slot manager.
