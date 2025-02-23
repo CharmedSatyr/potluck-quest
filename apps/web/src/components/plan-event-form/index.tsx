@@ -4,6 +4,7 @@ import { DESCRIPTION_LENGTH } from "@potluck/utilities/constants";
 import Form from "next/form";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import discordLogoWhite from "public/static/discord-logo-white.png";
 import { use, useActionState, useEffect, useRef } from "react";
 import LoadingIndicator from "~/components/loading-indicator";
 import { Step } from "~/components/manage-event-wizard";
@@ -204,11 +205,10 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 					<button className="btn btn-blurple btn-sm float-right w-full md:w-fit">
 						Continue with{" "}
 						<Image
-							src="/static/discord-logo-white.png"
 							alt="Discord logo"
-							height="15"
-							width="80"
 							className="m-0"
+							src={discordLogoWhite}
+							width="80"
 						/>
 					</button>
 				)}

@@ -1,6 +1,6 @@
-import potluckQuest from "../../public/static/potluck-quest";
 import Image from "next/image";
 import Link from "next/link";
+import potluckQuest from "public/static/potluck-quest.webp";
 import DiscordLogo from "~/components/branding/discord-blurple-logo";
 import OpenAiLogo from "~/components/branding/openai-white-logo";
 import { PotluckQuest } from "~/components/branding/potluck-quest-logo";
@@ -37,13 +37,11 @@ const Home = () => {
 						<div className="flex w-full justify-center xl:hidden">
 							<Image
 								alt={`${siteMetadata.title} logo`}
-								blurDataURL={potluckQuest}
 								className="rounded-lg"
 								placeholder="blur"
 								priority
-								src="/static/potluck-quest.webp"
-								width="300"
-								height="300"
+								src={potluckQuest}
+								width={300}
 							/>
 						</div>
 
@@ -54,9 +52,10 @@ const Home = () => {
 						<Image
 							alt={`${siteMetadata.title} logo`}
 							className="rounded-xl"
-							src="/static/potluck-quest.png"
-							height="400"
-							width="400"
+							placeholder="blur"
+							priority
+							src={potluckQuest}
+							width={400}
 						/>
 					</div>
 				</div>

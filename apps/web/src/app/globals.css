@@ -117,13 +117,13 @@
 	.bg-noise {
 		background-repeat: repeat;
 		/** https://noisetexturegenerator.com */
-		background-image: url("/noisy-texture.png");
+		background-image: url("/static/noisy-texture.png");
 	}
 
 	.bg-pattern {
 		background-repeat: repeat;
 		/** https://www.transparenttextures.com/ */
-		background-image: url("/slash-it.png");
+		background-image: url("/static/slash-it.png");
 	}
 
 	.btn-blurple {

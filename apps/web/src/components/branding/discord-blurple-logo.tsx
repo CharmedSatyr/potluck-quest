@@ -1,9 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import discordLogoBlue from "public/static/discord-logo-blue.png";
 
 const DiscordLogo = ({ width = 80 }: { width?: number }) => {
-	const height = Math.round(width * 0.19);
-
 	return (
 		<Link
 			href="https://www.discord.com"
@@ -11,11 +10,10 @@ const DiscordLogo = ({ width = 80 }: { width?: number }) => {
 			target="_blank"
 		>
 			<Image
-				src="/static/discord-logo-blue.png"
 				alt="Discord logo"
-				height={height}
-				width={width}
 				className="not-prose m-0 inline"
+				src={discordLogoBlue}
+				width={width}
 			/>
 		</Link>
 	);

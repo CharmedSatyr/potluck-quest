@@ -1,5 +1,7 @@
 import Form from "next/form";
 import Image from "next/image";
+import discordLogoWhite from "public/static/discord-logo-white.png";
+import loginDoor from "public/static/login.webp";
 import signInWithDiscordAndRevalidate from "~/actions/auth/sign-in-with-discord-and-revalidate";
 import siteMetadata from "~/data/site-metadata";
 
@@ -16,17 +18,15 @@ const OauthPage = async () => {
 					alt={`${siteMetadata.title} logo`}
 					className="max-w-sm rounded-lg shadow-2xl"
 					priority
-					src="/static/login.webp"
+					src={loginDoor}
 					width="300"
-					height="300"
 				/>
 
 				<button className="btn btn-sm btn-blurple w-fit" type="submit">
 					Continue with{" "}
 					<Image
-						src="/static/discord-logo-white.png"
+						src={discordLogoWhite}
 						alt="Discord logo"
-						height="15"
 						width="80"
 						className="m-0"
 					/>

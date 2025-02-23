@@ -1,6 +1,5 @@
 "use client";
 
-import SlideIn from "../slide-in";
 import Link from "next/link";
 import { Suspense, useEffect, useState } from "react";
 import PlanEventForm, {
@@ -8,6 +7,7 @@ import PlanEventForm, {
 } from "~/components/plan-event-form";
 import PlanFoodForm from "~/components/plan-food-form";
 import SelectGuildForm from "~/components/select-guild-form";
+import SlideIn from "~/components/slide-in";
 import Suggestions from "~/components/suggestions";
 import useAnchor, { scrollToAnchor } from "~/hooks/use-anchor";
 

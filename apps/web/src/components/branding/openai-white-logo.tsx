@@ -1,9 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import openAiWhiteLockup from "public/static/openai-logos/PNGs/openai-white-lockup.png";
 
 const OpenAiLogo = ({ width = 66 }: { width?: number }) => {
-	const height = Math.round(width * 0.27);
-
 	return (
 		<Link
 			href="https://www.openai.com"
@@ -11,11 +10,10 @@ const OpenAiLogo = ({ width = 66 }: { width?: number }) => {
 			target="_blank"
 		>
 			<Image
-				src="/static/openai-logos/PNGs/openai-white-lockup.png"
 				alt="OpenAI logo"
-				height={height}
-				width={width}
 				className="not-prose m-0 inline"
+				src={openAiWhiteLockup}
+				width={width}
 			/>
 		</Link>
 	);

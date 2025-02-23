@@ -1,9 +1,7 @@
-import { formatTimestampForView } from "../date-time.js";
 import {
 	ActionRowBuilder,
 	ChatInputCommandInteraction,
 	MessageComponentInteraction,
-	MessageFlags,
 	StringSelectMenuBuilder,
 	StringSelectMenuOptionBuilder,
 } from "discord.js";
@@ -13,6 +11,7 @@ import {
 	getPotluckCodesByDiscordIds,
 	getUserTimezone,
 } from "~/services/web.js";
+import { formatTimestampForView } from "~/utilities/date-time.js";
 
 export const showEventsDropdown = async (
 	interaction: ChatInputCommandInteraction
