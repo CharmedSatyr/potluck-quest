@@ -13,7 +13,7 @@ export const metadata = genPageMetadata({ title: "Home" });
 const Home = () => {
 	return (
 		<main className="my-10 sm:mt-28 md:mx-10">
-			<div className="hero border-base-300 bg-base-200 rounded-xl py-10 shadow-xl xl:flex">
+			<div className="hero border-base-300 bg-base-200 rounded-xl px-8 py-10 shadow-xl sm:px-8 xl:flex">
 				<div className="hero-content">
 					<div className="flex-col text-center xl:w-1/2">
 						<h1 className="mb-0 text-4xl font-bold xl:text-5xl">
