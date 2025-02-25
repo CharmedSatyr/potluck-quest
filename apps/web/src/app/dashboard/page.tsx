@@ -64,11 +64,13 @@ const HostingTable = async () => {
 								<td className="align-middle">
 									<EventCodeButton code={event.code} passed={passed} />
 								</td>
-								<td>{event.title}</td>
-								<td>
+								<td className="align-middle">{event.title}</td>
+								<td className="align-middle">
 									<DateCellContents startUtcMs={event.startUtcMs} />
 								</td>
-								<td className="hidden md:table-cell">{event.location}</td>
+								<td className="hidden align-middle md:table-cell">
+									{event.location}
+								</td>
 								<td className="hidden align-middle md:table-cell">
 									<DeleteEventForm
 										className="btn-sm float-right max-w-20"
@@ -121,11 +123,13 @@ const AttendingTable = async () => {
 								<td className="align-middle">
 									<EventCodeButton code={event.code} passed={passed} />
 								</td>
-								<td>{event.title}</td>
-								<td>
+								<td className="align-middle">{event.title}</td>
+								<td className="align-middle">
 									<DateCellContents startUtcMs={event.startUtcMs} />
 								</td>
-								<td className="hidden md:table-cell">{event.location}</td>
+								<td className="hidden align-middle md:table-cell">
+									{event.location}
+								</td>
 							</tr>
 						);
 					})}
