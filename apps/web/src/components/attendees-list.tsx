@@ -106,8 +106,8 @@ const AttendeeList = async ({ code }: Props) => {
 								<UserAvatar
 									name={rsvp.user.name}
 									url={rsvp.user.image}
-									height={36}
-									width={36}
+									height={30}
+									width={30}
 								/>
 							</div>
 							<div
