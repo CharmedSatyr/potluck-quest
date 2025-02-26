@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { SLOT_COUNT_MAX, SLOT_ITEM_LENGTH } from "~/constants/index.js";
 
 export const suggestions = z.strictObject({
 	advice: z.string().trim().max(300).describe(`
@@ -8,8 +9,8 @@ export const suggestions = z.strictObject({
 	slots: z
 		.array(
 			z.strictObject({
-				count: z.number().max(999),
-				item: z.string().trim().max(500),
+				count: z.number().max(SLOT_COUNT_MAX),
+				item: z.string().trim().max(SLOT_ITEM_LENGTH),
 				order: z.number().min(1),
 			})
 		)
