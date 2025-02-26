@@ -4,6 +4,7 @@ import { Settings } from "luxon";
 import type { Metadata, Viewport } from "next";
 import { Sen } from "next/font/google";
 import "~/app/globals.css";
+import Analytics from "~/components/analytics";
 import NavBar from "~/components/nav-bar";
 import siteMetadata from "~/data/site-metadata";
 
@@ -44,6 +45,8 @@ const RootLayout = async ({
 				<div className="container flex h-full w-full justify-center">
 					{children}
 				</div>
+
+				<Analytics />
 			</body>
 		</html>
 	);
