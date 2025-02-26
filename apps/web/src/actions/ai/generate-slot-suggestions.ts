@@ -40,7 +40,7 @@ export const generateSlotSuggestions = async (
      - Be conversational and engaging.
      - Avoid listing specific items.
      - Avoid restating the location if it appears to be a street address.
-     - Highlight themes or special considerations based on the name and description, where applicable (e.g., birthday parties, holidays, dietary preferences).
+     - Highlight themes or special considerations based on the name and description, where applicable (e.g., game nights, watch parties, hobby meetups, birthday parties, holidays, dietary preferences).
 
   2. Separately, provide a detailed table-like breakdown of the exact items to request from attendees. For each item type (e.g., main dishes, sides, desserts, beverages, supplies), suggest quantities proportional to the number of attendees. This list should:
      - Avoid repeating information from the advice section.

@@ -23,8 +23,8 @@ const Home = () => {
 						<p>
 							<PotluckQuest /> combines powerful <DiscordLogo /> and{" "}
 							<OpenAiLogo /> integrations to make it easier to plan events when
-							everyone&apos;s invited to contribute a dish—from birthdays to
-							holidays to game nights.{" "}
+							everyone&apos;s invited to contribute a dish—from game nights to
+							watch parties to hobby meetups.{" "}
 							<span className="text-info">In active development</span> by
 							tabletop gamers who enjoy cooking and eating with their friends.
 						</p>
