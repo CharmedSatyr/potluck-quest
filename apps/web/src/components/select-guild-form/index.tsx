@@ -29,7 +29,7 @@ const GuildOption = ({
 	name: string;
 }) => {
 	return (
-		<div className="flex items-center">
+		<div className="my-4 flex items-center">
 			<label className="label">
 				<input
 					type="radio"
