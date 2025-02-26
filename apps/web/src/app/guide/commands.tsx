@@ -49,12 +49,13 @@ const Commands = () => (
 				<code className="not-prose">
 					/slots <span className="bg-base-200 rounded-sm px-1">code</span>
 				</code>
-				: View and interact with signup slots for a <PotluckQuest /> event for
-				which you have a code. If you&apos;re not sure of the code for an event,
-				type <Command command="view" />. The response will include buttons with
-				the names of requested items and the number still needed. Click to sign
-				up to bring one of that item. Your commitment will be shared with the
-				channel. See <Link href="#slots">Slots</Link>.
+				: View and interact with signup slots for <PotluckQuest /> events. If
+				you&apos;re not sure of the code for an event, type{" "}
+				<Command command="view" /> or leave it off to select from a dropdown
+				menu. The response to this command will include buttons with the names
+				of requested items and the number still needed. Click to sign up to
+				bring one of that item. Your commitment will be shared with the channel.
+				See <Link href="#slots">Slots</Link>.
 			</li>
 		</ul>
 	</article>
