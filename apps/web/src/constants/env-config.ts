@@ -9,15 +9,10 @@ const getEnvVar = (key: string): string => {
 };
 
 export default {
-	NODE_ENV: getEnvVar("NODE_ENV"),
-	PORT: getEnvVar("PORT"),
-
 	// Auth
 	AUTH_SECRET: getEnvVar("AUTH_SECRET"),
 	AUTH_DISCORD_ID: getEnvVar("AUTH_DISCORD_ID"),
 	AUTH_DISCORD_SECRET: getEnvVar("AUTH_DISCORD_SECRET"),
-	AUTH_DRIZZLE_URL: getEnvVar("AUTH_DRIZZLE_URL"),
-	NEXTAUTH_SECRET: getEnvVar("NEXTAUTH_SECRET"),
 
 	// Neon
 	DATABASE_URL: getEnvVar("DATABASE_URL"),
@@ -28,11 +23,6 @@ export default {
 
 	// OpenAI
 	OPENAI_API_KEY: getEnvVar("OPENAI_API_KEY"),
-
-	// Discord
-	DISCORD_APP_ID: getEnvVar("DISCORD_APP_ID"),
-	DISCORD_TOKEN: getEnvVar("DISCORD_TOKEN"),
-	DISCORD_PUBLIC_KEY: getEnvVar("DISCORD_PUBLIC_KEY"),
 
 	// Potluck
 	PQ_BOT_BASE_URL: getEnvVar("PQ_BOT_BASE_URL"),

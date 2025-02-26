@@ -7,7 +7,7 @@ import db from "~/db/connection";
 export const { handlers, signIn, signOut, auth } = NextAuth({
 	adapter: DrizzleAdapter(db),
 	providers: [Discord],
-	secret: envConfig.NEXTAUTH_SECRET,
+	secret: envConfig.AUTH_SECRET,
 	pages: {
 		signIn: "/oauth",
 	},
