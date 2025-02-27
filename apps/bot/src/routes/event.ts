@@ -108,8 +108,6 @@ router.get(
 			name: guild.name,
 			iconUrl: guild.iconURL(),
 		});
-
-		res.status(400).send();
 	}
 );
 
