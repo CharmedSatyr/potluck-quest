@@ -27,7 +27,7 @@ const upsertRsvp = async (
 				response: data.response,
 			})
 			.onConflictDoUpdate({
-				target: [rsvp.createdBy, rsvp.eventId],
+				target: [rsvp.eventId, rsvp.createdBy],
 				set: {
 					message: data.message,
 					response: data.response,
