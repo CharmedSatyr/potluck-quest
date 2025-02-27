@@ -83,7 +83,7 @@ const AttendeeList = async ({ code }: Props) => {
 								</p>
 							</div>
 
-							<label className="flex items-center">
+							<span className="flex items-center">
 								{rsvp.response === "yes" ? (
 									<div className="badge badge-success badge-sm">Attending</div>
 								) : (
@@ -91,7 +91,7 @@ const AttendeeList = async ({ code }: Props) => {
 										Not Attending
 									</div>
 								)}
-							</label>
+							</span>
 						</li>
 					);
 				})}
@@ -129,7 +129,7 @@ const AttendeeList = async ({ code }: Props) => {
 								</p>
 							</div>
 
-							<label className="flex items-center">
+							<span className="flex items-center">
 								{rsvp.response === "yes" ? (
 									<div className="badge badge-success badge-sm">Attending</div>
 								) : (
@@ -137,7 +137,7 @@ const AttendeeList = async ({ code }: Props) => {
 										Not Attending
 									</div>
 								)}
-							</label>
+							</span>
 						</li>
 					);
 				})}

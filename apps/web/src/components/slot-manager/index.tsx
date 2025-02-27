@@ -37,9 +37,7 @@ const SlotManager = async ({ code }: Props) => {
 							totalCommitments={totalCommitments}
 							users={users}
 						>
-							<label className="label text-xs" htmlFor="commitments-table">
-								Current Signups
-							</label>
+							<span className="label text-xs">Current Signups</span>
 
 							{totalCommitments > 0 ? (
 								<Suspense fallback={<CommitmentsBySlotTableFallback />}>
@@ -52,7 +50,7 @@ const SlotManager = async ({ code }: Props) => {
 									</SlideIn>
 								</Suspense>
 							) : (
-								<div className="ml-2">
+								<div className="ml-2" id="commitments-table">
 									<p className="my-2">None yet. Be the first!</p>
 									<div className="divider"></div>
 								</div>
