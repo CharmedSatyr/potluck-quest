@@ -47,6 +47,7 @@ const SlotContainer = ({
 				type="checkbox"
 				checked={expanded}
 				onChange={() => setExpanded(!expanded)}
+				id={`expand-slot-checkbox-${item}`}
 			/>
 
 			<div className="collapse-title flex w-full items-center justify-between py-0">
