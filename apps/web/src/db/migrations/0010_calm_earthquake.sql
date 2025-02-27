@@ -1,0 +1,1 @@
+ALTER TABLE "slot" ALTER COLUMN "item" SET DATA TYPE varchar(60);
