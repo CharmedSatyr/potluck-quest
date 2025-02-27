@@ -33,9 +33,9 @@ const RsvpForm = ({ code, currentRsvpPromise, discordMetadata }: Props) => {
 
 	const BtnIcon = () =>
 		currentRsvp?.response === "yes" ? (
-			<CheckCircleIcon className="text-success inline size-4" />
+			<CheckCircleIcon className="text-success inline size-4 md:hidden" />
 		) : (
-			<XCircleIcon className="text-error inline size-4" />
+			<XCircleIcon className="text-error inline size-4 md:hidden" />
 		);
 
 	// Delegate RSVP to Discord if no RSVP because there is no Discord API for adding a user to an event.
