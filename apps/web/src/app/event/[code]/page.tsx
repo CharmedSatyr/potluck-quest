@@ -111,22 +111,24 @@ const RsvpSection = ({
 	code: string;
 	discordMetadata?: DiscordEventMetadata;
 	userId: string;
-}) => (
-	<section className="w-full">
-		<Suspense>
-			<SlideIn>
-				<RsvpForm
-					code={code}
-					currentRsvpPromise={findUserEventRsvp({
-						code,
-						createdBy: userId,
-					})}
-					discordMetadata={discordMetadata}
-				/>
-			</SlideIn>
-		</Suspense>
-	</section>
-);
+}) => {
+	return (
+		<section className="w-full">
+			<Suspense>
+				<SlideIn>
+					<RsvpForm
+						code={code}
+						currentRsvpPromise={findUserEventRsvp({
+							code,
+							createdBy: userId,
+						})}
+						discordMetadata={discordMetadata}
+					/>
+				</SlideIn>
+			</Suspense>
+		</section>
+	);
+};
 
 const FoodPlanSection = ({ code }: { code: string }) => {
 	return (
@@ -248,14 +250,20 @@ const HostView = async ({
 
 const GuestView = async ({
 	code,
+	discordMetadata,
 	userId,
 }: {
 	code: string;
+	discordMetadata?: DiscordEventMetadata;
 	userId: string;
 }) => (
 	<Container>
 		<EventSection code={code} />
-		<RsvpSection code={code} userId={userId} />
+		<RsvpSection
+			code={code}
+			userId={userId}
+			discordMetadata={discordMetadata}
+		/>
 		<FoodPlanSection code={code} />
 		<AttendeesSection code={code} />
 	</Container>
@@ -311,13 +319,23 @@ const EventPage = async ({ params }: Props) => {
 	});
 
 	if (rsvpResponse?.response === "yes") {
-		return <GuestView code={code} userId={session.user.id} />;
+		return (
+			<GuestView
+				code={code}
+				userId={session.user.id}
+				discordMetadata={discordMetadata}
+			/>
+		);
 	}
 
 	return (
 		<Container>
 			<EventSection code={code} discordMetadata={discordMetadata} />
-			<RsvpSection code={code} userId={session.user.id} />
+			<RsvpSection
+				code={code}
+				userId={session.user.id}
+				discordMetadata={discordMetadata}
+			/>
 			<CommitmentsSection code={code} />
 			<AttendeesSection code={code} />
 		</Container>

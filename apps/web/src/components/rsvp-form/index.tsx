@@ -53,7 +53,7 @@ const RsvpForm = ({ code, currentRsvpPromise, discordMetadata }: Props) => {
 					</>
 				) : (
 					<>
-						<DiscordIcon className="size-4" /> RSVP
+						<DiscordIcon className="inline size-4" /> RSVP
 					</>
 				)}
 			</Link>
