@@ -251,7 +251,7 @@ const HostView = async ({
 	</Container>
 );
 
-const GuestView = async ({
+const AttendingView = async ({
 	code,
 	discordMetadata,
 	userId,
@@ -327,7 +327,7 @@ const EventPage = async ({ params }: Props) => {
 
 	if (rsvpResponse?.response === "yes") {
 		return (
-			<GuestView
+			<AttendingView
 				code={code}
 				userId={session.user.id}
 				discordMetadata={discordMetadata}
@@ -335,6 +335,7 @@ const EventPage = async ({ params }: Props) => {
 		);
 	}
 
+	// No RSVP or Not Attending View
 	return (
 		<Container>
 			<EventSection code={code} discordMetadata={discordMetadata} />
