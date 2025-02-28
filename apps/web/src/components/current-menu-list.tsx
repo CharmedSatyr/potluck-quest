@@ -2,6 +2,7 @@ import findSlotContainerDetails from "~/actions/slot/find-slot-container-details
 
 //import UserAvatar from "~/components/user-avatar";
 
+/*
 type Users = {
 	id: string;
 	image: string | null;
@@ -9,20 +10,19 @@ type Users = {
 	commitments: number;
 }[];
 
-/*
 const Avatars = ({ users }: { users: Users }) => {
-    return users.map(({ id, image, name, commitments }) =>
-        image ? (
-            <div key={id} className="indicator not-prose">
-                <span className="indicator-item badge badge-primary badge-xs">
-                    {commitments}
-                </span>
-                <UserAvatar name={name} url={image} height={30} width={30} />
-            </div>
-        ) : (
-            <div key={id} className="skeleton h-8 w-8 rounded-full border" />
-        )
-    );
+	return users.map(({ id, image, name, commitments }) =>
+		image ? (
+			<div key={id} className="indicator not-prose">
+				<span className="indicator-item badge badge-primary badge-xs">
+					{commitments}
+				</span>
+				<UserAvatar name={name} url={image} height={30} width={30} />
+			</div>
+		) : (
+			<div key={id} className="skeleton h-8 w-8 rounded-full border" />
+		)
+	);
 };
 */
 
