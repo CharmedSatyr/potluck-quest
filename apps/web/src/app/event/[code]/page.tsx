@@ -13,6 +13,7 @@ import { auth } from "~/auth";
 import AttendeesList from "~/components/attendees-list";
 import { DiscordIcon } from "~/components/branding/discord-icon";
 import CommitmentsTable from "~/components/commitments-table";
+import CurrentMenuList from "~/components/current-menu-list";
 import DeleteEventForm from "~/components/delete-event-button";
 import DateTimeBlock from "~/components/event-skeleton/date-time-block";
 import EventSkeleton, {
@@ -67,7 +68,7 @@ const CommitmentsSection = async ({ code }: { code: string }) => {
 			<Suspense>
 				<SlideIn>
 					<h2 className="m-0 p-0">On the Menu</h2>
-					<CommitmentsTable code={code} />
+					<CurrentMenuList code={code} />
 				</SlideIn>
 			</Suspense>
 		</section>
