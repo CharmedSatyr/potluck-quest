@@ -17,17 +17,25 @@ type Props = {
 };
 
 const Avatars = ({ users }: { users: Props["users"] }) => {
-	return users.map(({ id, image, name, commitments }) =>
-		image ? (
-			<div key={id} className="indicator not-prose">
-				<span className="indicator-item badge badge-primary badge-xs">
-					{commitments}
-				</span>
-				<UserAvatar name={name} url={image} height={30} width={30} />
-			</div>
-		) : (
-			<div key={id} className="skeleton h-8 w-8 rounded-full border" />
-		)
+	return (
+		<div className="flex items-center">
+			{users.map(({ id, image, name }, i) =>
+				image ? (
+					<div
+						className="not-prose relative"
+						key={id}
+						style={{
+							marginLeft: users.length > 5 ? -1 * users.length : 4,
+							zIndex: i,
+						}}
+					>
+						<UserAvatar name={name} url={image} height={30} width={30} />
+					</div>
+				) : (
+					<div key={id} className="skeleton h-8 w-8 rounded-full border" />
+				)
+			)}
+		</div>
 	);
 };
 
