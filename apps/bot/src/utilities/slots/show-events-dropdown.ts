@@ -47,6 +47,10 @@ export const showEventsDropdown = async (
 	const options = pqEvents.map((event) => {
 		const code = codesByIds[event.id];
 
+		if (!code) {
+			throw new Error(`No code found for event id ${event.id}`);
+		}
+
 		return new StringSelectMenuOptionBuilder()
 			.setLabel(`${event.name} | ${code}`)
 			.setDescription(
