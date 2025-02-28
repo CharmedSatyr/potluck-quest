@@ -12,7 +12,6 @@ import EditLink from "~/app/event/[code]/edit-link";
 import { auth } from "~/auth";
 import AttendeesList from "~/components/attendees-list";
 import { DiscordIcon } from "~/components/branding/discord-icon";
-import CommitmentsTable from "~/components/commitments-table";
 import CurrentMenuList from "~/components/current-menu-list";
 import DeleteEventForm from "~/components/delete-event-button";
 import DateTimeBlock from "~/components/event-skeleton/date-time-block";
