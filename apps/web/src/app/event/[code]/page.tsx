@@ -220,6 +220,12 @@ const PassedView = ({
 }) => (
 	<Container>
 		<EventSection code={code} discordMetadata={discordMetadata} />
+		<div className="mt-2 flex w-full justify-end md:mt-0 md:w-2/12">
+			<div className="flex w-full flex-col gap-2 md:mt-2 md:w-22">
+				<DeleteEventForm code={code} redirect={true} />
+			</div>
+		</div>
+
 		<CommitmentsSection code={code} />
 		<AttendeesSection code={code} />
 	</Container>

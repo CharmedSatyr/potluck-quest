@@ -29,6 +29,10 @@ const Avatars = ({ users }: { users: Users }) => {
 const CurrentMenuList = async ({ code }: { code: string }) => {
 	const slotContainerDetails = await findSlotContainerDetails({ code });
 
+	if (slotContainerDetails.length === 0) {
+		return <div>No plans yet!</div>;
+	}
+
 	return (
 		<ul className="list bg-base-100 rounded-box not-prose border-base-300 border shadow-md">
 			{slotContainerDetails.map((detail) => (
