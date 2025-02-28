@@ -63,7 +63,7 @@ const RsvpForm = ({ code, currentRsvpPromise, discordMetadata }: Props) => {
 	return (
 		<Form action={submit}>
 			<button
-				className="btn btn-sm btn-ghost w-full text-nowrap"
+				className="btn btn-sm btn-success w-full text-nowrap"
 				disabled={dialogRef.current?.open}
 				type="button"
 				onClick={() => dialogRef.current?.showModal()}
