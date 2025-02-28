@@ -44,20 +44,18 @@ export const showEventsDropdown = async (
 		discordUserId: interaction.user.id,
 	});
 
-	const options = pqEvents.map((event) => {
-		const code = codesByIds[event.id];
+	const options = pqEvents
+		.filter((event) => codesByIds[event.id]) // Skip events without code
+		.map((event) => {
+			const code = codesByIds[event.id];
 
-		if (!code) {
-			throw new Error(`No code found for event id ${event.id}`);
-		}
-
-		return new StringSelectMenuOptionBuilder()
-			.setLabel(`${event.name} | ${code}`)
-			.setDescription(
-				formatTimestampForView(event.scheduledStartTimestamp, timezone)
-			)
-			.setValue(code);
-	});
+			return new StringSelectMenuOptionBuilder()
+				.setLabel(`${event.name} | ${code}`)
+				.setDescription(
+					formatTimestampForView(event.scheduledStartTimestamp, timezone)
+				)
+				.setValue(code);
+		});
 
 	const select = new StringSelectMenuBuilder()
 		.setCustomId(CustomId.SLOTS_SELECT_EVENT)
