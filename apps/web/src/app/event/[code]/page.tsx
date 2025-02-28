@@ -214,17 +214,21 @@ const UnauthorizedView = async ({
 const PassedView = ({
 	code,
 	discordMetadata,
+	isHost,
 }: {
 	code: string;
 	discordMetadata?: DiscordEventMetadata;
+	isHost: boolean;
 }) => (
 	<Container>
 		<EventSection code={code} discordMetadata={discordMetadata} />
-		<div className="mt-2 flex w-full justify-end md:mt-0 md:w-2/12">
-			<div className="flex w-full flex-col gap-2 md:mt-2 md:w-22">
-				<DeleteEventForm code={code} redirect={true} />
+		{isHost && (
+			<div className="mt-2 flex w-full justify-end md:mt-0 md:w-2/12">
+				<div className="flex w-full flex-col gap-2 md:mt-2 md:w-22">
+					<DeleteEventForm code={code} redirect={true} />
+				</div>
 			</div>
-		</div>
+		)}
 
 		<CommitmentsSection code={code} />
 		<AttendeesSection code={code} />
@@ -313,7 +317,13 @@ const EventPage = async ({ params }: Props) => {
 	}
 
 	if (eventIsPassed(event.startUtcMs)) {
-		return <PassedView code={code} discordMetadata={discordMetadata} />;
+		return (
+			<PassedView
+				code={code}
+				discordMetadata={discordMetadata}
+				isHost={event.createdBy === session.user.id}
+			/>
+		);
 	}
 
 	if (event.createdBy === session.user.id) {
