@@ -60,16 +60,19 @@ const EventSection = ({
 	</section>
 );
 
-const CommitmentsSection = async ({ code }: { code: string }) => (
-	<section className="my-4 w-full">
-		<Suspense>
-			<SlideIn>
-				<h2 className="m-0 p-0">On the Menu</h2>
-				<CommitmentsTable code={code} />
-			</SlideIn>
-		</Suspense>
-	</section>
-);
+const CommitmentsSection = async ({ code }: { code: string }) => {
+	console.log("code:", code);
+	return (
+		<section className="my-4 w-full">
+			<Suspense>
+				<SlideIn>
+					<h2 className="m-0 p-0">On the Menu</h2>
+					<CommitmentsTable code={code} />
+				</SlideIn>
+			</Suspense>
+		</section>
+	);
+};
 
 const AttendeesSection = ({ code }: { code: string }) => (
 	<section className="w-full">
@@ -234,7 +237,7 @@ const HostView = async ({
 	<Container>
 		<EventSection code={code} discordMetadata={discordMetadata} />
 		<div className="flex w-full justify-end md:w-2/12">
-			<div className="flex w-full flex-col gap-2 md:w-20">
+			<div className="flex w-full flex-col gap-2 md:mt-2 md:w-20">
 				<ManageEventSection code={code} eventData={eventData} />
 				<RsvpSection
 					code={code}
@@ -259,7 +262,7 @@ const GuestView = async ({
 }) => (
 	<Container>
 		<EventSection code={code} />
-		<div className="flex w-full flex-col md:w-20">
+		<div className="flex w-full flex-col md:mt-2 md:w-20">
 			<RsvpSection
 				code={code}
 				userId={userId}
@@ -333,7 +336,7 @@ const EventPage = async ({ params }: Props) => {
 	return (
 		<Container>
 			<EventSection code={code} discordMetadata={discordMetadata} />
-			<div className="flex w-full flex-col md:w-20">
+			<div className="flex w-full flex-col md:mt-2 md:w-20">
 				<RsvpSection
 					code={code}
 					userId={session.user.id}
