@@ -43,7 +43,7 @@ const RsvpForm = ({ code, currentRsvpPromise, discordMetadata }: Props) => {
 	if (discordMetadata) {
 		return (
 			<Link
-				className="btn btn-sm bg-blurple hover:bg-dark-blurple w-full no-underline"
+				className={`btn btn-sm w-full text-nowrap no-underline ${currentRsvp?.response === "no" ? "btn-soft" : "bg-blurple hover:bg-dark-blurple"}`}
 				href={`https://discord.com/events/${discordMetadata.discordGuildId}/${discordMetadata.discordEventId}`}
 				target="_blank"
 				rel="noopener noreferrer"
