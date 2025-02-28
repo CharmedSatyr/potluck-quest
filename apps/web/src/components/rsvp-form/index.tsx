@@ -49,9 +49,9 @@ const RsvpForm = ({ code, currentRsvpPromise, discordMetadata }: Props) => {
 				rel="noopener noreferrer"
 			>
 				{currentRsvp?.response ? (
-					<>
+					<span>
 						<BtnIcon /> Attending
-					</>
+					</span>
 				) : (
 					<>
 						<DiscordIcon className="inline size-4" /> RSVP
