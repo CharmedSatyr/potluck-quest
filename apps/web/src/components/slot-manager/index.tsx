@@ -17,7 +17,7 @@ const SlotManager = async ({ code }: Props) => {
 	const details = await findSlotContainerDetails({ code });
 
 	if (!details?.length) {
-		return <div>No plans yet. Ask the host to add some signup slots!</div>;
+		return <div>No plans yet. Ask the host to add signup slots!</div>;
 	}
 
 	return (
