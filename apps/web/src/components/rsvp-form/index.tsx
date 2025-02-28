@@ -1,6 +1,7 @@
 "use client";
 
-import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
+import { CheckCircleIcon } from "@heroicons/react/24/outline";
+import { XMarkIcon } from "@heroicons/react/24/solid";
 import Form from "next/form";
 import Link from "next/link";
 import { use, useActionState, useRef } from "react";
@@ -33,9 +34,9 @@ const RsvpForm = ({ code, currentRsvpPromise, discordMetadata }: Props) => {
 
 	const BtnIcon = () =>
 		currentRsvp?.response === "yes" ? (
-			<CheckCircleIcon className="text-success inline size-4 md:hidden" />
+			<CheckCircleIcon className="inline size-3 md:hidden" />
 		) : (
-			<XCircleIcon className="text-error inline size-4 md:hidden" />
+			<XMarkIcon className="inline size-3" />
 		);
 
 	// Delegate RSVP to Discord if no RSVP because there is no Discord API for adding a user to an event.
@@ -63,7 +64,7 @@ const RsvpForm = ({ code, currentRsvpPromise, discordMetadata }: Props) => {
 	return (
 		<Form action={submit}>
 			<button
-				className="btn btn-sm btn-success w-full text-nowrap"
+				className={`btn btn-sm w-full text-nowrap ${currentRsvp?.response === "no" ? "btn-soft" : "btn-success"}`}
 				disabled={dialogRef.current?.open}
 				type="button"
 				onClick={() => dialogRef.current?.showModal()}
