@@ -1,12 +1,5 @@
 import { imageUrl as imageUrlSchema } from "@potluck/utilities/validation";
-import {
-	ActionRowBuilder,
-	ButtonBuilder,
-	ButtonStyle,
-	EmbedBuilder,
-	MessageFlags,
-	ModalSubmitInteraction,
-} from "discord.js";
+import { MessageFlags, ModalSubmitInteraction } from "discord.js";
 import { CustomId } from "~/constants/custom-id.js";
 import config from "~/constants/env-config.js";
 import api from "~/constants/web-api.js";
@@ -16,10 +9,7 @@ import {
 	getUserTimezone,
 	mapDiscordToPotluckEvent,
 } from "~/services/web.js";
-import {
-	formatTimestampForPlan,
-	parseDateTimeInputForServices,
-} from "~/utilities/date-time.js";
+import { parseDateTimeInputForServices } from "~/utilities/date-time.js";
 import { addDescriptionBlurb } from "~/utilities/description-blurb.js";
 
 export const data = { customId: CustomId.PLAN_EVENT_MODAL };
@@ -111,43 +101,13 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 
 	const url = config.PQ_WEB_BASE_URL.concat("/event/").concat(code);
 
-	const { date, time } = formatTimestampForPlan(startUtcMs, timezone);
-
-	const eventEmbed = new EmbedBuilder()
-		.setColor("#FF8A50") // PQ Primary orange
-		.setTitle(title.concat(" | ").concat(code))
-		.setURL(url)
-		.setImage(imageUrl ?? null)
-		.setDescription(description || null)
-		.addFields(
-			{ name: "Date", value: date, inline: true },
-			{ name: "Time", value: time, inline: true },
-			{ name: "Location", value: location, inline: false }
-		)
-		.setAuthor({
-			name: interaction.user.globalName ?? interaction.user.username,
-			iconURL: interaction.user.avatarURL() ?? undefined,
-		})
-		.setFooter({
-			text: `${interaction.guild.name} members are invited`,
-			iconURL: interaction.guild.iconURL() ?? undefined,
-		})
-		.setTimestamp();
-
-	const interestedButton = new ButtonBuilder()
-		.setLabel("✅ Sign me up!")
-		.setURL(discordEvent.url)
-		.setStyle(ButtonStyle.Link);
-
-	const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
-		interestedButton
-	);
-
-	await interaction.followUp({
+	await interaction.editReply({
 		content: `<@${interaction.user.id}> is planning a new event with [Potluck Quest](${url}). Type \`/slots ${code}\` to bring something.`,
-		embeds: [eventEmbed],
-		components: [row],
 	});
+
+	await interaction.followUp(
+		`https://discord.com/events/${discordEvent.guildId}/${discordEvent.id}`
+	);
 
 	const params = new URLSearchParams();
 	params.append("description", description);
