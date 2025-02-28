@@ -30,7 +30,7 @@ const CurrentMenuList = async ({ code }: { code: string }) => {
 	const slotContainerDetails = await findSlotContainerDetails({ code });
 
 	if (slotContainerDetails.length === 0) {
-		return <div>No plans yet!</div>
+		return <div>No plans yet!</div>;
 	}
 
 	return (
