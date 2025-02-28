@@ -7,6 +7,7 @@ export const anonymousRsvps = pgTable("anonymous_rsvps", {
 		.defaultNow(),
 	eventId: uuid("event_id")
 		.references(() => event.id, { onDelete: "cascade" })
+		.unique()
 		.notNull(),
 	id: uuid("id").primaryKey().notNull().defaultRandom(),
 	discordInterestedCount: integer("discord_interested_count")

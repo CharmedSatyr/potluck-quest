@@ -1,0 +1,1 @@
+ALTER TABLE "anonymous_rsvps" ADD CONSTRAINT "anonymous_rsvps_event_id_unique" UNIQUE("event_id");
