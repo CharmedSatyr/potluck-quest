@@ -38,7 +38,7 @@ const RsvpForm = ({ code, currentRsvpPromise, discordMetadata }: Props) => {
 			<XCircleIcon className="text-error inline size-4 md:hidden" />
 		);
 
-	// Delegate RSVP to Discord if no RSVP because there is no Discord API for adding a user to an event.
+	// Delegate RSVP to Discord if no RSVP because there is no Discord API for adding a user to an event..
 	if (discordMetadata) {
 		return (
 			<Link
