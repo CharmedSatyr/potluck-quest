@@ -262,12 +262,14 @@ const GuestView = async ({
 }) => (
 	<Container>
 		<EventSection code={code} />
-		<div className="flex w-full flex-col md:mt-2 md:w-20">
-			<RsvpSection
-				code={code}
-				userId={userId}
-				discordMetadata={discordMetadata}
-			/>
+		<div className="flex w-full justify-end md:w-2/12">
+			<div className="flex w-full flex-col md:mt-2 md:w-20">
+				<RsvpSection
+					code={code}
+					userId={userId}
+					discordMetadata={discordMetadata}
+				/>
+			</div>
 		</div>
 		<FoodPlanSection code={code} />
 		<AttendeesSection code={code} />
@@ -336,12 +338,14 @@ const EventPage = async ({ params }: Props) => {
 	return (
 		<Container>
 			<EventSection code={code} discordMetadata={discordMetadata} />
-			<div className="flex w-full flex-col md:mt-2 md:w-20">
-				<RsvpSection
-					code={code}
-					userId={session.user.id}
-					discordMetadata={discordMetadata}
-				/>
+			<div className="flex w-full justify-end md:w-2/12">
+				<div className="flex w-full flex-col md:mt-2 md:w-20">
+					<RsvpSection
+						code={code}
+						userId={session.user.id}
+						discordMetadata={discordMetadata}
+					/>
+				</div>
 			</div>
 			<CommitmentsSection code={code} />
 			<AttendeesSection code={code} />
