@@ -1,8 +1,8 @@
 "use client";
 
+import OverlappingAvatars from "../overlapping-avatars";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/solid";
 import { PropsWithChildren, useState } from "react";
-import UserAvatar from "~/components/user-avatar";
 
 type Props = {
 	item: string;
@@ -14,29 +14,6 @@ type Props = {
 		name: string | null;
 		commitments: number;
 	}[];
-};
-
-const Avatars = ({ users }: { users: Props["users"] }) => {
-	return (
-		<div className="flex items-center">
-			{users.map(({ id, image, name }, i) =>
-				image ? (
-					<div
-						className="not-prose relative"
-						key={id}
-						style={{
-							marginLeft: users.length > 5 ? -1 * users.length : 4,
-							zIndex: i,
-						}}
-					>
-						<UserAvatar name={name} url={image} height={30} width={30} />
-					</div>
-				) : (
-					<div key={id} className="skeleton h-8 w-8 rounded-full border" />
-				)
-			)}
-		</div>
-	);
 };
 
 const SlotContainer = ({
@@ -62,10 +39,10 @@ const SlotContainer = ({
 				<div className="text-sm md:w-6/12">{item}</div>
 
 				<div className="hidden sm:flex sm:gap-4">
-					<Avatars users={users} />
+					<OverlappingAvatars users={users} />
 				</div>
 
-				<div className="flex items-center justify-between text-sm">
+				<div className="flex items-center justify-between text-right text-sm">
 					{totalCommitments} of {requestedCount} filled
 					{expanded ? (
 						<ChevronUpIcon className="-mr-6 ml-2 size-4" />
