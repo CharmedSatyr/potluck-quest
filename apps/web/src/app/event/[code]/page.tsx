@@ -66,7 +66,12 @@ const CommitmentsSection = async ({ code }: { code: string }) => {
 		<section className="my-4 w-full">
 			<Suspense>
 				<SlideIn>
-					<h2 className="m-0 p-0">On the Menu</h2>
+					<h2 className="m-0 p-0">
+						On the Menu{" "}
+						<span className="badge badge-sm badge-info">
+							RSVP to Add Your Item
+						</span>
+					</h2>
 					<CurrentMenuList code={code} />
 				</SlideIn>
 			</Suspense>
