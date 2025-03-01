@@ -6,6 +6,7 @@ import fetchDiscordEventMetadata, {
 	type DiscordEventMetadata,
 } from "~/actions/bot/event/fetch-discord-event-metadata";
 import findEvent from "~/actions/event/find-event";
+import findAttendingCount from "~/actions/rsvp/find-attending-count";
 import findUserEventRsvp from "~/actions/rsvp/find-user-event-rsvp";
 import findUserByEventCode from "~/actions/user/find-user-by-event-code";
 import EditLink from "~/app/event/[code]/edit-link";
@@ -79,16 +80,25 @@ const CommitmentsSection = async ({ code }: { code: string }) => {
 	);
 };
 
-const AttendeesSection = ({ code }: { code: string }) => (
-	<section className="w-full">
-		<Suspense>
-			<SlideIn>
-				<h2>Attendees</h2>
-				<AttendeesList code={code} />
-			</SlideIn>
-		</Suspense>
-	</section>
-);
+const AttendeesSection = async ({ code }: { code: string }) => {
+	const [totalAttendees] = await findAttendingCount({ code });
+
+	return (
+		<section className="w-full">
+			<Suspense>
+				<SlideIn>
+					<h2>
+						Attendees{" "}
+						<span className="badge badge-sm badge-info">
+							{totalAttendees?.count}
+						</span>
+					</h2>
+					<AttendeesList code={code} />
+				</SlideIn>
+			</Suspense>
+		</section>
+	);
+};
 
 const ManageEventSection = ({
 	code,
