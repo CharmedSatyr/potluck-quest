@@ -63,7 +63,7 @@ const EventSection = ({
 
 const CommitmentsSection = async ({ code }: { code: string }) => {
 	return (
-		<section className="my-4 w-full">
+		<section className="w-full">
 			<Suspense>
 				<SlideIn>
 					<h2 className="m-0 p-0">
