@@ -74,11 +74,11 @@ describe("upsertSlots", () => {
 		const error = new ZodError([
 			{
 				code: "too_small",
-				minimum: 0,
+				minimum: 1,
 				type: "number",
-				inclusive: false,
+				inclusive: true,
 				exact: false,
-				message: "Number must be greater than 0",
+				message: "Number must be greater than or equal to 1",
 				path: ["slots", 0, "count"],
 			},
 			{

@@ -31,6 +31,18 @@ const HostingTable = async () => {
 	const session = await auth();
 	const hosted = await findEventsByUser({ createdBy: session!.user!.id! });
 
+	// Sort passed events to end.
+	hosted.sort((a, b) => {
+		if (eventIsPassed(a.startUtcMs) && !eventIsPassed(b.startUtcMs)) {
+			return 1;
+		}
+		if (!eventIsPassed(a.startUtcMs) && eventIsPassed(b.startUtcMs)) {
+			return -1;
+		}
+
+		return 0;
+	});
+
 	if (!hosted?.length) {
 		return (
 			<div>
@@ -90,6 +102,18 @@ const HostingTable = async () => {
 const AttendingTable = async () => {
 	const session = await auth();
 	const rsvps = await findEventsByUserWithRsvp({ id: session!.user!.id! });
+
+	// Sort passed events to end.
+	rsvps.sort((a, b) => {
+		if (eventIsPassed(a.startUtcMs) && !eventIsPassed(b.startUtcMs)) {
+			return 1;
+		}
+		if (!eventIsPassed(a.startUtcMs) && eventIsPassed(b.startUtcMs)) {
+			return -1;
+		}
+
+		return 0;
+	});
 
 	if (!rsvps?.length) {
 		return (

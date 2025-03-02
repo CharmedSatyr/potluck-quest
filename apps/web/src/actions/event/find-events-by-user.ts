@@ -1,6 +1,6 @@
 "use server";
 
-import { desc, eq } from "drizzle-orm";
+import { asc, eq } from "drizzle-orm";
 import { z } from "zod";
 import { schema } from "~/actions/event/find-events-by-user.schema";
 import db from "~/db/connection";
@@ -16,7 +16,7 @@ const findEventsByUser = async (
 			.select()
 			.from(event)
 			.where(eq(event.createdBy, data.createdBy))
-			.orderBy(desc(event.startUtcMs));
+			.orderBy(asc(event.startUtcMs));
 	} catch (err) {
 		console.error(err);
 
