@@ -38,7 +38,7 @@ const SlotContainer = ({
 			<div className="collapse-title flex w-full items-center justify-between py-0">
 				<div className="text-sm md:w-6/12">{item}</div>
 
-				<div className="hidden sm:flex sm:gap-4">
+				<div className="hidden sm:flex">
 					<OverlappingAvatars users={users} />
 				</div>
 
