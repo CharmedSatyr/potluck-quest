@@ -161,8 +161,8 @@ importers:
         specifier: ^19.0.4
         version: 19.0.4(@types/react@19.0.10)
       daisyui:
-        specifier: 5.0.0-beta.7
-        version: 5.0.0-beta.7
+        specifier: 5.0.0-beta.9
+        version: 5.0.0-beta.9
       drizzle-kit:
         specifier: ^0.30.5
         version: 0.30.5
@@ -1958,8 +1958,8 @@ packages:
   csstype@3.1.3:
     resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
 
-  daisyui@5.0.0-beta.7:
-    resolution: {integrity: sha512-AW158KxukhyWwU9HTlfNkjAa9nPcfUZilITK7Taa3pqwVH/Suq31+1FHVcw7zLVRRw5jBUKrJ76xBQJOcRiKgQ==}
+  daisyui@5.0.0-beta.9:
+    resolution: {integrity: sha512-V+To8o1O8AaxSgdk9QrjXyq/e1AhdW1Z6oUI5iwrOjPs8avM7VQNqoTDCAE5rM0NcMbUfmFgQH8h8guiQ5QPOA==}
 
   damerau-levenshtein@1.0.8:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}
@@ -6585,7 +6585,7 @@ snapshots:
 
   csstype@3.1.3: {}
 
-  daisyui@5.0.0-beta.7: {}
+  daisyui@5.0.0-beta.9: {}
 
   damerau-levenshtein@1.0.8: {}
 
