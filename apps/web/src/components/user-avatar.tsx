@@ -11,7 +11,7 @@ const UserAvatar = ({ height, name, url, width }: Props) =>
 	name && url ? (
 		<Image
 			alt={`${name}'s Avatar`}
-			className="avatar my-0 rounded-full border"
+			className="avatar border-secondary my-0 rounded-full border"
 			src={url}
 			height={height ?? "20"}
 			width={width ?? "20"}
