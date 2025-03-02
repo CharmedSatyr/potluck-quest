@@ -62,7 +62,6 @@ const EventSection = ({
 );
 
 const CommitmentsSection = async ({ code }: { code: string }) => {
-	console.log("code:", code);
 	return (
 		<section className="my-4 w-full">
 			<Suspense>
