@@ -102,7 +102,8 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 	const url = config.PQ_WEB_BASE_URL.concat("/event/").concat(code);
 
 	await interaction.editReply({
-		content: `<@${interaction.user.id}> is planning a new event with [Potluck Quest](${url}). Type \`/slots ${code}\` to bring something.`,
+		// Space after period intentional to avoid Discord generating bad preview link.
+		content: `<@${interaction.user.id}> is planning a new event with [Potluck Quest](${url}) . Type \`/slots ${code}\` to bring something.`,
 	});
 
 	await interaction.followUp(
