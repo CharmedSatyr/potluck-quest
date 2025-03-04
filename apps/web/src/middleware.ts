@@ -37,6 +37,17 @@ const isCreator = async (pathname: string) => {
 export const middleware = async (request: NextRequest) => {
 	const { origin, pathname } = request.nextUrl;
 
+	// Event route
+	if (pathname.startsWith("/event/")) {
+		const code = request.nextUrl.pathname.split("/")[2];
+
+		if (code !== code.toUpperCase()) {
+			return NextResponse.redirect(
+				origin.concat("/event/".concat(code.toUpperCase()))
+			);
+		}
+	}
+
 	// Bot routes
 	if (pathname.startsWith("/api/bot/")) {
 		// Auth path doesn't require API key
@@ -69,6 +80,8 @@ export const middleware = async (request: NextRequest) => {
 
 export const config: MiddlewareConfig = {
 	matcher: [
+		// Event route
+		"/event/:code",
 		// Protected routes
 		"/dashboard",
 		"/settings",
