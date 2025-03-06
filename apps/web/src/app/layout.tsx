@@ -5,6 +5,7 @@ import type { Metadata, Viewport } from "next";
 import { Sen } from "next/font/google";
 import "~/app/globals.css";
 import Analytics from "~/components/analytics";
+import Footer from "~/components/footer";
 import NavBar from "~/components/nav-bar";
 import siteMetadata from "~/data/site-metadata";
 
@@ -46,6 +47,7 @@ const RootLayout = async ({
 					{children}
 				</div>
 
+				<Footer />
 				<Analytics />
 			</body>
 		</html>
