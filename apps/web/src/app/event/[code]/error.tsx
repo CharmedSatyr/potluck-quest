@@ -18,8 +18,8 @@ const ErrorBoundary = ({
 	const { push } = useRouter();
 
 	return (
-		<div className="text-center">
-			<h2>Something went wrong!</h2>
+		<main className="contrast-container">
+			<h2 className="mt-0">Something went wrong!</h2>
 
 			<p>Check the event code and try again.</p>
 
@@ -30,7 +30,7 @@ const ErrorBoundary = ({
 			<button className="btn btn-primary w-full" onClick={() => push("/")}>
 				<HomeModernIcon className="size-4" /> Go home
 			</button>
-		</div>
+		</main>
 	);
 };
 
