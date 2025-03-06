@@ -20,20 +20,20 @@
 		"type-check": "tsc --noEmit"
 	},
 	"dependencies": {
-		"@ai-sdk/openai": "^1.2.0",
+		"@ai-sdk/openai": "^1.2.1",
 		"@auth/drizzle-adapter": "^1.8.0",
 		"@heroicons/react": "^2.2.0",
 		"@neondatabase/serverless": "^0.10.4",
 		"@next/env": "^15.2.1",
 		"@potluck/utilities": "workspace:*",
 		"@types/luxon": "^3.4.2",
-		"ai": "^4.1.51",
+		"ai": "^4.1.54",
 		"dotenv": "^16.4.7",
 		"drizzle-orm": "^0.40.0",
 		"luxon": "^3.5.0",
 		"next": "^15.2.1",
 		"next-auth": "5.0.0-beta.25",
-		"openai": "^4.86.1",
+		"openai": "^4.86.2",
 		"react": "19.0.0",
 		"react-dom": "19.0.0",
 		"react-markdown": "^10.0.1",
@@ -41,7 +41,7 @@
 	},
 	"devDependencies": {
 		"@potluck/config": "workspace:*",
-		"@tailwindcss/postcss": "^4.0.9",
+		"@tailwindcss/postcss": "^4.0.11",
 		"@tailwindcss/typography": "^0.5.16",
 		"@testing-library/dom": "^10.4.0",
 		"@testing-library/jest-dom": "^6.6.3",
@@ -57,7 +57,7 @@
 		"jest-environment-jsdom": "^29.7.0",
 		"lint-staged": "^15.4.3",
 		"postcss": "^8.5.3",
-		"tailwindcss": "^4.0.9",
+		"tailwindcss": "^4.0.11",
 		"typescript": "^5.8.2"
 	},
 	"lint-staged": {
