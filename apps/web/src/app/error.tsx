@@ -19,14 +19,12 @@ const ErrorBoundary = ({
 		<main className="contrast-container">
 			<h1 className="mt-0">Something went wrong!</h1>
 
-			<p>Check the event code and try again.</p>
-
 			<button className="btn btn-secondary mb-4 w-full" onClick={reset}>
 				<ArrowPathIcon className="size-4" /> Try again
 			</button>
 
 			<Link className="btn btn-primary w-full no-underline" href="/">
-				<HomeModernIcon className="size-4" /> Go home
+				<HomeModernIcon className="size-4" /> Home
 			</Link>
 		</main>
 	);
