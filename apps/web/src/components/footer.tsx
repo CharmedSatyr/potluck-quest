@@ -1,3 +1,4 @@
+import { HeartIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";
 import discordLogoBlue from "public/static/discord-logo-blue.png";
@@ -8,15 +9,7 @@ const Footer = () => {
 			<div>
 				<h6 className="footer-title">About</h6>
 				<div>
-					Made by&nbsp;
-					<Link
-						className="link link-hover"
-						href="https://josephwolfe.com"
-						rel="noopener noreferrer"
-					>
-						Joseph Wolfe
-					</Link>
-					&nbsp;in Seattle
+					Made with <HeartIcon className="inline size-4" /> in Seattle
 				</div>
 
 				<div>{`© ${new Date().getFullYear()}`} Dionysian Ventures</div>
