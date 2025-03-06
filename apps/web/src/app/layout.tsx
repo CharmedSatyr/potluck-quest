@@ -33,7 +33,7 @@ const RootLayout = async ({
 	return (
 		<html lang="en">
 			<body
-				className={`${inter.className} prose flex h-screen w-screen max-w-none flex-col items-center`}
+				className={`${inter.className} prose flex min-h-screen w-screen max-w-none flex-col items-center`}
 			>
 				<div className="bg-pattern fixed z-[-3] h-screen w-screen" />
 				<div className="bg-noise fixed z-[-2] h-screen w-screen animate-spin blur-sm" />
