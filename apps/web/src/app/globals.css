@@ -130,3 +130,7 @@
 		@apply bg-blurple! hover:bg-dark-blurple!;
 	}
 }
+
+@utility reverse {
+	@apply [direction:rtl] [unicode-bidi:bidi-override];
+}
