@@ -76,7 +76,9 @@
 	code {
 		@apply bg-neutral! rounded! p-px! text-sm!;
 	}
+}
 
+@layer components {
 	.skeleton {
 		@apply bg-base-200!; /* Overwrite DaisyUI */
 	}
