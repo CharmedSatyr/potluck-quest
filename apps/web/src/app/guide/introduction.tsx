@@ -19,7 +19,7 @@ const BotUseCases = () => (
 				(e.g., gaming groups, hobby clubs, student organizations).
 			</li>
 			<li>
-				Meet <span className="font-bold">in person sometimes</span> but
+				Meet <span className="font-bold">in person sometimes</span> and
 				coordinate online.
 			</li>
 			<li>
