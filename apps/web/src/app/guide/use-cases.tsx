@@ -8,22 +8,22 @@ const BotUseCases = () => (
 	<>
 		<span>
 			<PQBot /> is a <DiscordLogo /> bot that manages potlucks directly in your
-			server. It is perfect if your group:
+			server. Made for merry folk who:
 		</span>
 		<ul>
 			<li>
-				Has a{" "}
+				Have a{" "}
 				<span className="font-bold">
 					dedicated <DiscordLogo /> server
 				</span>{" "}
 				(e.g., gaming groups, hobby clubs, student organizations).
 			</li>
 			<li>
-				Meets <span className="font-bold">in person sometimes</span> but
-				coordinates online.
+				Meet <span className="font-bold">in person sometimes</span> but
+				coordinate online.
 			</li>
 			<li>
-				Wants members to be able to{" "}
+				Want members to be able to{" "}
 				<span className="font-bold">
 					sign up for events and dishes without ever leaving <DiscordLogo />
 				</span>
@@ -34,16 +34,26 @@ const BotUseCases = () => (
 );
 
 const WebUseCases = () => (
-	<p>
-		If your group{" "}
-		<span className="font-bold">
-			doesn&apos;t have a dedicated <DiscordLogo /> server
+	<>
+		<span>
+			The <PotluckQuest /> web interface (this website) offers{" "}
+			<span className="font-bold">the full set of potluck planning tools</span>{" "}
+			without requiring bot integration. A grand choice if your lot:
 		</span>
-		, or server admins prefer not to install <PQBot />, the <PotluckQuest /> web
-		interface offers{" "}
-		<span className="font-bold">the full set of planning tools</span> without
-		requiring bot integration.
-	</p>
+		<ul>
+			<li>
+				<span className="font-bold">Meets in person sometimes</span> and
+				coordinates online.
+			</li>
+			<li>
+				Has members who have <DiscordLogo /> accounts but{" "}
+				<span className="font-bold">
+					aren&apos;t members of a dedicated server
+				</span>
+				.
+			</li>
+		</ul>
+	</>
 );
 
 const UseCases = () => (
@@ -54,8 +64,8 @@ const UseCases = () => (
 			<span className="font-bold">
 				All users login with <DiscordLogo />
 			</span>
-			, so it works best for groups that already use <DiscordLogo /> to
-			communicate.
+			, so it&apos;s well-suited for groups that already use <DiscordLogo /> to
+			chat.
 		</p>
 
 		<p>
@@ -70,7 +80,7 @@ const UseCases = () => (
 			instructions.
 		</p>
 
-		<h3>Great For...</h3>
+		<h3>Just the Thing For...</h3>
 		<ul>
 			<li>
 				<span className="font-bold">Tabletop gaming groups</span> (D&D nights,

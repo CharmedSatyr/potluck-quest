@@ -13,17 +13,6 @@ const GettingStartedWithBot = () => (
 			<DiscordLogo />, with the <PotluckQuest /> web interface available for
 			creating <SignupSlots /> and extra features.
 		</p>
-		<p>
-			<PQBot /> is designed for{" "}
-			<Link
-				href="https://support.discord.com/hc/en-us/articles/14078261239831-Clarifying-Server-Types#h_01H1W0A6Y2FN2P05CD7WD96RF8"
-				rel="noopener noreferrer"
-				target="_blank"
-			>
-				Friend Servers
-			</Link>{" "}
-			connecting people who want to spend time together IRL.
-		</p>
 		<ol>
 			<li>
 				Invite <PQBot /> to your server.
