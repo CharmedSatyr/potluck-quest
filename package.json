@@ -31,7 +31,7 @@
 			"turbo run prettier"
 		],
 		"*.+(js|jsx|ts|tsx)": [
-			"turnbo run lint",
+			"turbo run lint",
 			"turbo run test"
 		]
 	}
