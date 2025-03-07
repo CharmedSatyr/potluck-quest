@@ -5,6 +5,7 @@ import type { Metadata, Viewport } from "next";
 import { Sen } from "next/font/google";
 import "~/app/globals.css";
 import Analytics from "~/components/analytics";
+import Footer from "~/components/footer";
 import NavBar from "~/components/nav-bar";
 import siteMetadata from "~/data/site-metadata";
 
@@ -32,7 +33,7 @@ const RootLayout = async ({
 	return (
 		<html lang="en">
 			<body
-				className={`${inter.className} prose flex h-screen w-screen max-w-none flex-col items-center`}
+				className={`${inter.className} prose flex min-h-screen w-screen max-w-none flex-col items-center`}
 			>
 				<div className="bg-pattern fixed z-[-3] h-screen w-screen" />
 				<div className="bg-noise fixed z-[-2] h-screen w-screen animate-spin blur-sm" />
@@ -42,10 +43,11 @@ const RootLayout = async ({
 				<div className="fixed z-50 w-full">
 					<NavBar />
 				</div>
-				<div className="container flex h-full w-full justify-center">
+				<div className="container flex h-full min-h-[90vh] w-full justify-center">
 					{children}
 				</div>
 
+				<Footer />
 				<Analytics />
 			</body>
 		</html>

@@ -1,38 +1,38 @@
 {
-	"name": "potluck-quest",
-	"private": true,
-	"version": "1.0.0",
-	"license": "GPL-3.0",
-	"engines": {
-		"node": "^22",
-		"pnpm": "^9"
-	},
-	"packageManager": "pnpm@9.15.5+sha512.845196026aab1cc3f098a0474b64dfbab2afe7a1b4e91dd86895d8e4aa32a7a6d03049e2d0ad770bbe4de023a7122fb68c1a1d6e0d033c7076085f9d5d4800d4",
-	"scripts": {
-		"start:bot": "node apps/bot/dist/server.js",
-		"build:bot": "turbo run build --filter=./apps/bot",
-		"register:bot": "turbo run register --filter=./apps/bot",
-		"build": "turbo run build",
-		"clean": "turbo run clean",
-		"dev": "turbo run dev",
-		"test": "turbo run test",
-		"lint": "turbo run lint",
-		"prettier": "turbo run prettier",
-		"type-check": "turbo run type-check",
-		"prepare": "husky"
-	},
-	"devDependencies": {
-		"husky": "^9.1.7",
-		"lint-staged": "^15.4.3",
-		"turbo": "^2.4.4"
-	},
-	"lint-staged": {
-		"*.+(js|jsx|ts|tsx|json|css|md|mdx)": [
-			"turbo run prettier"
-		],
-		"*.+(js|jsx|ts|tsx)": [
-			"turnbo run lint",
-			"turbo run test"
-		]
-	}
+  "name": "potluck-quest",
+  "private": true,
+  "version": "1.0.0",
+  "license": "GPL-3.0",
+  "engines": {
+    "node": "^22",
+    "pnpm": "^9"
+  },
+  "packageManager": "pnpm@9.15.5+sha512.845196026aab1cc3f098a0474b64dfbab2afe7a1b4e91dd86895d8e4aa32a7a6d03049e2d0ad770bbe4de023a7122fb68c1a1d6e0d033c7076085f9d5d4800d4",
+  "scripts": {
+    "start:bot": "node apps/bot/dist/server.js",
+    "build:bot": "turbo run build --filter=./apps/bot",
+    "register:bot": "turbo run register --filter=./apps/bot",
+    "build": "turbo run build",
+    "clean": "turbo run clean",
+    "dev": "turbo run dev",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "prettier": "turbo run prettier",
+    "type-check": "turbo run type-check",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3",
+    "turbo": "^2.4.4"
+  },
+  "lint-staged": {
+    "*.+(js|jsx|ts|tsx|json|css|md|mdx)": [
+      "turbo run prettier --"
+    ],
+    "*.+(js|jsx|ts|tsx)": [
+      "turbo run lint --",
+      "turbo run test --"
+    ]
+  }
 }

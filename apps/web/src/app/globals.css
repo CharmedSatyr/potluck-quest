@@ -76,7 +76,9 @@
 	code {
 		@apply bg-neutral! rounded! p-px! text-sm!;
 	}
+}
 
+@layer components {
 	.skeleton {
 		@apply bg-base-200!; /* Overwrite DaisyUI */
 	}
@@ -129,4 +131,8 @@
 	.btn-blurple {
 		@apply bg-blurple! hover:bg-dark-blurple!;
 	}
+}
+
+@utility reverse {
+	@apply [direction:rtl] [unicode-bidi:bidi-override];
 }
