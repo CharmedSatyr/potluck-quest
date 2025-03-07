@@ -9,6 +9,7 @@
   },
   "exports": {
     "./eslint/bot": "./eslint/bot.mjs",
+    "./eslint/utilities": "./eslint/utilities.mjs",
     "./eslint/web": "./eslint/web.mjs",
     "./prettier": "./prettier/prettier.config.mjs",
     "./typescript": "./typescript/tsconfig.json"
