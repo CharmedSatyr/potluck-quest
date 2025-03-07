@@ -44,18 +44,12 @@ const Footer = () => {
 			<nav>
 				<h6 className="footer-title">Legal</h6>
 				<div>
-					<Link
-						className="link link-hover"
-						href="https://app.termly.io/policy-viewer/policy.html?policyUUID=120a80e0-c2de-4813-9957-e5fe1ba8daf8"
-					>
+					<Link className="link link-hover" href="/privacy">
 						Privacy Policy
 					</Link>
 				</div>
 				<div>
-					<Link
-						className="link link-hover"
-						href="https://app.termly.io/policy-viewer/policy.html?policyUUID=129758dd-5c6e-43fa-b209-adcd5a2906e2"
-					>
+					<Link className="link link-hover" href="/terms">
 						Terms and Conditions
 					</Link>
 				</div>
