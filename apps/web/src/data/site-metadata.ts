@@ -1,5 +1,7 @@
 const siteMetadata = {
 	author: "Joseph Wolfe",
+	company: "Dionysian Ventures",
+	companyFull: "Dionysian Ventures, LLC",
 	description:
 		"Potluck Quest makes it easy to plan shared meals with your friends.",
 	github: "https://www.github.com/CharmedSatyr",
