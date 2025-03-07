@@ -2,28 +2,18 @@ import Link from "next/link";
 import Commands from "~/app/guide/commands";
 import Events from "~/app/guide/events";
 import GettingStarted from "~/app/guide/getting-started";
+import Introduction from "~/app/guide/introduction";
 import Rsvps from "~/app/guide/rsvps";
 import Slots from "~/app/guide/slots";
-import DiscordLogo from "~/components/branding/discord-blurple-logo";
-import OpenAiLogo from "~/components/branding/openai-white-logo";
-import { PotluckQuest } from "~/components/branding/potluck-quest-logo";
-import { PQBot } from "~/components/branding/pq-bot-logo";
 
 const GuideContent = () => {
 	return (
 		<main className="bg-base-100/80 border-base-300 w-full rounded-xl border p-6 md:p-10 lg:rounded-none lg:rounded-r-xl">
 			<h1 className="text-primary-gradient">Guide</h1>
-
-			<p>
-				<PotluckQuest /> and its <OpenAiLogo />
-				-assisted tools make shared meal planning simple and collaborative,
-				whether you&apos;re taking full advantage of our powerful{" "}
-				<DiscordLogo /> integration with{" "}
-				<span className="text-primary-gradient font-bold">
-					<PQBot />
-				</span>{" "}
-				or prefer the standalone web interface.
-			</p>
+			<h2 className="mt-0" id="introduction">
+				A Right Proper Introduction
+			</h2>
+			<Introduction />
 
 			<h2 id="getting-started">Getting Started</h2>
 			<GettingStarted />
@@ -71,6 +61,12 @@ const Page = () => {
 
 					{/* Drawer content */}
 					<ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+						<li>
+							<Link href="#introduction" className="no-underline">
+								A Right Proper Introduction
+							</Link>
+						</li>
+
 						<li>
 							<Link href="#getting-started" className="no-underline">
 								Getting Started

@@ -14,14 +14,14 @@ const TabWrapper = ({ bot, web }: Props) => {
 				name={name}
 				role="tab"
 				className="tab text-nowrap"
-				aria-label="With PQ Bot on Discord"
+				aria-label="Standalone Web Interface"
 				defaultChecked
 			/>
 			<div
 				role="tabpanel"
 				className="tab-content border-base-300 bg-base-100 rounded-xl p-4"
 			>
-				{bot}
+				{web}
 			</div>
 
 			<input
@@ -29,13 +29,13 @@ const TabWrapper = ({ bot, web }: Props) => {
 				name={name}
 				role="tab"
 				className="tab text-nowrap"
-				aria-label="Standalone Web Interface"
+				aria-label="PQ Bot on Discord"
 			/>
 			<div
 				role="tabpanel"
 				className="tab-content border-base-300 bg-base-100 rounded-xl p-4"
 			>
-				{web}
+				{bot}
 			</div>
 		</div>
 	);
