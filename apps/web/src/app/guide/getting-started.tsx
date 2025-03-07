@@ -63,7 +63,10 @@ const GettingStartedWithWeb = () => (
 			<li>
 				Sign in with your <DiscordLogo /> account.
 			</li>
-			<li>Click &quot;Create Event&quot; and begin filling out the details.</li>
+			<li>
+				Click <Link href="/plan">Create Event</Link> and begin filling out the
+				details.
+			</li>
 			<li>
 				Add <SignupSlots /> to your event using <OpenAiLogo /> suggestions, or
 				customize them yourself.

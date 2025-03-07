@@ -4,6 +4,7 @@ import Events from "~/app/guide/events";
 import GettingStarted from "~/app/guide/getting-started";
 import Rsvps from "~/app/guide/rsvps";
 import Slots from "~/app/guide/slots";
+import UseCases from "~/app/guide/use-cases";
 import DiscordLogo from "~/components/branding/discord-blurple-logo";
 import OpenAiLogo from "~/components/branding/openai-white-logo";
 import { PotluckQuest } from "~/components/branding/potluck-quest-logo";
@@ -24,6 +25,9 @@ const GuideContent = () => {
 				</span>{" "}
 				or prefer the standalone web interface.
 			</p>
+
+			<h2 id="how-it-works">How It Works</h2>
+			<UseCases />
 
 			<h2 id="getting-started">Getting Started</h2>
 			<GettingStarted />
@@ -71,6 +75,12 @@ const Page = () => {
 
 					{/* Drawer content */}
 					<ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+						<li>
+							<Link href="#how-it-works" className="no-underline">
+								How It Works
+							</Link>
+						</li>
+
 						<li>
 							<Link href="#getting-started" className="no-underline">
 								Getting Started
