@@ -1,6 +1,6 @@
 import TabWrapper from "./tab-wrapper";
-import Link from "next/link";
 import DiscordLogo from "~/components/branding/discord-blurple-logo";
+import OpenAiLogo from "~/components/branding/openai-white-logo";
 import { PotluckQuest } from "~/components/branding/potluck-quest-logo";
 import { PQBot } from "~/components/branding/pq-bot-logo";
 
@@ -25,7 +25,7 @@ const BotUseCases = () => (
 			<li>
 				Want members to be able to{" "}
 				<span className="font-bold">
-					sign up for events and dishes without ever leaving <DiscordLogo />
+					sign up for events and dishes without leaving <DiscordLogo />
 				</span>
 				.
 			</li>
@@ -36,7 +36,7 @@ const BotUseCases = () => (
 const WebUseCases = () => (
 	<>
 		<span>
-			The <PotluckQuest /> web interface (this website) offers{" "}
+			The <PotluckQuest /> web interface offers{" "}
 			<span className="font-bold">the full set of potluck planning tools</span>{" "}
 			without requiring bot integration. A grand choice if your lot:
 		</span>
@@ -56,16 +56,19 @@ const WebUseCases = () => (
 	</>
 );
 
-const UseCases = () => (
+const Introduction = () => (
 	<section>
+		<p>
+			<PotluckQuest /> and its <OpenAiLogo />
+			-assisted tools make shared meal planning simple and collaborative.
+		</p>
 		<p>
 			<PotluckQuest /> is designed for potluck-style gatherings where guests can
 			sign up to bring dishes or other items.{" "}
 			<span className="font-bold">
 				All users login with <DiscordLogo />
 			</span>
-			, so it&apos;s well-suited for groups that already use <DiscordLogo /> to
-			chat.
+			, so it&apos;s well-suited for groups that already chat there.
 		</p>
 
 		<p>
@@ -74,11 +77,6 @@ const UseCases = () => (
 		</p>
 
 		<TabWrapper bot={<BotUseCases />} web={<WebUseCases />} />
-
-		<p>
-			See <Link href="#getting-started">Getting Started</Link> for step-by-step
-			instructions.
-		</p>
 
 		<h3>Just the Thing For...</h3>
 		<ul>
@@ -127,11 +125,7 @@ const UseCases = () => (
 				parties, watch parties)
 			</li>
 		</ul>
-		<p>
-			No matter the occasion, <PotluckQuest /> keeps your potlucks organized and
-			hassle-free.
-		</p>
 	</section>
 );
 
-export default UseCases;
+export default Introduction;
