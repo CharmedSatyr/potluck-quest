@@ -37,7 +37,15 @@ const isCreator = async (pathname: string) => {
 export const middleware = async (request: NextRequest) => {
 	const { origin, pathname } = request.nextUrl;
 
-	// Event route
+	// Creator-only routes
+	if (
+		!(await isCreator(pathname)) &&
+		(pathname.endsWith("/edit") || pathname.endsWith("/edit/confirm"))
+	) {
+		return NextResponse.redirect(origin.concat("/oauth"));
+	}
+
+	// Other event routes
 	if (pathname.startsWith("/event/")) {
 		const code = request.nextUrl.pathname.split("/")[2];
 
@@ -46,6 +54,8 @@ export const middleware = async (request: NextRequest) => {
 				origin.concat("/event/".concat(code.toUpperCase()))
 			);
 		}
+
+		return NextResponse.next();
 	}
 
 	// Bot routes
@@ -67,28 +77,20 @@ export const middleware = async (request: NextRequest) => {
 		return NextResponse.redirect(origin.concat("/oauth"));
 	}
 
-	// Creator-only routes
-	if (
-		!(await isCreator(pathname)) &&
-		(pathname.endsWith("/edit") || pathname.endsWith("/edit/confirm"))
-	) {
-		return NextResponse.redirect(origin.concat("/oauth"));
-	}
-
 	return NextResponse.next();
 };
 
 export const config: MiddlewareConfig = {
 	matcher: [
-		// Event route
+		// Creator-only routes
+		"/event/:code/edit",
+		"/event/:code/edit/confirm",
+		// Other event routes
 		"/event/:code",
 		// Protected routes
 		"/dashboard",
 		"/settings",
 		"/plan/confirm",
-		// Creator-only routes
-		"/event/:code/edit",
-		"/event/:code/edit/confirm",
 		// Bot routes
 		"/api/bot/:path*",
 	],
