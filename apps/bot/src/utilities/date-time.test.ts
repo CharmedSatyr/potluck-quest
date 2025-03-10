@@ -4,6 +4,14 @@ import { parseDateTimeInputForServices } from "./date-time.js";
 describe("date-time", () => {
 	const timezone = "America/Los_Angeles";
 
+	beforeAll(() => {
+		jest.useFakeTimers().setSystemTime(new Date("2029-01-01T12:00:00Z"));
+	});
+
+	afterAll(() => {
+		jest.useRealTimers();
+	});
+
 	describe("parseDateTimeInputForServices", () => {
 		it("should return null when it receives an unparseable input", () => {
 			const result = parseDateTimeInputForServices("hi there. date?", timezone);
