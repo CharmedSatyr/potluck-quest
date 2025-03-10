@@ -26,6 +26,17 @@ describe("middleware", () => {
 		expect(response).toEqual(NextResponse.redirect(origin + "/oauth"));
 	});
 
+	it("does not loop unauthenticated users to /oauth again if the origin is /oauth", async () => {
+		(auth as jest.Mock).mockResolvedValue(null);
+
+		const url = new URL("/oauth", origin);
+		const request = new NextRequest(url);
+
+		const response = await middleware(request);
+
+		expect(response).toEqual(NextResponse.next());
+	});
+
 	it("allows authenticated users to access protected routes", async () => {
 		(auth as jest.Mock).mockResolvedValue({ user: { id: "123" } });
 
@@ -94,5 +105,16 @@ describe("middleware", () => {
 		const response = await middleware(request);
 
 		expect(response.status).toBe(401);
+	});
+
+	it("redirects authenticated users on /oauth to the dashboard", async () => {
+		(auth as jest.Mock).mockResolvedValue({ user: { id: "123" } });
+
+		const url = new URL("/oauth", origin);
+		const request = new NextRequest(url);
+
+		const response = await middleware(request);
+
+		expect(response).toEqual(NextResponse.redirect(origin + "/dashboard"));
 	});
 });

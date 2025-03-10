@@ -73,8 +73,13 @@ export const middleware = async (request: NextRequest) => {
 	}
 
 	// Protected routes
-	if (!(await isAuthenticated())) {
+	if (!(await isAuthenticated()) && !pathname.endsWith("/oauth")) {
 		return NextResponse.redirect(origin.concat("/oauth"));
+	}
+
+	// Auth routes
+	if ((await isAuthenticated()) && pathname.endsWith("/oauth")) {
+		return NextResponse.redirect(origin.concat("/dashboard"));
 	}
 
 	return NextResponse.next();
@@ -93,5 +98,7 @@ export const config: MiddlewareConfig = {
 		"/plan/confirm",
 		// Bot routes
 		"/api/bot/:path*",
+		// Auth routes
+		"/oauth",
 	],
 };
