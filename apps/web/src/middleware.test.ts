@@ -81,11 +81,25 @@ describe("middleware", () => {
 		expect(response).toEqual(NextResponse.redirect(origin + "/event/ABC123"));
 	});
 
+	it("allows requests to /api/bot/auth without API key", async () => {
+		(headers as jest.Mock).mockReturnValue({
+			get: (key: string) => (key === "x-api-key" ? "invalid-key" : null),
+		});
+
+		const url = new URL("/api/bot/auth/", origin);
+		const request = new NextRequest(url);
+
+		const response = await middleware(request);
+
+		expect(response).toEqual(NextResponse.next());
+	});
+
 	it("allows requests with valid bot API key", async () => {
 		(headers as jest.Mock).mockReturnValue({
 			get: (key: string) =>
 				key === "x-api-key" ? envConfig.PQ_BOT_TO_WEB_API_KEY : null,
 		});
+
 		const url = new URL("/api/bot/some-endpoint", origin);
 		const request = new NextRequest(url);
 
