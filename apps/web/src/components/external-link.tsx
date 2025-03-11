@@ -5,7 +5,7 @@ const ExternalLink = ({
 	href,
 	children,
 }: PropsWithChildren<{ href: string }>) => (
-	<Link href={href} rel="noopener noreferrer">
+	<Link href={href} rel="noopener noreferrer" target="_blank">
 		{children}
 	</Link>
 );
