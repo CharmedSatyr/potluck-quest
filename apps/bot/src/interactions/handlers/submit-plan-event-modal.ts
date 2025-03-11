@@ -103,12 +103,10 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 
 	await interaction.editReply({
 		// Space after period intentional to avoid Discord generating bad preview link.
-		content: `<@${interaction.user.id}> is planning a new event with [Potluck Quest](${url}) . Type \`/slots ${code}\` to bring something.`,
-	});
+		content: `<@${interaction.user.id}> is planning a new event with [Potluck Quest](${url}) . Type \`/slots ${code}\` to bring something.
 
-	await interaction.followUp(
-		`https://discord.com/events/${discordEvent.guildId}/${discordEvent.id}`
-	);
+https://discord.com/events/${discordEvent.guildId}/${discordEvent.id}`,
+	});
 
 	const params = new URLSearchParams();
 	params.append("description", description);
