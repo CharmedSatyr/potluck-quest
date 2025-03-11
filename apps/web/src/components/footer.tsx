@@ -1,9 +1,10 @@
-import ContactEmail from "./contact-email";
 import { HeartIcon } from "@heroicons/react/24/solid";
 import { ContactEmailReversed } from "@potluck/utilities/constants";
 import Image from "next/image";
 import Link from "next/link";
 import discordLogoBlue from "public/static/discord-logo-blue.png";
+import ContactEmail from "~/components/contact-email";
+import ExternalLink from "~/components/external-link";
 import siteMetadata from "~/data/site-metadata";
 
 const Footer = () => {
@@ -24,11 +25,9 @@ const Footer = () => {
 			<nav>
 				<h6 className="footer-title">Contact</h6>
 				<div>
-					<Link
+					<ExternalLink
 						className="link link-hover"
 						href="https://discord.gg/Juk7qbh2VY"
-						rel="noopener noreferrer"
-						target="_blank"
 					>
 						Join the{" "}
 						<Image
@@ -37,7 +36,7 @@ const Footer = () => {
 							src={discordLogoBlue}
 							width={80}
 						/>
-					</Link>
+					</ExternalLink>
 				</div>
 
 				<div>

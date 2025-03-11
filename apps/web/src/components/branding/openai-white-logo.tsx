@@ -1,21 +1,17 @@
 import Image from "next/image";
-import Link from "next/link";
 import openAiWhiteLockup from "public/static/openai-logos/PNGs/openai-white-lockup.png";
+import ExternalLink from "~/components/external-link";
 
 const OpenAiLogo = ({ width = 66 }: { width?: number }) => {
 	return (
-		<Link
-			href="https://www.openai.com"
-			rel="noopener noreferrer"
-			target="_blank"
-		>
+		<ExternalLink href="https://www.openai.com">
 			<Image
 				alt="OpenAI logo"
 				className="not-prose m-0 inline"
 				src={openAiWhiteLockup}
 				width={width}
 			/>
-		</Link>
+		</ExternalLink>
 	);
 };
 

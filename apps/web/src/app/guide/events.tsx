@@ -4,19 +4,16 @@ import TabWrapper from "~/app/guide/tab-wrapper";
 import DiscordLogo from "~/components/branding/discord-blurple-logo";
 import { PotluckQuest } from "~/components/branding/potluck-quest-logo";
 import { PQBot } from "~/components/branding/pq-bot-logo";
+import ExternalLink from "~/components/external-link";
 
 const CreatingEventBot = () => (
 	<ul>
 		<li>
 			<PQBot /> creates <DiscordLogo />
 			-native{" "}
-			<Link
-				href="https://discord.com/community/planning-community-events"
-				rel="noopener noreferrer"
-				target="_blank"
-			>
+			<ExternalLink href="https://discord.com/community/planning-community-events">
 				Scheduled Events
-			</Link>{" "}
+			</ExternalLink>{" "}
 			that are linked to <PotluckQuest /> event codes and pages.
 		</li>
 		<li>
@@ -48,13 +45,9 @@ const CreatingEventBot = () => (
 				</li>
 				<li>
 					You must have appropriate{" "}
-					<Link
-						href="https://support.discord.com/hc/en-us/articles/4409494125719-Scheduled-Events#docs-internal-guid-69d2b52d-7fff-d89d-5468-6f4c2771dd27"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
+					<ExternalLink href="https://support.discord.com/hc/en-us/articles/4409494125719-Scheduled-Events#docs-internal-guid-69d2b52d-7fff-d89d-5468-6f4c2771dd27">
 						event permissions
-					</Link>{" "}
+					</ExternalLink>{" "}
 					to create an event in that server.
 				</li>
 			</ol>
@@ -160,13 +153,9 @@ const ManagingEvents = () => (
 				<li>
 					<PQBot />: Scheduled events in <DiscordLogo /> can be modified or
 					canceled by anyone with{" "}
-					<Link
-						href="https://support.discord.com/hc/en-us/articles/4409494125719-Scheduled-Events#docs-internal-guid-69d2b52d-7fff-d89d-5468-6f4c2771dd27"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
+					<ExternalLink href="https://support.discord.com/hc/en-us/articles/4409494125719-Scheduled-Events#docs-internal-guid-69d2b52d-7fff-d89d-5468-6f4c2771dd27">
 						event permissions
-					</Link>{" "}
+					</ExternalLink>{" "}
 					for that server.
 				</li>
 				<li>
