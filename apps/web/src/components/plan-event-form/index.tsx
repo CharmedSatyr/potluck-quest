@@ -173,8 +173,8 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 				<label className="fieldset-label" htmlFor="description-input">
 					Description
 				</label>
-				<div className="input flex w-full items-center gap-2">
-					<span className="badge badge-info badge-xs md:badge-sm gap-2">
+				<div className="textarea flex w-full gap-2">
+					<span className="badge badge-info badge-xs md:badge-sm">
 						Optional
 					</span>
 					<textarea
@@ -184,8 +184,9 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 						id="description-input"
 						maxLength={EVENT_DESCRIPTION_LENGTH}
 						name="description"
-						placeholder="Additional info or vibe text"
+						placeholder="Additional info or vibe text. Markdown, new lines, and links are supported."
 						ref={descriptionRef}
+						rows={3}
 					/>
 				</div>
 			</div>
