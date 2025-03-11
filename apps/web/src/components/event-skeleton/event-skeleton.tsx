@@ -45,8 +45,6 @@ const EventSkeleton = async ({ code, discordMetadata }: Props) => {
 
 	const isPassed = eventIsPassed(startUtcMs);
 
-	console.log("description", description);
-
 	return (
 		<div className="w-full">
 			<EventHeader code={code} title={title} />
@@ -70,7 +68,9 @@ const EventSkeleton = async ({ code, discordMetadata }: Props) => {
 				)}
 			</p>
 
-			<Markdown remarkPlugins={[remarkGfm]}>{description}</Markdown>
+			<Markdown remarkPlugins={[remarkGfm]}>
+				{description.replace(/\n/g, "  \n")}
+			</Markdown>
 
 			{isPassed && <WarningAlert text="This event date is in the past." />}
 		</div>
