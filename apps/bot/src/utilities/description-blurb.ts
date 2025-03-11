@@ -1,10 +1,11 @@
 import { EVENT_DESCRIPTION_LENGTH } from "@potluck/utilities/constants";
+import envConfig from "~/constants/env-config.js";
 
 export const addDescriptionBlurb = (
 	description: string | null,
 	code: string
 ) => {
-	const blurb = `See details at [${code} | Potluck Quest](https://potluck.quest/event/${code}).`;
+	const blurb = `See details at [${code} | Potluck Quest](${envConfig.PQ_WEB_BASE_URL}/event/${code}).`;
 
 	if (!description) {
 		return blurb;
@@ -27,7 +28,7 @@ export const removeDescriptionBlurb = (
 	}
 
 	const regex =
-		/See details at \[[a-zA-Z0-9]{5} \| Potluck Quest\]\(https:\/\/potluck\.quest\/event\/([a-zA-Z0-9]{5})\)$/m;
+		/See details at \[[a-zA-Z0-9]{5} \| Potluck Quest\]\((https?:\/\/[^)]+)\/event\/([a-zA-Z0-9]{5})\)\.$/gm;
 
 	const found = description.match(regex);
 

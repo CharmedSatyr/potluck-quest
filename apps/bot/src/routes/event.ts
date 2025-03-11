@@ -50,8 +50,13 @@ router.put(
 		res: Response
 	) => {
 		const { body } = req;
+		const { code, ...rest } = body;
 
-		const result = await updateDiscordEvent(body);
+		if (rest.description) {
+			rest.description = addDescriptionBlurb(rest.description, code);
+		}
+
+		const result = await updateDiscordEvent(rest);
 
 		if (result) {
 			res.status(200).send();

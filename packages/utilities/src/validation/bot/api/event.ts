@@ -20,6 +20,7 @@ export const postSchema = z.strictObject({
 });
 
 export const putSchema = z.strictObject({
+	code,
 	description: description.optional(),
 	endUtcMs: endUtcMs.optional(),
 	eventId: discordEventId,

@@ -13,6 +13,7 @@ import {
 	slotsCache,
 	timezoneCache,
 } from "~/utilities/cache.js";
+import { removeDescriptionBlurb } from "~/utilities/description-blurb.js";
 
 const headers = new Headers({ "x-api-key": config.PQ_BOT_TO_WEB_API_KEY });
 
@@ -133,6 +134,11 @@ export const updatePotluckEvent = async (
 	const timingStart = performance.now();
 
 	try {
+		if (data.description) {
+			data.description = removeDescriptionBlurb(data.description).description;
+			console.log("new description", data.description);
+		}
+
 		webApiBot.event.putSchema.parse(data);
 
 		const response = await fetch(webApi.EVENT, {

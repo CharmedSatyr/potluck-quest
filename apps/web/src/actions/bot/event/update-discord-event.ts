@@ -17,6 +17,7 @@ const updateDiscordEvent = async (
 		}
 
 		const data = {
+			code,
 			guildId: mapping.discordGuildId,
 			eventId: mapping.discordEventId,
 			...update,
