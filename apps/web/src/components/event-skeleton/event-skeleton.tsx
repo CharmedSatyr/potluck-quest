@@ -10,7 +10,7 @@ import findEvent from "~/actions/event/find-event";
 import findUserByEventCode from "~/actions/user/find-user-by-event-code";
 import CopyLinkButton from "~/components/copy-link-button";
 import DateTimeBlock from "~/components/event-skeleton/date-time-block";
-import GuildIcon from "~/components/guild-icon";
+import GuildLink from "~/components/guild-link";
 import UserAvatar from "~/components/user-avatar";
 import WarningAlert from "~/components/warning-alert";
 import eventIsPassed from "~/utilities/event-is-passed";
@@ -58,12 +58,7 @@ const EventSkeleton = async ({ code, discordMetadata }: Props) => {
 				Hosted by {hosts || creator.name}{" "}
 				{discordMetadata && (
 					<>
-						in{" "}
-						<GuildIcon
-							name={discordMetadata.name}
-							url={discordMetadata.iconUrl}
-						/>{" "}
-						{discordMetadata.name}
+						in <GuildLink discordMetadata={discordMetadata} />
 					</>
 				)}
 			</p>
