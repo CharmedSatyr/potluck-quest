@@ -1,6 +1,6 @@
 "use client";
 
-import { DESCRIPTION_LENGTH } from "@potluck/utilities/constants";
+import { EVENT_DESCRIPTION_LENGTH } from "@potluck/utilities/constants";
 import Form from "next/form";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -25,7 +25,7 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 	const pathname = usePathname();
 	const [, login, isPending] = useActionState(loginAction, { path: pathname });
 
-	const descriptionRef = useRef<HTMLInputElement | null>(null);
+	const descriptionRef = useRef<HTMLTextAreaElement | null>(null);
 	const hostsRef = useRef<HTMLInputElement | null>(null);
 	const locationRef = useRef<HTMLInputElement | null>(null);
 	const startDateRef = useRef<HTMLInputElement | null>(null);
@@ -173,20 +173,20 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 				<label className="fieldset-label" htmlFor="description-input">
 					Description
 				</label>
-				<div className="input flex w-full items-center gap-2">
-					<span className="badge badge-info badge-xs md:badge-sm gap-2">
+				<div className="textarea flex w-full gap-2">
+					<span className="badge badge-info badge-xs md:badge-sm">
 						Optional
 					</span>
-					<input
+					<textarea
 						className="w-full"
 						defaultValue={eventInput.description}
 						enterKeyHint="next"
 						id="description-input"
-						maxLength={DESCRIPTION_LENGTH}
+						maxLength={EVENT_DESCRIPTION_LENGTH}
 						name="description"
-						placeholder="Additional info or vibe text"
+						placeholder="Additional info or vibe text. Markdown, new lines, and links are supported."
 						ref={descriptionRef}
-						type="search"
+						rows={3}
 					/>
 				</div>
 			</div>

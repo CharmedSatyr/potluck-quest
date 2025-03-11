@@ -1,4 +1,4 @@
-import { DESCRIPTION_LENGTH } from "@potluck/utilities/constants";
+import { EVENT_DESCRIPTION_LENGTH } from "@potluck/utilities/constants";
 import {
 	ActionRowBuilder,
 	ChatInputCommandInteraction,
@@ -96,9 +96,9 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 		.setCustomId(CustomId.PLAN_EVENT_DESCRIPTION)
 		.setLabel("Description")
 		.setMinLength(1)
-		.setMaxLength(DESCRIPTION_LENGTH)
+		.setMaxLength(EVENT_DESCRIPTION_LENGTH)
 		.setPlaceholder(
-			"Additional info or vibe text" //. Markdown, new lines, and links are supported."
+			"Additional info or vibe text. Markdown, new lines, and links are supported."
 		)
 		.setRequired(false)
 		.setStyle(TextInputStyle.Paragraph);

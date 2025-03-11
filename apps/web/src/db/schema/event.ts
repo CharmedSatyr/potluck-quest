@@ -1,5 +1,5 @@
 import {
-	DESCRIPTION_LENGTH,
+	EVENT_DESCRIPTION_LENGTH,
 	EVENT_CODE_LENGTH,
 } from "@potluck/utilities/constants";
 import {
@@ -35,7 +35,7 @@ export const event = pgTable(
 			.references(() => user.id, { onDelete: "cascade" })
 			.notNull(),
 		description: varchar("description", {
-			length: DESCRIPTION_LENGTH,
+			length: EVENT_DESCRIPTION_LENGTH,
 		}).notNull(),
 		endUtcMs: bigint("end_utc_ms", { mode: "number" }).notNull(),
 		hosts: varchar("hosts", { length: 100 }).notNull(),

@@ -92,6 +92,7 @@ const SelectGuildForm = ({ userDiscordGuildsPromise }: Props) => {
 			</section>
 
 			{Object.entries(getSearchParamsObject(search))
+				.filter(([key]) => key !== "description")
 				.filter(([, value]) => value !== "")
 				.map(([key, value]) => (
 					<input
@@ -103,6 +104,13 @@ const SelectGuildForm = ({ userDiscordGuildsPromise }: Props) => {
 						value={value}
 					/>
 				))}
+
+			<textarea
+				hidden
+				name="description"
+				readOnly
+				value={getSearchParamsObject(search).description}
+			/>
 
 			<div className="my-6 flex w-full justify-end">
 				<button

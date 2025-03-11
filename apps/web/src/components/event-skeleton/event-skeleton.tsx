@@ -4,6 +4,7 @@ import {
 	MapPinIcon,
 } from "@heroicons/react/24/outline";
 import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { DiscordEventMetadata } from "~/actions/bot/event/fetch-discord-event-metadata";
 import findEvent from "~/actions/event/find-event";
 import findUserByEventCode from "~/actions/user/find-user-by-event-code";
@@ -44,6 +45,8 @@ const EventSkeleton = async ({ code, discordMetadata }: Props) => {
 
 	const isPassed = eventIsPassed(startUtcMs);
 
+	console.log("description", description);
+
 	return (
 		<div className="w-full">
 			<EventHeader code={code} title={title} />
@@ -67,7 +70,7 @@ const EventSkeleton = async ({ code, discordMetadata }: Props) => {
 				)}
 			</p>
 
-			<Markdown>{description}</Markdown>
+			<Markdown remarkPlugins={[remarkGfm]}>{description}</Markdown>
 
 			{isPassed && <WarningAlert text="This event date is in the past." />}
 		</div>
