@@ -1,3 +1,4 @@
+import { buildDiscordEventLink } from "@potluck/utilities/helpers";
 import { imageUrl as imageUrlSchema } from "@potluck/utilities/validation";
 import { MessageFlags, ModalSubmitInteraction } from "discord.js";
 import { CustomId } from "~/constants/custom-id.js";
@@ -105,7 +106,7 @@ export const execute = async (interaction: ModalSubmitInteraction) => {
 		// Space after period intentional to avoid Discord generating bad preview link.
 		content: `<@${interaction.user.id}> is planning a new event with [Potluck Quest](${url}) . Type \`/slots ${code}\` to bring something.
 
-https://discord.com/events/${discordEvent.guildId}/${discordEvent.id}`,
+${buildDiscordEventLink(discordEvent.guildId, discordEvent.id)}`,
 	});
 
 	const params = new URLSearchParams();
