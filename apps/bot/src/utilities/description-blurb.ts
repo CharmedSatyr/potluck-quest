@@ -1,4 +1,4 @@
-import { DESCRIPTION_LENGTH } from "@potluck/utilities/constants";
+import { EVENT_DESCRIPTION_LENGTH } from "@potluck/utilities/constants";
 
 export const addDescriptionBlurb = (
 	description: string | null,
@@ -12,7 +12,7 @@ export const addDescriptionBlurb = (
 
 	const descriptionWithBlurb = description.concat("\n\n").concat(blurb);
 
-	if (descriptionWithBlurb.length > DESCRIPTION_LENGTH) {
+	if (descriptionWithBlurb.length > EVENT_DESCRIPTION_LENGTH) {
 		return description;
 	}
 

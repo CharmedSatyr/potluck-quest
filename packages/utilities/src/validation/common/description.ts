@@ -1,4 +1,4 @@
 import { z } from "zod";
-import { DESCRIPTION_LENGTH } from "~/constants/index.js";
+import { EVENT_DESCRIPTION_LENGTH } from "~/constants/index.js";
 
-export const description = z.string().trim().max(DESCRIPTION_LENGTH);
+export const description = z.string().trim().max(EVENT_DESCRIPTION_LENGTH);

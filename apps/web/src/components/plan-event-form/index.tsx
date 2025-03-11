@@ -1,6 +1,6 @@
 "use client";
 
-import { DESCRIPTION_LENGTH } from "@potluck/utilities/constants";
+import { EVENT_DESCRIPTION_LENGTH } from "@potluck/utilities/constants";
 import Form from "next/form";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -182,7 +182,7 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 						defaultValue={eventInput.description}
 						enterKeyHint="next"
 						id="description-input"
-						maxLength={DESCRIPTION_LENGTH}
+						maxLength={EVENT_DESCRIPTION_LENGTH}
 						name="description"
 						placeholder="Additional info or vibe text"
 						ref={descriptionRef}
