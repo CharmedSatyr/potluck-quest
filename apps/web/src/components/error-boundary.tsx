@@ -1,5 +1,7 @@
 "use client";
 
+import { ArrowPathIcon, HomeModernIcon } from "@heroicons/react/24/solid";
+import Link from "next/link";
 import React, { Component, PropsWithChildren } from "react";
 
 class ErrorBoundary extends Component<
@@ -9,37 +11,38 @@ class ErrorBoundary extends Component<
 	constructor(props: PropsWithChildren) {
 		super(props);
 
-		// Define a state variable to track whether is an error or not
 		this.state = { hasError: false };
 	}
-	static getDerivedStateFromError() {
-		// Update state so the next render will show the fallback UI
 
+	static getDerivedStateFromError() {
 		return { hasError: true };
 	}
+
 	componentDidCatch(error: unknown, errorInfo: unknown) {
-		// You can use your own error logging service here
-		console.log({ error, errorInfo });
+		console.error({ error, errorInfo });
 	}
+
 	render() {
-		// Check if the error is thrown
-		if (this.state.hasError) {
-			// You can render any custom fallback UI
-			return (
-				<div>
-					<h2>Something went wrong!</h2>
-					<button
-						type="button"
-						onClick={() => this.setState({ hasError: false })}
-					>
-						Try again?
-					</button>
-				</div>
-			);
+		if (!this.state.hasError) {
+			return this.props.children;
 		}
 
-		// Return children components in case of no error
-		return this.props.children;
+		return (
+			<main className="contrast-container">
+				<h1 className="mt-0">Something went wrong!</h1>
+
+				<button
+					className="btn btn-secondary mb-4 w-full"
+					onClick={() => this.setState({ hasError: false })}
+				>
+					<ArrowPathIcon className="size-4" /> Try again
+				</button>
+
+				<Link className="btn btn-primary w-full no-underline" href="/">
+					<HomeModernIcon className="size-4" /> Go home
+				</Link>
+			</main>
+		);
 	}
 }
 
