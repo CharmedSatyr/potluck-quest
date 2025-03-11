@@ -25,7 +25,7 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 	const pathname = usePathname();
 	const [, login, isPending] = useActionState(loginAction, { path: pathname });
 
-	const descriptionRef = useRef<HTMLInputElement | null>(null);
+	const descriptionRef = useRef<HTMLTextAreaElement | null>(null);
 	const hostsRef = useRef<HTMLInputElement | null>(null);
 	const locationRef = useRef<HTMLInputElement | null>(null);
 	const startDateRef = useRef<HTMLInputElement | null>(null);
@@ -177,7 +177,7 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 					<span className="badge badge-info badge-xs md:badge-sm gap-2">
 						Optional
 					</span>
-					<input
+					<textarea
 						className="w-full"
 						defaultValue={eventInput.description}
 						enterKeyHint="next"
@@ -186,7 +186,6 @@ const PlanEventForm = ({ code, eventInputPromise, loggedIn, mode }: Props) => {
 						name="description"
 						placeholder="Additional info or vibe text"
 						ref={descriptionRef}
-						type="search"
 					/>
 				</div>
 			</div>

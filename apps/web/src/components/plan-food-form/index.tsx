@@ -141,6 +141,7 @@ const PlanFoodForm = ({
 			))}
 
 			{Object.entries(eventInput)
+				.filter(([key]) => key !== "description")
 				.filter(([, value]) => value !== "")
 				.map(([key, value]) => (
 					<input
@@ -152,6 +153,13 @@ const PlanFoodForm = ({
 						value={value}
 					/>
 				))}
+
+			<textarea
+				hidden
+				name="description"
+				readOnly
+				value={eventInput.description}
+			/>
 
 			<div className="my-3 flex w-full flex-wrap justify-between gap-2">
 				<div className="flex grow justify-between">
