@@ -8,13 +8,18 @@
 		"pnpm": "^9"
 	},
 	"exports": {
-		"./types": {
-			"types": "./dist/@types/types/index.d.ts"
-		},
 		"./constants": {
 			"types": "./dist/@types/constants/index.d.ts",
 			"import": "./dist/constants/index.js",
 			"require": "./dist/constants/index.js"
+		},
+		"./helpers": {
+			"types": "./dist/@types/helpers/index.d.ts",
+			"import": "./dist/helpers/index.js",
+			"require": "./dist/helpers/index.js"
+		},
+		"./types": {
+			"types": "./dist/@types/types/index.d.ts"
 		},
 		"./validation": {
 			"types": "./dist/@types/validation/index.d.ts",
