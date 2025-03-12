@@ -5,11 +5,12 @@ import { POTLUCK_QUEST_DISCORD_INVITE_LINK } from "@potluck/utilities/constants"
 import Form from "next/form";
 import Image from "next/image";
 import discordLogoBlue from "public/static/discord-logo-blue.png";
-import { useActionState, useEffect, useRef } from "react";
+import { useActionState, useRef } from "react";
 import deleteAccountAction from "~/components/delete-account-button/delete-account-action";
 import { DeleteAccountState } from "~/components/delete-account-button/delete-account-action.types";
 import ExternalLink from "~/components/external-link";
 import LoadingIndicator from "~/components/loading-indicator";
+import WarningAlert from "~/components/warning-alert";
 
 type Props = {
 	className?: string;
@@ -21,19 +22,7 @@ const DeleteAccountForm = ({ className }: Props) => {
 	const [state, submit, isPending] = useActionState<
 		DeleteAccountState,
 		FormData
-	>(deleteAccountAction, { success: false });
-
-	useEffect(() => {
-		if (!dialogRef.current?.open) {
-			return;
-		}
-
-		if (!state.success) {
-			return;
-		}
-
-		dialogRef.current.close();
-	}, [state.success]);
+	>(deleteAccountAction, { error: false });
 
 	return (
 		<Form action={submit}>
@@ -73,6 +62,10 @@ const DeleteAccountForm = ({ className }: Props) => {
 						</ExternalLink>
 						—we&apos;ll have the kettle on.
 					</p>
+
+					{state.error && (
+						<WarningAlert text="There was a problem. Please try again." />
+					)}
 
 					<div className="modal-action">
 						<button
