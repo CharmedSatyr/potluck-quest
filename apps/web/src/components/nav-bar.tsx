@@ -129,7 +129,7 @@ const LoggedInContent = ({ image, name }: { image: string; name: string }) => {
 const Nav = ({ children }: PropsWithChildren) => {
 	return (
 		<div className="navbar border-b-base-300 bg-base-200 border-b shadow-sm">
-			<div className="navbar-start ml-2 text-lg">
+			<div className="navbar-start ml-2 text-nowrap sm:text-lg">
 				<PotluckQuestIcon className="text-primary-gradient mr-[0.35rem] size-5" />
 				<PotluckQuest />
 			</div>
