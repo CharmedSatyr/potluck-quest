@@ -27,19 +27,23 @@ describe("deleteUser", () => {
 			where: jest.fn(),
 		});
 
-		await deleteUser({ userId: validUserId });
+		const result = await deleteUser({ userId: validUserId });
 
 		expect(db.delete).toHaveBeenCalledWith(user);
 
 		expect(db.delete(user).where).toHaveBeenCalledWith(
 			eq(user.id, validUserId)
 		);
+
+		expect(result).toBe(true);
 	});
 
 	it("should throw an error if userId is invalid", async () => {
-		await deleteUser({ userId: "" });
+		const result = await deleteUser({ userId: "" });
 
 		expect(errorLogger).toHaveBeenCalled();
 		expect(db.delete).not.toHaveBeenCalled();
+
+		expect(result).toBe(false);
 	});
 });
