@@ -23,7 +23,7 @@ router.post(
 		const { body } = req;
 		const { code, ...rest } = body;
 
-		body.description = addDescriptionBlurb(body.description, code);
+		rest.description = addDescriptionBlurb(rest.description, code);
 
 		const discordEvent = await createDiscordEvent(rest);
 
