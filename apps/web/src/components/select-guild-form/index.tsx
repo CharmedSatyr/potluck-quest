@@ -60,6 +60,8 @@ const getSearchParamsObject = (
 const SelectGuildForm = ({ userDiscordGuildsPromise }: Props) => {
 	const userDiscordGuilds = use(userDiscordGuildsPromise);
 
+	// TODO: For consistency, use server side eventInputPromise and slotsPromise
+	// once slotsPromise is refactored a bit.
 	const search = useSearchParams();
 
 	return (
