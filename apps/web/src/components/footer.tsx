@@ -1,5 +1,8 @@
 import { HeartIcon } from "@heroicons/react/24/solid";
-import { ContactEmailReversed } from "@potluck/utilities/constants";
+import {
+	ContactEmailReversed,
+	POTLUCK_QUEST_DISCORD_INVITE_LINK,
+} from "@potluck/utilities/constants";
 import Image from "next/image";
 import Link from "next/link";
 import discordLogoBlue from "public/static/discord-logo-blue.png";
@@ -27,7 +30,7 @@ const Footer = () => {
 				<div>
 					<ExternalLink
 						className="link link-hover"
-						href="https://discord.gg/Juk7qbh2VY"
+						href={POTLUCK_QUEST_DISCORD_INVITE_LINK}
 					>
 						Join the{" "}
 						<Image
