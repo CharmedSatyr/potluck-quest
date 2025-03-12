@@ -251,7 +251,7 @@ export const PlanEventFormFallback = () => {
 
 			<div className="my-2">
 				<label className="fieldset-label">Description</label>
-				<div className="skeleton h-10 w-full" />
+				<div className="skeleton h-22 w-full" />
 			</div>
 
 			<div className="mt-2 w-full">

@@ -80,7 +80,7 @@
 
 @layer components {
 	.skeleton {
-		@apply bg-base-200!; /* Overwrite DaisyUI */
+		@apply bg-base-200! rounded-sm!; /* Overwrite DaisyUI */
 	}
 
 	.slide-in {
