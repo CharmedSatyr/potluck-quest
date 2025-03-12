@@ -1,8 +1,7 @@
-import { commitmentDescription } from "./common/commitment-description.js";
-import { message } from "./common/message.js";
 import { z } from "zod";
 import botApi from "~/validation/bot/api/index.js";
 import { code } from "~/validation/common/code.js";
+import { commitmentDescription } from "~/validation/common/commitment-description.js";
 import { description } from "~/validation/common/description.js";
 import { discordEventId } from "~/validation/common/discord-event-id.js";
 import { discordGuildId } from "~/validation/common/discord-guild-id.js";
@@ -12,6 +11,7 @@ import { endUtcMs } from "~/validation/common/end-utc-ms.js";
 import { hosts } from "~/validation/common/hosts.js";
 import { imageUrl } from "~/validation/common/image-url.js";
 import { location } from "~/validation/common/location.js";
+import { message } from "~/validation/common/message.js";
 import { quantity } from "~/validation/common/quantity.js";
 import { response } from "~/validation/common/response.js";
 import { slotId } from "~/validation/common/slot-id.js";

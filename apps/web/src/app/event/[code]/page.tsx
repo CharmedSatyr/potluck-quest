@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PropsWithChildren, Suspense } from "react";
 import fetchDiscordEventMetadata, {
@@ -12,7 +11,7 @@ import findUserByEventCode from "~/actions/user/find-user-by-event-code";
 import EditLink from "~/app/event/[code]/edit-link";
 import { auth } from "~/auth";
 import AttendeesList from "~/components/attendees-list";
-import { DiscordIcon } from "~/components/branding/discord-icon";
+import DiscordLogo from "~/components/branding/discord-blurple-logo";
 import CurrentMenuList from "~/components/current-menu-list";
 import DeleteEventForm from "~/components/delete-event-button";
 import DateTimeBlock from "~/components/event-skeleton/date-time-block";
@@ -20,7 +19,7 @@ import EventSkeleton, {
 	EventHeader,
 	EventSkeletonFallback,
 } from "~/components/event-skeleton/event-skeleton";
-import GuildIcon from "~/components/guild-icon";
+import GuildLink from "~/components/guild-link";
 import RsvpForm from "~/components/rsvp-form";
 import SlideIn from "~/components/slide-in";
 import SlotManager from "~/components/slot-manager";
@@ -198,20 +197,7 @@ const UnauthorizedView = async ({
 						</p>
 						<p>
 							Full details are visible to members of{" "}
-							<GuildIcon
-								name={discordMetadata.name}
-								url={discordMetadata.iconUrl}
-							/>{" "}
-							{discordMetadata.name} on{" "}
-							<Link
-								className="btn btn-primary btn-sm"
-								href="https://www.discord.com"
-							>
-								<span className="flex h-full w-full items-center gap-2">
-									<DiscordIcon className="inline size-4" />
-									Discord
-								</span>
-							</Link>
+							<GuildLink discordMetadata={discordMetadata} /> on <DiscordLogo />
 							.
 						</p>
 						<p>

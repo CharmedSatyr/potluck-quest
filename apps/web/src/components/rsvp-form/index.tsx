@@ -1,9 +1,9 @@
 "use client";
 
+import ExternalLink from "../external-link";
 import { CheckCircleIcon } from "@heroicons/react/24/outline";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import Form from "next/form";
-import Link from "next/link";
 import { use, useActionState, useRef } from "react";
 import { type DiscordEventMetadata } from "~/actions/bot/event/fetch-discord-event-metadata";
 import { DiscordIcon } from "~/components/branding/discord-icon";
@@ -42,11 +42,9 @@ const RsvpForm = ({ code, currentRsvpPromise, discordMetadata }: Props) => {
 	// Delegate RSVP to Discord if no RSVP because there is no Discord API for adding a user to an event.
 	if (discordMetadata) {
 		return (
-			<Link
+			<ExternalLink
 				className={`btn btn-sm w-full text-nowrap no-underline ${currentRsvp?.response === "no" ? "btn-soft" : "bg-blurple hover:bg-dark-blurple"}`}
 				href={`https://discord.com/events/${discordMetadata.discordGuildId}/${discordMetadata.discordEventId}`}
-				target="_blank"
-				rel="noopener noreferrer"
 			>
 				{currentRsvp?.response ? (
 					<span>
@@ -57,7 +55,7 @@ const RsvpForm = ({ code, currentRsvpPromise, discordMetadata }: Props) => {
 						<DiscordIcon className="inline size-4" /> RSVP
 					</>
 				)}
-			</Link>
+			</ExternalLink>
 		);
 	}
 

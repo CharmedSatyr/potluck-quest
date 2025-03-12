@@ -1,8 +1,9 @@
-import { Command } from "./links";
 import Link from "next/link";
+import { Command } from "~/app/guide/links";
 import DiscordLogo from "~/components/branding/discord-blurple-logo";
 import { PotluckQuest } from "~/components/branding/potluck-quest-logo";
 import { PQBot } from "~/components/branding/pq-bot-logo";
+import ExternalLink from "~/components/external-link";
 
 const Commands = () => (
 	<article>
@@ -11,13 +12,9 @@ const Commands = () => (
 		</h3>
 		<p>
 			These{" "}
-			<Link
-				href="https://support-apps.discord.com/hc/en-us/articles/26501837786775-Slash-Commands-FAQ"
-				target="_blank"
-				rel="noopener noreferrer"
-			>
+			<ExternalLink href="https://support-apps.discord.com/hc/en-us/articles/26501837786775-Slash-Commands-FAQ">
 				slash commands
-			</Link>{" "}
+			</ExternalLink>{" "}
 			should be typed directly in the <DiscordLogo /> channel in which you want{" "}
 			<PQBot /> to send response messages.
 		</p>
@@ -27,13 +24,9 @@ const Commands = () => (
 				event directly in your <DiscordLogo /> server. This command will send a
 				message to the channel once the event has been created. It will also
 				send you an{" "}
-				<Link
-					href="https://support-apps.discord.com/hc/en-us/articles/26501839512855-Ephemeral-Messages-FAQ"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
+				<ExternalLink href="https://support-apps.discord.com/hc/en-us/articles/26501839512855-Ephemeral-Messages-FAQ">
 					ephemeral message
-				</Link>{" "}
+				</ExternalLink>{" "}
 				with a link to create signup slots. See{" "}
 				<Link href="#creating-an-event">creating an event</Link> and{" "}
 				<Link href="#managing-slots">managing slots</Link>.
