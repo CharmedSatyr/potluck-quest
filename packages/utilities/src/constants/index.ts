@@ -26,3 +26,6 @@ export const ContactEmailReversed = "tseuq.kcultop@tcatnoc";
 export const ContactAddressReversed = `45161 xoB .O.P
 61189 AW ,elttaeS
 setatS detinU`;
+
+export const POTLUCK_QUEST_DISCORD_INVITE_LINK =
+	"https://discord.gg/Juk7qbh2VY";

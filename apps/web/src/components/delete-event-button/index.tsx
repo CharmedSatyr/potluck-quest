@@ -65,7 +65,7 @@ const DeleteEventForm = ({ className, code, redirect }: Props) => {
 							Cancel
 						</button>
 						<button
-							aria-label="Delete Slot"
+							aria-label="Delete Event"
 							className="btn btn-error btn-sm"
 							disabled={isPending}
 							type="submit"
