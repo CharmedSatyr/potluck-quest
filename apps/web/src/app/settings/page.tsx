@@ -4,6 +4,7 @@ import findTimezone from "~/actions/settings/find-timezone";
 import { auth } from "~/auth";
 import DiscordLogo from "~/components/branding/discord-blurple-logo";
 import { PQBot } from "~/components/branding/pq-bot-logo";
+import DeleteAccountForm from "~/components/delete-account-button";
 import SetupTimezone from "~/components/setup-timezone";
 import SlideIn from "~/components/slide-in";
 import TimezoneSelector from "~/components/timezone-selector";
@@ -46,6 +47,11 @@ const SettingsPage = async ({ searchParams }: Props) => {
 			<p>
 				<PQBot /> uses this setting on <DiscordLogo />.
 			</p>
+
+			<fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
+				<legend className="fieldset-legend">Danger Zone</legend>
+				<DeleteAccountForm />
+			</fieldset>
 		</main>
 	);
 };
