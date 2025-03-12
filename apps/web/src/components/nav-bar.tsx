@@ -8,6 +8,7 @@ import {
 } from "@heroicons/react/24/outline";
 import Form from "next/form";
 import Link from "next/link";
+import PotluckQuestIcon from "public/static/potluck-quest-icon";
 import { PropsWithChildren } from "react";
 import signInWithDiscordAndRevalidate from "~/actions/auth/sign-in-with-discord-and-revalidate";
 import signOutAndRevalidate from "~/actions/auth/sign-out-and-revalidate";
@@ -128,7 +129,8 @@ const LoggedInContent = ({ image, name }: { image: string; name: string }) => {
 const Nav = ({ children }: PropsWithChildren) => {
 	return (
 		<div className="navbar border-b-base-300 bg-base-200 border-b shadow-sm">
-			<div className="navbar-start ml-2 text-lg">
+			<div className="navbar-start ml-2 text-nowrap sm:text-lg">
+				<PotluckQuestIcon className="text-primary-gradient mr-[0.35rem] size-5" />
 				<PotluckQuest />
 			</div>
 
