@@ -78,6 +78,11 @@ const Page = () => {
 							</Link>
 							<ul>
 								<li>
+									<Link href="#event-codes" className="no-underline">
+										Event Codes
+									</Link>
+								</li>
+								<li>
 									<Link href="#creating-an-event" className="no-underline">
 										Creating an Event
 									</Link>

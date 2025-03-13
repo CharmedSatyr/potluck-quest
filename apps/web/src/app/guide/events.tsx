@@ -5,6 +5,7 @@ import DiscordLogo from "~/components/branding/discord-blurple-logo";
 import { PotluckQuest } from "~/components/branding/potluck-quest-logo";
 import { PQBot } from "~/components/branding/pq-bot-logo";
 import ExternalLink from "~/components/external-link";
+import siteMetadata from "~/data/site-metadata";
 
 const CreatingEventBot = () => (
 	<ul>
@@ -97,18 +98,26 @@ const CreatingEventTabs = () => (
 
 const ManagingEvents = () => (
 	<article>
-		<ul>
-			<li>
-				Each <PotluckQuest /> event has a unique, five-character, alphanumeric
-				code on the <PotluckQuest /> website.
-			</li>
+		<ul></ul>
 
-			<li>
-				Add <Link href="#slots">signup slots</Link> to your event during event
-				creation so guests can take advantage of <PotluckQuest /> meal planning
-				tools.
-			</li>
-		</ul>
+		<section>
+			<h3 id="event-codes">Event Codes</h3>
+			<ul>
+				<li>
+					Each <PotluckQuest /> event has a unique, five-character, alphanumeric
+					code on the <PotluckQuest /> website.
+				</li>
+				<li>
+					For example, an event at <code>potluck.quest/event/ABCD1</code> has
+					the code <code>ABCD1</code>.
+				</li>
+				<li>
+					The event code can be used to identify the event elsewhere, like when{" "}
+					<Link href="/guide#finding-an-event">finding an event</Link> or using
+					the <Command command="slots" /> command.
+				</li>
+			</ul>
+		</section>
 
 		<section>
 			<h3 id="creating-an-event">Creating an Event</h3>
@@ -119,9 +128,9 @@ const ManagingEvents = () => (
 			<h3 id="finding-an-event">Finding an Event</h3>
 			<ul>
 				<li>
-					If you have an event code, you can enter it in the search box on the{" "}
-					<Link href="/">home page</Link> to be redirected to the associated
-					event.
+					If you have an <Link href="/guide#event-codes">event code</Link>, you
+					can enter it in the search box on the <Link href="/">home page</Link>{" "}
+					to be redirected to the associated event.
 				</li>
 				<li>
 					You can visit your <Link href="/dashboard">Dashboard</Link> to see all
