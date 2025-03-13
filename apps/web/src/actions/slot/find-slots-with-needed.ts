@@ -1,6 +1,6 @@
 "use server";
 
-import { count, eq, sql } from "drizzle-orm";
+import { eq, sql, sum } from "drizzle-orm";
 import { z } from "zod";
 import findEvent from "~/actions/event/find-event";
 import { schema } from "~/actions/slot/find-slots-with-needed.schema";
@@ -30,7 +30,7 @@ const findSlotsWithNeeded = async (
 			.select({
 				id: slot.id,
 				item: slot.item,
-				needed: sql<number>`cast(${slot.count} - ${count(commitment)} as int)`,
+				needed: sql<number>`cast(coalesce(${slot.count}, 0) - coalesce(${sum(commitment.quantity)}, 0) as int)`,
 			})
 			.from(slot)
 			.where(eq(slot.eventId, event.id))
