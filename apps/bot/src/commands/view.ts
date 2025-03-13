@@ -4,6 +4,7 @@ import {
 	MessageFlags,
 	SlashCommandBuilder,
 } from "discord.js";
+import envConfig from "~/constants/env-config.js";
 import config from "~/constants/env-config.js";
 import webApi from "~/constants/web-api.js";
 import {
@@ -93,8 +94,7 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 
 	if (flattened.length > 25) {
 		await interaction.editReply({
-			content:
-				"Too many events to view using this command. Check the scheduled events for this server to see a full list.",
+			content: `Bless my soul, there are too many parties to list here! Take a gander at this server's scheduled events, and look for [Potluck Quest](${envConfig.PQ_WEB_BASE_URL}) links in the descriptions.`,
 		});
 		return;
 	}

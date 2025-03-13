@@ -17,6 +17,10 @@ const Slots = () => (
 				a main course, appetizers, drinks, or packages of paper plates.
 			</li>
 			<li>
+				Add slots to your event during event creation so guests can take
+				advantage of <PotluckQuest /> meal planning tools.
+			</li>
+			<li>
 				<PotluckQuest />
 				&apos;s <OpenAiLogo /> integration can help you determine what you need
 				to support the number of attendees you expect at your event.
