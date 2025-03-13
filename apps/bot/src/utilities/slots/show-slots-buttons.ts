@@ -5,7 +5,6 @@ import {
 	ButtonStyle,
 	ChatInputCommandInteraction,
 	MessageComponentInteraction,
-	MessageFlags,
 	StringSelectMenuInteraction,
 } from "discord.js";
 import { CustomId } from "~/constants/custom-id.js";
@@ -33,7 +32,15 @@ export const showSlotsButtons = async (
 	if (slots.length === 0) {
 		// Additional space intentional to prevent broken preview links.
 		await interaction.editReply({
-			content: `No slots have been created for [${code}](${config.PQ_WEB_BASE_URL}/event/${code} ). Ask the host to create some!`,
+			content: `No slots have been created for [${code} | Potluck Quest](${config.PQ_WEB_BASE_URL}/event/${code} ). Ask the host to create some!`,
+		});
+		return;
+	}
+
+	if (slots.every((slot) => slot.needed === 0)) {
+		// Additional space intentional to prevent broken preview links.
+		await interaction.editReply({
+			content: `**The feast is laid. All slots have been filled.**\n\n:salad: :beans: :carrot: :bacon: :brown_mushroom: :cheese: :stew: :croissant: :potato: :avocado: :cake:\n\nHead over to [${code} | Potluck Quest](${config.PQ_WEB_BASE_URL}/event/${code}) to see the menu, or have a word with the host if you'd like to bring something extra.`,
 		});
 		return;
 	}

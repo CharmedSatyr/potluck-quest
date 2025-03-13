@@ -1,6 +1,6 @@
 "use server";
 
-import { count, eq, sql, sum } from "drizzle-orm";
+import { eq, sql, sum } from "drizzle-orm";
 import { z } from "zod";
 import findEvent from "~/actions/event/find-event";
 import { schema } from "~/actions/slot/find-slots-with-needed.schema";
