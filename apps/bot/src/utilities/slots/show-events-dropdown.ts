@@ -36,6 +36,13 @@ export const showEventsDropdown = async (
 		return;
 	}
 
+	if (pqEvents.size >= 25) {
+		await interaction.editReply({
+			content: `Goodness, there are too many events to list! Include your event's [Potluck Quest code](${config.PQ_WEB_BASE_URL}/guide#event-codes) when typing the \`/slots\` command.`,
+		});
+		return;
+	}
+
 	const codesByIds = await getPotluckCodesByDiscordIds({
 		discordEventIds: pqEvents.map((event) => event.id) as [string, ...string[]],
 	});
@@ -45,7 +52,8 @@ export const showEventsDropdown = async (
 	});
 
 	const options = pqEvents
-		.filter((event) => codesByIds[event.id]) // Skip events without code
+		// Skip events without code, which can happen if a mapping is missing or an event was deleted on web but not Discord.
+		.filter((event) => codesByIds[event.id])
 		.map((event) => {
 			const code = codesByIds[event.id];
 

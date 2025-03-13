@@ -5,7 +5,6 @@ import DiscordLogo from "~/components/branding/discord-blurple-logo";
 import { PotluckQuest } from "~/components/branding/potluck-quest-logo";
 import { PQBot } from "~/components/branding/pq-bot-logo";
 import ExternalLink from "~/components/external-link";
-import siteMetadata from "~/data/site-metadata";
 
 const CreatingEventBot = () => (
 	<ul>
