@@ -9,22 +9,22 @@
 	},
 	"exports": {
 		"./constants": {
-			"types": "./dist/@types/constants/index.d.ts",
 			"import": "./dist/constants/index.js",
-			"require": "./dist/constants/index.js"
+			"require": "./dist/constants/index.js",
+			"types": "./dist/@types/constants/index.d.ts"
 		},
 		"./helpers": {
-			"types": "./dist/@types/helpers/index.d.ts",
 			"import": "./dist/helpers/index.js",
-			"require": "./dist/helpers/index.js"
+			"require": "./dist/helpers/index.js",
+			"types": "./dist/@types/helpers/index.d.ts"
 		},
 		"./types": {
 			"types": "./dist/@types/types/index.d.ts"
 		},
 		"./validation": {
-			"types": "./dist/@types/validation/index.d.ts",
 			"import": "./dist/validation/index.js",
-			"require": "./dist/validation/index.js"
+			"require": "./dist/validation/index.js",
+			"types": "./dist/@types/validation/index.d.ts"
 		}
 	},
 	"scripts": {
