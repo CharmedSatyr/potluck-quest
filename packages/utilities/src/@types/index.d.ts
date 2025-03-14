@@ -1,6 +1,6 @@
 import type {
 	SupportedTimezone,
 	SupportedTimezones,
-} from "~/types/timezone.d.ts";
+} from "~/@types/timezone.js";
 
 export type { SupportedTimezone, SupportedTimezones };

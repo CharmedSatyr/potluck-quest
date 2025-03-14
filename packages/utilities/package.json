@@ -11,24 +11,24 @@
 		"./constants": {
 			"import": "./dist/constants/index.js",
 			"require": "./dist/constants/index.js",
-			"types": "./dist/@types/constants/index.d.ts"
+			"types": "./dist/constants/index.d.ts"
 		},
 		"./helpers": {
 			"import": "./dist/helpers/index.js",
 			"require": "./dist/helpers/index.js",
-			"types": "./dist/@types/helpers/index.d.ts"
+			"types": "./dist/helpers/index.d.ts"
 		},
 		"./types": {
-			"types": "./dist/@types/types/index.d.ts"
+			"types": "./dist/@types/index.d.ts"
 		},
 		"./validation": {
 			"import": "./dist/validation/index.js",
 			"require": "./dist/validation/index.js",
-			"types": "./dist/@types/validation/index.d.ts"
+			"types": "./dist/validation/index.d.ts"
 		}
 	},
 	"scripts": {
-		"build": "tsc && tsc-alias && mkdir -p dist/@types/types; cp src/types/* dist/@types/types",
+		"build": "tsc && tsc-alias && mkdir -p dist/@types; cp src/@types/* dist/@types",
 		"dev": "nodemon",
 		"clean": "rm -rf dist tsconfig.tsbuildinfo || true",
 		"prettier": "npx prettier --write .",

@@ -1,5 +1,5 @@
 {
 	"watch": ["src"],
 	"ext": "ts",
-	"exec": "tsc && tsc-alias && mkdir -p dist/@types/types; cp src/types/* dist/@types/types"
+	"exec": "tsc && tsc-alias && mkdir -p dist/@types; cp src/@types/* dist/@types"
 }
