@@ -412,7 +412,7 @@ export const getUserTimezone = async (
 
 		const result = await Promise.race([
 			responsePromise,
-			new Promise<boolean>((resolve) =>
+			new Promise<SupportedTimezone>((resolve) =>
 				setTimeout(() => resolve(DEFAULT_TIMEZONE), timeoutMs)
 			),
 		]);
