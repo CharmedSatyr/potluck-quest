@@ -20,7 +20,7 @@ export const SUPPORTED_TIMEZONES: SupportedTimezones = [
 	"America/Denver",
 	"America/Chicago",
 	"America/New_York",
-] as const;
+] as const satisfies SupportedTimezones;
 
 export const ContactEmailReversed = "tseuq.kcultop@tcatnoc";
 export const ContactAddressReversed = `45161 xoB .O.P
