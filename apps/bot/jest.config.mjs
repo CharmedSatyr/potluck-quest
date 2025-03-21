@@ -17,12 +17,12 @@ export default {
 		"^~/(.*)\\.js$": "<rootDir>/src/$1.ts",
 		"^~/(.*)$": "<rootDir>/src/$1",
 
-		// Map monorepo packages (TODO: consume from dist)
-		"^@potluck/utilities/(.*)$": "<rootDir>/../../packages/utilities/src/$1",
+		// Map monorepo packages
+		"^@potluck/utilities/(.*)$":
+			"<rootDir>/../../packages/utilities/dist/$1/index.js",
 	},
 	// A preset that is used as a base for Jest's configuration
-	preset: "ts-jest",
-	transform: {
-		"^.+\\.tsx?$": ["ts-jest", { useESM: true }],
-	},
+	preset: "ts-jest/presets/default-esm",
+	// The paths to modules that run some code to configure or set up the testing environment before each test
+	setupFiles: ["<rootDir>/jest.setup.mjs"],
 };

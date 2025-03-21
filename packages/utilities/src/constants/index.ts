@@ -1,7 +1,7 @@
 import type {
 	SupportedTimezone,
 	SupportedTimezones,
-} from "../@types/timezone.d.ts";
+} from "~/@types/timezone.d.ts";
 
 export const COMMITMENT_DESCRIPTION_LENGTH = 100;
 export const EVENT_DESCRIPTION_LENGTH = 1000;
