@@ -34,6 +34,9 @@
     "*.+(js|jsx|ts|tsx)": [
       "turbo run lint --",
       "turbo run test --"
+    ],
+    "*.+(ts|tsx)": [
+      "turbo run type-check --"
     ]
   }
 }
