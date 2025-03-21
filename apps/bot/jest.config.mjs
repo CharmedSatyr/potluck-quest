@@ -17,9 +17,7 @@ export default {
 		"^~/(.*)\\.js$": "<rootDir>/src/$1.ts",
 		"^~/(.*)$": "<rootDir>/src/$1",
 
-		// Map monorepo packages correctly
-		"^@potluck/utilities/(.*)\\.js$":
-			"<rootDir>/../../packages/utilities/src/$1.ts",
+		// Map monorepo packages (TODO: consume from dist)
 		"^@potluck/utilities/(.*)$": "<rootDir>/../../packages/utilities/src/$1",
 	},
 	// A preset that is used as a base for Jest's configuration
