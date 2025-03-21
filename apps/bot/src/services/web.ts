@@ -387,7 +387,9 @@ export const getUserTimezone = async (
 	try {
 		webApiBot.timezone.getSchema.parse(data);
 
-		const timezone = timezoneCache.get(data.discordUserId);
+		const timezone = timezoneCache.get<SupportedTimezone | undefined>(
+			data.discordUserId
+		);
 
 		if (timezone) {
 			return timezone;
