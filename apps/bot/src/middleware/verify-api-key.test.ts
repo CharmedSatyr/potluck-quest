@@ -1,10 +1,14 @@
+import { jest } from "@jest/globals";
 import { Request, Response } from "express";
 import type { IncomingHttpHeaders } from "http";
-import verifyApiKey from "~/middleware/verify-api-key.js";
 
-jest.mock("~/constants/env-config.js", () => ({
-	PQ_WEB_TO_BOT_API_KEY: "test-api-key",
+jest.unstable_mockModule("~/constants/env-config.js", () => ({
+	default: { PQ_WEB_TO_BOT_API_KEY: "test-api-key" },
 }));
+
+const { default: verifyApiKey } = await import(
+	"~/middleware/verify-api-key.js"
+);
 
 describe("verifyApiKey middleware", () => {
 	let req: Partial<Request>;
@@ -13,7 +17,10 @@ describe("verifyApiKey middleware", () => {
 
 	beforeEach(() => {
 		req = { headers: {} };
-		res = { status: jest.fn().mockReturnThis(), send: jest.fn() };
+		res = {
+			status: jest.fn().mockReturnThis(),
+			send: jest.fn(),
+		} as Partial<Response>;
 		next = jest.fn();
 	});
 
