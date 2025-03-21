@@ -45,6 +45,9 @@ importers:
         specifier: ^5.1.2
         version: 5.1.2
     devDependencies:
+      '@jest/globals':
+        specifier: ^29.7.0
+        version: 29.7.0
       '@potluck/config':
         specifier: workspace:*
         version: link:../../packages/config

@@ -16,7 +16,7 @@
 		"type-check": "tsc --noEmit && tsc-alias",
 		"register": "tsc && tsc-alias && node dist/register.js",
 		"start": "node dist/server.js",
-		"test": "TZ=UTC jest src"
+		"test": "NODE_OPTIONS='--experimental-vm-modules' TZ=UTC jest src"
 	},
 	"repository": {
 		"type": "git",
@@ -39,6 +39,7 @@
 		"node-cache": "^5.1.2"
 	},
 	"devDependencies": {
+		"@jest/globals": "^29.7.0",
 		"@potluck/config": "workspace:*",
 		"@types/express": "^5.0.0",
 		"@types/jest": "^29.5.14",
