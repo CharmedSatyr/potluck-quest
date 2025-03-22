@@ -387,7 +387,9 @@ export const getUserTimezone = async (
 	try {
 		webApiBot.timezone.getSchema.parse(data);
 
-		const timezone = timezoneCache.get(data.discordUserId);
+		const timezone = timezoneCache.get<SupportedTimezone | undefined>(
+			data.discordUserId
+		);
 
 		if (timezone) {
 			return timezone;
@@ -412,7 +414,7 @@ export const getUserTimezone = async (
 
 		const result = await Promise.race([
 			responsePromise,
-			new Promise<boolean>((resolve) =>
+			new Promise<SupportedTimezone>((resolve) =>
 				setTimeout(() => resolve(DEFAULT_TIMEZONE), timeoutMs)
 			),
 		]);

@@ -1,7 +1,8 @@
 {
   "name": "potluck-quest",
-  "private": true,
   "version": "1.0.0",
+  "type": "module",
+  "private": true,
   "license": "GPL-3.0",
   "engines": {
     "node": "^22",
@@ -33,6 +34,9 @@
     "*.+(js|jsx|ts|tsx)": [
       "turbo run lint --",
       "turbo run test --"
+    ],
+    "*.+(ts|tsx)": [
+      "turbo run type-check --"
     ]
   }
 }
