@@ -18,8 +18,8 @@ export default (files) => {
   });
 
   return Object.entries(tasks).flatMap(([pkg, files]) => [
+    `turbo run prettier --filter=${pkg} -- ${files.join(" ")}`,
     `turbo run lint --filter=${pkg} -- ${files.join(" ")}`,
-    `turbo run prettier --filter=${pkg} -- ${files.join(" ")}`
     `turbo run type-check --filter=${pkg} -- ${files.join(" ")}`
   ]);
 };
