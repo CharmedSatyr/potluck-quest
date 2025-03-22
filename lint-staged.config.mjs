@@ -4,8 +4,8 @@ import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const packagePaths = {
-  "potluck-web": "apps/web",
-  "potluck-bot": "apps/bot",
+  "@potluck/web": "apps/web",
+  "@potluck/bot": "apps/bot",
   "@potluck/utilities": "packages/utilities",
   "@potluck/config": "packages/config",
 };
@@ -30,7 +30,9 @@ export default (files) => {
   const commands = Object.entries(tasks).flatMap(([pkg, files]) => {
     const commands = [];
 
-    if (files.length === 0) return commands; // Prevent empty command execution
+
+    if (files.length === 0) {
+      return commands;}
 
     if (files.some((file) => file.match(/\.(js|jsx|ts|tsx|json|css|md|mdx)$/))) {
       commands.push(`turbo run prettier --filter=${pkg} -- ${files.join(" ")}`);
