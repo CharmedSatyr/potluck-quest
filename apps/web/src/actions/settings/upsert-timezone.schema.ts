@@ -2,9 +2,9 @@ import type { SupportedTimezone } from "@potluck/utilities/types";
 import { timezone, userId, z } from "@potluck/utilities/validation";
 
 export const schema = z.strictObject({
-	timezone,
+	timezone, //
 	userId,
-}) satisfies z.ZodType<{
+}) as z.ZodType<{
 	timezone: SupportedTimezone;
 	userId: User["id"];
-}>;
+}>; // o
