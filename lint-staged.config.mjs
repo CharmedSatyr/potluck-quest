@@ -14,8 +14,6 @@ export default (files) => {
   const tasks = {};
   const relativeFiles = files.map((file) => path.relative(__dirname, file));
 
-  console.log("FILES:", relativeFiles);
-
   relativeFiles.forEach((file) => {
     for (const [pkg, basePath] of Object.entries(packagePaths)) {
       if (file.startsWith(basePath)) {
@@ -27,14 +25,16 @@ export default (files) => {
     }
   });
 
-  const commands = Object.entries(tasks).flatMap(([pkg, files]) => {
+  return Object.entries(tasks).flatMap(([pkg, files]) => {
     const commands = [];
 
-
     if (files.length === 0) {
-      return commands;}
+      return commands;
+    }
 
-    if (files.some((file) => file.match(/\.(js|jsx|ts|tsx|json|css|md|mdx)$/))) {
+    if (
+      files.some((file) => file.match(/\.(js|jsx|ts|tsx|json|css|md|mdx)$/))
+    ) {
       commands.push(`turbo run prettier --filter=${pkg} -- ${files.join(" ")}`);
     }
     if (files.some((file) => file.match(/\.(js|jsx|ts|tsx)$/))) {
@@ -46,7 +46,4 @@ export default (files) => {
 
     return commands;
   });
-
-  console.log("commands:", commands);
-  return commands;
 };
