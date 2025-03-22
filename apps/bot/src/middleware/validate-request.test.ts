@@ -67,6 +67,10 @@ describe("validateRequest middleware", () => {
 	});
 
 	it("should handle unexpected errors and return 500", () => {
+		const errorLogger = jest
+			.spyOn(console, "error")
+			.mockImplementation(() => {});
+
 		const brokenSchema = {
 			parse: jest.fn(() => {
 				throw new Error("Unexpected error");
@@ -82,5 +86,6 @@ describe("validateRequest middleware", () => {
 		expect(res.status).toHaveBeenCalledWith(500);
 		expect(res.send).toHaveBeenCalled();
 		expect(next).not.toHaveBeenCalled();
+		expect(errorLogger).toHaveBeenCalled();
 	});
 });

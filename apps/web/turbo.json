@@ -7,6 +7,8 @@
 			"inputs": ["$TURBO_DEFAULT$", ".env*"],
 			"outputs": [".next/**", "!next/cache/**"],
 			"env": [
+				"ANALYTICS_ID",
+				"ANALYTICS_URL",
 				"AUTH_SECRET",
 				"AUTH_DISCORD_ID",
 				"AUTH_DISCORD_SECRET",
@@ -16,6 +18,7 @@
 				"DATABASE_HOST",
 				"DATABASE_NAME",
 				"OPENAI_API_KEY",
+				"NODE_ENV",
 				"PQ_BOT_BASE_URL",
 				"PQ_BOT_TO_WEB_API_KEY",
 				"PQ_WEB_TO_BOT_API_KEY"

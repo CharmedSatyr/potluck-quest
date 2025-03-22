@@ -4,6 +4,7 @@ import tsPlugin from "@typescript-eslint/eslint-plugin";
 import turboPlugin from "eslint-plugin-turbo";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import prettierConfig from "eslint-config-prettier";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -15,7 +16,7 @@ const compat = new FlatCompat({
 
 /** @type {import("eslint").Linter.Config[]} */
 export default [
-  ...compat.extends("plugin:prettier/recommended"),
+  prettierConfig,
   {
     plugins: {
       "@typescript-eslint": tsPlugin,
@@ -23,6 +24,7 @@ export default [
     },
     rules: {
       ...tsPlugin.configs.recommended.rules,
+      ...turboPlugin.configs.recommended.rules,
       "@typescript-eslint/no-unused-vars": [
         "warn",
         {

@@ -26,17 +26,5 @@
     "husky": "^9.1.7",
     "lint-staged": "^15.4.3",
     "turbo": "^2.4.4"
-  },
-  "lint-staged": {
-    "*.+(js|jsx|ts|tsx|json|css|md|mdx)": [
-      "turbo run prettier --"
-    ],
-    "*.+(js|jsx|ts|tsx)": [
-      "turbo run lint --",
-      "turbo run test --"
-    ],
-    "*.+(ts|tsx)": [
-      "turbo run type-check --"
-    ]
   }
 }
