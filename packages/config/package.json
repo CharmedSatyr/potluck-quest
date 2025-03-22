@@ -15,7 +15,7 @@
     "./typescript": "./typescript/tsconfig.json"
   },
   "scripts": {
-    "prettier": "npx prettier --write ."
+    "prettier": "npx prettier --write"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

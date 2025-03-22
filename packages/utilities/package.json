@@ -31,7 +31,7 @@
 		"build": "tsc && tsc-alias && mkdir -p dist/@types; cp src/@types/* dist/@types",
 		"dev": "nodemon",
 		"clean": "rm -rf dist tsconfig.tsbuildinfo || true",
-		"prettier": "npx prettier --write .",
+		"prettier": "npx prettier --write",
 		"lint": "npx eslint src/**/*.ts --fix",
 		"type-check": "tsc --noEmit && tsc-alias"
 	},
