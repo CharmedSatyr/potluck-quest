@@ -103,7 +103,7 @@ export const showEventsDropdown = async (
 			),
 			components: [],
 		});
-	} catch (err) {
+	} catch (_err) {
 		await interaction.editReply({
 			content: "Confirmation not received within 1 minute. Please try again.",
 			components: [],
