@@ -68,7 +68,7 @@ const CommittedUsersBySlot = async (
 			return;
 		}
 
-		map.set(slot.id, <Avatars committedUsers={committedUsers} />);
+		map.set(slot.id, <Avatars key={slot.id} committedUsers={committedUsers} />);
 	});
 
 	return map;
