@@ -15,13 +15,7 @@ const validateRequest =
 			req.method === "GET" || req.method === "DELETE" ? req.query : req.body;
 
 		try {
-			const parsed = schema.parse(dataSource);
-
-			if (req.method === "GET" || req.method === "DELETE") {
-				req.query = parsed;
-			} else {
-				req.body = parsed;
-			}
+			schema.parse(dataSource);
 
 			next();
 		} catch (error) {
