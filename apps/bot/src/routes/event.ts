@@ -28,7 +28,7 @@ router.post(
 		const discordEvent = await createDiscordEvent(rest);
 
 		if (!discordEvent) {
-			res.status(500).send();
+			res.sendStatus(500);
 			return;
 		}
 
@@ -38,7 +38,7 @@ router.post(
 			potluckEventCode: code,
 		});
 
-		res.status(200).send();
+		res.sendStatus(200);
 	}
 );
 
@@ -59,11 +59,11 @@ router.put(
 		const result = await updateDiscordEvent(rest);
 
 		if (result) {
-			res.status(200).send();
+			res.sendStatus(200);
 			return;
 		}
 
-		res.status(500).send();
+		res.sendStatus(500);
 	}
 );
 
@@ -79,11 +79,11 @@ router.delete(
 		const result = await cancelDiscordEvent(query);
 
 		if (result) {
-			res.status(200).send();
+			res.sendStatus(200);
 			return;
 		}
 
-		res.status(500).send();
+		res.sendStatus(500);
 	}
 );
 
@@ -99,7 +99,7 @@ router.get(
 		const guild = await getGuild({ guildId: discordGuildId });
 
 		if (!guild) {
-			res.status(400).send();
+			res.sendStatus(400);
 			return;
 		}
 

@@ -20,6 +20,7 @@ describe("verifyApiKey middleware", () => {
 		res = {
 			status: jest.fn().mockReturnThis(),
 			send: jest.fn(),
+			sendStatus: jest.fn(),
 		} as Partial<Response>;
 		next = jest.fn();
 	});
@@ -40,8 +41,7 @@ describe("verifyApiKey middleware", () => {
 	it("should return 401 when API key is missing", () => {
 		verifyApiKey(req as Request, res as Response, next);
 
-		expect(res.status).toHaveBeenCalledWith(401);
-		expect(res.send).toHaveBeenCalled();
+		expect(res.sendStatus).toHaveBeenCalledWith(401);
 		expect(next).not.toHaveBeenCalled();
 	});
 
@@ -50,8 +50,7 @@ describe("verifyApiKey middleware", () => {
 
 		verifyApiKey(req as Request, res as Response, next);
 
-		expect(res.status).toHaveBeenCalledWith(401);
-		expect(res.send).toHaveBeenCalled();
+		expect(res.sendStatus).toHaveBeenCalledWith(401);
 		expect(next).not.toHaveBeenCalled();
 	});
 });

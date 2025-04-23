@@ -13,6 +13,7 @@ describe("validateRequest middleware", () => {
 		res.status = jest.fn().mockReturnThis();
 		res.json = jest.fn().mockReturnThis();
 		res.send = jest.fn();
+		res.sendStatus = jest.fn();
 		return res as Response;
 	};
 
@@ -83,8 +84,7 @@ describe("validateRequest middleware", () => {
 			next as NextFunction
 		);
 
-		expect(res.status).toHaveBeenCalledWith(500);
-		expect(res.send).toHaveBeenCalled();
+		expect(res.sendStatus).toHaveBeenCalledWith(500);
 		expect(next).not.toHaveBeenCalled();
 		expect(errorLogger).toHaveBeenCalled();
 	});

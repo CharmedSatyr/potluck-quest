@@ -3,7 +3,7 @@ import envConfig from "~/constants/env-config.js";
 
 const verifyApiKey = (req: Request, res: Response, next: NextFunction) => {
 	if (req.headers["x-api-key"] !== envConfig.PQ_WEB_TO_BOT_API_KEY) {
-		res.status(401).send();
+		res.sendStatus(401);
 		return;
 	}
 

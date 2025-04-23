@@ -31,7 +31,7 @@ const validateRequest =
 
 			console.error("Error validating request:", error);
 
-			res.status(500).send();
+			res.sendStatus(500);
 		}
 	};
 
