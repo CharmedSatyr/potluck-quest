@@ -37,13 +37,13 @@
 	},
 	"devDependencies": {
 		"@potluck/config": "workspace:*",
-		"@types/luxon": "^3.4.2",
-		"nodemon": "^3.1.9",
-		"tsc-alias": "^1.8.11",
-		"typescript": "^5.8.2"
+		"@types/luxon": "^3.6.2",
+		"nodemon": "^3.1.10",
+		"tsc-alias": "^1.8.15",
+		"typescript": "^5.8.3"
 	},
 	"dependencies": {
-		"luxon": "^3.5.0",
-		"zod": "^3.24.2"
+		"luxon": "^3.6.1",
+		"zod": "^3.24.3"
 	}
 }
