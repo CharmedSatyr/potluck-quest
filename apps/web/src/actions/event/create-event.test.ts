@@ -1,4 +1,3 @@
-import { ZodError } from "zod";
 import createEvent from "~/actions/event/create-event";
 import db from "~/db/connection";
 import { event } from "~/db/schema/event";
@@ -58,7 +57,7 @@ describe("createEvent", () => {
 
 		expect(db.insert).not.toHaveBeenCalled();
 		expect(result).toEqual([]);
-		expect(errorLogger.mock.calls[0][0]).toBeInstanceOf(ZodError);
+		expect(errorLogger.mock.calls[0][0].name).toBe("ZodError");
 	});
 
 	it("should return an empty array and log an error if db insertion fails", async () => {
