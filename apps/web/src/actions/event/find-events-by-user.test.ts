@@ -1,4 +1,4 @@
-import { ZodError } from "zod";
+import { ZodError } from "@potluck/utilities/validation";
 import findEventsByUser from "~/actions/event/find-events-by-user";
 import db from "~/db/connection";
 

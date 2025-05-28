@@ -1,4 +1,4 @@
-import { ZodError } from "zod";
+import { ZodError } from "@potluck/utilities/validation";
 import findUsers from "~/actions/user/find-users";
 import db from "~/db/connection";
 import { user } from "~/db/schema/auth/user";

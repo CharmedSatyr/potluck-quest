@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z, ZodError } from "zod";
 import botApi from "~/validation/bot/api/index.js";
 import { code } from "~/validation/common/code.js";
 import { commitmentDescription } from "~/validation/common/commitment-description.js";
@@ -52,4 +52,5 @@ export {
 	userId,
 	webApiBot,
 	z,
+	ZodError,
 };

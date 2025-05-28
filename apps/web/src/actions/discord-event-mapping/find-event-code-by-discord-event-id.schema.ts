@@ -1,5 +1,4 @@
-import { discordEventId } from "@potluck/utilities/validation";
-import { z } from "zod";
+import { discordEventId, z } from "@potluck/utilities/validation";
 
 export const schema = z.strictObject({
 	discordEventId,

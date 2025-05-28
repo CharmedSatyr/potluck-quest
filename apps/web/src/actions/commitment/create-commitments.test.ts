@@ -1,4 +1,4 @@
-import { ZodError } from "zod";
+import { ZodError } from "@potluck/utilities/validation";
 import createCommitment from "~/actions/commitment/create-commitment";
 import db from "~/db/connection";
 import { commitment } from "~/db/schema/commitment";

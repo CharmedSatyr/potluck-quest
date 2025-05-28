@@ -1,6 +1,6 @@
 "use server";
 
-import { z } from "zod";
+import { z } from "@potluck/utilities/validation";
 import { schema } from "~/actions/settings/find-timezone.schema";
 import db from "~/db/connection";
 import { settings } from "~/db/schema/settings";

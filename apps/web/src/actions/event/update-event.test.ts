@@ -1,4 +1,4 @@
-import { ZodError } from "zod";
+import { ZodError } from "@potluck/utilities/validation";
 import updateEvent from "~/actions/event/update-event";
 import db from "~/db/connection";
 import { event } from "~/db/schema/event";

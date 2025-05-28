@@ -1,6 +1,6 @@
 "use server";
 
-import { z } from "zod";
+import { z } from "@potluck/utilities/validation";
 import { schema } from "~/actions/commitment/create-commitment.schema";
 import db from "~/db/connection";
 import { commitment } from "~/db/schema/commitment";

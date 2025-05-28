@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from "@potluck/utilities/validation";
 import findProviderAccountIdByUserId from "~/actions/user/find-provider-account-id-by-user-id";
 import { schema } from "~/actions/user/find-provider-account-id-by-user-id.schema";
 import db from "~/db/connection";

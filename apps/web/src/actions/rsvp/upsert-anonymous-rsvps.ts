@@ -1,6 +1,6 @@
 "use server";
 
-import { z } from "zod";
+import { z } from "@potluck/utilities/validation";
 import findEvent from "~/actions/event/find-event";
 import { schema } from "~/actions/rsvp/upsert-anonymous-rsvps.schema";
 import db from "~/db/connection";

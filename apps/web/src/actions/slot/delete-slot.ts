@@ -1,7 +1,7 @@
 "use server";
 
+import { z } from "@potluck/utilities/validation";
 import { eq } from "drizzle-orm";
-import { z } from "zod";
 import { schema } from "~/actions/slot/delete-slot.schema";
 import db from "~/db/connection";
 import { slot } from "~/db/schema/slot";

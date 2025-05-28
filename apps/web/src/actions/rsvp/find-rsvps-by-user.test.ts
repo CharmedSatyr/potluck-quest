@@ -1,6 +1,6 @@
 "use server";
 
-import { ZodError } from "zod";
+import { ZodError } from "@potluck/utilities/validation";
 import findRsvpsByUser from "~/actions/rsvp/find-rsvps-by-user";
 import db from "~/db/connection";
 

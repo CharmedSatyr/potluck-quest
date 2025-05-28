@@ -1,7 +1,7 @@
 "use server";
 
 import { botApi } from "@potluck/utilities/validation";
-import { z } from "zod";
+import { z } from "@potluck/utilities/validation";
 import { schema } from "~/actions/bot/user/fetch-user-discord-guilds.schema";
 import findProviderAccountIdByUserId from "~/actions/user/find-provider-account-id-by-user-id";
 import botRoutes from "~/constants/bot-api";

@@ -6,8 +6,8 @@ import {
 } from "@heroicons/react/24/outline";
 import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/react/24/solid";
 import { suggestions as suggestionsSchema } from "@potluck/utilities/validation";
+import { z } from "@potluck/utilities/validation";
 import { useState } from "react";
-import { z } from "zod";
 
 const Results = ({
 	populate,

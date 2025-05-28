@@ -1,7 +1,7 @@
 "use server";
 
+import { z } from "@potluck/utilities/validation";
 import { eq } from "drizzle-orm";
-import { z } from "zod";
 import { schema } from "~/actions/discord-event-mapping/find-discord-event-mapping.schema";
 import db from "~/db/connection";
 import { discordEventMapping } from "~/db/schema/discord-event-mapping";

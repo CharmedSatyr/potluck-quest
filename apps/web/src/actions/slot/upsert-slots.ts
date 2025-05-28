@@ -1,8 +1,8 @@
 "use server";
 
+import { z } from "@potluck/utilities/validation";
 import { getTableColumns, SQL, sql } from "drizzle-orm";
 import { PgTable } from "drizzle-orm/pg-core";
-import { z } from "zod";
 import findEvent from "~/actions/event/find-event";
 import { schema } from "~/actions/slot/upsert-slots.schema";
 import db from "~/db/connection";

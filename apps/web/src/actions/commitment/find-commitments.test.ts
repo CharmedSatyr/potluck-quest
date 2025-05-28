@@ -1,4 +1,4 @@
-import { ZodError } from "zod";
+import { ZodError } from "@potluck/utilities/validation";
 import findCommitments from "~/actions/commitment/find-commitments";
 import findEvent from "~/actions/event/find-event";
 import db from "~/db/connection";

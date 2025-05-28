@@ -5,7 +5,7 @@ import { title } from "@potluck/utilities/validation";
 import { startUtcMs } from "@potluck/utilities/validation";
 import { endUtcMs } from "@potluck/utilities/validation";
 import { hosts } from "@potluck/utilities/validation";
-import { z } from "zod";
+import { z } from "@potluck/utilities/validation";
 
 export const schema = z
 	.strictObject({

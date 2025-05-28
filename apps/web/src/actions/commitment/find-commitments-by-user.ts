@@ -1,7 +1,7 @@
 "use server";
 
+import { z } from "@potluck/utilities/validation";
 import { eq } from "drizzle-orm";
-import { z } from "zod";
 import { schema } from "~/actions/commitment/find-commitments-by-user.schema";
 import db from "~/db/connection";
 import { commitment } from "~/db/schema/commitment";

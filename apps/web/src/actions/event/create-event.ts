@@ -1,6 +1,6 @@
 "use server";
 
-import { z } from "zod";
+import { z } from "@potluck/utilities/validation";
 import { schema } from "~/actions/event/create-event.schema";
 import db from "~/db/connection";
 import { event } from "~/db/schema/event";

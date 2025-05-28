@@ -1,7 +1,7 @@
 "use server";
 
 import { botApi } from "@potluck/utilities/validation";
-import { z } from "zod";
+import { z } from "@potluck/utilities/validation";
 import botRoutes from "~/constants/bot-api";
 import envConfig from "~/constants/env-config";
 

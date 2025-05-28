@@ -1,7 +1,7 @@
 "use server";
 
+import { z } from "@potluck/utilities/validation";
 import { eq } from "drizzle-orm";
-import { z } from "zod";
 import { schema } from "~/actions/user/find-provider-account-id-by-user-id.schema";
 import db from "~/db/connection";
 import { account } from "~/db/schema/auth/account";

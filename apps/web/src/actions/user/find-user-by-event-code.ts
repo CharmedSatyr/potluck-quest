@@ -1,7 +1,7 @@
 "use server";
 
+import { z } from "@potluck/utilities/validation";
 import { eq } from "drizzle-orm";
-import { z } from "zod";
 import findEvent from "~/actions/event/find-event";
 import { schema } from "~/actions/user/find-user-by-event-code.schema";
 import db from "~/db/connection";

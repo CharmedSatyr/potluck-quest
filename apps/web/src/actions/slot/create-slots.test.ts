@@ -1,4 +1,4 @@
-import { z, ZodError } from "zod";
+import { z, ZodError } from "@potluck/utilities/validation";
 import findEvent from "~/actions/event/find-event";
 import createSlots from "~/actions/slot/create-slots";
 import { schema } from "~/actions/slot/create-slots.schema";

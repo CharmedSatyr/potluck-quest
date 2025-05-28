@@ -1,7 +1,7 @@
 "use server";
 
+import { z } from "@potluck/utilities/validation";
 import { inArray } from "drizzle-orm";
-import { z } from "zod";
 import { schema } from "~/actions/user/find-users.schema";
 import db from "~/db/connection";
 import { user } from "~/db/schema/auth/user";

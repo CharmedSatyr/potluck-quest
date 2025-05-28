@@ -1,5 +1,4 @@
-import { code } from "@potluck/utilities/validation";
-import { z } from "zod";
+import { code, z } from "@potluck/utilities/validation";
 
 export const schema = z.strictObject({
 	eventCode: code,

@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from "@potluck/utilities/validation";
 import { schema } from "~/actions/commitment/create-commitment.schema";
 
 export const createCommitmentFormSchema = schema
