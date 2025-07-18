@@ -54,26 +54,17 @@ describe("findSlots", () => {
 	});
 
 	it("should return an empty array and log a ZodError if schema validation fails", async () => {
-		const error = new ZodError([
-			{
-				code: "invalid_type",
-				expected: "string",
-				received: "undefined",
-				path: ["id"],
-				message: "Required",
-			},
-			{
-				code: "unrecognized_keys",
-				keys: ["eventCode"],
-				path: [],
-				message: "Unrecognized key(s) in object: 'eventCode'",
-			},
-		]);
-
 		const result = await findRsvpsByUser(invalidData);
 
 		expect(result).toEqual([]);
-		expect(errorLogger).toHaveBeenCalledWith(error);
+		expect(errorLogger.mock.calls[0][0]).toBeInstanceOf(ZodError);
+		expect(errorLogger.mock.calls[0][0].issues).toHaveLength(2);
+		expect(errorLogger.mock.calls[0][0].issues[0].message).toContain(
+			"Invalid input: expected string, received undefined"
+		);
+		expect(errorLogger.mock.calls[0][0].issues[1].message).toContain(
+			'Unrecognized key: "eventCode"'
+		);
 	});
 
 	it("should return an empty array and log an error if db query fails", async () => {

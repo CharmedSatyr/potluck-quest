@@ -62,23 +62,15 @@ describe("findSlots", () => {
 	it("should return an empty array and log a ZodError if schema validation fails", async () => {
 		const invalidData = { eventCode: "BAD" };
 
-		const error = new ZodError([
-			{
-				code: "too_small",
-				minimum: 5,
-				type: "string",
-				inclusive: true,
-				exact: true,
-				message: "String must contain exactly 5 character(s)",
-				path: ["eventCode"],
-			},
-		]);
-
 		const result = await findRsvpsByEvent(invalidData);
 
 		expect(result).toEqual([]);
 		expect(findEvent).not.toHaveBeenCalled();
-		expect(errorLogger).toHaveBeenCalledWith(error);
+		expect(errorLogger.mock.calls[0][0]).toBeInstanceOf(ZodError);
+		expect(errorLogger.mock.calls[0][0].issues).toHaveLength(1);
+		expect(errorLogger.mock.calls[0][0].issues[0].message).toContain(
+			"Too small: expected string to have >=5 characters"
+		);
 	});
 
 	it("should return an empty array and log an error if db query fails", async () => {

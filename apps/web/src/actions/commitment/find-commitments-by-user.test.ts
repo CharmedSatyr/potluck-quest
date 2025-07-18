@@ -48,20 +48,15 @@ describe("findCommitments", () => {
 	it("should log an error and return an empty array if invalid data is provided", async () => {
 		const invalidData = { id: "BAD_ID" };
 
-		const error = new ZodError([
-			{
-				validation: "uuid",
-				code: "invalid_string",
-				message: "Invalid uuid",
-				path: ["id"],
-			},
-		]);
-
 		const result = await findCommitmentsByUser(invalidData);
 
 		expect(result).toEqual([]);
 		expect(db.select).not.toHaveBeenCalled();
-		expect(errorLogger).toHaveBeenCalledWith(error);
+		expect(errorLogger.mock.calls[0][0]).toBeInstanceOf(ZodError);
+		expect(errorLogger.mock.calls[0][0].issues).toHaveLength(1);
+		expect(errorLogger.mock.calls[0][0].issues[0].message).toContain(
+			"Invalid UUID"
+		);
 	});
 
 	it("should return an empty array if the event is not found", async () => {

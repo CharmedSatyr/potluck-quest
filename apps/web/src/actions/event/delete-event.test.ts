@@ -38,23 +38,15 @@ describe("deleteEvent", () => {
 	it("should return an empty array and log an error if invalid data is provided", async () => {
 		const invalidData = { code: "invalid-code" };
 
-		const error = new ZodError([
-			{
-				code: "too_big",
-				maximum: 5,
-				type: "string",
-				inclusive: true,
-				exact: true,
-				message: "String must contain exactly 5 character(s)",
-				path: ["code"],
-			},
-		]);
-
 		const result = await deleteEvent(invalidData);
 
 		expect(db.delete).not.toHaveBeenCalled();
 		expect(result).toEqual([]);
-		expect(errorLogger).toHaveBeenCalledWith(error);
+		expect(errorLogger.mock.calls[0][0]).toBeInstanceOf(ZodError);
+		expect(errorLogger.mock.calls[0][0].issues).toHaveLength(1);
+		expect(errorLogger.mock.calls[0][0].issues[0].message).toContain(
+			"Too big: expected string to have <=5 characters"
+		);
 	});
 
 	it("should return an empty array and log an error if db deletion fails", async () => {

@@ -62,20 +62,15 @@ describe("findUsers", () => {
 			users: ["invalid-uuid"],
 		};
 
-		const error = new ZodError([
-			{
-				validation: "uuid",
-				code: "invalid_string",
-				message: "Invalid uuid",
-				path: ["users", 0],
-			},
-		]);
-
 		const result = await findUsers(invalidData);
 
 		expect(db.select).not.toHaveBeenCalled();
 		expect(result).toEqual([]);
-		expect(errorLogger).toHaveBeenCalledWith(error);
+		expect(errorLogger.mock.calls[0][0]).toBeInstanceOf(ZodError);
+		expect(errorLogger.mock.calls[0][0].issues).toHaveLength(1);
+		expect(errorLogger.mock.calls[0][0].issues[0].message).toContain(
+			"Invalid UUID"
+		);
 	});
 
 	it("should return an empty array and log an error if no users are provided", async () => {
@@ -83,23 +78,15 @@ describe("findUsers", () => {
 			users: [string, ...string[]];
 		};
 
-		const error = new ZodError([
-			{
-				code: "too_small",
-				minimum: 1,
-				type: "array",
-				inclusive: true,
-				exact: false,
-				message: "Array must contain at least 1 element(s)",
-				path: ["users"],
-			},
-		]);
-
 		const result = await findUsers(emptyData);
 
 		expect(db.select).not.toHaveBeenCalled();
 		expect(result).toEqual([]);
-		expect(errorLogger).toHaveBeenCalledWith(error);
+		expect(errorLogger.mock.calls[0][0]).toBeInstanceOf(ZodError);
+		expect(errorLogger.mock.calls[0][0].issues).toHaveLength(1);
+		expect(errorLogger.mock.calls[0][0].issues[0].message).toContain(
+			"Too small: expected array to have >=1 items"
+		);
 	});
 
 	it("should return an empty array and log an error if the database query fails", async () => {

@@ -71,38 +71,20 @@ describe("upsertSlots", () => {
 	});
 
 	it("should log an error and return an empty array if schema validation fails", async () => {
-		const error = new ZodError([
-			{
-				code: "too_small",
-				minimum: 1,
-				type: "number",
-				inclusive: true,
-				exact: false,
-				message: "Number must be greater than or equal to 1",
-				path: ["slots", 0, "count"],
-			},
-			{
-				code: "too_small",
-				minimum: 1,
-				type: "string",
-				inclusive: true,
-				exact: false,
-				message: "String must contain at least 1 character(s)",
-				path: ["slots", 0, "item"],
-			},
-			{
-				code: "invalid_type",
-				expected: "number",
-				received: "nan",
-				path: ["slots", 0, "order"],
-				message: "Expected number, received nan",
-			},
-		]);
-
 		const result = await upsertSlots(invalidData);
 
 		expect(result).toEqual([]);
-		expect(errorLogger).toHaveBeenCalledWith(error);
+		expect(errorLogger.mock.calls[0][0]).toBeInstanceOf(ZodError);
+		expect(errorLogger.mock.calls[0][0].issues).toHaveLength(3);
+		expect(errorLogger.mock.calls[0][0].issues[0].message).toContain(
+			"Too small: expected number to be >=1"
+		);
+		expect(errorLogger.mock.calls[0][0].issues[1].message).toContain(
+			"Too small: expected string to have >=1 characters"
+		);
+		expect(errorLogger.mock.calls[0][0].issues[2].message).toContain(
+			"Invalid input: expected number, received NaN"
+		);
 	});
 
 	it("should log an error and return an empty array if db insertion fails", async () => {

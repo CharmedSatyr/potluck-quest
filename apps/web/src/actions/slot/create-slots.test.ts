@@ -62,27 +62,17 @@ describe("createSlots", () => {
 	});
 
 	it("should log an error and return an empty array if schema validation fails", async () => {
-		const error = new ZodError([
-			{
-				code: "invalid_type",
-				expected: "string",
-				received: "number",
-				path: ["slots", 0, "item"],
-				message: "Expected string, received number",
-			},
-			{
-				code: "invalid_type",
-				expected: "number",
-				received: "nan",
-				path: ["slots", 0, "order"],
-				message: "Expected number, received nan",
-			},
-		]);
-
 		const result = await createSlots(invalidData);
 
 		expect(result).toEqual([]);
-		expect(errorLogger).toHaveBeenCalledWith(error);
+		expect(errorLogger.mock.calls[0][0]).toBeInstanceOf(ZodError);
+		expect(errorLogger.mock.calls[0][0].issues).toHaveLength(2);
+		expect(errorLogger.mock.calls[0][0].issues[0].message).toContain(
+			"Invalid input: expected string, received number"
+		);
+		expect(errorLogger.mock.calls[0][0].issues[1].message).toContain(
+			"Invalid input: expected number, received NaN"
+		);
 	});
 
 	it("should log an error and return an empty array if db insertion fails", async () => {

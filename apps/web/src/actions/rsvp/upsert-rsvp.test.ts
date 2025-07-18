@@ -67,40 +67,23 @@ describe("upsertRsvp", () => {
 	});
 
 	it("should log an error and return an empty array if schema validation fails", async () => {
-		const error = new ZodError([
-			{
-				code: "invalid_type",
-				expected: "string",
-				received: "undefined",
-				path: ["createdBy"],
-				message: "Required",
-			},
-			{
-				code: "invalid_type",
-				expected: "string",
-				received: "undefined",
-				path: ["message"],
-				message: "Required",
-			},
-			{
-				expected: "'yes' | 'no'",
-				received: "undefined",
-				code: "invalid_type" as "invalid_literal",
-				path: ["response"],
-				message: "Required",
-			},
-			{
-				code: "unrecognized_keys",
-				keys: ["slots"],
-				path: [],
-				message: "Unrecognized key(s) in object: 'slots'",
-			},
-		]);
-
 		const result = await upsertRsvp(invalidData);
 
 		expect(result).toEqual({ success: false });
-		expect(errorLogger).toHaveBeenCalledWith(error);
+		expect(errorLogger.mock.calls[0][0]).toBeInstanceOf(ZodError);
+		expect(errorLogger.mock.calls[0][0].issues).toHaveLength(4);
+		expect(errorLogger.mock.calls[0][0].issues[0].message).toContain(
+			"Invalid input: expected string, received undefined"
+		);
+		expect(errorLogger.mock.calls[0][0].issues[1].message).toContain(
+			"Invalid input: expected string, received undefined"
+		);
+		expect(errorLogger.mock.calls[0][0].issues[2].message).toContain(
+			'Invalid option: expected one of "yes"|"no"'
+		);
+		expect(errorLogger.mock.calls[0][0].issues[3].message).toContain(
+			'Unrecognized key: "slots"'
+		);
 	});
 
 	it("should log an error and return an empty array if db insertion fails", async () => {

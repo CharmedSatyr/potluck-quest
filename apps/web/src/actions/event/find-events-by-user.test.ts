@@ -48,20 +48,15 @@ describe("findEventsByUser", () => {
 			createdBy: "",
 		};
 
-		const error = new ZodError([
-			{
-				validation: "uuid",
-				code: "invalid_string",
-				message: "Invalid uuid",
-				path: ["createdBy"],
-			},
-		]);
-
 		const result = await findEventsByUser(invalidData);
 
 		expect(db.select).not.toHaveBeenCalled();
 		expect(result).toEqual([]);
-		expect(errorLogger).toHaveBeenCalledWith(error);
+		expect(errorLogger.mock.calls[0][0]).toBeInstanceOf(ZodError);
+		expect(errorLogger.mock.calls[0][0].issues).toHaveLength(1);
+		expect(errorLogger.mock.calls[0][0].issues[0].message).toContain(
+			"Invalid UUID"
+		);
 	});
 
 	it("should return an empty array and log an error if db retrieval fails", async () => {

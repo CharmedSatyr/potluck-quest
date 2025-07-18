@@ -44,26 +44,18 @@ describe("deleteCommitment", () => {
 			id: "invalid-id",
 		};
 
-		const error = new ZodError([
-			{
-				validation: "uuid",
-				code: "invalid_string",
-				message: "Invalid uuid",
-				path: ["createdBy"],
-			},
-			{
-				validation: "uuid",
-				code: "invalid_string",
-				message: "Invalid uuid",
-				path: ["id"],
-			},
-		]);
-
 		const result = await deleteCommitment(invalidData);
 
 		expect(db.delete).not.toHaveBeenCalled();
 		expect(result).toEqual([]);
-		expect(errorLogger).toHaveBeenCalledWith(error);
+		expect(errorLogger.mock.calls[0][0]).toBeInstanceOf(ZodError);
+		expect(errorLogger.mock.calls[0][0].issues).toHaveLength(2);
+		expect(errorLogger.mock.calls[0][0].issues[0].message).toContain(
+			"Invalid UUID"
+		);
+		expect(errorLogger.mock.calls[0][0].issues[1].message).toContain(
+			"Invalid UUID"
+		);
 	});
 
 	it("should return an empty array and log an error if db deletion fails", async () => {

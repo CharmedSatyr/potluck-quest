@@ -48,44 +48,24 @@ describe("createCommitment", () => {
 			slotId: "also-invalid-uuid",
 		};
 
-		const error = new ZodError([
-			{
-				validation: "uuid",
-				code: "invalid_string",
-				message: "Invalid uuid",
-				path: ["createdBy"],
-			},
-			{
-				code: "too_big",
-				maximum: 100,
-				type: "string",
-				inclusive: true,
-				exact: false,
-				message: "String must contain at most 100 character(s)",
-				path: ["description"],
-			},
-			{
-				code: "too_small",
-				minimum: 1,
-				type: "number",
-				inclusive: true,
-				exact: false,
-				message: "Number must be greater than or equal to 1",
-				path: ["quantity"],
-			},
-			{
-				validation: "uuid",
-				code: "invalid_string",
-				message: "Invalid uuid",
-				path: ["slotId"],
-			},
-		]);
-
 		const result = await createCommitment(invalidData);
 
 		expect(db.insert).not.toHaveBeenCalled();
 		expect(result).toEqual([]);
-		expect(errorLogger).toHaveBeenCalledWith(error);
+		expect(errorLogger.mock.calls[0][0]).toBeInstanceOf(ZodError);
+		expect(errorLogger.mock.calls[0][0].issues).toHaveLength(4);
+		expect(errorLogger.mock.calls[0][0].issues[0].message).toContain(
+			"Invalid UUID"
+		);
+		expect(errorLogger.mock.calls[0][0].issues[1].message).toContain(
+			"Too big: expected string to have <=100 characters"
+		);
+		expect(errorLogger.mock.calls[0][0].issues[2].message).toContain(
+			"Too small: expected number to be >=1"
+		);
+		expect(errorLogger.mock.calls[0][0].issues[3].message).toContain(
+			"Invalid UUID"
+		);
 	});
 
 	it("should return an empty array and log an error if db insertion fails", async () => {
