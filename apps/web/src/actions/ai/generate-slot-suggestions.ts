@@ -66,5 +66,6 @@ export const generateSlotSuggestions = async (
 		stream.done();
 	})();
 
+	// TODO: If this returns an empty response, consider hiding the suggestions section.
 	return { object: stream.value };
 };
