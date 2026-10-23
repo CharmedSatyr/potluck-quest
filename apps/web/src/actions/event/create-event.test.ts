@@ -22,10 +22,10 @@ describe("createEvent", () => {
 	const validData = {
 		createdBy: "123e4567-e89b-12d3-a456-426614174000",
 		description: "This is a valid test event",
-		endUtcMs: 1766649600001,
+		endUtcMs: 1798228800001,
 		hosts: "John Doe",
 		location: "123 Test St",
-		startUtcMs: 1766649600000,
+		startUtcMs: 1798228800000,
 		title: "Test Event",
 	};
 

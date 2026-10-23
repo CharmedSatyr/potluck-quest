@@ -23,10 +23,10 @@ describe("updateEvent", () => {
 	const validData = {
 		code: "CODE1",
 		description: "Updated description",
-		endUtcMs: 1766649600000,
+		endUtcMs: 1798228800001,
 		hosts: "Jane Doe",
 		location: "456 Test St",
-		startUtcMs: 1766649600000,
+		startUtcMs: 1798228800000,
 		title: "Updated Event",
 	};
 
