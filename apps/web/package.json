@@ -43,7 +43,7 @@
 		"@mdx-js/react": "^3.1.0",
 		"@next/mdx": "^15.4.1",
 		"@potluck/config": "workspace:*",
-		"@tailwindcss/postcss": "^4.1.11",
+		"@tailwindcss/postcss": "^4.3.3",
 		"@tailwindcss/typography": "^0.5.16",
 		"@testing-library/dom": "^10.4.1",
 		"@testing-library/jest-dom": "^6.6.4",
