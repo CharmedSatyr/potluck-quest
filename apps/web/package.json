@@ -51,7 +51,7 @@
 		"@testing-library/user-event": "^14.6.1",
 		"@types/jest": "^30.0.0",
 		"@types/mdx": "^2.0.13",
-		"@types/node": "^24.0.14",
+		"@types/node": "^26.6.5",
 		"@types/react": "^19.1.10",
 		"@types/react-dom": "^19.1.7",
 		"daisyui": "5.0.46",
